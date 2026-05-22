@@ -3,6 +3,7 @@ project:
 
 website:
   title: "Probability and Random Processes"
+  site-url: https://cni-iisc.github.io/RP-course/
   navbar:
     left:
       - href: index.qmd
