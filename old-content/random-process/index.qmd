@@ -1,0 +1,20 @@
+---
+#title: "Probability and Random Processes"
+#format: html
+---
+
+## About {.unnumbered}
+
+This is the homepage of the course. The content is organised into **modules**, each comprising a series of **lectures** accessible through dedicated pages.
+
+On each lecture page, you'll find:
+
+- AI-assisted **video presentation** of the lecture  
+- Accompanying **lecture notes** for review and reference
+
+You are encouraged to engage with the material at your own pace - whether by watching the videos, reading the notes, or both.
+
+We hope you enjoy the learning experience.  
+**Happy learning!**
+
+

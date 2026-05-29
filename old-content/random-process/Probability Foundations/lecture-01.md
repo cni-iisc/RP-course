@@ -1,0 +1,344 @@
+---
+title: "Sample and Event Space"
+author: "Parimal Parag"
+format:
+  html:
+    mathjax: 
+      fonts: STIX-Web
+    toc: true
+    toc-depth: 2
+    number-sections: false
+---
+
+{{< video https://www.youtube.com/watch?v=dQw4w9WgXcQ >}}
+
+# Functions and cardinality
+
+*Notation:* We denote the set of first $N$ positive integers by
+$[N] \triangleq \left\{1, 2, \dots, N\right\}$, the set of positive
+integers (natural numbers) by
+$\mathbb{N}\triangleq \left\{1, 2, \dots\right\}$, the set of integers
+by $\mathbb{Z}\triangleq \left\{\dots, -1, 0, 1, \dots\right\}$, the set
+of non-negative integers by
+$\mathbb{Z}_+ \triangleq \left\{0, 1, \dots\right\}$, the set of
+rational numbers by $\mathbb{Q}$, the set of reals by $\mathbb{R}$, and
+the set of non-negative reals by $\mathbb{R}_+$. Power set of a set $A$
+is the collection of all subsets of $A$ and denoted by
+$\mathcal{P}(A) \triangleq \left\{B: B \subseteq A\right\}$.
+
+::: defn
+**Definition 1** (Function). For sets $A, B$, we denote a function from
+set $B$ to set $A$ by $f: B \to A$, where $(b, f(b)) \in B \times A$ and
+for each $b \in B$ there is only one value $f(b) \in A$. That is,
+$$\left\{(b, f(b)): b \in B\right\} \subseteq B \times A.$$ The set $B$
+and $A$ are called the **domain** and **co-domain** of function $f$, and
+the set $f(B) = \left\{f(b) \in A: b \in B\right\}$ is called the
+**range** of function $f$.
+:::
+
+:::: shaded
+::: exmp
+**Example 2**. Let $B = \left\{1,2,3\right\}$ and
+$A = \left\{a,b\right\}$, then $\left\{(1,a), (2,a), (3,b)\right\}$
+corresponds to a function $f:B \to A$ such that
+$f(1)= f(2) = a, f(3) =b$. We will denote this function by ordered tuple
+$(aab)$.
+:::
+::::
+
+*Notation:* The collection of all $A$-valued functions with the domain
+$B$ is denoted by $A^B$.
+
+:::: shaded
+::: exmp
+**Example 3**. Let $B = \left\{1,2,3\right\}$ and
+$A = \left\{a,b\right\}$, then the collection $A^B$ is defined by the
+set of ordered tuples
+$$\left\{(aaa), (aab), (aba), (abb), (baa), (bab), (bba), (bbb)\right\}.
+%&\set{\set{(1,a), (2,a), (3,a)}, \set{(1,a), (2,a), (3,b)}, \set{(1,a), (2,b), (3,b)}, \set{(1,a), (2,b), (3,a)}}\\
+%&\cup\set{\set{(1,b), (2,a), (3,a)}, \set{(1,b), (2,a), (3,b)}, \set{(1,b), (2,b), (3,b)}, \set{(1,b), (2,b), (3,b)}}.$$
+:::
+::::
+
+::: defn
+**Definition 4** (Inverse Map). For a function $f \in A^B$, we define
+**set inverse map** $f^{-1}(C) = \left\{b \in B: f(b) \in C\right\}$ for
+all subsets $C \subseteq A$.
+:::
+
+::: rem
+*Remark 1*. This is a slight abuse of notation, since
+$f^{-1}: \mathcal{P}(A) \to \mathcal{P}(B)$ is a map from sets to sets.
+:::
+
+:::: shaded
+::: exmp
+**Example 5**. Let $B = \left\{1,2,3\right\}$ and
+$A = \left\{a,b\right\}$ and $f$ be denoted by the ordered tuple
+$(aba)$, then $f^{-1}(\left\{a\right\}) = \left\{1,3\right\}$ and
+$f^{-1}(\left\{b\right\}) = \left\{2\right\}$.
+:::
+::::
+
+::: defn
+**Definition 6** (Injective, surjective, bijective). A function
+$f \in A^B$ is
+
+- if for any distinct $b \neq c \in B$, we have $f(b) \neq f(c)$,
+
+- if $f(B) = A$, and
+
+- if it is injective and surjective.
+:::
+
+:::: shaded
+::: exmp
+**Example 7**.
+
+- Let $B = \left\{1,2,3\right\}$ and $A = \left\{a,b,c,d\right\}$. Then
+  $(abc)$ is an injective function.
+
+- Let $B = \left\{1,2,3,4\right\}$ and $A = \left\{a,b,c\right\}$. Then
+  $(abca)$ is a surjective function.
+
+- Let $B = \left\{1,2,3\right\}$ and $A = \left\{a,b,c\right\}$. Then
+  $(abc)$ is a bijective function.
+:::
+::::
+
+::: defn
+**Definition 8** (Cardinality). We denote the cardinality of a set $A$
+by $\left\lvert A\right\rvert$. If there is a bijection between two
+sets, they have the same cardinality. Any set which is bijective to the
+set $[N]$ has cardinality $N$.
+:::
+
+:::: shaded
+::: exmp
+**Example 9**. The cardinality of $A = \left\{a,b,c\right\}$ is
+$\left\lvert A\right\rvert = 3$, since there is a bijection between
+$B = \left\{1,2,3\right\}$ and $A = \left\{a,b,c\right\}$.
+:::
+::::
+
+::: defn
+**Definition 10** (Countable). Any set which is bijective to a subset of
+natural numbers $\mathbb{N}$ is called a **countable** set. Any set
+which has a finite cardinality is called a **countably finite** set. Any
+set which is bijective to the set of natural numbers $\mathbb{N}$ is
+called a **countably infinite** set.
+:::
+
+:::: tcolorbox
+::: exerc
+**Exercise 11**. Show the following are true.
+
+1.  $\left\lvert A^B\right\rvert = \left\lvert A\right\rvert^{\left\lvert B\right\rvert}$.
+
+2.  $A^{[N]}$ is set of all $A$-valued $N$-length sequences.
+
+3.  $A^\mathbb{N}$ is a set of all $A$-valued countably infinite
+    sequences indexed by the set of natural numbers $\mathbb{N}$.
+
+4.  The sets $\mathbb{N}, \mathbb{Z}_+, \mathbb{Z}, \mathbb{Q}$ have the
+    same cardinality.
+:::
+::::
+
+# Sample space
+
+Consider an experiment where the outcomes are random and unpredictable.
+
+::: defn
+**Definition 12** (Sample space). The set of all possible outcomes of a
+random experiment is called **sample space** and denoted by $\Omega$.
+:::
+
+:::::::: shaded
+::: exmp
+**Example 13** (Single coin toss). Consider a single coin toss, where
+the outputs can be heads or tails, denoted by $H$ and $T$ respectively.
+The set of all possible outcomes is $\Omega = \left\{H, T\right\}$.
+:::
+
+::: exmp
+**Example 14** (Finite coin tosses). Consider $N$ tosses of a single
+coin, where the possible output of each coin toss belongs to the set
+$\left\{H,T\right\}$ as before. In this case, the sample space is
+$\Omega = \left\{H, T\right\}^{[N]}$, and a single outcome is a sequence
+$\omega = (\omega_1, \dots, \omega_N)$ where
+$\omega_i \in \left\{H,T\right\}$ for all $i \in [N]$.
+:::
+
+::: exmp
+**Example 15** (Countably infinite coin tosses). Consider an infinite
+sequence of coin tosses. The set of all possible outcomes is
+$\Omega = \left\{H, T\right\}^\mathbb{N}$. A single outcome is a
+sequence
+$\omega = (\omega_i \in \left\{H,T\right\}: i \in \mathbb{N}) \in \Omega$.
+:::
+
+::: exmp
+**Example 16** (Point on non-negative real line). The set of all
+possible outcomes for a single point on non-negative real line is
+$\Omega = \mathbb{R}_+$.
+:::
+
+::: exmp
+**Example 17** (Countable points on non-negative real line). The set of
+all possible outcomes is $\Omega = \mathbb{R}_+^\mathbb{N}$, where a
+single outcome is a sequence
+$\omega = (\omega_i \in \mathbb{R}_+: i \in \mathbb{N}) \in \Omega$.
+:::
+::::::::
+
+# Event space
+
+::: defn
+**Definition 18** (Event space). A collection of subsets of sample space
+$\Omega$ is called the **event space** if it is a $\sigma$-algebra over
+subsets of $\Omega$, and denoted by $\mathcal{F}$. In other words, the
+collection $\mathcal{F}$ satisfies the following properties.
+
+1.  Event space includes the certain event $\Omega$. That is,
+    $\Omega \in \mathcal{F}$.
+
+2.  Event space is closed under complements. That is, if
+    $A \in \mathcal{F}$, then $A^c \in \mathcal{F}$.
+
+3.  Event space is closed under countable unions. That is, if
+    $A_i \in \mathcal{F}$ for all $i \in \mathbb{N}$, then
+    $\cup_{i \in \mathbb{N}}A_i \in \mathcal{F}$.
+
+The elements of the event space $\mathcal{F}$ are called **events**.
+:::
+
+:::::: shaded
+::: exmp
+**Example 19** (Coarsest event space). For any sample space $\Omega$,
+the trivial event space is
+$\mathcal{F}= \left\{\emptyset, \Omega\right\}$.
+:::
+
+::: exmp
+**Example 20** (Single coin toss). Recall that the sample space for a
+single coin toss is $\Omega = \left\{H, T\right\}$. We define an event
+space
+$\mathcal{F}\triangleq \left\{\emptyset, \left\{H\right\}, \left\{T\right\}, \left\{H,T\right\}\right\}$.
+Can you verify that $\mathcal{F}$ is a $\sigma$-algebra?
+:::
+
+::: exmp
+**Example 21** (Finest event space for finite coin tosses). Recall that
+the sample space for $N$ coin tosses is
+$\Omega = \left\{H, T\right\}^N$, An event space for this sample space
+is
+$\mathcal{F}\triangleq \mathcal{P}(\Omega) = \left\{A: A \subseteq \Omega\right\}$.
+Can you verify that $\mathcal{F}$ is a $\sigma$-algebra?
+:::
+::::::
+
+::: rem
+*Remark 2*. We observe that $\mathcal{F}\subseteq \mathcal{P}(\Omega)$.
+However, not all subsets of the sample space $\Omega$ necessary belong
+to the event space. That is, $\mathcal{F}\subset \mathcal{P}(\Omega)$.
+To show this, it suffices to construct a set $A \subset \Omega$ that is
+not in $\mathcal{F}$.
+:::
+
+## Properties of event space
+
+::: prop
+**Proposition 22** (Properties of event space). *Event space contains
+the impossible event, is closed under finite unions, and closed under
+countable intersections.*
+:::
+
+::: proof
+From the inclusion of certain event and the closure complements
+of $\sigma$-algebras, it follows that the impossible event
+$\emptyset \in \mathcal{F}$. That is, since $\Omega \in \mathcal{F}$ and
+$\emptyset = \Omega^c$, we have $\emptyset \in \mathcal{F}$.
+
+We need to show that if $A,B \in \mathcal{F}$, then the union
+$A\cup B \in \mathcal{F}$. This follows from the fact that we can
+$A_1 = A, A_2 = B$ and $A_i = \emptyset$ for all $i \geqslant 2$, and
+apply closure under countable unions.
+
+We need to show that for any sequence of events such that
+$A_i \in \mathcal{F}$ for all $i \in \mathbb{N}$, we have
+$\cap_{i \in \mathbb{N}}A_i \in \mathcal{F}$. To show this, we first
+notice that $A_i^c \in \mathcal{F}$ for all $i \in \mathbb{N}$ from the
+closure under complements. Further, we have
+$\cup_{i \in \mathbb{N}}A_i^c \in \mathcal{F}$ from the closure under
+countable unions, and then the result follows from taking the complement
+and the closure under complements. ◻
+:::
+
+## Event space generated by a family of sets
+
+::: defn
+**Definition 23** (Event space generated by a family of sets). Consider
+a sample space $\Omega$ and a family $F \subset \mathcal{P}(\Omega)$ of
+subsets of $\Omega$. Then the event space generated by $F$ is the
+smallest event space containing each element of $F$, and is denoted by
+$\sigma(F)$.
+:::
+
+::::: shaded
+::: exmp
+**Example 24** (Event space generated by a single event). For any sample
+space $\Omega$ and a subset $A \subseteq \Omega$, the smallest event
+space generated by this event $A$ is
+$\mathcal{F}= \left\{\emptyset, A, A^c, \Omega\right\}$.
+:::
+
+::: exmp
+**Example 25** (Countably infinite coin tosses). Recall that the sample
+space for a countably infinite number of coin tosses is
+$\Omega = \left\{H, T\right\}^\mathbb{N}$. We will construct an event
+space $\mathcal{F}$ on this outcome space, which would not be the power
+set of the sample space. By definition, we must have the certain and the
+impossible event in an event space. We consider the event space
+$\mathcal{F}$ generated by the events
+
+$$
+A_n \triangleq \left\{\omega \in \Omega: \omega_i = H \text{ for some } i \in [n] \right\}, \text{ for each } n \in \mathbb{N}.
+$$ {#eq-OneHeadEvent}
+
+That is $A_n$ is the event of getting at least one head in the first $n$
+tosses. We see that $(A_n \in \mathcal{F} : n \in \mathbb{N})$ is a
+sequence of increasing events. From closure under countable union,
+we have $\cup_{n \in \mathbb{N}} A_n = \Omega \setminus (T, T, \dots) \in \mathcal{F}$.
+:::
+:::::
+
+:::: tcolorbox
+::: exerc
+**Exercise 26**. Consider a countably infinite sequence of coin tosses,
+with the sample space $\Omega = \left\{H, T\right\}^\mathbb{N}$ and the
+event space $\mathcal{F}$ generated by the events
+$(A_n: n \in \mathbb{N})$ defined in @eq-OneHeadEvent.  
+Let $B_n$ be the event of observing the first head in the $n$th toss.
+Show that $B_n \in \mathcal{F}$ for all $n \in \mathbb{N}$.
+:::
+::::
+
+
+::: defn
+**Definition 27** (Borel event space). For sample space $\mathbb{R}$, a
+*Borel event space* is generated by the subsets
+$B_x \triangleq (-\infty, x] \subseteq \mathbb{R}$ for each
+$x \in \mathbb{R}$, and denoted by
+$\mathcal{B}(\mathbb{R}) = \sigma(\left\{B_x: x \in \mathbb{R}\right\})$.
+:::
+
+:::: tcolorbox
+::: exerc
+**Exercise 28**. Show that the events $\left\{x\right\}, (x, y), [x, y]$
+belong to the Borel event space $\mathcal{B}(\mathbb{R})$ for all
+$x, y \in \mathbb{R}$.
+:::
+::::
+
+

@@ -1,0 +1,70 @@
+project:
+  type: book
+  output-dir: _site
+  #resources:
+  #  - www/geogebra/*.ggb
+  #  - julia-examples/*.ipynb
+
+book:
+  title: "Probability and Random Processes"
+  author: 
+    - name: Parimal Parag
+      url: https://ece.iisc.ac.in/~parimal/
+      affiliation: Centre for Networked Intelligence, IISc Bangalore
+      affiliation-url: https://cni.iisc.ac.in
+  description: "A graduate-level foundational course, originally offered as E2.202 Random Processes in the ECE Department at IISc."
+  site-url: ""
+  repo-url: ""
+  repo-actions: [edit]
+  repo-branch: quarto
+  reader-mode: true
+
+  navbar:
+    background: dark
+    title: false
+    pinned: false
+    search: false
+    left:
+      - href: ../random-process/index.html
+        text: Probability and Random Processes
+
+  sidebar:
+    collapse-level: 2
+    pinned: false
+    style: floating
+
+  chapters:
+    - index.qmd
+    - part: "Foundations"
+      chapters:
+        - Probability Foundations/lecture-01.md
+        - Probability Foundations/lecture-02.md
+        - Probability Foundations/lecture-03.md
+        
+
+#bibliography: references.bib
+csl: _extensions/csl/acm-siggraph.csl
+
+format:
+  html:
+    theme: 
+      light: 
+        - lumen
+        - static/css/style.scss
+      dark: 
+        - darkly
+        - static/css/style.scss
+    #number-sections: true
+    include-in-header: 
+      - static/html/mathjax.html
+      - static/html/clicky.html
+    reference-location: margin
+    filters:
+      - _extensions/schochastics/nutshell/nutshell.lua
+    published-title: Updated
+    date: last-modified
+    smooth-scroll: true
+    embed-resources: false
+    notebook-links: inline
+
+
