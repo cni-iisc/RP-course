@@ -1,7 +1,9 @@
 ---
-title: "Probability and Random Processes"
+title: "Foundations"
+author: "Parimal Parag"
+description: "Probability and Random Processes lecture notes"
 ---
 
-This is a Quarto website.
+Lecture notes and videos for the course.
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+Use the sidebar to jump between lectures.

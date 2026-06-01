@@ -1,0 +1,18 @@
+---
+title: "Lecture 2: Probability Function"
+author: "Parimal Parag"
+---
+
+<iframe width="100%" height="420" src="https://www.youtube.com/embed/TvOjSdJRkrk" title="Lecture 2" allowfullscreen></iframe>
+
+## Indicator functions
+
+For an event $A$, the indicator is $\Ind{A}(\omega) = 1$ if $\omega \in A$ and $0$ otherwise.
+
+## Probability axioms
+
+Non-negativity, countable additivity, and certainty.
+
+## Properties of probability
+
+Impossibility, monotonicity, inclusion-exclusion, and continuity.

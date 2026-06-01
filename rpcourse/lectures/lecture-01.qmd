@@ -1,0 +1,18 @@
+---
+title: "Lecture 1: Sample and Event Space"
+author: "Parimal Parag"
+---
+
+<iframe width="100%" height="420" src="https://www.youtube.com/embed/DIjEofrAwfE" title="Lecture 1" allowfullscreen></iframe>
+
+## Functions and cardinality
+
+Sets, functions, inverse images, and countability.
+
+## Sample space
+
+The sample space $\Omega$ is the set of all possible outcomes of a random experiment.
+
+## Event space
+
+An event space is a $\sigma$-algebra over subsets of $\Omega$.

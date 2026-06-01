@@ -1,0 +1,18 @@
+---
+title: "Lecture 3: Independence"
+author: "Parimal Parag"
+---
+
+<iframe width="100%" height="420" src="https://www.youtube.com/embed/sQsslbsZVlI" title="Lecture 3" allowfullscreen></iframe>
+
+## Law of total probability
+
+If $(B_n)$ partitions $\Omega$, then $P(A) = \sum_n P(A \cap B_n)$.
+
+## Independence
+
+Events are independent when intersections factor into products of probabilities.
+
+## Conditional probability
+
+$P(A\mid B) = P(A \cap B) / P(B)$ when $P(B) > 0$.

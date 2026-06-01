@@ -1,5 +1,6 @@
 ---
 title: "About"
+author: "Parimal Parag"
 ---
 
-About this site
+Probability and Random Processes notes, migrated to Quarto.

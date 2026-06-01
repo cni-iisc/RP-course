@@ -1,0 +1,26 @@
+<script>
+window.MathJax = window.MathJax || {};
+window.MathJax.tex = window.MathJax.tex || {};
+window.MathJax.tex.macros = Object.assign(window.MathJax.tex.macros || {}, {
+  set: ["\\left\\{#1\\right\\}", 1],
+  abs: ["\\left\\lvert#1\\right\\rvert", 1],
+  Ind: ["\\mathbb{1}_{#1}", 1],
+  SetIn: ["\\mathbb{1}_{\\left\\{#1\\right\\}}", 1],
+  EQ: ["\\begin{equation*}#1\\end{equation*}", 1],
+  EQN: ["\\begin{equation}#1\\end{equation}", 1],
+  eq: ["\\begin{aligned}#1\\end{aligned}", 1],
+  meq: ["\\begin{aligned}#2\\end{aligned}", 2],
+  E: "\\mathbb{E}",
+  P: "\\mathbb{P}",
+  F: "\\mathbb{F}",
+  N: "\\mathbb{N}",
+  R: "\\mathbb{R}",
+  Z: "\\mathbb{Z}",
+  Q: "\\mathbb{Q}",
+  C: "\\mathbb{C}",
+  cF: "\\mathcal{F}",
+  sF: "\\mathscr{F}",
+  cP: "\\mathcal{P}",
+  meqalign: ["\\begin{aligned}#1\\end{aligned}", 1]
+});
+</script>

@@ -2,13 +2,48 @@ project:
   type: website
 
 website:
-  title: "Probability and Random Processes"
+  title: "Foundations"
+  description: "Lecture notes for Probability and Random Processes"
   site-url: https://cni-iisc.github.io/RP-course/
   navbar:
     left:
       - href: index.qmd
         text: Home
       - about.qmd
+  sidebar:
+    style: floating
+    collapse-level: 1
+    contents:
+      - section: "Lectures"
+        contents:
+          - lectures/lecture-01.qmd
+          - lectures/lecture-02.qmd
+          - lectures/lecture-03.qmd
+          - lectures/lecture-04.qmd
+          - lectures/lecture-05.qmd
+          - lectures/lecture-06.qmd
+          - lectures/lecture-07.qmd
+          - lectures/lecture-08.qmd
+          - lectures/lecture-09.qmd
+          - lectures/lecture-10.qmd
+          - lectures/lecture-11.qmd
+          - lectures/lecture-12.qmd
+          - lectures/lecture-13.qmd
+          - lectures/lecture-14.qmd
+          - lectures/lecture-15.qmd
+          - lectures/lecture-16.qmd
+          - lectures/lecture-17.qmd
+          - lectures/lecture-18.qmd
+          - lectures/lecture-19.qmd
+          - lectures/lecture-20.qmd
+          - lectures/lecture-21.qmd
+          - lectures/lecture-22.qmd
+          - lectures/lecture-23.qmd
+          - lectures/lecture-24.qmd
+          - lectures/lecture-25.qmd
+          - lectures/lecture-26.qmd
+          - lectures/lecture-27.qmd
+          - lectures/lecture-28.qmd
 
 format:
   html:
@@ -17,6 +52,5 @@ format:
       - brand
     css: styles.css
     toc: true
-
-
-
+    include-in-header:
+      - mathjax-macros.html

@@ -1,0 +1,52 @@
+---
+title: "Lecture 4: Random Variable"
+author: "Parimal Parag"
+---
+
+## Random Variable
+
+Let $(\Omega, \mathcal{F}, P)$ be a probability space. A random variable $X: \Omega \to \mathbb{R}$ is measurable when
+
+$$
+A_X(x) \triangleq \{\omega \in \Omega : X(\omega) \le x\} = X^{-1}((-
+\infty, x]) \in \mathcal{F}.
+$$ {#eq-rv}
+
+The set $A_X(x)$ is called a lower level set.
+
+## Distribution function
+
+The CDF is
+
+$$
+F_X(x) \triangleq P(X \le x).
+$$ {#eq-cdf}
+
+It is non-decreasing, right-continuous, with limits $0$ and $1$ at $-\infty$ and $\infty$.
+
+## Indicator random variable
+
+For an event $A \in \mathcal{F}$, the indicator random variable is
+
+$$
+\Ind{A}(\omega) = \begin{cases}
+1, & \omega \in A,\\
+0, & \omega \notin A.
+\end{cases}
+$$
+
+## Discrete random variables
+
+If $X$ has countable range, then
+
+$$
+X(\omega) = \sum_{x \in \mathcal{X}} x\,\Ind{\{X=x\}}(\omega).
+$$
+
+## Continuous random variables
+
+If $X$ has density $f_X$, then
+
+$$
+F_X(x) = \int_{-\infty}^x f_X(u)\,du.
+$$
