@@ -1,6 +1,73 @@
 ---
-title: "Lecture 26"
+title: "Lecture-26: Properties of Poisson point processes"
 author: "Parimal Parag"
 ---
 
-Content coming soon.
+# Laplace functional
+
+Let $\sX = \R^d$ be the $d$-dimensional Euclidean space. Recall that all the random points are unique for a simple point process $S:\Omega\to\sX^\N$ , and hence $S$ can also be considered as a set of countable points in $\sX$. Let $N:\Omega\to\Z_+^{\sB(\sX)}$ be the counting process associated with the simple point process $S$.
+
+::: rem
+We observe that $dN(x) = 0$ for all $x \notin S$ and $dN(x) = \delta_x\SetIn{x \in S}$. Hence, for any Borel measurable function $f : \sX \to \R$ and bounded $A \in \sB(\sX)$, we have $\int_{x \in A}f(x)dN(x) = \sum_{x \in S\cap A}f(x). % = \sum_{S_i \in A}f(S_i).$
+:::
+
+::: defn
+The **Laplace functional** $\sL_S: \R_+^\sX\to\R_+$ of a point process $S:\Omega\to\sX^\N$ and associated counting process $N:\Omega\to\Z_+^{\sB(\sX)}$ is defined for all non-negative Borel measurable function $f: \sX \to \R_+$ as
+:::
+
+::: rem
+For a simple function $f = \sum_{i = 1}^{k}t_i\Ind{A_i}$, we can write the Laplace functional as a function of the vector $(t_1, t_2, \dots, t_k)$, $\sL_{S}(f) = \E\exp\left(-\sum_{i=1}^kt_i\int_{A_i}dN(x)\right) = \E\exp\left(-\sum_{i=1}^kt_iN(A_i)\right).$ We observe that this is a joint Laplace transform of the random vector $(N(A_1), \dots, N(A_k))$. This way, one can compute all finite dimensional distribution of the counting process $N$.
+:::
+
+::: prop
+The Laplace functional of a Poisson point process $S:\Omega\to\sX^\N$ with intensity measure $\Lambda:\sB(\sX)\to\R_+$ evaluated at any non-negative Borel measurable function $f:\sX\to\R_+$, is $$\begin{equation*}
+\sL_{S}(f) = \exp\left(-\int_{\sX}(1-e^{-f(x)})d\Lambda(x)\right).
+\end{equation*}$$
+:::
+
+::: proof
+*Proof.* For a bounded Borel measurable set $A \in \sB(\sX)$, consider the truncated function $g = f\Ind{A}$. Then, $$\begin{equation*}
+\sL_{S}(g) 
+= \E\exp(-\int_{\sX}g(x)dN(x)) 
+= \E\exp(-\int_{A}f(x)dN(x)).
+\end{equation*}$$ Clearly $dN(x) = \delta_{x}\SetIn{x \in S}$ and hence we can write $\sL_{S}(g) = \E\exp\left(-\sum_{x \in S\cap A}f(x)\right)$. We know that the probability of $N(A) = |S \cap A| = n$ points in set $A$ is given by Given there are $n$ points in set $A$, the density of $n$ point locations are independent and given by Hence, we can write the Laplace functional as Result follows from taking increasing sequences of sets $A_k \uparrow \sX$ and monotone convergence theorem. ◻
+:::
+
+## Superposition of point processes
+
+::: defn
+Let $S^k:\Omega\to\sX^\N$ be a simple point process with intensity measures $\Lambda_k:\sB(\sX)\to\R_+$ and counting process $N_k:\Omega\to\Z_+^{\sB(\sX)}$, for each $k \in \N$. The **superposition** of point processes $(S^k: k \in \N)$ is defined as a point process $S \triangleq \cup_kS^k$.
+:::
+
+::: rem
+The counting process associated with superposition point process $S: \Omega\to\sX^\N$ is given by $N: \Omega\to\Z_+^{\sB(\sX)}$ defined by $N \triangleq \sum_kN_k$, and the intensity measure of point process $S$ is given by $\Lambda: \sB(\sX)\to\R_+$ defined by $\Lambda = \sum_k\Lambda_k$ from monotone convergence theorem.
+:::
+
+::: rem
+The superposition process $S$ is simple iff $\sum_kN_k$ is locally finite.
+:::
+
+::: thm
+The superposition of independent Poisson point processes $(S^k: k \in \N)$ with intensities $(\Lambda_k: k \in \N)$ is a Poisson point process with intensity measure $\sum_k \Lambda_k$ if and only if the latter is a locally finite measure.
+:::
+
+::: proof
+*Proof.* Consider the superposition $S = \cup_kS^k$ of independent Poisson point processes $S^k \in \sX$ with intensity measures $\Lambda_k$. We will prove just the sufficiency part this theorem. We assume that $\sum_k\Lambda_k$ is locally finite measure. It is clear that $N(A) = \sum_kN_k(A)$ is finite by locally finite assumption, for all bounded sets $A \in \sB(\sX)$. In particular, we have $dN(x) = \sum_kdN_k(x)$ for all $x \in \sX$. From the monotone convergence theorem and the independence of counting processes, we have for a non-negative Borel measurable function $f: \sX \to \R_+$, ◻
+:::
+
+## Thinning of point processes
+
+::: defn
+Consider a probability **retention function** $p: \sX \to [0,1]$ and an independent Bernoulli point retention process $Y:\Omega \to \set{0,1}^\sX$ such that $\E Y(x) = p(x)$ for all $x \in \sX$. The **thinning** of point process $S: \Omega \to \sX^\N$ with the probability retention function $p: \sX \to [0,1]$ is a point process $S^{(p)}: \Omega \to \sX^\N$ defined by where $Y(S_n)$ is an independent indicator for the retention of each point $S_n$ and $\E[Y(S_n)\given S_n] = p(S_n)$.
+:::
+
+::: thm
+The thinning of a Poisson point process $S:\Omega\to\sX^\N$ of intensity measure $\Lambda:\sB(\sX)\to\R_+$ with the retention probability function $p:\sX\to[0,1]$, yields a Poisson point process $S^{(p)}:\Omega\to\sX^\N$ of intensity measure $\Lambda^{(p)}:\sB(\sX)\to\R_+$ defined for all bounded $A \in \sB(\sX)$ as $\Lambda^{(p)}(A) \triangleq \int_A p(x) d\Lambda(x).$
+:::
+
+::: proof
+*Proof.* Let $A \in \sB(\sX)$ be a bounded Boreal measurable set, and let $f: \sX \to \R_+$ be a non-negative function. Let $N^{(p)}$ be the associated counting process to the thinned point process $S^{(p)}$. Hence, for any bounded set $A \in \sB(\sX)$, we have $N^{(p)}(A) = \sum_{x \in S \cap A}Y(x)$. That is, $dN^{(p)}(x) 
+= \delta_{x}Y(x)\SetIn{x \in S}.$ Therefore, for any non-negative function $g(x) = f(x)\SetIn{x \in A}$, we can write $\int_{x \in \sX}g(x)dN^{(p)}(x) 
+= \int_{x \in A}f(x)dN^{(p)}(x) 
+= \sum_{x \in S\cap A}f(x)Y(x).$ We can write the Laplace functional of the thinned point process $S^{(p)}$ for the non-negative function $g(x) = f(x)\SetIn{x \in A}$, as The first equality follows from the definition of Laplace functional and taking nested expectations. Second equality follows from the fact that the distribution of all points of a Poisson point process are . Since $Y$ is a Bernoulli process independent of the underlying process $S$ with $\E[Y(S_i)] = p(S_i)$, we get From the distribution $\frac{\Lambda'(x)}{\Lambda(A)}$ for $x \in S \cap A$ for the Poisson point process $S$, we get Result follows from taking increasing sequences of sets $A_k \uparrow \sX$ and monotone convergence theorem. ◻
+:::

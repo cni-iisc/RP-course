@@ -2,12 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Parimal Parag">
+<meta name="description" content="Probability and Random Processes lecture notes">
 
-<title>Probability and Random Processes</title>
+<title>Foundations</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -39,10 +41,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a0f9fd0d421825b736dc1bbcbcba2219.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-3e7735b7b22659e5fa437aca0bb49075.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -70,12 +72,95 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
+window.MathJax = window.MathJax || {};
+window.MathJax.tex = window.MathJax.tex || {};
+window.MathJax.tex.macros = Object.assign(window.MathJax.tex.macros || {}, {
+  set: ["\\left\\{#1\\right\\}", 1],
+  abs: ["\\left\\lvert#1\\right\\rvert", 1],
+  norm: ["\\left\\lVert#1\\right\\rVert", 1],
+  inner: ["\\left\\langle #1\\right\\rangle", 1],
+  floor: ["\\left\\lfloor#1\\right\\rfloor", 1],
+  ceil: ["\\left\\lceil#1\\right\\rceil", 1],
+  given: ["\\; \\big\\vert \\;", 0],
+  Ind: ["\\mathbb{1}_{#1}", 1],
+  SetIn: ["\\mathbb{1}_{\\left\\{#1\\right\\}}", 1],
+  iid: ["\\emph{i.i.d.}\\", 0],
+  EQ: ["\\begin{equation*}#1\\end{equation*}", 1],
+  EQN: ["\\begin{equation}#1\\end{equation}", 1],
+  eq: ["\\begin{aligned}#1\\end{aligned}", 1],
+  meq: ["\\begin{aligned}#2\\end{aligned}", 2],
+  tr: "\\operatorname{tr}",
+  Var: "\\operatorname{Var}",
+  Cov: "\\operatorname{Cov}",
+  cov: "\\operatorname{cov}",
+  expect: ["\\mathbb{E}\\left[#1\\right]", 1],
+  prob: ["\\mathbb{P}\\left[#1\\right]", 1],
+  E: "\\mathbb{E}",
+  P: "\\mathbb{P}",
+  F: "\\mathbb{F}",
+  N: "\\mathbb{N}",
+  R: "\\mathbb{R}",
+  Z: "\\mathbb{Z}",
+  Q: "\\mathbb{Q}",
+  C: "\\mathbb{C}",
+  D: "\\mathbb{D}",
+  cF: "\\mathcal{F}",
+  cM: "\\mathcal{M}",
+  sF: "\\mathscr{F}",
+  sX: "\\mathscr{X}",
+  sB: "\\mathscr{B}",
+  sG: "\\mathscr{G}",
+  cP: "\\mathcal{P}",
+  bU: "\\mathbf{1}",
+  bA: "\\mathbf{A}",
+  bx: "\\mathbf{x}",
+  bX: "\\mathbf{X}",
+  bZ: "\\mathbf{Z}",
+  tS: "\\tilde{S}",
+  bigo: "\\mathcal{O}",
+  goto: "\\rightarrow",
+  matlab: ["\\textsc{matlab}", 0],
+  reals: "{\\rm l}\\kern-.15em {\\rm R}",
+  complex: "{\\raisebox{.043ex}{\\rule{0.07em}{1.56ex}} \\hskip -.35em {\\rm C}}",
+  meqalign: ["\\begin{aligned}#1\\end{aligned}", 1]
+});
+</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -83,7 +168,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Probability and Random Processes</span>
+    <span class="navbar-title">Foundations</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -106,10 +191,206 @@ ul.task-list li input[type="checkbox"] {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Foundations</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Lectures</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lectures/lecture-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-01: Sample and Event Space</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lectures/lecture-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-02: Probability Function</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lectures/lecture-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-03: Independence</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lectures/lecture-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-04: Random Variable</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lectures/lecture-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-05: Random Vectors</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lectures/lecture-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-06: Transformation of random vectors</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lectures/lecture-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-07: Random Processes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lectures/lecture-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-08: Expectation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lectures/lecture-09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-09: Moments and <span class="math inline">\(L^p\)</span> spaces</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lectures/lecture-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-10: Correlation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lectures/lecture-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-11: Generating functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lectures/lecture-12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-12: Conditional Expectation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lectures/lecture-13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-13: Conditional expectation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lectures/lecture-14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-14: Almost sure convergence</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lectures/lecture-15.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-15: <span class="math inline">\(L^p\)</span> convergence</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lectures/lecture-16.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-16: Weak convergence</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lectures/lecture-17.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-17: Tractable Random Processes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lectures/lecture-18.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-18: Stopping Times</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lectures/lecture-19.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-19: Discrete Time Markov Chains</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lectures/lecture-20.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-20: Strong Markov Property</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lectures/lecture-21.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-21: Recurrent and transient states</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lectures/lecture-22.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-22: Communicating classes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lectures/lecture-23.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-23: Invariant Distribution</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lectures/lecture-24.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-24: Poisson Point Processes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lectures/lecture-25.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-25: Poisson processes: Conditional distribution</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lectures/lecture-26.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-26: Properties of Poisson point processes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lectures/lecture-27.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-27: Poisson process on the half-line</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lectures/lecture-28.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-28: Compound Poisson Processes</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
         
@@ -119,13 +400,24 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Probability and Random Processes</h1>
+<h1 class="title">Foundations</h1>
 </div>
 
+<div>
+  <div class="description">
+    Probability and Random Processes lecture notes
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Parimal Parag </p>
+          </div>
+  </div>
     
   
     
@@ -136,8 +428,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This is a Quarto website.</p>
-<p>To learn more about Quarto websites visit <a href="https://quarto.org/docs/websites" class="uri">https://quarto.org/docs/websites</a>.</p>
+<p>Lecture notes and videos for the course.</p>
+<p>Use the sidebar to jump between lectures.</p>
 
 
 
@@ -215,7 +507,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/cni-iisc\.github\.io\/RP-course\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

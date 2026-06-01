@@ -1,6 +1,106 @@
 ---
-title: "Lecture 22"
+title: "Lecture-22: Communicating classes"
 author: "Parimal Parag"
 ---
 
-Content coming soon.
+# Communicating classes
+
+::: defn
+For states $x, y \in \sX$, it is said that state $y$ is **accessible** from state $x$ if $p_{xy}^{(n)} > 0$ for some $n \in \Z_+$, and denoted by $x \to y$. If two states $x,y \in \sX$ are accessible to each other, they are said to **communicate** with each other, denoted by $x \leftrightarrow y$.
+:::
+
+::: prop
+Communication is an equivalence relation.
+:::
+
+::: proof
+*Proof.* Relation on state space $\sX$ is a subset of product of sets $\sX \times \sX$. Communication is a relation on state space $\sX$, as it relates two states $x,y \in \sX$. To show equivalence, we have to show reflexivity, symmetry, and transitivity of the relation.
+
+- Since $P^0 = I$, it follows that $p_{xx}^{(0)} = 1 > 0$ for each state $x\in\sX$, and hence $x\leftrightarrow x$.
+
+- If $x \leftrightarrow y$, then we know that $x \to y$ and $y \to x$ and hence $y \leftrightarrow x$.
+
+- For transitivity, suppose $x \leftrightarrow y$ and $y \leftrightarrow z$. Let $m,n \in \Z_+$ such that $p_{xy}^{(m)} >0$ and $p_{yz}^{(n)} >0$. Then by Chapman Kolmogorov equation, we have $p_{xz}^{(m+n)} = \sum_{w \in \sX} p_{xw}^{(m)}p_{wz}^{(n)} \ge p_{xy}^{(m)}p_{yz}^{(n)} > 0.$ This implies $x \to z$, and using similar arguments one can show that $z \to x$, and the transitivity follows.
+
+ ◻
+:::
+
+::: rem
+Since the communication is an equivalence relation, it partitions state space $\sX$ into equivalence classes.
+:::
+
+::: defn
+Each equivalence class of communication relation is called a **communicating class**. A property of states is said to be a **class property** if for each communicating class $\cC$, either all states in $\cC$ have the property, or none do.
+:::
+
+:::: defn
+A set of states that communicate are called a **communicating class**.
+
+::: compactenum
+A communicating class $\cC$ is called **closed** if no edges leave this class. That is, for all edges $(x,y) \in \cC \times \cC^c$, we have $p_{xy} = 0$.
+
+An **open** communicating class is not closed, i.e. there exist an edge that leaves this class. That is, there exists an edge $(x,y) \in \cC\times \cC^c$ such that $p_{xy} > 0$.
+:::
+::::
+
+## Irreducibility and periodicity
+
+::: defn
+A Markov chain with a single class is called an **irreducible** Markov chain. That is, for any two states $x, y \in \sX$, there exists an integer $n \in \Z_+$ such that $p_{xy}^{(n)} > 0$. In other words, any state $y$ can be reached from any state $x$ using transitions of positive probability.
+:::
+
+::: defn
+Let $\cT(x) \triangleq \set{n \in \N : p_{xx}^{(n)} > 0}$ be the set of times when the chain can possibly return to the initial state $x$. The **period** of any state $x \in \sX$ is defined as $d(x) \triangleq \gcd\cT(x) =  \gcd\{n \in \N : p_{xx}^{(n)} > 0\}.$ We define $d(x) = \infty$, if $p_{xx}^{(n)} = 0$ for all $n \in \N$. A state $x \in \sX$ is called **aperiodic** if the period $d(x)$ is $1$.
+:::
+
+::: prop
+If $x \leftrightarrow y$, then $d(x) = d(y)$. That is, periodicity is a class property.
+:::
+
+::: proof
+*Proof.* Consider two states $x\neq y \in \sX$ and integers $m,n \in \N$ be such that $p_{xy}^{(m)}p_{yx}^{(n)} > 0$. Suppose $s \in \cT(x)$, that is $p_{xx}^{(s)} > 0$. Then Hence $d(y) | n+m$ and $d(y) | n+s+m$, and hence $d(y) | s$ for any $s \in \cT(x)$. In particular, it implies that $d(y) | d(x)$. By symmetrical arguments, we get $d(x) | d(y)$. Hence $d(x) = d(y)$. ◻
+:::
+
+::: defn
+For an irreducible chain, the period of the chain is defined to be the period which is common to all states. An irreducible Markov chain is called **aperiodic** if the single communicating class is aperiodic.
+:::
+
+::: prop
+If the transition matrix $P$ is aperiodic and irreducible, then there is an integer $r_0$ such that $p_{xy}^{(r)}>0$ for all $x,y \in \sX$ and $r \ge r_0$.
+:::
+
+## Transient and recurrent states
+
+::: prop
+Transience and recurrence are class properties.
+:::
+
+::: proof
+*Proof.* Let us start with proving recurrence is a class property. Let $x$ be a recurrent state and let $x \leftrightarrow y$. Hence there exist some $m,n >0$, such that $P_{xy}^{(m)} > 0$ and $p_{yx}^{(n)}>0$. As a consequence of the recurrence, $\sum_{s \in \N} p_{xx}^{(s)} = \infty$. $\sum_{s \in \N} p_{yy}^{(m+n+s)} \ge \sum_{s \in \N} p_{yx}^{(n)} p_{xx}^{(s)} P_{xy}^{(m)} = \infty.$ If $x$ were transient instead then $\sum_{s\in\N}p_{xx}^{(s)}<\infty$, and we conclude that $y$ is also transient by the following observation $\sum_{s \in \N}  p_{yy}^{(s)} \le \frac{\sum_{s \in \N} p_{xx}^{(m+n+s)} }{ p_{yx}^{(n)} P_{xy}^{(m)}}< \infty.$ ◻
+:::
+
+::: cor
+If $y$ is a recurrent state and there exists a state $x$ such that $y \to x$, then $x \to y$ and $f_{xy} = 1$.
+:::
+
+::: proof
+*Proof.* Let $y \in \sX$ be a recurrent state, and consider state $x \in \sX$ such that $y \to x$. We will show that $f_{xy} = 1$ and hence $f_{xy}^{(n)} > 0$ for some $n \in \Z_+$ and $x \to y$. To this end, we observe that since $y \to x$, there exists an integer $n \in \Z_+$ such that the probability of hitting state $x$ for the first time starting from state $y$ in $n$-steps is positive. That is, From the strong Markov property, we have Since state $y$ is recurrent, it follows that $f_{xy} = 1$ and hence $x \to y$. ◻
+:::
+
+::: cor
+Let $x, y \in \sX$ be in the same communicating class and the state $y$ is recurrent. Then, $\lim_{n \in \N}\frac{\sum_{k=1}^np_{xy}^{(k)}}{n} = \frac{1}{\mu_{yy}}$. Furthermore, if the state $y$ is aperiodic, then $\lim_{n \in \N}p_{xy}^{(n)} = \frac{1}{\mu_{yy}}$.
+:::
+
+::: proof
+*Proof.* Since $y$ is recurrent and $y \to x$, it follow that $f_{xy} = 1$ from the previous Lemma. From the Theorem 1.7 in previous lecture, it follows that $\lim_{n \in \N}\frac{\sum_{k=1}^np_{xy}^{(k)}}{n} = \frac{1}{\mu_{yy}}$.
+
+Let the period of the state $y$ be $d$. Then we know that there exists a positive integer $r_0$ such that for all $n \ge r_0$, we have $p_{yy}^{(nd)} > 0$. ◻
+:::
+
+::: thm
+The states in a communicating class are of one of the following types; all transient, or all null recurrent, or all positive recurrent.
+:::
+
+::: proof
+*Proof.* It suffices to show that if $x,y$ belong to the same communicating class and $y$ is null recurrent, then $x$ is null recurrent as well. We take $r,s \in \N$, such that $p_{yx}^{(r)}p_{xy}^{(s)} > 0$. It follows that $p_{yy}^{r+\ell+s} \ge p_{yx}^{(r)}p_{xx}^{(\ell)}P_{xy}^{(s)}$ for all $\ell \in \N$. Hence, for any $n > r + s$, we have Since $y$ is null recurrent LHS goes to zero as $n$ increases, which implies $\lim_{n \in \N}\frac{1}{n}\sum_{\ell = 1}^{n}p_{xx}^{(\ell)} = 0$. Hence, $x$ is null recurrent as well. ◻
+:::

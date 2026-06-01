@@ -1,6 +1,108 @@
 ---
-title: "Lecture 15"
+title: "Lecture-15: $L^p$ convergence"
 author: "Parimal Parag"
 ---
 
-Content coming soon.
+# $L^p$ convergence
+
+::: defn
+Let $p \ge 1$, then we say that a random sequence $X: \Omega \to \R^\N$ defined on a probability space $(\Omega,\sF,P)$ **converges in $L^p$** to a random variable $X_\infty:\Omega \to \R$, if The convergence in $L^p$ is denoted by $\lim_nX_n = X_\infty$ in $L^p$.
+:::
+
+::: rem
+For $p \in [1, \infty)$, the convergence of a random sequence $X: \Omega\to\R^\N$ in $L^p$ to a random variable $X_\infty:\Omega \to \R$ is equivalent to
+:::
+
+::: prop
+Consider $p \in [1, \infty)$ and a sequence of random variables $X:\Omega\to\R^\N$ defined on a probability space $(\Omega,\sF, P)$ such that $\lim_nX_n = X_\infty$ in $L^p$, then $\lim_nX_n = X_\infty$ in probability.
+:::
+
+::: proof
+*Proof.* Let $\epsilon > 0$, then from the Markov's inequality applied to random variable $\abs{X_n-X}^p$, we have ◻
+:::
+
+:::: shaded*
+::: exmp
+Consider the probability space $([0,1], \sB([0,1]), \lambda)$ such that $\lambda([a,b]) = b-a$ for all $0 \le a \le b \le 1$. We define the scaled indicator random variable $X_n: \Omega \to \set{0,1}$ such that We define $N = \set{0}$, and for any $\omega \notin N$, we can find $m \triangleq \lceil \frac{1}{\omega}\rceil$, such that for all $n > m$, we have $X_n(\omega) = 0$. Since $\lambda(N) = 0$, it implies that $\lim_nX_n = 0$ a.s. However, we see that $\E\abs{X_n}^p = \frac{2^{np}}{n}$.
+:::
+::::
+
+::: rem
+Convergence almost surely implies convergence in probability. Therefore, above example also serves as a counterexample to the fact that convergence in probability doesn't imply convergence in $L^p$.
+:::
+
+::: thm
+Consider a sequence of uncorrelated random variables $X:\Omega\to\R^\N$ defined on a probability space $(\Omega,\sF, P)$ such that $\E X_n = \mu$ and $\Var(X_n) = \sigma^2$ for all $n \in \N$. Defining the sum $S_n\triangleq \sum_{i=1}^nX_i$ and the $n$-empirical mean $\bar{X}_n \triangleq \frac{S_n}{n}$, we have $\lim_n\bar{X}_n=\mu$ in $L^2$ and in probability.
+:::
+
+::: proof
+*Proof.* From the uncorrelatedness of random sequence $X$, and linearity of expectation, we get It follows that $\lim_n\bar{X}_n = \mu$ in $L^2$. Since the convergence in $L^p$ implies convergence in probability, the result holds. ◻
+:::
+
+::: thm
+Consider an random sequence $X:\Omega\to\R^\N$ defined on a probability space $(\Omega,\sF, P)$ such that $\E\abs{X_1}< \infty$ and $\E X_1 = \mu$. Defining the sum $S_n\triangleq \sum_{i=1}^nX_i$ and the $n$-empirical mean $\bar{X}_n \triangleq \frac{S_n}{n}$, we have $\lim_n\bar{X}_n=\mu$ in probability.
+:::
+
+:::: shaded*
+::: exmp
+Consider the probability space $([0,1], \sB([0,1]), \lambda)$ such that $\lambda([a,b]) = b-a$ for all $0 \le a \le b \le 1$. For each $k \in \N$, we consider the sequence $S_k = \sum_{i=1}^ki$, and define integer intervals $I_k \triangleq \set{S_{k-1}+1, \dots, S_{k}}$. Clearly, the intervals $(I_k:k \in \N)$ partition the natural numbers, and each $n \in \N$ lies in some $I_{k_n}$, such that $n = S_{k+n-1}+i_n$ for $i_n \in [k_n]$. Therefore, for each $n \in \N$, we define indicator random variable $X_n: \Omega \to \set{0,1}$ such that For any $\omega \in [0,1]$, we have $X_n(\omega) = 1$ for infinitely many values since there exist infinitely many $(i,k)$ pairs such that $\frac{(i-1)}{k} \le \omega \le \frac{i}{k}$, and hence $\lim\sup_nX_n(\omega) = 1$ and hence $\lim_nX_n(\omega) \neq 0$. However, $\lim_nX_n(\omega) = 0$ in $L^p$, since
+:::
+::::
+
+# $L^1$ convergence theorems
+
+::: thm
+Consider a non-decreasing non-negative random sequence $X: \Omega\to\R_+^\N$ defined on a probability space $(\Omega,\sF,P)$, such that $X_n \in L^1$ for all $n \in \N$. Let $X_\infty(\omega) \triangleq \sup_nX_n(\omega)$ for all $\omega \in \Omega$, then $\E X_\infty = \sup_n\E X_n.$
+:::
+
+::: proof
+*Proof.* From the monotonicity of sequence $X$ and the monotonicity of expectation, we have $\sup_n\E X_n \le \E X_\infty$. Let $\alpha \in (0,1)$ and $Y: \Omega\to\R_+$ a non-negative simple random variable such that $Y \le X_\infty$. We define From the monotonicity of sequence $X$, the sequence of events $E \in \sF^\N$ are monotonically non-decreasing such that $\cup_{n \in \N}E_n = \Omega$. It follows that We will use the fact that $\lim_n\E[Y\Ind{E_n}] = \E[Y]$, then $\alpha\E Y \le \sup_n\E X_n$. Taking supremum over all $\alpha \in (0,1)$ and all simple functions $Y \le X_\infty$, we get $\E X_\infty \le \sup_n\E X_n$. ◻
+:::
+
+::: thm
+Consider a non-negative random sequence $X: \Omega\to\R_+^\N$ defined on a probability space $(\Omega,\sF,P)$. Let $X_\infty(\omega) \triangleq \lim\inf_nX_n(\omega)$ for all $\omega\in\Omega$, then $\E X_\infty \le \lim\inf_n\E X_n.$
+:::
+
+::: proof
+*Proof.* We define $Y_n \triangleq \inf_{k \ge n}X_k$ for all $n \in \N$. It follows that $Y: \Omega \to \R_+^\N$ is a non-negative non-decreasing sequence of random variables, and $X_\infty = \sup_nY_n = \lim_nY_n$. Applying monotone convergence theorem to random sequence $Y$, we get $\E X_\infty = \sup_n\E Y_n$. The result follows from the monotonicity of expectation, and the fact that $Y_n \le X_k$ for all $k \ge n$, to get $\E Y_n \le \inf_{k\ge n}\E X_k$. ◻
+:::
+
+::: thm
+Let $X: \Omega \to \R^\N$ be a random sequence defined on a probability space $(\Omega, \sF, P)$. If $\lim_nX_n = X_\infty$ a.s. and there exists a $Y: \Omega \to \R_+$ such that $Y \in L^1$ and $\abs{X_n} \le Y$ a.s. for all $n\in\N$, then $\E X_\infty = \lim_n\E X_n$.
+:::
+
+:::: proof
+*Proof.* From the hypothesis, we have $Y+X_n \ge 0$ a.s. and $Y-X_n \ge 0$ a.s. Therefore, from Fatou's Lemma and linearity of expectation, we have
+
+::: xalignat*
+2 &Y + X\_\_n (Y+X_n) = Y + \_nX_n,& &Y - X\_\_n (Y-X_n) = Y - \_nX_n.
+:::
+
+Therefore, we have $\limsup_n\E X_n \le \E X_\infty \le \liminf_n\E X_n$, and the result follows. ◻
+::::
+
+# Convergence theorems for conditional means
+
+::: prop
+Let $X:\Omega\to\R^\N$ be a random sequence on the probability space $(\Omega, \sF, P)$ such that $\E\abs{X_n} < \infty$ for all $n \in \N$. Let $\sG$ and $\sH$ be event spaces such that $\sG, \sH \subset \sF$. Then the following theorems hold.
+
+1.  **Conditional monotone convergence theorem:** Consider a random sequence $X:\Omega\to\R_+^\N$ that is non-negative and non-decreasing a.s.. We define $X_\infty:\Omega\to\R_+$ for each $\omega \in \Omega$ as $X_\infty(\omega)\triangleq \sup_{n \in \N}X_n(\omega)$. If $X_\infty \in L^1$, then $\E[X_n\mid \sG] \uparrow \E[X_\infty\mid\sG]$ a.s.
+
+2.  **Conditional Fatou's lemma:** Consider a random sequence $X:\Omega\to\R_+^\N$ that is non-negative and non-decreasing a.s.. If $\lim\inf_n X_n \in L^1$, then $\E[\lim\inf_nX_n\mid \sG] \le \lim\inf_n\E[X_n\mid \sG]$ a.s.
+
+3.  **Conditional dominated convergence theorem:** Consider a random sequence $X:\Omega\to\R_+^\N$ and a random variable $Y:\Omega\to\R_+$ such that $Y \in L^1$ and $\abs{X_n} \le Y$ a.s. for all $n \in  \N$. If $\lim_n X_n = X_\infty$ a.s., then $\E[X_n\mid \sG] \to  \E[X_\infty\mid\sG]$ a.s. and in $L^1$.
+:::
+
+::: proof
+*Proof.* Let $X:\Omega\to\R^\N$ be a random sequence on the probability space $(\Omega, \sF, P)$ such that $X_n \in L^1$ for all $n \in \N$.
+
+1.  **Conditional monotone-convergence theorem:** By monotonicity, we have $\E[X_n\mid \sG] \uparrow Y$ a.s. where $Y:\Omega\to \R_+$ is $\sG$ measurable. The monotone convergence theorem implies that, for each $G \in  \sG$,
+
+2.  **Conditional Fatou's lemma:** Defining $Y_n \triangleq \inf_{k\ge n} X_k$, we get $Y_n \uparrow Y_\infty = \lim\inf_k X_k$. By monotonicity, The conditional monotone-convergence theorem implies that
+
+3.  **Conditional dominated-convergence theorem:** By the conditional Fatou's lemma, we have and the a.s.-statement follows.
+
+ ◻
+:::
+
+# Uniform integrability
