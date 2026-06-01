@@ -3,4 +3,4 @@ title: "About"
 author: "Parimal Parag"
 ---
 
-Probability and Random Processes notes, migrated to Quarto.
+About this site

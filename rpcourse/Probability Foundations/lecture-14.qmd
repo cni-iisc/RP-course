@@ -1,0 +1,179 @@
+---
+title: "Almost sure convergence"
+author: "Parimal Parag"
+format:
+  html:
+    mathjax:
+      fonts: STIX-Web
+    toc: true
+    toc-depth: 2
+    number-sections: false
+---
+
+# Point-wise convergence
+
+Consider a random sequence $X:\Omega\to\R^\N$ defined on a probability space $(\Omega, \sF, P)$, then each $X_n \triangleq \pi_n\circ X: \Omega \to \R$ is a random variable. There are many possible definitions for convergence of a sequence of random variables. One idea is to consider $X(\omega)\in \R^\N$ as a real valued sequence for each outcome $\omega$, and consider the $\lim_nX_n(\omega)$ for each outcome $\omega$.
+
+::: defn
+A random sequence $X:\Omega\to\R^\N$ defined on a probability space $(\Omega, \sF, P)$ **converges point-wise** to a random variable $X_\infty:\Omega \to \R$, if for all outcomes $\omega \in \Omega$, we have
+:::
+
+::: rem
+This is a very strong convergence. Intuitively, what happens on an event of probability zero is not important. We will strive for a weaker notion of convergence, where the sequence of random variable converge point-wise on a set of outcomes with probability one.
+:::
+
+# Almost sure statements
+
+::: defn
+A statement holds **almost surely** (a.s.) if there exists an event called the **exception set** $N \in \sF$ with $P(N) = 0$ such that the statement holds for all $\omega \notin N$.
+:::
+
+::::: shaded
+::: exmp
+Two random variables $X, Y$ defined on the probability space $(\Omega, \sF, P)$ are said to be equal a.s. if the following exception set has probability measure $P(N) = 0$. Then $Y$ is called a **version** of $X$, and we can define an equivalence class of a.s. equal random variables.
+:::
+
+::: exmp
+Two random variables $X, Y$ defined on the probability space $(\Omega, \sF, P)$ are said to be $X \le Y$ a.s. if the exception set $N \triangleq \set{\omega \in \Omega: X(\omega) > Y(\omega)} \in \sF$ has probability measure $P(N) = 0$.
+:::
+:::::
+
+# Almost sure convergence
+
+::: defn
+A random sequence $X:\Omega\to\R^\N$ defined on the probability space $(\Omega, \sF, P)$ **converges almost surely**, if the following exception set has zero probability. Let $X_\infty$ be the point-wise limit of the sequence of random variables $X:\Omega\to\R^\N$ on the set $N^c$, then we say that the sequence $X$ **converges almost surely** to $X_\infty$, and denote it as
+:::
+
+:::: shaded
+::: exmp
+Consider the probability space $([0,1], \sB([0,1]), \lambda)$ such that $\lambda([a,b]) = b-a$ for all $0 \le a \le b \le 1$. For each $n \in \N$, we define the scaled indicator random variable $X_n: \Omega \to \set{0,1}$ such that Let $N = \set{0}$, then for any $\omega \notin N$, there exists $m = \lceil\frac{1}{\omega}\rceil \in \N$, such that for all $n > m$, we have $X_n(\omega) = 0$. That is, $\lim_nX_n = 0$ a.s. since $\lambda(N) = 0$. However, $X_n(0) = n$ for all $n \in \N$.
+:::
+::::
+
+# Convergence in probability
+
+::: defn
+A random sequence $X:\Omega\to\R^\N$ defined on the probability space $(\Omega, \sF, P)$ **converges in probability** to a random variable $X_\infty:\Omega\to\R$, if $\lim_nP(A_n(\epsilon)) = 0$ for any $\epsilon > 0$, where
+:::
+
+::: rem
+$\lim_nX_n = X_\infty$ a.s. means that for almost all outcomes $\omega$, the difference $X_n(\omega)-X_\infty(\omega)$ gets small and stays small.
+:::
+
+::: rem
+$\lim_nX_n = X_\infty$ i.p. is a weaker convergence than a.s. convergence, and merely requires that the probability of the difference $X_n(\omega)-X_\infty(\omega)$ being non-trivial becomes small.
+:::
+
+:::: shaded
+::: exmp
+Consider the probability space $([0,1], \sB([0,1]), \lambda)$ such that $\lambda([a,b]) = b-a$ for all $0 \le a \le b \le 1$. For each $k \in \N$, we consider the sequence $S_k = \sum_{i=1}^ki$, and define integer intervals $I_k \triangleq \set{S_{k-1}+1, \dots, S_k}$. Clearly, the intervals $(I_k:k \in \N)$ partition the natural numbers where $\abs{I_k} = k$. It follows that each $n \in \N$ lies in some $I_{k_n}$, such that $n = S_{k_n-1}+i_n$ for $i_n \in [k_n]$. Therefore, for each $n \in \N$, we define indicator random variable $X_n: \Omega \to \set{0,1}$ such that For any $\omega \in [0,1]$, we have $X_n(\omega) = 1$ for infinitely many values since there exist infinitely many $(i,k)$ pairs such that $\frac{(i-1)}{k} \le \omega \le \frac{i}{k}$, and hence $\lim\sup_nX_n(\omega) = 1$ and hence $\lim_nX_n(\omega) \neq 0$. However, $\lim_nX_n(\omega) = 0$ in probability, since
+:::
+::::
+
+# Infinitely often and all but finitely many
+
+::: lem
+Let $A \in \sF^\N$ be a sequence of events.
+
+(a) For some subsequence $(k_n: n \in \N)$ depending on $\omega$, we have
+
+(b) For a finite $n_0(\omega) \in \N$ depending on $\omega$, we have
+:::
+
+::: proof
+*Proof.* Let $A \in \sF^\N$ be a sequence of events.
+
+(a) Let $\omega \in \lim\sup_nA_n = \cap_{n \in \N}\cup_{k \ge n}A_k$, then $\omega \in \cup_{k \ge n}A_k$ for all $n \in \N$. Therefore, for each $n \in \N$, there exists $k_n \in \N$ such that $\omega \in A_{k_n}$, and hence Conversely, if $\sum_{j  \in \N}\Ind{A_j}(\omega) = \infty$, then for each $n \in \N$ there exists a $k_n \in \N$ such that $\omega \in A_{k_n}$ and hence $\omega \in \cup_{k \ge n}A_k$ for all $n \in \N$.
+
+(b) Let $\omega\in \lim\inf_nA_n = \cup_{n\in\N}\cap_{k\ge n}A_k$, then there exists $n_0(\omega)$ such that $\omega \in A_n$ for all $n \ge n_0(\omega)$. Conversely, if $\sum_{j  \in \N}\Ind{A_j^c}(\omega) < \infty$, then there exists $n_0(\omega)$ such that $\omega \in A_n$ for all $n \ge n_0(\omega)$.
+
+ ◻
+:::
+
+::: thm
+If a sequence of random variables $X: \Omega \to \R^\N$ defined on a probability space $(\Omega, \sF, P)$ converges a.s. to a random variable $X_\infty:\Omega\to\R$, then it converges in probability to the same random variable.
+:::
+
+::: proof
+*Proof.* Let $\lim_nX_n = X_\infty$ a.s. and $\epsilon > 0$. We define events $A_n \triangleq \set{\omega \in \Omega: \abs{X_n(\omega)-X_\infty(\omega)} > \epsilon}$ for each $n \in \N$. We will show that $\lim_nP(A_n) = 0$. To this end, let $N$ be the exception set such that For $\omega \notin N$, there exists an $n_0(\omega)$ such that $\abs{X_n-X_\infty} \le  \epsilon$ for all $n \ge n_0$. That is, $\omega \in A_n^c$ for all $n \ge n_0(\omega)$ and hence $N^c \subseteq \lim\inf_nA_n^c$. It follows that $1 = P(\lim\inf_nA_n^c)$. Since $\lim\inf_nA_n^c = (\lim\sup_nA_n)^c$, we get $0 = P(\lim\sup_nA_n) = \lim_nP(\cup_{k \ge n}A_k) \ge \lim_nP(A_n) \ge 0.$ ◻
+:::
+
+# Borel-Cantelli Lemma
+
+::: prop
+Let $A \in \sF^\N$ be a sequence of events such that $\sum_{n \in \N}P(A_n) < \infty$, then $P\set{A_n \text{ i.o.}} = 0$.
+:::
+
+::: proof
+*Proof.* We can write the probability of infinitely often occurrence of $A_n$, by the continuity and sub-additivity of probability as The last equality follows from the fact that $\sum_{n \in \N}P(A_n) < \infty$. ◻
+:::
+
+::: prop
+Let $A \in \sF^\N$ be a sequence of independent events, then
+:::
+
+::: proof
+*Proof.* Let $A \in \sF^\N$ be a sequence of independent events.
+
+(a) From Borel-Cantelli Lemma, if $\sum_nP(A_n) < \infty$ then $P\set{A_n\text{ i.o.}} = 0$.
+
+(b) Conversely, suppose $\sum_nP(A_n) = \infty$, then $\sum_{k \ge n}P(A_k) = \infty$ for all $n \in \N$. From the definition of $\lim\sup$ and $\lim\inf$, continuity of probability, and independence of sequence of events $A \in \sF^\N$, we get Since $1-x \le e^{-x}$ for all $x \in \R$, from the above equation, the continuity of exponential function, and the hypothesis, we get
+
+ ◻
+:::
+
+:::: shaded
+::: exmp
+Consider a random Bernoulli sequence $X: \Omega \to \set{0,1}^\N$ defined on the probability space $(\Omega, \sF, P)$ such that $P\set{X_n = 1} = p_n$ for all $n \in \N$. Note that the sequence of random variables is not assumed to be independent, and definitely not identical. If $\lim_np_n = 0$, then we see that $\lim_nX_n = 0$ in probability.
+
+In addition, if $\sum_{n\in \N}p_n <\infty$, then $\lim_nX_n = 0$ a.s. To see this, we define event $A_n \triangleq \set{X_n = 1} \in \sF$ for each $n \in \N$. Then, applying the Borel-Cantelli Lemma to sequence of events $A \in \sF^\N$, we get That is, $\lim_nX_n = 0$ for $\omega \in \lim\inf_nA_n^c$, implying almost sure convergence.
+:::
+::::
+
+# Limits of sequences
+
+:::: defn
+For any real valued sequence $a \in \R^\N$, we can define
+
+::: xalignat*
+2 &\_n a_n \_n\_k na_k,& &\_n a_n \_n\_k na_k.
+:::
+::::
+
+::: rem
+We define $e_n \triangleq \sup_{k \ge n}a_k$ and $f_n \triangleq \inf_{k \ge n}a_k$, and observe that $f_n \le a_k$ for all $k \ge n$. That is, $f_1, \dots, f_{n-1} \le a_n$ and $f_k \le a_k$ for all $k \ge n$. It follows that $\sup_nf_n \le \sup_{k \ge n}a_k  = e_n$ for all $n \in \N$, and hence $\lim\inf_n a_n  = \sup_nf_n \le \inf_n e_n =  \lim\sup_na_n$.
+:::
+
+::: defn
+A sequence $a \in \R^\N$ is said to converge if $\lim\sup_n a_n = \lim\inf_n a_n$ and the limit is defined as $a_n \triangleq \lim_n a_n = \lim\sup_n a_n = \lim\inf_n a_n.$
+:::
+
+::: thm
+A sequence $a \in \R^\N$ converges to $a_\infty \in \R$ if for all $\epsilon > 0$ there exists an integer $N \in \N$ such that for all $n \ge N$, we have $\abs{a_n-a_\infty} < \epsilon$.
+:::
+
+::: proof
+*Proof.* Let $\epsilon > 0$ and find the integer $N_\epsilon \in \N$ such that $a_n \in (a_\infty-\epsilon, a_\infty+\epsilon)$ for all $n \ge N_\epsilon$. It follows that $a_\infty-\epsilon \le f_n \le e_n \le a_\infty+\epsilon$ for all $n \ge N_\epsilon$, and hence $a_\infty-\epsilon \le \lim\inf_n a_n \le \lim\sup_n a_n \le a_\infty+\epsilon.$ Since $\epsilon$ was arbitrary, it follows that $\lim_na_n = a_\infty$. ◻
+:::
+
+:::: prop
+For any sequence $a \in \R_+^\N$, the following statements are true.
+
+::: compactenum
+If $\sum_{n\in\N}a_n < \infty$ then $\lim_{n \to \infty}\sum_{k \ge n}a_k = 0$.
+
+If $\sum_{n\in\N}a_n = \infty$ then $\sum_{k \ge n}a_k = \infty$ for all $k \in \N$.
+:::
+::::
+
+:::: proof
+*Proof.* We observe that $(\sum_{k < n}a_k: n \in\N)$ is a non-decreasing sequence, and hence $\lim_{n \to \infty}\sum_{k < n}a_k = \sup_n\sum_{k< n}a_k = \sum_{n \in \N}a_n$.
+
+::: compactenum
+It follows that $\sum_{k \ge n}a_k = \sum_{n \in \N}a_n - \sum_{k < n}a_k$ is a non-increasing sequence with limit $0$.
+
+We can write $\sum_{n \in \N}a_n = \sum_{k < n}a_k + \sum_{k \ge n}a_k$. Since the first term is finite for all $n \in \N$, it follows that the second term must be infinite for all $n \in \N$.
+:::
+
+ ◻
+::::

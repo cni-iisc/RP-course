@@ -1,56 +1,84 @@
 project:
-  type: website
+  type: book
+  output-dir: _site
 
-website:
-  title: "Foundations"
-  description: "Lecture notes for Probability and Random Processes"
+book:
+  title: "Probability and Random Processes"
+  author:
+    - name: Parimal Parag
+      url: https://ece.iisc.ac.in/~parimal/
+      affiliation: Centre for Networked Intelligence, IISc Bangalore
+      affiliation-url: https://cni.iisc.ac.in
+  description: "A graduate-level foundational course, originally offered as E2.202 Random Processes in the ECE Department at IISc."
   site-url: https://cni-iisc.github.io/RP-course/
+  repo-url: ""
+  repo-actions: [edit]
+  repo-branch: quarto-content
+  reader-mode: true
+
   navbar:
+    background: dark
+    title: "Probability and Random Processes"
+    pinned: false
+    search: true
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+
   sidebar:
+    collapse-level: 2
+    pinned: false
     style: floating
-    collapse-level: 1
-    contents:
-      - section: "Lectures"
-        contents:
-          - lectures/lecture-01.qmd
-          - lectures/lecture-02.qmd
-          - lectures/lecture-03.qmd
-          - lectures/lecture-04.qmd
-          - lectures/lecture-05.qmd
-          - lectures/lecture-06.qmd
-          - lectures/lecture-07.qmd
-          - lectures/lecture-08.qmd
-          - lectures/lecture-09.qmd
-          - lectures/lecture-10.qmd
-          - lectures/lecture-11.qmd
-          - lectures/lecture-12.qmd
-          - lectures/lecture-13.qmd
-          - lectures/lecture-14.qmd
-          - lectures/lecture-15.qmd
-          - lectures/lecture-16.qmd
-          - lectures/lecture-17.qmd
-          - lectures/lecture-18.qmd
-          - lectures/lecture-19.qmd
-          - lectures/lecture-20.qmd
-          - lectures/lecture-21.qmd
-          - lectures/lecture-22.qmd
-          - lectures/lecture-23.qmd
-          - lectures/lecture-24.qmd
-          - lectures/lecture-25.qmd
-          - lectures/lecture-26.qmd
-          - lectures/lecture-27.qmd
-          - lectures/lecture-28.qmd
+
+  chapters:
+    - text: "Introduction"
+      file: index.qmd
+    - Probability Foundations/lecture-01.qmd
+    - Probability Foundations/lecture-02.qmd
+    - Probability Foundations/lecture-03.qmd
+    - Probability Foundations/lecture-04.qmd
+    - Probability Foundations/lecture-05.qmd
+    - Probability Foundations/lecture-06.qmd
+    - Probability Foundations/lecture-07.qmd
+    - Probability Foundations/lecture-08.qmd
+    - Probability Foundations/lecture-09.qmd
+    - Probability Foundations/lecture-10.qmd
+    - Probability Foundations/lecture-11.qmd
+    - Probability Foundations/lecture-12.qmd
+    - Probability Foundations/lecture-13.qmd
+    - Probability Foundations/lecture-14.qmd
+    - Probability Foundations/lecture-15.qmd
+    - Probability Foundations/lecture-16.qmd
+    - Probability Foundations/lecture-17.qmd
+    - Probability Foundations/lecture-18.qmd
+    - Probability Foundations/lecture-19.qmd
+    - Probability Foundations/lecture-20.qmd
+    - Probability Foundations/lecture-21.qmd
+    - Probability Foundations/lecture-22.qmd
+    - Probability Foundations/lecture-23.qmd
+    - Probability Foundations/lecture-24.qmd
+    - Probability Foundations/lecture-25.qmd
+    - Probability Foundations/lecture-26.qmd
+    - Probability Foundations/lecture-27.qmd
+    - Probability Foundations/lecture-28.qmd
+
+#bibliography: references.bib
+csl: _extensions/csl/acm-siggraph.csl
 
 format:
   html:
     theme:
-      - cosmo
-      - brand
-    css: styles.css
-    toc: true
+      light:
+        - lumen
+        - styles.scss
+      dark:
+        - darkly
+        - styles.scss
     include-in-header:
       - mathjax-macros.html
+    reference-location: margin
+    published-title: Updated
+    date: last-modified
+    smooth-scroll: true
+    embed-resources: false
+    notebook-links: inline
