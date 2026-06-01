@@ -7,10 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Parimal Parag">
-<meta name="dcterms.date" content="2026-06-01">
-<meta name="description" content="A graduate-level foundational course, originally offered as E2.202 Random Processes in the ECE Department at IISc.">
 
-<title>Probability and Random Processes</title>
+<title>Lecture-04: Random Variable – Foundations</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -29,28 +27,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./Probability Foundations/lecture-01.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c226443331537db4417671445b04dd9e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-7d9fbeb332855d9831ac5a898b678d28.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-c226443331537db4417671445b04dd9e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-3e7735b7b22659e5fa437aca0bb49075.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -78,7 +71,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<style>html{ scroll-behavior: smooth; }</style>
 <script>
 window.MathJax = window.MathJax || {};
 window.MathJax.tex = window.MathJax.tex || {};
@@ -164,179 +156,18 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
-    const toggleBodyColorMode = (bsSheetEl) => {
-      const mode = bsSheetEl.getAttribute("data-mode");
-      const bodyEl = window.document.querySelector("body");
-      if (mode === "dark") {
-        bodyEl.classList.add("quarto-dark");
-        bodyEl.classList.remove("quarto-light");
-      } else {
-        bodyEl.classList.add("quarto-light");
-        bodyEl.classList.remove("quarto-dark");
-      }
-    }
-    const toggleBodyColorPrimary = () => {
-      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
-      if (bsSheetEl) {
-        toggleBodyColorMode(bsSheetEl);
-      }
-    }
-    const setColorSchemeToggle = (alternate) => {
-      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-      for (let i=0; i < toggles.length; i++) {
-        const toggle = toggles[i];
-        if (toggle) {
-          if (alternate) {
-            toggle.classList.add("alternate");
-          } else {
-            toggle.classList.remove("alternate");
-          }
-        }
-      }
-    };
-    const toggleColorMode = (alternate) => {
-      // Switch the stylesheets
-      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
-      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-      manageTransitions('#quarto-margin-sidebar .nav-link', false);
-      if (alternate) {
-        // note: dark is layered on light, we don't disable primary!
-        enableStylesheet(alternateStylesheets);
-        for (const sheetNode of alternateStylesheets) {
-          if (sheetNode.id === "quarto-bootstrap") {
-            toggleBodyColorMode(sheetNode);
-          }
-        }
-      } else {
-        disableStylesheet(alternateStylesheets);
-        enableStylesheet(primaryStylesheets)
-        toggleBodyColorPrimary();
-      }
-      manageTransitions('#quarto-margin-sidebar .nav-link', true);
-      // Switch the toggles
-      setColorSchemeToggle(alternate)
-      // Hack to workaround the fact that safari doesn't
-      // properly recolor the scrollbar when toggling (#1455)
-      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-        manageTransitions("body", false);
-        window.scrollTo(0, 1);
-        setTimeout(() => {
-          window.scrollTo(0, 0);
-          manageTransitions("body", true);
-        }, 40);
-      }
-    }
-    const disableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        stylesheet.rel = 'disabled-stylesheet';
-      }
-    }
-    const enableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
-          stylesheet.rel = 'stylesheet';
-        }
-      }
-    }
-    const manageTransitions = (selector, allowTransitions) => {
-      const els = window.document.querySelectorAll(selector);
-      for (let i=0; i < els.length; i++) {
-        const el = els[i];
-        if (allowTransitions) {
-          el.classList.remove('notransition');
-        } else {
-          el.classList.add('notransition');
-        }
-      }
-    }
-    const isFileUrl = () => {
-      return window.location.protocol === 'file:';
-    }
-    const hasAlternateSentinel = () => {
-      let styleSentinel = getColorSchemeSentinel();
-      if (styleSentinel !== null) {
-        return styleSentinel === "alternate";
-      } else {
-        return false;
-      }
-    }
-    const setStyleSentinel = (alternate) => {
-      const value = alternate ? "alternate" : "default";
-      if (!isFileUrl()) {
-        window.localStorage.setItem("quarto-color-scheme", value);
-      } else {
-        localAlternateSentinel = value;
-      }
-    }
-    const getColorSchemeSentinel = () => {
-      if (!isFileUrl()) {
-        const storageValue = window.localStorage.getItem("quarto-color-scheme");
-        return storageValue != null ? storageValue : localAlternateSentinel;
-      } else {
-        return localAlternateSentinel;
-      }
-    }
-    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-      let newTheme = '';
-      if(authorPrefersDark) {
-        newTheme = isAlternate ? baseTheme : alternateTheme;
-      } else {
-        newTheme = isAlternate ? alternateTheme : baseTheme;
-      }
-      const changeGiscusTheme = () => {
-        // From: https://github.com/giscus/giscus/issues/336
-        const sendMessage = (message) => {
-          const iframe = document.querySelector('iframe.giscus-frame');
-          if (!iframe) return;
-          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-        }
-        sendMessage({
-          setConfig: {
-            theme: newTheme
-          }
-        });
-      }
-      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-      if (isGiscussLoaded) {
-        changeGiscusTheme();
-      }
-    };
-    const authorPrefersDark = false;
-    const darkModeDefault = authorPrefersDark;
-      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-    // Dark / light mode switch
-    window.quartoToggleColorScheme = () => {
-      // Read the current dark / light value
-      let toAlternate = !hasAlternateSentinel();
-      toggleColorMode(toAlternate);
-      setStyleSentinel(toAlternate);
-      toggleGiscusIfUsed(toAlternate, darkModeDefault);
-      window.dispatchEvent(new Event('resize'));
-    };
-    // Switch to dark mode if need be
-    if (hasAlternateSentinel()) {
-      toggleColorMode(true);
-    } else {
-      toggleColorMode(false);
-    }
-  </script>
+<body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Probability and Random Processes</span>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Foundations</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -346,18 +177,16 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
-  <div class="quarto-reader-toggle-btn">
-  <i class="bi"></i>
-  </div>
-</a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -366,7 +195,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/lecture-01.html">Lectures</a></li><li class="breadcrumb-item"><a href="../lectures/lecture-04.html">Lecture-04: Random Variable</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -378,180 +207,185 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lectures</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  <a href="../lectures/lecture-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-01: Sample and Event Space</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Probability Foundations/lecture-01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sample and Event Space</span></span></a>
+  <a href="../lectures/lecture-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-02: Probability Function</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Probability Foundations/lecture-02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Probability Function</span></span></a>
+  <a href="../lectures/lecture-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-03: Independence</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Probability Foundations/lecture-03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Independence</span></span></a>
+  <a href="../lectures/lecture-04.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lecture-04: Random Variable</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Probability Foundations/lecture-04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Random Variable</span></span></a>
+  <a href="../lectures/lecture-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-05: Random Vectors</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Probability Foundations/lecture-05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Random Vectors</span></span></a>
+  <a href="../lectures/lecture-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-06: Transformation of random vectors</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Probability Foundations/lecture-06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Transformation of random vectors</span></span></a>
+  <a href="../lectures/lecture-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-07: Random Processes</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Probability Foundations/lecture-07.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Random Processes</span></span></a>
+  <a href="../lectures/lecture-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-08: Expectation</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Probability Foundations/lecture-08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Expectation</span></span></a>
+  <a href="../lectures/lecture-09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-09: Moments and <span class="math inline">\(L^p\)</span> spaces</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Probability Foundations/lecture-09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Moments and <span class="math inline">\(L^p\)</span> spaces</span></span></a>
+  <a href="../lectures/lecture-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-10: Correlation</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Probability Foundations/lecture-10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Correlation</span></span></a>
+  <a href="../lectures/lecture-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-11: Generating functions</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Probability Foundations/lecture-11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Generating functions</span></span></a>
+  <a href="../lectures/lecture-12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-12: Conditional Expectation</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Probability Foundations/lecture-12.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Conditional Expectation</span></span></a>
+  <a href="../lectures/lecture-13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-13: Conditional expectation</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Probability Foundations/lecture-13.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Conditional expectation</span></span></a>
+  <a href="../lectures/lecture-14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-14: Almost sure convergence</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Probability Foundations/lecture-14.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Almost sure convergence</span></span></a>
+  <a href="../lectures/lecture-15.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-15: <span class="math inline">\(L^p\)</span> convergence</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Probability Foundations/lecture-15.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title"><span class="math inline">\(L^p\)</span> convergence</span></span></a>
+  <a href="../lectures/lecture-16.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-16: Weak convergence</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Probability Foundations/lecture-16.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Weak convergence</span></span></a>
+  <a href="../lectures/lecture-17.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-17: Tractable Random Processes</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Probability Foundations/lecture-17.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Tractable Random Processes</span></span></a>
+  <a href="../lectures/lecture-18.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-18: Stopping Times</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Probability Foundations/lecture-18.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Stopping Times</span></span></a>
+  <a href="../lectures/lecture-19.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-19: Discrete Time Markov Chains</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Probability Foundations/lecture-19.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Discrete Time Markov Chains</span></span></a>
+  <a href="../lectures/lecture-20.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-20: Strong Markov Property</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Probability Foundations/lecture-20.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Strong Markov Property</span></span></a>
+  <a href="../lectures/lecture-21.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-21: Recurrent and transient states</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Probability Foundations/lecture-21.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Recurrent and transient states</span></span></a>
+  <a href="../lectures/lecture-22.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-22: Communicating classes</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Probability Foundations/lecture-22.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Communicating classes</span></span></a>
+  <a href="../lectures/lecture-23.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-23: Invariant Distribution</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Probability Foundations/lecture-23.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Invariant Distribution</span></span></a>
+  <a href="../lectures/lecture-24.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-24: Poisson Point Processes</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Probability Foundations/lecture-24.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Poisson Point Processes</span></span></a>
+  <a href="../lectures/lecture-25.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-25: Poisson processes: Conditional distribution</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Probability Foundations/lecture-25.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Poisson processes: Conditional distribution</span></span></a>
+  <a href="../lectures/lecture-26.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-26: Properties of Poisson point processes</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Probability Foundations/lecture-26.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Properties of Poisson point processes</span></span></a>
+  <a href="../lectures/lecture-27.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-27: Poisson process on the half-line</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Probability Foundations/lecture-27.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Poisson process on the half-line</span></span></a>
+  <a href="../lectures/lecture-28.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture-28: Compound Poisson Processes</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Probability Foundations/lecture-28.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Compound Poisson Processes</span></span></a>
-  </div>
-</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -559,27 +393,27 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
+    <h2 id="toc-title">On this page</h2>
    
+  <ul>
+  <li><a href="#random-variable" id="toc-random-variable" class="nav-link active" data-scroll-target="#random-variable">Random Variable</a>
   <ul class="collapse">
-  <li><a href="#about" id="toc-about" class="nav-link active" data-scroll-target="#about">About</a></li>
+  <li><a href="#distribution-function-for-a-random-variable" id="toc-distribution-function-for-a-random-variable" class="nav-link" data-scroll-target="#distribution-function-for-a-random-variable">Distribution function for a random variable</a></li>
+  <li><a href="#event-space-generated-by-a-random-variable" id="toc-event-space-generated-by-a-random-variable" class="nav-link" data-scroll-target="#event-space-generated-by-a-random-variable">Event space generated by a random variable</a></li>
+  <li><a href="#discrete-random-variables" id="toc-discrete-random-variables" class="nav-link" data-scroll-target="#discrete-random-variables">Discrete random variables</a></li>
+  <li><a href="#continuous-random-variables" id="toc-continuous-random-variables" class="nav-link" data-scroll-target="#continuous-random-variables">Continuous random variables</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/lecture-01.html">Lectures</a></li><li class="breadcrumb-item"><a href="../lectures/lecture-04.html">Lecture-04: Random Variable</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Probability and Random Processes</h1>
+<h1 class="title">Lecture-04: Random Variable</h1>
 </div>
 
-<div>
-  <div class="description">
-    A graduate-level foundational course, originally offered as E2.202 Random Processes in the ECE Department at IISc.
-  </div>
-</div>
 
 
 <div class="quarto-title-meta">
@@ -591,12 +425,6 @@ window.Quarto = {
           </div>
   </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Updated</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">June 1, 2026</p>
-    </div>
-  </div>
   
     
   </div>
@@ -606,38 +434,125 @@ window.Quarto = {
 </header>
 
 
-<section id="about" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="about">About</h2>
-<p>This is the homepage of the course. The content is organised into <strong>modules</strong>, each comprising a series of <strong>lectures</strong> accessible through dedicated pages.</p>
-<p>On each lecture page, you’ll find:</p>
-<ul>
-<li>AI-assisted <strong>video presentation</strong> of the lecture<br>
-</li>
-<li>Accompanying <strong>lecture notes</strong> for review and reference</li>
-</ul>
-<p>You are encouraged to engage with the material at your own pace - whether by watching the videos, reading the notes, or both.</p>
-<p>We hope you enjoy the learning experience.<br>
-<strong>Happy learning!</strong></p>
+<section id="random-variable" class="level1">
+<h1>Random Variable</h1>
+<div class="defn">
+<p>Consider a probability space <span class="math inline">\((\Omega, \sF, P)\)</span>. A <strong>random variable</strong> <span class="math inline">\(X: \Omega \to \R\)</span> is a real-valued function from the sample space to real numbers, such that for each <span class="math inline">\(x \in \R\)</span> the event We say that the random variable <span class="math inline">\(X\)</span> is <span class="math inline">\(\sF\)</span>-measurable.</p>
+</div>
+<div class="rem">
+<p>Recall that the set <span class="math inline">\(A_X(x)\)</span> is always a subset of sample space <span class="math inline">\(\Omega\)</span> for any mapping <span class="math inline">\(X:\Omega\to\R\)</span>, and <span class="math inline">\(A_X(x)\in\sF\)</span> is an event when <span class="math inline">\(X\)</span> is a random variable.</p>
+</div>
+<div class="shaded">
+<div class="exmp">
+<p>Consider a mapping <span class="math inline">\(X:\Omega\to \set{c} \subseteq \R\)</span> defined on an arbitrary probability space <span class="math inline">\((\Omega, \sF, P)\)</span>, such that <span class="math inline">\(X(\omega) = c\)</span> for all outcomes <span class="math inline">\(\omega \in \Omega\)</span>. We observe that That is <span class="math inline">\(A_X(x) \in \sF\)</span> for all event spaces, and hence <span class="math inline">\(X\)</span> is a random variable and measurable for all event spaces.</p>
+</div>
+<div class="exmp">
+<p>For an arbitrary probability space <span class="math inline">\((\Omega,\sF, P)\)</span> and an event <span class="math inline">\(A \in \sF\)</span>, consider the indicator function <span class="math inline">\(\Ind{A}:\Omega \to [0,1]\)</span>. Let <span class="math inline">\(x \in \R\)</span>, and <span class="math inline">\(B_x = (-\infty, x]\)</span>, then it follows that That is, <span class="math inline">\(A_X(x) \in \sF\)</span> for all <span class="math inline">\(x \in \R\)</span>, and hence the indicator function <span class="math inline">\(\Ind{A}\)</span> is a random variable.</p>
+</div>
+</div>
+<div class="rem">
+<p>Since any outcome <span class="math inline">\(\omega \in \Omega\)</span> is random, so is the real value <span class="math inline">\(X(\omega)\)</span>.</p>
+</div>
+<div class="rem">
+<p>Probability is defined only for events and not for random variables. The events of interest for random variables are the <strong>lower level sets</strong> <span class="math inline">\(A_X(x) = \set{\omega: X(\omega) \le x} = X^{-1}(B_x)\)</span> for any real <span class="math inline">\(x\)</span>.</p>
+</div>
+<div class="rem">
+<p>Consider a probability space <span class="math inline">\((\Omega,\sF,P)\)</span> and a random variable <span class="math inline">\(X:\Omega \to \R\)</span> that is <span class="math inline">\(\sG\)</span> measurable for <span class="math inline">\(\sG \subseteq \sF\)</span>. If <span class="math inline">\(\sG \subseteq \sH\)</span>, then <span class="math inline">\(X\)</span> is also <span class="math inline">\(\sH\)</span> measurable.</p>
+</div>
+<section id="distribution-function-for-a-random-variable" class="level2">
+<h2 class="anchored" data-anchor-id="distribution-function-for-a-random-variable">Distribution function for a random variable</h2>
+<div class="defn">
+<p>For an <span class="math inline">\(\sF\)</span> measurable random variable <span class="math inline">\(X:\Omega\to\R\)</span> defined on the probability space <span class="math inline">\((\Omega,\sF,P)\)</span>, we can associate a <strong>distribution function</strong> (CDF) <span class="math inline">\(F_X: \R \to [0,1]\)</span> such that for all <span class="math inline">\(x \in \R\)</span>,</p>
+</div>
+<div class="shaded">
+<div class="exmp">
+<p>Let <span class="math inline">\(X:\Omega \to \set{c} \subseteq \R\)</span> be a constant random variable defined on the probability space <span class="math inline">\((\Omega, \sF, P)\)</span>. The distribution function is a right-continuous step function at <span class="math inline">\(c\)</span> with step-value unity. That is, <span class="math inline">\(F_X(x) = \Ind{[c,\infty)}(x)\)</span>. We observe that <span class="math inline">\(P(\set{X = c}) = 1\)</span>.</p>
+</div>
+<div class="exmp">
+<p>For an indicator random variable <span class="math inline">\(\Ind{A}:\Omega \to \set{0,1}\)</span> defined on a probability space <span class="math inline">\((\Omega, \sF, P)\)</span> and an event <span class="math inline">\(A \in \sF\)</span>, we have</p>
+</div>
+</div>
+<div class="lem">
+<p>The distribution function <span class="math inline">\(F_X\)</span> for any random variable <span class="math inline">\(X\)</span> satisfies the following properties.</p>
+<ol type="1">
+<li><p>The distribution function is monotonically non-decreasing in <span class="math inline">\(x \in \R\)</span>.</p></li>
+<li><p>The distribution function is right-continuous at all points <span class="math inline">\(x \in \R\)</span>.</p></li>
+<li><p>The upper limit is <span class="math inline">\(\lim_{x \to \infty}F_X(x) = 1\)</span> and the lower limit is <span class="math inline">\(\lim_{x \to -\infty}F_X(x) = 0\)</span>.</p></li>
+</ol>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> Let <span class="math inline">\(X\)</span> be a random variable defined on the probability space <span class="math inline">\((\Omega, \sF, P)\)</span>.</p>
+<ol type="1">
+<li><p>Let <span class="math inline">\(x_1, x_2 \in \R\)</span> such that <span class="math inline">\(x_1 \le x_2\)</span>. Then for any <span class="math inline">\(\omega \in A_{x_1}\)</span>, we have <span class="math inline">\(X(\omega) \le x_1 \le x_2\)</span>, and it follows that <span class="math inline">\(\omega \in A_{x_2}\)</span>. This implies that <span class="math inline">\(A_{x_1} \subseteq A_{x_2}\)</span>. The result follows from the monotonicity of the probability.</p></li>
+<li><p>For any <span class="math inline">\(x \in \R\)</span>, consider any monotonically decreasing sequence <span class="math inline">\(x\in\R^\N\)</span> such that <span class="math inline">\(\lim_n x_n = x_0\)</span>. It follows that the sequence of events <span class="math inline">\(\big(A_{x_n} = X^{-1}(-\infty, x_n] \in \sF: n \in \N\big)\)</span>, is monotonically decreasing and hence <span class="math inline">\(\lim_{n \in \N}A_{x_n} = \cap_{n \in \N}A_{x_n} = A_{x_0}\)</span>. The right-continuity then follows from the continuity of probability, since</p></li>
+<li><p>Consider a monotonically increasing sequence <span class="math inline">\(x\in\R^\N\)</span> such that <span class="math inline">\(\lim_{n}x_n = \infty\)</span>, then <span class="math inline">\((A_{x_n} \in \sF: n \in \N)\)</span> is a monotonically increasing sequence of sets and <span class="math inline">\(\lim_nA_{x_n} = \cup_{n \in \N}A_{x_n} = \Omega\)</span>. From the continuity of probability, it follows that Similarly, we can take a monotonically decreasing sequence <span class="math inline">\(x\in \R^\N\)</span> such that <span class="math inline">\(\lim_{n}x_n = -\infty\)</span>, then <span class="math inline">\((A_{x_n} \in \sF: n \in \N)\)</span> is a monotonically decreasing sequence of sets and <span class="math inline">\(\lim_nA_{x_n} = \cap_{n \in \N}A_{x_n} = \emptyset\)</span>. From the continuity of probability, it follows that <span class="math inline">\(\lim_{x_n \to -\infty}F_X(x_n) = 0\)</span>.</p></li>
+</ol>
+<p>&nbsp;◻</p>
+</div>
+<div class="rem">
+<p>If two reals <span class="math inline">\(x_1 &lt; x_2\)</span> then <span class="math inline">\(F_X(x_1) \le F_X(x_2)\)</span> with equality if and only if <span class="math inline">\(P\set{(x_1 &lt; X \le x_2}) = 0\)</span>. This follows from the fact that <span class="math inline">\(A_{x_2} = A_{x_1}\cup X^{-1}(x_1, x_2]\)</span>.</p>
+</div>
+</section>
+<section id="event-space-generated-by-a-random-variable" class="level2">
+<h2 class="anchored" data-anchor-id="event-space-generated-by-a-random-variable">Event space generated by a random variable</h2>
+<div class="defn">
+<p>Let <span class="math inline">\(X: \Omega \to \R\)</span> be an <span class="math inline">\(\sF\)</span> measurable random variable defined on the probability space <span class="math inline">\((\Omega, \sF, P)\)</span>. The smallest event space generated by the events <span class="math inline">\(A_X(x) = X^{-1}(B_x) = X^{-1}(-\infty, x]\)</span> for <span class="math inline">\(x \in \R\)</span> is called the <strong>event space generated</strong> by this random variable <span class="math inline">\(X\)</span>, and denoted by <span class="math inline">\(\sigma(X) \triangleq \sigma(\set{A_X(x): x \in \R})\)</span>.</p>
+</div>
+<div class="rem">
+<p>The event space generated by a random variable is the collection of the inverse of Borel sets, i.e.&nbsp;<span class="math inline">\(\sigma(X) = \set{X^{-1}(B): B \in \sB(\R)}\)</span>. This follows from the fact that <span class="math inline">\(A_X(x) = X^{-1}(B_x)\)</span> and the inverse map respects countable set operations such as unions, complements, and intersections. That is, if <span class="math inline">\(B \in \sB(\R) = \sigma(\set{B_x:x\in \R})\)</span>, then <span class="math inline">\(X^{-1}(B) \in \sigma(\set{A_X(x): x \in \R})\)</span>. Similarly, if <span class="math inline">\(A \in \sigma(X) = \sigma(\set{A_X(x): x \in \R})\)</span>, then <span class="math inline">\(A = X^{-1}(B)\)</span> for some <span class="math inline">\(B \in \sigma(\set{B_x: x \in \R})\)</span>.</p>
+</div>
+<div class="shaded">
+<div class="exmp">
+<p>Let <span class="math inline">\(X:\Omega \to \set{c} \subseteq \R\)</span> be a constant random variable defined on the probability space <span class="math inline">\((\Omega,\sF,P)\)</span>. Then the smallest event space generated by this random variable is <span class="math inline">\(\sigma(X) = \set{\emptyset, \Omega}\)</span>.</p>
+</div>
+<div class="exmp">
+<p>Let <span class="math inline">\(\Ind{A}\)</span> be an indicator random variable defined on the probability space <span class="math inline">\((\Omega,\sF,P)\)</span> and event <span class="math inline">\(A \in \sF\)</span>, then the smallest event space generated by this random variable is <span class="math inline">\(\sigma(X) = \sigma(\set{\emptyset, A^c, \Omega}) = \set{\emptyset, A, A^c, \Omega}\)</span>.</p>
+</div>
+</div>
+</section>
+<section id="discrete-random-variables" class="level2">
+<h2 class="anchored" data-anchor-id="discrete-random-variables">Discrete random variables</h2>
+<div class="defn">
+<p>If a random variable <span class="math inline">\(X: \Omega \to \sX \subseteq \R\)</span> takes countable values on real-line, then it is called a <strong>discrete random variable</strong>. That is, the range of random variable <span class="math inline">\(\sX\)</span> is countable, and the random variable is completely specified by the <strong>probability mass function</strong></p>
+</div>
+<div class="shaded">
+<div class="exmp">
+<p>For the probability space <span class="math inline">\((\Omega, \sF, P)\)</span>, the <strong>Bernoulli random variable</strong> is a mapping <span class="math inline">\(X: \Omega \to \set{0,1}\)</span> and <span class="math inline">\(P_X(1) = p\)</span>. We observe that Bernoulli random variable is an indicator for the event <span class="math inline">\(A \triangleq X^{-1}\set{1}\)</span>, and <span class="math inline">\(P(A) = p\)</span>. Therefore, the distribution function <span class="math inline">\(F_X\)</span> is given by</p>
+</div>
+</div>
+<div class="lem">
+<p>Any discrete random variable is a linear combination of indicator function over a partition of the sample space.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> For a discrete random variable <span class="math inline">\(X: \Omega \to \sX \subset \R\)</span> on a probability space <span class="math inline">\((\Omega, \sF, P)\)</span>, the range <span class="math inline">\(\sX\)</span> is countable, and we can define events <span class="math inline">\(E_x \triangleq \set{\omega \in \Omega: X(\omega) = x} \in \sF\)</span> for each <span class="math inline">\(x \in \sX\)</span>. Then the mutually disjoint sequence of events <span class="math inline">\((E_x \in \sF: x \in \sX)\)</span> partitions the sample space <span class="math inline">\(\Omega\)</span>. We can write&nbsp;◻</p>
+</div>
+<div class="defn">
+<p>Any discrete random variable <span class="math inline">\(X:\Omega \to \sX \subseteq\R\)</span> defined over a probability space <span class="math inline">\((\Omega,\sF,P)\)</span>, with finite range is called a simple random variable.</p>
+</div>
+<div class="shaded">
+<div class="exmp">
+<p>Let <span class="math inline">\(X\)</span> be a simple random variable, then <span class="math inline">\(X = \sum_{x \in \sX}x\Ind{A_X(x)}\)</span> where <span class="math inline">\((A_X(x) = X^{-1}\set{x} \in \sF: x \in \sX)\)</span> is a finite partition of the sample space <span class="math inline">\(\Omega\)</span>. Without loss of generality, we can denote <span class="math inline">\(\sX  = \set{x_1, \dots, x_n}\)</span> where <span class="math inline">\(x_1 \le \dots \le x_n\)</span>. Then, Then the smallest event space generated by the simple random variable <span class="math inline">\(X\)</span> is <span class="math inline">\(\set{\cup_{x \in S}A_X(x): S \subseteq \sX}\)</span>.</p>
+</div>
+</div>
+</section>
+<section id="continuous-random-variables" class="level2">
+<h2 class="anchored" data-anchor-id="continuous-random-variables">Continuous random variables</h2>
+<div class="defn">
+<p>For a continuous random variable <span class="math inline">\(X\)</span>, there exists <strong>density function</strong> <span class="math inline">\(f_X: \R \to [0, \infty)\)</span> such that</p>
+</div>
+<div class="shaded">
+<div class="exmp">
+<p>For a probability space <span class="math inline">\((\Omega, \sF, P)\)</span>, <strong>Gaussian random variable</strong> is a continuous random variable <span class="math inline">\(X: \Omega \to \R\)</span> defined by its density function</p>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
-    // Ensure there is a toggle, if there isn't float one in the top right
-    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-      const a = window.document.createElement('a');
-      a.classList.add('top-right');
-      a.classList.add('quarto-color-scheme-toggle');
-      a.href = "";
-      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-      const i = window.document.createElement("i");
-      i.classList.add('bi');
-      a.appendChild(i);
-      window.document.body.appendChild(a);
-    }
-    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
@@ -1036,19 +951,9 @@ window.Quarto = {
     }
   });
   </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="./Probability Foundations/lecture-01.html" class="pagination-link" aria-label="Sample and Event Space">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Sample and Event Space</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 
 
 
 
-<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

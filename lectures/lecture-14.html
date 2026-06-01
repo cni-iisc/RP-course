@@ -8,7 +8,7 @@
 
 <meta name="author" content="Parimal Parag">
 
-<title>About – Foundations</title>
+<title>Lecture-14: Almost sure convergence – Foundations</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -27,23 +27,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-3e7735b7b22659e5fa437aca0bb49075.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-3e7735b7b22659e5fa437aca0bb49075.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -156,7 +156,7 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar floating nav-fixed quarto-light">
@@ -166,7 +166,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Foundations</span>
     </a>
   </div>
@@ -177,11 +177,11 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -195,7 +195,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">About</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/lecture-01.html">Lectures</a></li><li class="breadcrumb-item"><a href="../lectures/lecture-14.html">Lecture-14: Almost sure convergence</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -209,178 +209,178 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Lectures</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-01.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-01: Sample and Event Space</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-02.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-02: Probability Function</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-03.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-03: Independence</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-04.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-04: Random Variable</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-05.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-05.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-05: Random Vectors</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-06.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-06.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-06: Transformation of random vectors</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-07.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-07.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-07: Random Processes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-08.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-08.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-08: Expectation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-09.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-09.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-09: Moments and <span class="math inline">\(L^p\)</span> spaces</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-10.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-10.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-10: Correlation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-11.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-11.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-11: Generating functions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-12.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-12.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-12: Conditional Expectation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-13.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-13.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-13: Conditional expectation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-14.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-14.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Lecture-14: Almost sure convergence</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-15.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-15.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-15: <span class="math inline">\(L^p\)</span> convergence</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-16.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-16.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-16: Weak convergence</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-17.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-17.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-17: Tractable Random Processes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-18.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-18.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-18: Stopping Times</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-19.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-19.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-19: Discrete Time Markov Chains</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-20.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-20.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-20: Strong Markov Property</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-21.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-21.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-21: Recurrent and transient states</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-22.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-22.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-22: Communicating classes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-23.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-23.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-23: Invariant Distribution</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-24.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-24.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-24: Poisson Point Processes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-25.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-25.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-25: Poisson processes: Conditional distribution</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-26.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-26.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-26: Properties of Poisson point processes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-27.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-27.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-27: Poisson process on the half-line</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-28.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-28.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-28: Compound Poisson Processes</span></a>
   </div>
 </li>
@@ -391,15 +391,27 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#point-wise-convergence" id="toc-point-wise-convergence" class="nav-link active" data-scroll-target="#point-wise-convergence">Point-wise convergence</a></li>
+  <li><a href="#almost-sure-statements" id="toc-almost-sure-statements" class="nav-link" data-scroll-target="#almost-sure-statements">Almost sure statements</a></li>
+  <li><a href="#almost-sure-convergence" id="toc-almost-sure-convergence" class="nav-link" data-scroll-target="#almost-sure-convergence">Almost sure convergence</a></li>
+  <li><a href="#convergence-in-probability" id="toc-convergence-in-probability" class="nav-link" data-scroll-target="#convergence-in-probability">Convergence in probability</a></li>
+  <li><a href="#infinitely-often-and-all-but-finitely-many" id="toc-infinitely-often-and-all-but-finitely-many" class="nav-link" data-scroll-target="#infinitely-often-and-all-but-finitely-many">Infinitely often and all but finitely many</a></li>
+  <li><a href="#borel-cantelli-lemma" id="toc-borel-cantelli-lemma" class="nav-link" data-scroll-target="#borel-cantelli-lemma">Borel-Cantelli Lemma</a></li>
+  <li><a href="#limits-of-sequences" id="toc-limits-of-sequences" class="nav-link" data-scroll-target="#limits-of-sequences">Limits of sequences</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/lecture-01.html">Lectures</a></li><li class="breadcrumb-item"><a href="../lectures/lecture-14.html">Lecture-14: Almost sure convergence</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">About</h1>
+<h1 class="title">Lecture-14: Almost sure convergence</h1>
 </div>
 
 
@@ -422,9 +434,146 @@ window.Quarto = {
 </header>
 
 
-<p>Probability and Random Processes notes, migrated to Quarto.</p>
+<section id="point-wise-convergence" class="level1">
+<h1>Point-wise convergence</h1>
+<p>Consider a random sequence <span class="math inline">\(X:\Omega\to\R^\N\)</span> defined on a probability space <span class="math inline">\((\Omega, \sF, P)\)</span>, then each <span class="math inline">\(X_n \triangleq \pi_n\circ X: \Omega \to \R\)</span> is a random variable. There are many possible definitions for convergence of a sequence of random variables. One idea is to consider <span class="math inline">\(X(\omega)\in \R^\N\)</span> as a real valued sequence for each outcome <span class="math inline">\(\omega\)</span>, and consider the <span class="math inline">\(\lim_nX_n(\omega)\)</span> for each outcome <span class="math inline">\(\omega\)</span>.</p>
+<div class="defn">
+<p>A random sequence <span class="math inline">\(X:\Omega\to\R^\N\)</span> defined on a probability space <span class="math inline">\((\Omega, \sF, P)\)</span> <strong>converges point-wise</strong> to a random variable <span class="math inline">\(X_\infty:\Omega \to \R\)</span>, if for all outcomes <span class="math inline">\(\omega \in \Omega\)</span>, we have</p>
+</div>
+<div class="rem">
+<p>This is a very strong convergence. Intuitively, what happens on an event of probability zero is not important. We will strive for a weaker notion of convergence, where the sequence of random variable converge point-wise on a set of outcomes with probability one.</p>
+</div>
+</section>
+<section id="almost-sure-statements" class="level1">
+<h1>Almost sure statements</h1>
+<div class="defn">
+<p>A statement holds <strong>almost surely</strong> (a.s.) if there exists an event called the <strong>exception set</strong> <span class="math inline">\(N \in \sF\)</span> with <span class="math inline">\(P(N) = 0\)</span> such that the statement holds for all <span class="math inline">\(\omega \notin N\)</span>.</p>
+</div>
+<div class="shaded">
+<div class="exmp">
+<p>Two random variables <span class="math inline">\(X, Y\)</span> defined on the probability space <span class="math inline">\((\Omega, \sF, P)\)</span> are said to be equal a.s. if the following exception set has probability measure <span class="math inline">\(P(N) = 0\)</span>. Then <span class="math inline">\(Y\)</span> is called a <strong>version</strong> of <span class="math inline">\(X\)</span>, and we can define an equivalence class of a.s. equal random variables.</p>
+</div>
+<div class="exmp">
+<p>Two random variables <span class="math inline">\(X, Y\)</span> defined on the probability space <span class="math inline">\((\Omega, \sF, P)\)</span> are said to be <span class="math inline">\(X \le Y\)</span> a.s. if the exception set <span class="math inline">\(N \triangleq \set{\omega \in \Omega: X(\omega) &gt; Y(\omega)} \in \sF\)</span> has probability measure <span class="math inline">\(P(N) = 0\)</span>.</p>
+</div>
+</div>
+</section>
+<section id="almost-sure-convergence" class="level1">
+<h1>Almost sure convergence</h1>
+<div class="defn">
+<p>A random sequence <span class="math inline">\(X:\Omega\to\R^\N\)</span> defined on the probability space <span class="math inline">\((\Omega, \sF, P)\)</span> <strong>converges almost surely</strong>, if the following exception set has zero probability. Let <span class="math inline">\(X_\infty\)</span> be the point-wise limit of the sequence of random variables <span class="math inline">\(X:\Omega\to\R^\N\)</span> on the set <span class="math inline">\(N^c\)</span>, then we say that the sequence <span class="math inline">\(X\)</span> <strong>converges almost surely</strong> to <span class="math inline">\(X_\infty\)</span>, and denote it as</p>
+</div>
+<div class="shaded">
+<div class="exmp">
+<p>Consider the probability space <span class="math inline">\(([0,1], \sB([0,1]), \lambda)\)</span> such that <span class="math inline">\(\lambda([a,b]) = b-a\)</span> for all <span class="math inline">\(0 \le a \le b \le 1\)</span>. For each <span class="math inline">\(n \in \N\)</span>, we define the scaled indicator random variable <span class="math inline">\(X_n: \Omega \to \set{0,1}\)</span> such that Let <span class="math inline">\(N = \set{0}\)</span>, then for any <span class="math inline">\(\omega \notin N\)</span>, there exists <span class="math inline">\(m = \lceil\frac{1}{\omega}\rceil \in \N\)</span>, such that for all <span class="math inline">\(n &gt; m\)</span>, we have <span class="math inline">\(X_n(\omega) = 0\)</span>. That is, <span class="math inline">\(\lim_nX_n = 0\)</span> a.s. since <span class="math inline">\(\lambda(N) = 0\)</span>. However, <span class="math inline">\(X_n(0) = n\)</span> for all <span class="math inline">\(n \in \N\)</span>.</p>
+</div>
+</div>
+</section>
+<section id="convergence-in-probability" class="level1">
+<h1>Convergence in probability</h1>
+<div class="defn">
+<p>A random sequence <span class="math inline">\(X:\Omega\to\R^\N\)</span> defined on the probability space <span class="math inline">\((\Omega, \sF, P)\)</span> <strong>converges in probability</strong> to a random variable <span class="math inline">\(X_\infty:\Omega\to\R\)</span>, if <span class="math inline">\(\lim_nP(A_n(\epsilon)) = 0\)</span> for any <span class="math inline">\(\epsilon &gt; 0\)</span>, where</p>
+</div>
+<div class="rem">
+<p><span class="math inline">\(\lim_nX_n = X_\infty\)</span> a.s. means that for almost all outcomes <span class="math inline">\(\omega\)</span>, the difference <span class="math inline">\(X_n(\omega)-X_\infty(\omega)\)</span> gets small and stays small.</p>
+</div>
+<div class="rem">
+<p><span class="math inline">\(\lim_nX_n = X_\infty\)</span> i.p. is a weaker convergence than a.s. convergence, and merely requires that the probability of the difference <span class="math inline">\(X_n(\omega)-X_\infty(\omega)\)</span> being non-trivial becomes small.</p>
+</div>
+<div class="shaded">
+<div class="exmp">
+<p>Consider the probability space <span class="math inline">\(([0,1], \sB([0,1]), \lambda)\)</span> such that <span class="math inline">\(\lambda([a,b]) = b-a\)</span> for all <span class="math inline">\(0 \le a \le b \le 1\)</span>. For each <span class="math inline">\(k \in \N\)</span>, we consider the sequence <span class="math inline">\(S_k = \sum_{i=1}^ki\)</span>, and define integer intervals <span class="math inline">\(I_k \triangleq \set{S_{k-1}+1, \dots, S_k}\)</span>. Clearly, the intervals <span class="math inline">\((I_k:k \in \N)\)</span> partition the natural numbers where <span class="math inline">\(\abs{I_k} = k\)</span>. It follows that each <span class="math inline">\(n \in \N\)</span> lies in some <span class="math inline">\(I_{k_n}\)</span>, such that <span class="math inline">\(n = S_{k_n-1}+i_n\)</span> for <span class="math inline">\(i_n \in [k_n]\)</span>. Therefore, for each <span class="math inline">\(n \in \N\)</span>, we define indicator random variable <span class="math inline">\(X_n: \Omega \to \set{0,1}\)</span> such that For any <span class="math inline">\(\omega \in [0,1]\)</span>, we have <span class="math inline">\(X_n(\omega) = 1\)</span> for infinitely many values since there exist infinitely many <span class="math inline">\((i,k)\)</span> pairs such that <span class="math inline">\(\frac{(i-1)}{k} \le \omega \le \frac{i}{k}\)</span>, and hence <span class="math inline">\(\lim\sup_nX_n(\omega) = 1\)</span> and hence <span class="math inline">\(\lim_nX_n(\omega) \neq 0\)</span>. However, <span class="math inline">\(\lim_nX_n(\omega) = 0\)</span> in probability, since</p>
+</div>
+</div>
+</section>
+<section id="infinitely-often-and-all-but-finitely-many" class="level1">
+<h1>Infinitely often and all but finitely many</h1>
+<div class="lem">
+<p>Let <span class="math inline">\(A \in \sF^\N\)</span> be a sequence of events.</p>
+<ol type="a">
+<li><p>For some subsequence <span class="math inline">\((k_n: n \in \N)\)</span> depending on <span class="math inline">\(\omega\)</span>, we have</p></li>
+<li><p>For a finite <span class="math inline">\(n_0(\omega) \in \N\)</span> depending on <span class="math inline">\(\omega\)</span>, we have</p></li>
+</ol>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> Let <span class="math inline">\(A \in \sF^\N\)</span> be a sequence of events.</p>
+<ol type="a">
+<li><p>Let <span class="math inline">\(\omega \in \lim\sup_nA_n = \cap_{n \in \N}\cup_{k \ge n}A_k\)</span>, then <span class="math inline">\(\omega \in \cup_{k \ge n}A_k\)</span> for all <span class="math inline">\(n \in \N\)</span>. Therefore, for each <span class="math inline">\(n \in \N\)</span>, there exists <span class="math inline">\(k_n \in \N\)</span> such that <span class="math inline">\(\omega \in A_{k_n}\)</span>, and hence Conversely, if <span class="math inline">\(\sum_{j  \in \N}\Ind{A_j}(\omega) = \infty\)</span>, then for each <span class="math inline">\(n \in \N\)</span> there exists a <span class="math inline">\(k_n \in \N\)</span> such that <span class="math inline">\(\omega \in A_{k_n}\)</span> and hence <span class="math inline">\(\omega \in \cup_{k \ge n}A_k\)</span> for all <span class="math inline">\(n \in \N\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(\omega\in \lim\inf_nA_n = \cup_{n\in\N}\cap_{k\ge n}A_k\)</span>, then there exists <span class="math inline">\(n_0(\omega)\)</span> such that <span class="math inline">\(\omega \in A_n\)</span> for all <span class="math inline">\(n \ge n_0(\omega)\)</span>. Conversely, if <span class="math inline">\(\sum_{j  \in \N}\Ind{A_j^c}(\omega) &lt; \infty\)</span>, then there exists <span class="math inline">\(n_0(\omega)\)</span> such that <span class="math inline">\(\omega \in A_n\)</span> for all <span class="math inline">\(n \ge n_0(\omega)\)</span>.</p></li>
+</ol>
+<p>&nbsp;◻</p>
+</div>
+<div class="thm">
+<p>If a sequence of random variables <span class="math inline">\(X: \Omega \to \R^\N\)</span> defined on a probability space <span class="math inline">\((\Omega, \sF, P)\)</span> converges a.s. to a random variable <span class="math inline">\(X_\infty:\Omega\to\R\)</span>, then it converges in probability to the same random variable.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> Let <span class="math inline">\(\lim_nX_n = X_\infty\)</span> a.s. and <span class="math inline">\(\epsilon &gt; 0\)</span>. We define events <span class="math inline">\(A_n \triangleq \set{\omega \in \Omega: \abs{X_n(\omega)-X_\infty(\omega)} &gt; \epsilon}\)</span> for each <span class="math inline">\(n \in \N\)</span>. We will show that <span class="math inline">\(\lim_nP(A_n) = 0\)</span>. To this end, let <span class="math inline">\(N\)</span> be the exception set such that For <span class="math inline">\(\omega \notin N\)</span>, there exists an <span class="math inline">\(n_0(\omega)\)</span> such that <span class="math inline">\(\abs{X_n-X_\infty} \le  \epsilon\)</span> for all <span class="math inline">\(n \ge n_0\)</span>. That is, <span class="math inline">\(\omega \in A_n^c\)</span> for all <span class="math inline">\(n \ge n_0(\omega)\)</span> and hence <span class="math inline">\(N^c \subseteq \lim\inf_nA_n^c\)</span>. It follows that <span class="math inline">\(1 = P(\lim\inf_nA_n^c)\)</span>. Since <span class="math inline">\(\lim\inf_nA_n^c = (\lim\sup_nA_n)^c\)</span>, we get <span class="math inline">\(0 = P(\lim\sup_nA_n) = \lim_nP(\cup_{k \ge n}A_k) \ge \lim_nP(A_n) \ge 0.\)</span>&nbsp;◻</p>
+</div>
+</section>
+<section id="borel-cantelli-lemma" class="level1">
+<h1>Borel-Cantelli Lemma</h1>
+<div class="prop">
+<p>Let <span class="math inline">\(A \in \sF^\N\)</span> be a sequence of events such that <span class="math inline">\(\sum_{n \in \N}P(A_n) &lt; \infty\)</span>, then <span class="math inline">\(P\set{A_n \text{ i.o.}} = 0\)</span>.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> We can write the probability of infinitely often occurrence of <span class="math inline">\(A_n\)</span>, by the continuity and sub-additivity of probability as The last equality follows from the fact that <span class="math inline">\(\sum_{n \in \N}P(A_n) &lt; \infty\)</span>.&nbsp;◻</p>
+</div>
+<div class="prop">
+<p>Let <span class="math inline">\(A \in \sF^\N\)</span> be a sequence of independent events, then</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> Let <span class="math inline">\(A \in \sF^\N\)</span> be a sequence of independent events.</p>
+<ol type="a">
+<li><p>From Borel-Cantelli Lemma, if <span class="math inline">\(\sum_nP(A_n) &lt; \infty\)</span> then <span class="math inline">\(P\set{A_n\text{ i.o.}} = 0\)</span>.</p></li>
+<li><p>Conversely, suppose <span class="math inline">\(\sum_nP(A_n) = \infty\)</span>, then <span class="math inline">\(\sum_{k \ge n}P(A_k) = \infty\)</span> for all <span class="math inline">\(n \in \N\)</span>. From the definition of <span class="math inline">\(\lim\sup\)</span> and <span class="math inline">\(\lim\inf\)</span>, continuity of probability, and independence of sequence of events <span class="math inline">\(A \in \sF^\N\)</span>, we get Since <span class="math inline">\(1-x \le e^{-x}\)</span> for all <span class="math inline">\(x \in \R\)</span>, from the above equation, the continuity of exponential function, and the hypothesis, we get</p></li>
+</ol>
+<p>&nbsp;◻</p>
+</div>
+<div class="shaded">
+<div class="exmp">
+<p>Consider a random Bernoulli sequence <span class="math inline">\(X: \Omega \to \set{0,1}^\N\)</span> defined on the probability space <span class="math inline">\((\Omega, \sF, P)\)</span> such that <span class="math inline">\(P\set{X_n = 1} = p_n\)</span> for all <span class="math inline">\(n \in \N\)</span>. Note that the sequence of random variables is not assumed to be independent, and definitely not identical. If <span class="math inline">\(\lim_np_n = 0\)</span>, then we see that <span class="math inline">\(\lim_nX_n = 0\)</span> in probability.</p>
+<p>In addition, if <span class="math inline">\(\sum_{n\in \N}p_n &lt;\infty\)</span>, then <span class="math inline">\(\lim_nX_n = 0\)</span> a.s. To see this, we define event <span class="math inline">\(A_n \triangleq \set{X_n = 1} \in \sF\)</span> for each <span class="math inline">\(n \in \N\)</span>. Then, applying the Borel-Cantelli Lemma to sequence of events <span class="math inline">\(A \in \sF^\N\)</span>, we get That is, <span class="math inline">\(\lim_nX_n = 0\)</span> for <span class="math inline">\(\omega \in \lim\inf_nA_n^c\)</span>, implying almost sure convergence.</p>
+</div>
+</div>
+</section>
+<section id="limits-of-sequences" class="level1">
+<h1>Limits of sequences</h1>
+<div class="defn">
+<p>For any real valued sequence <span class="math inline">\(a \in \R^\N\)</span>, we can define</p>
+<div class="xalignat*">
+<p>2 &amp;_n a_n _n_k na_k,&amp; &amp;_n a_n _n_k na_k.</p>
+</div>
+</div>
+<div class="rem">
+<p>We define <span class="math inline">\(e_n \triangleq \sup_{k \ge n}a_k\)</span> and <span class="math inline">\(f_n \triangleq \inf_{k \ge n}a_k\)</span>, and observe that <span class="math inline">\(f_n \le a_k\)</span> for all <span class="math inline">\(k \ge n\)</span>. That is, <span class="math inline">\(f_1, \dots, f_{n-1} \le a_n\)</span> and <span class="math inline">\(f_k \le a_k\)</span> for all <span class="math inline">\(k \ge n\)</span>. It follows that <span class="math inline">\(\sup_nf_n \le \sup_{k \ge n}a_k  = e_n\)</span> for all <span class="math inline">\(n \in \N\)</span>, and hence <span class="math inline">\(\lim\inf_n a_n  = \sup_nf_n \le \inf_n e_n =  \lim\sup_na_n\)</span>.</p>
+</div>
+<div class="defn">
+<p>A sequence <span class="math inline">\(a \in \R^\N\)</span> is said to converge if <span class="math inline">\(\lim\sup_n a_n = \lim\inf_n a_n\)</span> and the limit is defined as <span class="math inline">\(a_n \triangleq \lim_n a_n = \lim\sup_n a_n = \lim\inf_n a_n.\)</span></p>
+</div>
+<div class="thm">
+<p>A sequence <span class="math inline">\(a \in \R^\N\)</span> converges to <span class="math inline">\(a_\infty \in \R\)</span> if for all <span class="math inline">\(\epsilon &gt; 0\)</span> there exists an integer <span class="math inline">\(N \in \N\)</span> such that for all <span class="math inline">\(n \ge N\)</span>, we have <span class="math inline">\(\abs{a_n-a_\infty} &lt; \epsilon\)</span>.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> Let <span class="math inline">\(\epsilon &gt; 0\)</span> and find the integer <span class="math inline">\(N_\epsilon \in \N\)</span> such that <span class="math inline">\(a_n \in (a_\infty-\epsilon, a_\infty+\epsilon)\)</span> for all <span class="math inline">\(n \ge N_\epsilon\)</span>. It follows that <span class="math inline">\(a_\infty-\epsilon \le f_n \le e_n \le a_\infty+\epsilon\)</span> for all <span class="math inline">\(n \ge N_\epsilon\)</span>, and hence <span class="math inline">\(a_\infty-\epsilon \le \lim\inf_n a_n \le \lim\sup_n a_n \le a_\infty+\epsilon.\)</span> Since <span class="math inline">\(\epsilon\)</span> was arbitrary, it follows that <span class="math inline">\(\lim_na_n = a_\infty\)</span>.&nbsp;◻</p>
+</div>
+<div class="prop">
+<p>For any sequence <span class="math inline">\(a \in \R_+^\N\)</span>, the following statements are true.</p>
+<div class="compactenum">
+<p>If <span class="math inline">\(\sum_{n\in\N}a_n &lt; \infty\)</span> then <span class="math inline">\(\lim_{n \to \infty}\sum_{k \ge n}a_k = 0\)</span>.</p>
+<p>If <span class="math inline">\(\sum_{n\in\N}a_n = \infty\)</span> then <span class="math inline">\(\sum_{k \ge n}a_k = \infty\)</span> for all <span class="math inline">\(k \in \N\)</span>.</p>
+</div>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> We observe that <span class="math inline">\((\sum_{k &lt; n}a_k: n \in\N)\)</span> is a non-decreasing sequence, and hence <span class="math inline">\(\lim_{n \to \infty}\sum_{k &lt; n}a_k = \sup_n\sum_{k&lt; n}a_k = \sum_{n \in \N}a_n\)</span>.</p>
+<div class="compactenum">
+<p>It follows that <span class="math inline">\(\sum_{k \ge n}a_k = \sum_{n \in \N}a_n - \sum_{k &lt; n}a_k\)</span> is a non-increasing sequence with limit <span class="math inline">\(0\)</span>.</p>
+<p>We can write <span class="math inline">\(\sum_{n \in \N}a_n = \sum_{k &lt; n}a_k + \sum_{k \ge n}a_k\)</span>. Since the first term is finite for all <span class="math inline">\(n \in \N\)</span>, it follows that the second term must be infinite for all <span class="math inline">\(n \in \N\)</span>.</p>
+</div>
+<p>&nbsp;◻</p>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

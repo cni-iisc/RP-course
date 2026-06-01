@@ -8,7 +8,7 @@
 
 <meta name="author" content="Parimal Parag">
 
-<title>About – Foundations</title>
+<title>Lecture-21: Recurrent and transient states – Foundations</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -27,23 +27,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-3e7735b7b22659e5fa437aca0bb49075.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-3e7735b7b22659e5fa437aca0bb49075.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -156,7 +156,7 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar floating nav-fixed quarto-light">
@@ -166,7 +166,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Foundations</span>
     </a>
   </div>
@@ -177,11 +177,11 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -195,7 +195,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">About</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/lecture-01.html">Lectures</a></li><li class="breadcrumb-item"><a href="../lectures/lecture-21.html">Lecture-21: Recurrent and transient states</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -209,178 +209,178 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Lectures</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-01.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-01: Sample and Event Space</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-02.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-02: Probability Function</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-03.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-03: Independence</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-04.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-04: Random Variable</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-05.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-05.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-05: Random Vectors</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-06.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-06.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-06: Transformation of random vectors</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-07.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-07.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-07: Random Processes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-08.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-08.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-08: Expectation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-09.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-09.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-09: Moments and <span class="math inline">\(L^p\)</span> spaces</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-10.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-10.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-10: Correlation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-11.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-11.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-11: Generating functions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-12.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-12.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-12: Conditional Expectation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-13.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-13.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-13: Conditional expectation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-14.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-14.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-14: Almost sure convergence</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-15.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-15.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-15: <span class="math inline">\(L^p\)</span> convergence</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-16.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-16.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-16: Weak convergence</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-17.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-17.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-17: Tractable Random Processes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-18.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-18.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-18: Stopping Times</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-19.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-19.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-19: Discrete Time Markov Chains</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-20.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-20.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-20: Strong Markov Property</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-21.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-21.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Lecture-21: Recurrent and transient states</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-22.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-22.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-22: Communicating classes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-23.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-23.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-23: Invariant Distribution</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-24.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-24.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-24: Poisson Point Processes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-25.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-25.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-25: Poisson processes: Conditional distribution</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-26.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-26.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-26: Properties of Poisson point processes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-27.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-27.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-27: Poisson process on the half-line</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-28.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-28.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-28: Compound Poisson Processes</span></a>
   </div>
 </li>
@@ -391,15 +391,21 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#recurrence-and-transience" id="toc-recurrence-and-transience" class="nav-link active" data-scroll-target="#recurrence-and-transience">Recurrence and Transience</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/lecture-01.html">Lectures</a></li><li class="breadcrumb-item"><a href="../lectures/lecture-21.html">Lecture-21: Recurrent and transient states</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">About</h1>
+<h1 class="title">Lecture-21: Recurrent and transient states</h1>
 </div>
 
 
@@ -422,9 +428,118 @@ window.Quarto = {
 </header>
 
 
-<p>Probability and Random Processes notes, migrated to Quarto.</p>
+<section id="recurrence-and-transience" class="level1">
+<h1>Recurrence and Transience</h1>
+<p>We will consider a random sequence <span class="math inline">\(X:\Omega\to\sX^{\Z_+}\)</span> with initial state <span class="math inline">\(X_0 = x\in\sX\)</span> and the <span class="math inline">\(k\)</span>th hitting times to state <span class="math inline">\(y\)</span> for all <span class="math inline">\(k \in \N\)</span> denoted by <span class="math inline">\(\tau_k \triangleq \tau_X^{\set{y},k}\)</span> inductively defined as <span class="math inline">\(\tau_k \triangleq \inf\set{n &gt; \tau_{k-1}: X_n = y}\)</span> where <span class="math inline">\(\tau_0 \triangleq 0\)</span>. We define the inter-return time sequence <span class="math inline">\(H:\Omega\to\N^\N\)</span> as <span class="math inline">\(H_k \triangleq H_X^{\set{y},k} = \tau_k - \tau_{k-1}\)</span> for all <span class="math inline">\(k \in \N\)</span>.</p>
+<div class="defn">
+<p>For a random sequence <span class="math inline">\(X: \Omega \to \sX^{\Z_+}\)</span> with initial state <span class="math inline">\(X_0 = x\)</span>,</p>
+<div class="compactenum">
+<p>the <strong>probability of hitting state <span class="math inline">\(y\)</span> eventually</strong> is denoted by <span class="math inline">\(f_{xy} \triangleq P_x\set{\tau_1 &lt; \infty}\)</span>, and</p>
+<p>the <strong>probability of first visit to state <span class="math inline">\(y\)</span> at time <span class="math inline">\(n \in\N\)</span></strong> is denoted by <span class="math inline">\(f_{xy}^{(n)}
+\triangleq P_x\set{\tau_1 = n}. %,\quad n \in \N.\)</span></p>
+</div>
+</div>
+<div class="rem">
+<p>We can write the finiteness of hitting time <span class="math inline">\(\tau_1\)</span> as the disjoint union <span class="math inline">\(\set{\tau_1 &lt; \infty} = \cup_{n \in \N}\set{\tau_1=n}\)</span>. Therefore, <span class="math inline">\(f_{xy} = \sum_{n\in\N}f_{xy}^{(n)}\)</span>.</p>
+</div>
+<div class="rem">
+<p>If <span class="math inline">\(f_{xy} = P_x\set{\tau_1 &lt; \infty} = 1\)</span> for all initial states <span class="math inline">\(x \in \sX\)</span>, then <span class="math inline">\(\tau_1\)</span> is almost surely finite and hence a stopping time.</p>
+</div>
+<div class="defn">
+<p>From the initial state <span class="math inline">\(x\)</span>, the distribution</p>
+<div class="compactenum">
+<p>for the first hitting time to state <span class="math inline">\(y\)</span> is called the <strong>first passage time distribution</strong> and denoted by <span class="math inline">\(((f_{xy}^{(n)}: n \in \N), 1 - f_{xy})\)</span>, and</p>
+<p>for the first return time to state <span class="math inline">\(x\)</span> is called the <strong>first recurrence time distribution</strong> and denoted by <span class="math inline">\(((f_{xx}^{(n)}: n \in \N),1 - f_{xx})\)</span>.</p>
+</div>
+</div>
+<div class="defn">
+<p>A state <span class="math inline">\(y\in\sX\)</span> is called <strong>recurrent</strong> if <span class="math inline">\(f_{yy} = 1\)</span>, and is called <strong>transient</strong> if <span class="math inline">\(f_{yy} &lt; 1\)</span>.</p>
+</div>
+<div class="defn">
+<p>For any state <span class="math inline">\(y \in \sX\)</span>, the <strong>mean recurrence time</strong> is denoted by <span class="math inline">\(\mu_{yy} \triangleq \E_y\tau_1\)</span>.</p>
+</div>
+<div class="rem">
+<p>The mean recurrence time for any transient state is infinite. For any recurrent state <span class="math inline">\(y \in \sX\)</span>, we write <span class="math inline">\(\tau_1 = \tau_1\SetIn{\tau_1 &lt; \infty} = \sum_{n \in \N}n\SetIn{\tau_1=n}\)</span> almost surely, and the mean recurrence time is given by <span class="math inline">\(\mu_{yy} = \sum_{n \in \N}nf^{(n)}_{yy}\)</span>.</p>
+</div>
+<div class="defn">
+<p>For a recurrent state <span class="math inline">\(y \in \sX\)</span>,</p>
+<div class="compactenum">
+<p>if the mean recurrence time is finite, then the state <span class="math inline">\(y\)</span> is called <strong>positive recurrent</strong>, and</p>
+<p>if the mean recurrence time is infinite, then the state <span class="math inline">\(y\)</span> is called <strong>null recurrent</strong>.</p>
+</div>
+</div>
+<div class="prop">
+<p>For a homogeneous discrete Markov chain <span class="math inline">\(X: \Omega \to \sX^{\Z_+}\)</span>, we have</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> We can write the event of zero visits to state <span class="math inline">\(y\)</span> as <span class="math inline">\(\set{N_y(\infty) = 0} = \set{\tau_1 = \infty}\)</span>. Further, we can write the event of <span class="math inline">\(m\)</span> visits to state <span class="math inline">\(y\)</span> as Recall that <span class="math inline">\(H:\Omega\to\N^\N\)</span> is an independent random sequence with subsequence <span class="math inline">\((H_k: k \ge 2)\)</span> identically distributed, with <span class="math inline">\(P_x\set{H_j = n} = P_y\set{\tau_1 =n}\)</span> for all <span class="math inline">\(j \ge 2\)</span>. Therefore, we get&nbsp;◻</p>
+</div>
+<div class="cor">
+<p><span id="cor:01law" data-label="cor:01law"></span> For a homogeneous Markov chain <span class="math inline">\(X\)</span>, we have <span class="math inline">\(P_x\set{N_y(\infty) &lt; \infty} = \SetIn{f_{yy} &lt; 1} + (1-f_{xy})\SetIn{f_{yy} = 1}\)</span>.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> We can write the event <span class="math inline">\(\set{N_y(\infty) &lt; \infty}\)</span> as disjoint union of events <span class="math inline">\(\set{N_y(\infty) = k}\)</span>, to get the result.&nbsp;◻</p>
+</div>
+<div class="rem">
+<p>For a time homogeneous Markov chain <span class="math inline">\(X: \Omega \to \sX^{\Z_+}\)</span>, we have</p>
+<div class="compactenum">
+<p><span class="math inline">\(P_x\set{N_y(\infty) = \infty} = f_{xy}\SetIn{f_{yy}=1}\)</span>, and</p>
+<p><span class="math inline">\(P_y\set{N_y(\infty) = \infty} = \SetIn{f_{yy}=1}\)</span>.</p>
+</div>
+</div>
+<div class="cor">
+<p>The mean number of visits to state <span class="math inline">\(y\)</span>, starting from a state <span class="math inline">\(x\)</span> is <span class="math inline">\(\E_xN_y(\infty) = \frac{f_{xy}}{1-f_{yy}}\SetIn{f_{yy} &lt; 1} + \infty\SetIn{f_{xy} &gt; 0, f_{yy} = 1}.\)</span></p>
+</div>
+<div class="rem">
+<p>For any state <span class="math inline">\(y \in \sX\)</span>, we have <span class="math inline">\(\E_yN_y(\infty) = \frac{f_{yy}}{1-f_{yy}}\SetIn{f_{yy}&lt;1} + \infty\SetIn{f_{yy}=1}\)</span>. That is, the mean number of visits to initial state <span class="math inline">\(y\)</span> is finite iff the state <span class="math inline">\(y\)</span> is transient.</p>
+</div>
+<div class="shaded">
+<div class="rem">
+<p>In particular, this corollary implies the following consequences.</p>
+<ol type="1">
+<li><p>A transient state is visited a finite amount of times almost surely. This follows from Corollary&nbsp;<a href="#cor:01law" data-reference-type="ref" data-reference="cor:01law">[cor:01law]</a>, since <span class="math inline">\(P_x\set{N_y(\infty) &lt; \infty} = 1\)</span> for all transient states <span class="math inline">\(y \in \sX\)</span> and any initial state <span class="math inline">\(x \in \sX\)</span>.</p></li>
+<li><p>A recurrent state is visited infinitely often almost surely. This also follows from Corollary&nbsp;<a href="#cor:01law" data-reference-type="ref" data-reference="cor:01law">[cor:01law]</a>, since <span class="math inline">\(P_y\set{N_y(\infty) &lt; \infty} = 0\)</span> for all recurrent states <span class="math inline">\(y \in \sX\)</span>.</p></li>
+<li><p>In a finite state Markov chain, not all states may be transient.</p>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> To see this, we assume that for a finite state space <span class="math inline">\(\sX\)</span>, all states <span class="math inline">\(y \in \sX\)</span> are transient. Then, we know that <span class="math inline">\(N_y(\infty)\)</span> is finite almost surely for all states <span class="math inline">\(y \in \sX\)</span>. It follows that, for any initial state <span class="math inline">\(x \in \sX\)</span> It follows that <span class="math inline">\(\sum_{y \in \sX}N_y(\infty)\)</span> is also finite almost surely for all states <span class="math inline">\(y \in \sX\)</span> for finite state space <span class="math inline">\(\sX\)</span>. However, we know that <span class="math inline">\(\sum_{y \in \sX}N_y(\infty) = \sum_{k \in \N}\sum_{y \in \sX}\indicator{X_k = y} = \infty\)</span>. This leads to a contradiction.&nbsp;◻</p>
+</div></li>
+</ol>
+</div>
+</div>
+<div class="prop">
+<p>For a homogeneous DTMC <span class="math inline">\(X: \Omega \to \sX^{\Z_+}\)</span>, a state <span class="math inline">\(y\in\sX\)</span> is recurrent iff <span class="math inline">\(\sum_{k\in\N} p_{yy}^{(k)} = \infty\)</span>, and transient iff <span class="math inline">\(\sum_{k\in\N} p_{yy}^{(k)} &lt; \infty\)</span>.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> Recall that if the mean recurrence time to a state <span class="math inline">\(y\in\sX\)</span> is <span class="math inline">\(\E_yN_y(\infty) = \sum_{k\in\N}p_{yy}^{(k)}\)</span> finite then the state is transient and infinite if the state is recurrent.&nbsp;◻</p>
+</div>
+<div class="cor">
+<p>For a transient state <span class="math inline">\(y \in \sX\)</span>, the following limits hold <span class="math inline">\(\lim_{n \to \infty}p_{xy}^{(n)} = 0\)</span>, and <span class="math inline">\(\lim_{n \to \infty}\frac{\sum_{k = 1}^np_{xy}^{(k)}}{n} = 0\)</span>.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> For a transient state <span class="math inline">\(y \in \sX\)</span> and any state <span class="math inline">\(x \in \sX\)</span>, we have <span class="math inline">\(\E_xN_y(\infty)  = \sum_{n \in \N}p_{xy}^{(n)} &lt; \infty\)</span>. Since the series sum is finite, it implies that the limiting terms in the sequence <span class="math inline">\(\lim_{n \to \infty}p_{xy}^{(n)} = 0\)</span>. Further, we can write <span class="math inline">\(\sum_{k=1}^np_{xy}^{(k)} \le \E_xN_y(\infty) \le M\)</span> for some <span class="math inline">\(M \in \N\)</span> and hence <span class="math inline">\(\lim_{n \to \infty}\frac{\sum_{k = 1}^np_{xy}^{(k)}}{n} = 0\)</span>.&nbsp;◻</p>
+</div>
+<div class="lem">
+<p><span id="lem:StoppingTime" data-label="lem:StoppingTime"></span> For any state <span class="math inline">\(y \in \sX\)</span>, let <span class="math inline">\(H:\Omega\to\N^\N\)</span> be the sequence of almost surely finite inter-visit times to state <span class="math inline">\(y\)</span>, and <span class="math inline">\(N_y(n) = \sum_{k=1}^n\indicator{X_k = y}\)</span> be the number of visits to state <span class="math inline">\(y\)</span> in <span class="math inline">\(n\)</span> times. Then, <span class="math inline">\(N_y(n) +1\)</span> is a finite mean stopping time with respect to the sequence <span class="math inline">\(H\)</span>.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> We first observe that <span class="math inline">\(N_y(n) + 1 \le n+1\)</span> and hence has a finite mean for each <span class="math inline">\(n \in \N\)</span>. Further, we observe that <span class="math inline">\(\set{N_y(n) + 1 = k}\)</span> can be completely determined by observing <span class="math inline">\(H_1, \dots, H_k\)</span>, since&nbsp;◻</p>
+</div>
+<div class="thm">
+<p>Let <span class="math inline">\(x, y \in \sX\)</span> be such that <span class="math inline">\(f_{xy} = 1\)</span> and <span class="math inline">\(y\)</span> is recurrent. Then, <span class="math inline">\(\lim_{n \to \infty}\frac{\sum_{k=1}^np_{xy}^{(k)}}{n} = \frac{1}{\mu_{yy}}\)</span>.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> Let <span class="math inline">\(y \in \sX\)</span> be recurrent. The proof consists of three parts. In the first two parts, we will show that starting from the state <span class="math inline">\(y\)</span>, we have the limiting empirical average of mean number of visits to state <span class="math inline">\(y\)</span> is <span class="math inline">\(\lim_{n \to \infty}\frac{1}{n}\E_yN_y(n) = \frac{1}{\mu_{yy}}\)</span>. In the third part, we will show that for any starting state <span class="math inline">\(x \in \sX\)</span> such that <span class="math inline">\(f_{xy}=1\)</span>, we have the limiting empirical average of mean number of visits to state <span class="math inline">\(y\)</span> is <span class="math inline">\(\lim_{n \to \infty}\frac{1}{n}\E_xN_y(n) = \frac{1}{\mu_{yy}}\)</span>.</p>
+<ul>
+<li><p>We observe that <span class="math inline">\(N_y(n)+1\)</span> is a stopping time with respect to inter-visit times <span class="math inline">\(H\)</span> from Lemma&nbsp;<a href="#lem:StoppingTime" data-reference-type="ref" data-reference="lem:StoppingTime">[lem:StoppingTime]</a>. Further, we have <span class="math inline">\(\sum_{j=1}^{N_y(n)+1}H_j &gt; n\)</span>. Applying Wald’s Lemma to the random sum <span class="math inline">\(\sum_{j=1}^{N_y(n)+1}H_j\)</span> , we get <span class="math inline">\(\E_y(N_y(n)+1)\mu_{yy} &gt; n\)</span>. Taking limits, we obtain <span class="math inline">\(\lim\inf_{n \in \N}\frac{\sum_{k=1}^np_{yy}^{(k)}}{n} \ge \frac{1}{\mu_{yy}}\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(X_0 = y\)</span> and consider a fixed positive integer <span class="math inline">\(M\in \N\)</span>. Then <span class="math inline">\(H\)</span> is and we define truncated recurrence times <span class="math inline">\(\bar{H}:\Omega\to[M]^\N\)</span> for all <span class="math inline">\(j \in \N\)</span> as <span class="math inline">\(\bar{H}_j \triangleq M \wedge H_j\)</span>. It follows that the sequence <span class="math inline">\(\bar{H}\)</span> is and <span class="math inline">\(\bar{H}_j \le H_j\)</span> for all <span class="math inline">\(j \in \N\)</span>. We define the mean of the truncated recurrence times as <span class="math inline">\(\bar{\mu}_{yy} \triangleq \E_y\bar{H}_1\)</span>. From the monotonicity of truncation, we get <span class="math inline">\(\bar{\mu}_{yy} \le \mu_{yy}\)</span>.</p>
+<p>We define the random variable <span class="math inline">\(\bar{\tau}_k \triangleq \sum_{j=1}^k\bar{H}_j\)</span> for all <span class="math inline">\(k \in \N\)</span>, and <span class="math inline">\(\bar{\tau}_k \le \tau_k\)</span> for all <span class="math inline">\(k \in \N\)</span>. We can define the associated counting process that counts the number of truncated recurrences in first <span class="math inline">\(n\)</span> steps as <span class="math inline">\(\bar{N}_y(n) \triangleq \sum_{k\in \N}\SetIn{\bar{\tau}_k \le n}\)</span> for all <span class="math inline">\(n \in \N\)</span>. We conclude that <span class="math inline">\(\bar{N}_y(n)+1\)</span> is a stopping time with respect to process <span class="math inline">\(\bar{H}\)</span>, and <span class="math inline">\(\bar{N}_y(n) \ge N_y(n)\)</span> sample path wise. Further, we have Applying Wald’s Lemma to stopping time <span class="math inline">\(N_y(n)+1\)</span> with respect to sequence <span class="math inline">\(H\)</span> and stopping time <span class="math inline">\(\bar{N}_y(n)+1\)</span> with respect to sequence <span class="math inline">\(\bar{H}\)</span>, and monotonicity of expectation, we get Taking limits, we obtain <span class="math inline">\(\lim\sup_{n \in \N}\frac{\sum_{k=1}^np_{yy}^{(k)}}{n} \le \frac{1}{\bar{\mu}_{yy}}\)</span>. Letting <span class="math inline">\(M\)</span> grow arbitrarily large, we obtain the upper bound.</p></li>
+<li><p>Further, we observe that <span class="math inline">\(p_{xy}^{(k)} = \sum_{s=0}^{k-1}f_{xy}^{(k-s)}p_{yy}^{(s)}\)</span>. Since <span class="math inline">\(1 = f_{xy} = \sum_{k \in \N}f_{xy}^{(k)}\)</span>, we have Since the series <span class="math inline">\(\sum_{k \in \N}f_{xy}^{(k)}\)</span> converges, we get <span class="math inline">\(\lim_{n \to \infty}\frac{\sum_{k=1}^np_{xy}^{(k)}}{n} = \lim_{n \to \infty}\frac{\sum_{k=1}^np_{yy}^{(k)}}{n}.\)</span></p></li>
+</ul>
+<p>&nbsp;◻</p>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

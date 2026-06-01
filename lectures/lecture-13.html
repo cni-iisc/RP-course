@@ -8,7 +8,7 @@
 
 <meta name="author" content="Parimal Parag">
 
-<title>About – Foundations</title>
+<title>Lecture-13: Conditional expectation – Foundations</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -27,23 +27,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-3e7735b7b22659e5fa437aca0bb49075.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-3e7735b7b22659e5fa437aca0bb49075.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -156,7 +156,7 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar floating nav-fixed quarto-light">
@@ -166,7 +166,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Foundations</span>
     </a>
   </div>
@@ -177,11 +177,11 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -195,7 +195,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">About</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/lecture-01.html">Lectures</a></li><li class="breadcrumb-item"><a href="../lectures/lecture-13.html">Lecture-13: Conditional expectation</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -209,179 +209,179 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Lectures</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-01.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-01: Sample and Event Space</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-02.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-02: Probability Function</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-03.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-03: Independence</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-04.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-04: Random Variable</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-05.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-05.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-05: Random Vectors</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-06.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-06.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-06: Transformation of random vectors</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-07.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-07.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-07: Random Processes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-08.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-08.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-08: Expectation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-09.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-09.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-09: Moments and <span class="math inline">\(L^p\)</span> spaces</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-10.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-10.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-10: Correlation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-11.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-11.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-11: Generating functions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-12.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-12.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-12: Conditional Expectation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-13.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-13.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Lecture-13: Conditional expectation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-14.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lecture-14: Almost sure convergence</span></a>
+  <a href="../lectures/lecture-14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 14</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-15.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lecture-15: <span class="math inline">\(L^p\)</span> convergence</span></a>
+  <a href="../lectures/lecture-15.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 15</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-16.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lecture-16: Weak convergence</span></a>
+  <a href="../lectures/lecture-16.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 16</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-17.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-17.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-17: Tractable Random Processes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-18.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lecture-18: Stopping Times</span></a>
+  <a href="../lectures/lecture-18.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 18</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-19.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lecture-19: Discrete Time Markov Chains</span></a>
+  <a href="../lectures/lecture-19.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 19</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-20.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lecture-20: Strong Markov Property</span></a>
+  <a href="../lectures/lecture-20.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 20</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-21.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lecture-21: Recurrent and transient states</span></a>
+  <a href="../lectures/lecture-21.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 21</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-22.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lecture-22: Communicating classes</span></a>
+  <a href="../lectures/lecture-22.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 22</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-23.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-23.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-23: Invariant Distribution</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-24.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-24.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-24: Poisson Point Processes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-25.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/lecture-25.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture-25: Poisson processes: Conditional distribution</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-26.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lecture-26: Properties of Poisson point processes</span></a>
+  <a href="../lectures/lecture-26.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 26</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-27.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lecture-27: Poisson process on the half-line</span></a>
+  <a href="../lectures/lecture-27.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 27</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/lecture-28.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lecture-28: Compound Poisson Processes</span></a>
+  <a href="../lectures/lecture-28.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 28</span></a>
   </div>
 </li>
       </ul>
@@ -391,15 +391,22 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#conditional-expectation-conditioned-on-a-random-vector" id="toc-conditional-expectation-conditioned-on-a-random-vector" class="nav-link active" data-scroll-target="#conditional-expectation-conditioned-on-a-random-vector">Conditional expectation conditioned on a random vector</a></li>
+  <li><a href="#properties-of-conditional-expectation" id="toc-properties-of-conditional-expectation" class="nav-link" data-scroll-target="#properties-of-conditional-expectation">Properties of Conditional Expectation</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/lecture-01.html">Lectures</a></li><li class="breadcrumb-item"><a href="../lectures/lecture-13.html">Lecture-13: Conditional expectation</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">About</h1>
+<h1 class="title">Lecture-13: Conditional expectation</h1>
 </div>
 
 
@@ -422,9 +429,90 @@ window.Quarto = {
 </header>
 
 
-<p>Probability and Random Processes notes, migrated to Quarto.</p>
+<section id="conditional-expectation-conditioned-on-a-random-vector" class="level1">
+<h1>Conditional expectation conditioned on a random vector</h1>
+<p>Let <span class="math inline">\(X: \Omega \to \R^n\)</span> be a random vector defined on a probability space <span class="math inline">\((\Omega, \sF, P)\)</span>. Recall that the projection <span class="math inline">\(\pi_i: \R^n \to \R\)</span> of <span class="math inline">\(n\)</span>-dimensional vector <span class="math inline">\(X\)</span> on its <span class="math inline">\(i\)</span>th component gives <span class="math inline">\(X_i = \pi_i(X)\)</span>, and it is a Borel measurable function. It follows that <span class="math inline">\(X_i = \pi_i\circ X\)</span> is a random variable for each <span class="math inline">\(i \in [n]\)</span>. Further the event space generated by random vectors <span class="math inline">\(X\)</span> is given by</p>
+<div class="rem">
+<p>Let <span class="math inline">\((A_i \in \sF:  i \in [n])\)</span> be an <span class="math inline">\(n\)</span>-length sequence of events, then <span class="math inline">\(X = (\Ind{A_i}: i \in [n])\)</span> is a random vector, and the smallest event space generated by this random vector is <span class="math inline">\(\sigma(X) = \sigma(A_1, \dots, A_n)\)</span>.</p>
+</div>
+<div class="defn">
+<p>Consider a random variable <span class="math inline">\(X:\Omega \to\R\)</span> such that <span class="math inline">\(\E\abs{X} &lt; \infty\)</span> and a random vector <span class="math inline">\(Y:\Omega \to \R^n\)</span> for some <span class="math inline">\(n\in \N\)</span>, defined on the same probability space <span class="math inline">\((\Omega, \sF, P)\)</span>. The <strong>conditional expectation of random variable <span class="math inline">\(X\)</span> given the random vector <span class="math inline">\(Y\)</span></strong> is defined as <span class="math inline">\(\E[X\mid Y] \triangleq \E[X\mid\sigma(Y)]\)</span>.</p>
+</div>
+<div class="lem">
+<p>For a random sequence <span class="math inline">\(X: \Omega \to \R^\N\)</span> defined on the same probability space <span class="math inline">\((\Omega, \sF, P)\)</span>, we have</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> For any <span class="math inline">\(x \in \R^{n+1}\)</span>, any generating event for collection <span class="math inline">\(\sigma(X_1, \dots, X_n)\)</span> is of the form <span class="math inline">\(\cap_{i=1}^nX_i^{-1}(-\infty, x_i] = \cap_{i=1}^nX_i^{-1}(-\infty, x_i]\cap X_{n+1}^{-1}(\R)\)</span>, a generating event for collection <span class="math inline">\(\sigma(X_1, \dots, X_{n+1})\)</span>.&nbsp;◻</p>
+</div>
+</section>
+<section id="properties-of-conditional-expectation" class="level1">
+<h1>Properties of Conditional Expectation</h1>
+<div class="prop">
+<p>Let <span class="math inline">\(X,Y\)</span> be random variables on the probability space <span class="math inline">\((\Omega, \sF, P)\)</span> such that <span class="math inline">\(\E\abs{X} , \E\abs{Y} &lt; \infty\)</span>. Let <span class="math inline">\(\sG\)</span> and <span class="math inline">\(\sH\)</span> be event spaces such that <span class="math inline">\(\sG, \sH \subset \sF\)</span>. Then the following statements are true.</p>
+<ol type="1">
+<li><p><strong>Identity:</strong> If <span class="math inline">\(X\)</span> is <span class="math inline">\(\sG\)</span>-measurable and <span class="math inline">\(\E\abs{X} &lt; \infty\)</span>, then <span class="math inline">\(X = \E[X\mid\sG]\)</span> a.s. In particular, <span class="math inline">\(c = \E[c\mid \sG]\)</span>, for any constant <span class="math inline">\(c \in  \R\)</span>.</p></li>
+<li><p><strong>Linearity:</strong> <span class="math inline">\(\E[(\alpha X + \beta Y) \mid \sG] = \alpha \E[X\mid\sG] + \beta E[Y\mid \sG]\)</span> a.s.</p></li>
+<li><p><strong>Monotonicity:</strong> If <span class="math inline">\(X \le Y\)</span> a.s., then <span class="math inline">\(\E[X\mid\sG] \le E[Y\mid \sG]\)</span> a.s.</p></li>
+<li><p><strong>Conditional Jensen’s inequality:</strong> If <span class="math inline">\(\psi : \R \to  \R\)</span> is convex and <span class="math inline">\(\E\abs{\psi(X)} &lt;\infty\)</span>, then <span class="math inline">\(\psi(\E[X\mid\sG]) \le \E[\psi(X) \mid \sG]\)</span> a.s.</p></li>
+<li><p><strong>Pulling out what’s known:</strong> If <span class="math inline">\(Y\)</span> is <span class="math inline">\(\sG\)</span>-measurable and <span class="math inline">\(\E\abs{XY} &lt;\infty\)</span>, then <span class="math inline">\(\E[XY\mid \sG] = Y\E[X\mid\sG]\)</span> a.s.</p></li>
+<li><p><strong>Tower property:</strong> If <span class="math inline">\(\sH \subseteq \sG\)</span>, then <span class="math inline">\(\E[\E[X\mid\sG]\mid \sH] = \E[X\mid \sH]\)</span> a.s.</p></li>
+<li><p><strong>Irrelevance of independent information:</strong> If <span class="math inline">\(\sH\)</span> is independent of <span class="math inline">\(\sigma (\sG, \sigma (X))\)</span> then <span class="math inline">\(\E[X|\sigma (\sG, \sH)] = \E[X\mid\sG] \text{ a.s. }\)</span> In particular, if <span class="math inline">\(X\)</span> is independent of <span class="math inline">\(\sH\)</span>, then <span class="math inline">\(\E[X\mid \sH] = \E[X]\)</span> a.s.</p></li>
+<li><p><strong><span class="math inline">\(L^2\)</span>-projection:</strong> If <span class="math inline">\(\E\abs{X}^2 &lt; \infty\)</span>, then <span class="math inline">\(\zeta^\ast \triangleq \E[X\mid\sG]\)</span> minimizes <span class="math inline">\(\E[(X - \zeta)^2]\)</span> over all <span class="math inline">\(\sG\)</span>-measurable random variables <span class="math inline">\(\zeta\)</span> such that <span class="math inline">\(\E\abs{\zeta}^2 &lt; \infty\)</span>.</p></li>
+</ol>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> In all the properties below, we have to show that conditional expectation given an event space equals another random variable almost surely. To this end, we will show that the right hand side satisfies the three properties of the conditional expectation random variable, and hence is the conditional expectation from almost sure uniqueness.</p>
+<ol type="1">
+<li><p><strong>Identity:</strong> It follows from the definition that <span class="math inline">\(X\)</span> satisfies all three conditions for conditional expectation. The event space generated by any constant function is the trivial event space <span class="math inline">\(\set{\emptyset, \Omega} \subseteq \sG\)</span> for any event space. Hence, <span class="math inline">\(\E[c\mid \sG] = c\)</span>.</p></li>
+<li><p><strong>Linearity:</strong> Let <span class="math inline">\(Z \triangleq \E[(\alpha X + \beta Y) \mid \sG]\)</span> and <span class="math inline">\(Z_1 \triangleq \E[X\mid\sG]\)</span> and <span class="math inline">\(Z_2\triangleq\E[Y\mid\sG]\)</span>. We have to show that <span class="math inline">\(Z = \alpha Z_1+ \beta Z_2\)</span> almost surely.</p>
+<ol type="i">
+<li><p>From the definition of conditional expectation, we have <span class="math inline">\(\E[X\mid\sG], \E[Y\mid\sG]\)</span> are <span class="math inline">\(\sG\)</span>-measurable. In addition, the linear map <span class="math inline">\(g: \R^2\to\R\)</span> defined by <span class="math inline">\(g(x) \triangleq \alpha x_1 + \beta x_2\)</span> is Borel measurable. Therefore, the linear combination <span class="math inline">\(\alpha Z_1 + \beta Z_2\)</span> is <span class="math inline">\(\sG\)</span>-measurable.</p></li>
+<li><p>For any <span class="math inline">\(G \in \sG\)</span>, from the linearity of expectation and definition of conditional expectation, we have</p></li>
+<li><p>From the definition of conditional expectation, we have <span class="math inline">\(\E\abs{Z_1}, \E\abs{Z_2}\)</span> are finite. Therefore, we have</p></li>
+</ol>
+<p>This implies that <span class="math inline">\(\alpha Z_1 + \beta Z_2\)</span> satisfies three properties of conditional expectation <span class="math inline">\(\E[(\alpha X +\beta Y)\mid\sG]\)</span>. From the almost sure uniqueness of conditional expectation, we have <span class="math inline">\(Z = \alpha Z_1 + \beta Z_2\)</span> almost surely.</p></li>
+<li><p><strong>Monotonicity:</strong> Let <span class="math inline">\(\epsilon &gt; 0\)</span> and define <span class="math inline">\(A_\epsilon \triangleq \set{\E[X\mid\sG] - \E[Y\mid \sG] &gt;\epsilon} \in  \sG\)</span>. Then from the definition of conditional expectation, we have Thus, we obtain that <span class="math inline">\(P(A_\epsilon) = 0\)</span> for all <span class="math inline">\(\epsilon &gt; 0\)</span>. Taking limit <span class="math inline">\(\epsilon \downarrow 0\)</span>, we get</p></li>
+<li><p><strong>Conditional Jensen’s inequality:</strong> We will use the fact that a convex function can always be represented by the supremum of a family of affine functions. Accordingly, we will assume for a convex function <span class="math inline">\(\psi:\R\to\R\)</span>, we have linear functions <span class="math inline">\(\phi_i:\R\to\R\)</span> and constants <span class="math inline">\(c_i\in\R\)</span> for all <span class="math inline">\(i \in I\)</span> such that <span class="math inline">\(\psi = \sup_{i\in I}(\phi_i+c_i)\)</span>.</p>
+<p>For each <span class="math inline">\(i\in I\)</span>, we have <span class="math inline">\(\phi_i(\E[X\mid\sG])+c_i = \E[\phi_i(X)\mid\sG] +c_i\le \E[\psi(X)\mid\sG]\)</span> from the linearity and monotonicity of conditional expectation. It follows that</p></li>
+<li><p><strong>Pulling out what’s known:</strong> From the almost sure uniqueness of conditional expectation, it suffices to show that <span class="math inline">\(Y\E[X\mid\sG]\)</span> satisfies following three properties of the conditional expectation <span class="math inline">\(\E[XY\mid\sG]\)</span>:</p>
+<ol type="i">
+<li><p>the random variable <span class="math inline">\(Y\E[X\mid\sG]\)</span> is <span class="math inline">\(\sG\)</span>-measurable,</p></li>
+<li><p><span class="math inline">\(\E[XY\Ind{G}] = \E[Y\E[X\mid\sG]\Ind{G}]\)</span> for any event <span class="math inline">\(G\in\sG\)</span>, and</p></li>
+<li><p><span class="math inline">\(\E\abs{Y\E[X\mid\sG]}\)</span> is finite.</p></li>
+</ol>
+<p>Part&nbsp;(i) is true since <span class="math inline">\(Y\)</span> is given to be <span class="math inline">\(\sG\)</span>-measurable, <span class="math inline">\(\E[X\mid\sG]\)</span> is <span class="math inline">\(\sG\)</span>-measurable by the definition of conditional expectation, and product function is Borel measurable.</p>
+<p>It suffices to show part&nbsp;(ii) and&nbsp;(iii) for simple <span class="math inline">\(\sG\)</span>-measurable random variables <span class="math inline">\(Y=\sum_{y\in\sY}y\Ind{E_y}\)</span> where <span class="math inline">\(E_y = Y^{-1}\set{y} \in \sG\)</span>. For any <span class="math inline">\(G\in\sG\)</span>, we have <span class="math inline">\(G\cap E_y\in\sG\)</span> for all <span class="math inline">\(y \in \sY\)</span> and <span class="math inline">\(\cup_{y\in\sY}(G\cap E_y) = G\)</span>.</p>
+<p>Part&nbsp;(ii) follow from the linearity of expectation and definition of conditional expectation <span class="math inline">\(\E[X\mid\sG]\)</span>, such that</p>
+<p>Part&nbsp;(iii) follows from the fact that <span class="math inline">\(\E\abs{XY}\)</span> is finite and the conditional Jensen’s inequality applied to convex function <span class="math inline">\(\abs{\cdot} : \R \to \R_+\)</span> to get <span class="math inline">\(\abs{\E[X\mid\sG]} \le \E[\abs{X}\mid\sG]\)</span>. Therefore,</p></li>
+<li><p><strong>Tower property:</strong> From the almost sure uniqueness of conditional expectation, it suffices to show that</p>
+<ol type="i">
+<li><p><span class="math inline">\(\E[X\mid\sH]\)</span> is <span class="math inline">\(\sH\)</span>-measurable,</p></li>
+<li><p><span class="math inline">\(\E[\E[X\mid\sH]\Ind{H}] = \E[\E[X\mid\sG]\Ind{H}]\)</span> for all <span class="math inline">\(H\in\sH\)</span>, and</p></li>
+<li><p><span class="math inline">\(\E[\abs{\E[X\mid\sH]}]\)</span> is finite.</p></li>
+</ol>
+<p>Part&nbsp;(i) follows from the definition of conditional expectation, which implies that <span class="math inline">\(\E[X\mid \sH]\)</span> is <span class="math inline">\(\sH\)</span> measurable.</p>
+<p>Part&nbsp;(ii) follows from the fact that <span class="math inline">\(\sH \subseteq \sG\)</span>, and hence any <span class="math inline">\(H \in \sH\)</span> belongs to <span class="math inline">\(\sG\)</span>. Therefore, from the definition of conditional expectation, we have</p>
+<p>Part&nbsp;(iii) follows from the conditional Jensen’s inequality applied to convex function <span class="math inline">\(\abs{\cdot}:\R\to\R_+\)</span> to get <span class="math inline">\(\abs{\E[X\mid\sH]} \le \E[\abs{X}\mid\sH]\)</span>, and hence <span class="math inline">\(\E\abs{\E[X\mid\sH]} \le \E\abs{X} &lt; \infty\)</span>.</p></li>
+<li><p><strong>Irrelevance of independent information:</strong> From the almost sure uniqueness of conditional expectation, it suffices to show that</p>
+<ol type="i">
+<li><p><span class="math inline">\(\E[X\mid\sG]\)</span> is <span class="math inline">\(\sigma(\sG,\sH)\)</span>-measurable,</p></li>
+<li><p><span class="math inline">\(\E[\E[X\mid\sG]\Ind{G}] = \E[X\Ind{G}]\)</span> for all <span class="math inline">\(G\in\sigma(\sG,\sH)\)</span>, and</p></li>
+<li><p><span class="math inline">\(\E\abs{\E[X\mid\sG]}\)</span> is finite.</p></li>
+</ol>
+<p>Part&nbsp;(i) follows from the definition of conditional expectation and the definition of <span class="math inline">\(\sigma(\sG,\sH)\)</span>. Since <span class="math inline">\(\E[X\mid\sG]\)</span> is <span class="math inline">\(\sG\)</span>-measurable, it is <span class="math inline">\(\sigma(\sG,\sH)\)</span> measurable.</p>
+<p>Part&nbsp;(ii) follows from the fact that it suffices to show for events <span class="math inline">\(A = G \cap H \in \sigma(\sG,\sH)\)</span> where <span class="math inline">\(G \in \sG\)</span> and <span class="math inline">\(H \in \sH\)</span>. In this case,</p>
+<p>Part&nbsp;(iii) follows from the conditional Jensen’s inequality applied to convex function <span class="math inline">\(\abs{\cdot}:\R\to\R_+\)</span> to get <span class="math inline">\(\abs{\E[X\mid\sG]} \le \E[\abs{X}\mid\sG]\)</span>. This implies that <span class="math inline">\(\E\abs{\E[X\mid\sG]} \le \E\abs{X} &lt; \infty\)</span>.</p></li>
+<li><p><strong><span class="math inline">\(L^2\)</span>-projection:</strong> We define <span class="math inline">\(L^2(\sG) \triangleq \set{\zeta \text{ a } \sG \text{ measurable random variable}:
+\E\zeta^2 &lt; \infty%,\zeta^{-1}(-\infty, x] \in \sG \text{ for all }x\in \R
+}\)</span>. From the conditional Jensen’s inequality applied to convex function <span class="math inline">\((\cdot)^2:\R \to \R_+\)</span>, we get that <span class="math inline">\((\E[X\mid\sG])^2 \le \E[X^2\mid\sG]\)</span> a.s.. Since <span class="math inline">\(X\in L^2\)</span>, it follows that <span class="math inline">\(X^2\in L^1\)</span> and hence <span class="math inline">\(\E[X\mid\sG] \in L^2\)</span>. It follows that <span class="math inline">\(\zeta^\ast \triangleq \E[X\mid\sG] \in L^2(\sG)\)</span> from the definition of conditional expectation.</p>
+<p>We first show that <span class="math inline">\(X - \zeta^\ast\)</span> is uncorrelated with all <span class="math inline">\(\zeta \in L^2(\sG)\)</span>. Towards this end, we let <span class="math inline">\(\zeta\in L^2(\sG)\)</span> and observe that The above equality follows from the linearity of expectation, the <span class="math inline">\(\sG\)</span>-measurability of <span class="math inline">\(\zeta\)</span>, and the definition of conditional expectation. Since <span class="math inline">\(\zeta^\ast\in L^2(\sG)\)</span>, we have <span class="math inline">\((\zeta-\zeta^\ast)\in L^2(\sG)\)</span>. Therefore, <span class="math inline">\(\E[(X - \zeta^\ast)(\zeta-\zeta^\ast)] = 0\)</span>.</p>
+<p>For any <span class="math inline">\(\zeta\in L^2(\sG)\)</span>, we can write from the linearity of expectation</p></li>
+</ol>
+<p>&nbsp;◻</p>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
