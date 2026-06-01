@@ -1,0 +1,522 @@
+% !TEX spellcheck = en_US
+% !TEX spellcheck = LaTeX
+\documentclass[letterpaper,10pt,english]{article}
+%\input{header.tex}
+
+\usepackage{%
+	amsfonts,%
+	amsmath,%	
+	amssymb,%
+	amsthm,%
+	babel,%
+	bbm,%
+	%biblatex,%
+	caption,%
+	centernot,%
+	color,%
+	enumerate,%
+	%enumitem,%
+	epsfig,%
+	epstopdf,%
+	etex,%
+	fancybox,%
+	framed,%
+	fullpage,%
+	%geometry,%
+	graphicx,%
+	hyperref,%
+	latexsym,%
+	mathptmx,%
+	mathtools,%
+	multicol,%
+	paralist,%
+	pgf,%
+	pgfplots,%
+	pgfplotstable,%
+	pgfpages,%
+	proof,%
+	psfrag,%
+	%subfigure,%	
+	tcolorbox,%
+	tfrupee,%
+	tikz,%
+	times,%
+	%ulem,%
+	url,%
+	xcolor,%
+	mathpazo,%
+}
+
+\definecolor{shadecolor}{gray}{.95}%{rgb}{1,0,0}
+\usepackage[margin=1in,top=0.75in]{geometry}
+\usepackage[mathscr]{eucal}
+\usepgflibrary{shapes}
+\usepgfplotslibrary{fillbetween}
+\usetikzlibrary{%
+  arrows,%
+  backgrounds,%
+  chains,%
+  decorations.pathmorphing,% /pgf/decoration/random steps | erste Graphik
+  decorations.text,% 
+  matrix,%
+  positioning,% wg. " of "
+  fit,%
+  patterns,%
+  petri,%
+  plotmarks,%
+  scopes,%
+  shadows,%
+  shapes.misc,% wg. rounded rectangle
+  shapes.arrows,%
+  shapes.callouts,%
+  shapes%
+}
+
+%\pgfplotsset{compat=newest} %<------ Here
+\pgfplotsset{compat=1.11} %<------ Or use this one
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{clm}[thm]{Claim}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{axiom}[thm]{Axiom}
+\newtheorem{assum}[thm]{Assumption}
+\newtheorem{exerc}[thm]{Exercise}
+\newtheorem*{defin}{Definition}
+
+\theoremstyle{remark}
+\newtheorem{rem}{Remark}
+\newtheorem{note}{Note}
+
+\newcommand{\iid}{\emph{i.i.d.}\ }
+\newcommand{\Cov}{\operatorname{Cov}}
+%\newcommand{\det}{\operatorname{det}}
+%\newcommand{\Real}{\mathbb{R}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\cov}{\operatorname{cov}}
+
+%\renewcommand{\proof}[1]{\begin{proof}#1\end{proof}}
+\newcommand{\EQ}[1]{\begin{equation*}#1\end{equation*}}
+\newcommand{\EQN}[1]{\begin{equation}#1\end{equation}}
+\newcommand{\eq}[1]{\begin{align*}#1\end{align*}}
+\newcommand{\meq}[2]{\begin{xalignat*}{#1}#2\end{xalignat*}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\inner}[1]{\left\langle #1\right\rangle}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\expect}[1]{\mathbb{E}\left[{#1}\right]}
+\newcommand{\prob}[1]{\mathbb{P}\left[{#1}\right]}
+\newcommand{\given}{\; \big\vert \;} 
+\newcommand{\set}[1]{\left\{#1\right\}} 
+\newcommand{\indicator}[1]{1_{\set{#1}}} 
+\newcommand{\Ind}[1]{\mathbbm{1}_{#1}} 
+\newcommand{\SetIn}[1]{\mathbbm{1}_{\set{#1}}} 
+\newcommand{\red}[1]{\textcolor{red}{#1}} 
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newcommand{\bA}{\mathbf{A}}
+\newcommand{\bI}{\mathbf{I}}
+\newcommand{\bU}{\mathbf{1}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\bX}{\mathbf{X}}
+\newcommand{\bZ}{\mathbf{Z}}
+
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+
+\newcommand{\sA}{\mathscr{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sE}{\mathscr{E}}
+\newcommand{\sF}{\mathscr{F}}
+\newcommand{\sG}{\mathscr{G}}
+\newcommand{\sH}{\mathscr{H}}
+\newcommand{\sL}{\mathscr{L}}
+\newcommand{\sS}{\mathscr{S}}
+\newcommand{\sT}{\mathscr{T}}
+\newcommand{\sX}{\mathscr{X}}
+\newcommand{\sY}{\mathscr{Y}}
+\newcommand{\sZ}{\mathscr{Z}}
+
+\newcommand{\tS}{\tilde{S}}
+% Debug
+\newcommand{\todo}[1]{\begin{color}{blue}{{\bf~[TODO:~#1]}}\end{color}}
+
+% a few handy macros
+
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+\newcommand\matlab{{\sc matlab}}
+\newcommand{\goto}{\rightarrow}
+\newcommand{\bigo}{{\mathcal O}}
+%\newcommand{\half}{\frac{1}{2}}
+%\newcommand\implies{\quad\Longrightarrow\quad}
+\newcommand\reals{{{\rm l} \kern -.15em {\rm R} }}
+\newcommand\complex{{\raisebox{.043ex}{\rule{0.07em}{1.56ex}} \hskip -.35em {\rm C}}}
+
+
+% macros for matrices/vectors:
+
+% matrix environment for vectors or matrices where elements are centered
+\newenvironment{mat}{\left[\begin{array}{ccccccccccccccc}}{\end{array}\right]}
+\newcommand\bcm{\begin{mat}}
+\newcommand\ecm{\end{mat}}
+
+% matrix environment for vectors or matrices where elements are right justifvied
+\newenvironment{rmat}{\left[\begin{array}{rrrrrrrrrrrrr}}{\end{array}\right]}
+\newcommand\brm{\begin{rmat}}
+\newcommand\erm{\end{rmat}}
+
+% for left brace and a set of choices
+%\newenvironment{choices}{\left\{ \begin{array}{ll}}{\end{array}\right.}
+\newcommand\when{&\text{if~}}
+\newcommand\otherwise{&\text{otherwise}}
+% sample usage:
+%  \delta_{ij} = \begin{choices} 1 \when i=j, \\ 0 \otherwise \end{choices}
+
+
+% for labeling and referencing equations:
+\newcommand{\eql}{\begin{equation}\label}
+\newcommand{\eqn}[1]{(\ref{#1})}
+% can then do
+%  \eql{eqnlabel}
+%  ...
+%  \end{equation}
+% and refer to it as equation \eqn{eqnlabel}.  
+% some useful macros for finite difference methods:
+\newcommand\unp{U^{n+1}}
+\newcommand\unm{U^{n-1}}
+% for chemical reactions:
+\newcommand{\react}[1]{\stackrel{K_{#1}}{\rightarrow}}
+\newcommand{\reactb}[2]{\stackrel{K_{#1}}{~\stackrel{\rightleftharpoons}
+   {\scriptstyle K_{#2}}}~}
+\makeatletter
+\def\th@plain{%
+  \thm@notefont{}% same as heading font
+  \itshape % body font
+}
+\def\th@definition{%
+  \thm@notefont{}% same as heading font
+  \normalfont % body font
+}
+\makeatother
+\date{}
+
+
+
+\title{Lecture-02: Probability Function}
+\author{}
+
+\begin{document}
+\maketitle
+
+\section{Indicator Functions}
+\begin{defn}[Indicator functions]
+Consider a random experiment over an outcome space $\Omega$ and an event space $\sF$. 
+The indicator of an event $B \in \sF$ is denoted by 
+\EQ{
+\Ind{B}(\omega) = 
+\begin{cases}
+1, & \omega \in B,\\
+0, & \omega \notin B.
+\end{cases}
+}
+\end{defn}
+\begin{shaded}
+\begin{exmp} 
+Consider a roll of dice that has an outcome space $\Omega = [6]$ and event space $\sF = \cP(\Omega)$. 
+For an event $O \triangleq \set{1,3,5}$ that represents odd outcomes for dice roll, we observe that $\Ind{O}(1) = 1$ and $\Ind{O}(2) = 0$. 
+\end{exmp}
+\begin{exmp}
+Consider $N$ trials of a random experiment over outcome space $\Omega$ and the event space $\sF$.  
+Let $\omega_n \in \Omega$ denote the outcome of the experiment of the $n$th trial. 
+For each event $B \in \sF$, we define an indicator function  
+\EQ{
+\Ind{B}(\omega_n) = 
+\begin{cases}
+1, & \omega_n \in B,\\
+0, & \omega_n \notin B.
+\end{cases}
+}
+For any event $B \in \sF$, 
+the number of times the event $B$ occurs in $N$ trials is denoted by $N(B) = \sum_{n=1}^N\Ind{B}(\omega_n)$. 
+We denote the relative frequency of an event $A$ in $N$ trials by $\frac{N(B)}{N}$. 
+\end{exmp}
+\end{shaded}
+\begin{defn}[Disjoint events]
+Let $(\Omega,\sF)$ be a pair of sample and event space, 
+and a sequence of events $A \in \sF^\N$. 
+The sequence is \textbf{mutually disjoint} if $A_n\cap A_m = \emptyset$ for any $m\neq n \in \N$. 
+If $\cup_{n \in \N}A_n = \Omega$, then $A$ is a \textbf{partition} of sample space $\Omega$.   
+\end{defn}
+\begin{tcolorbox}
+\begin{exerc}
+Consider the sample space $\Omega = \set{H,T}^\N$ and event space $\sF = \sigma(A_n: n \in \N)$ where $A_n \triangleq \set{\omega \in \Omega: \omega_i = H \text{ for some } i \in [n]}$. 
+Construct a sequence of non-trivial disjoint events. 
+\end{exerc}
+\begin{exerc}
+Let $(\Omega,\sF)$ be a pair of sample and event space. 
+For any sequence of events $A \in \sF^\N$, show that
+\begin{enumerate}
+\item $\Ind{\cap_{n\in\N}A_n}(\omega) = \prod_{n \in \N}\Ind{A_n}(\omega)$, 
+\item $\Ind{\cup_{n \in \N}A_n}(\omega) = \sum_{n \in \N}\Ind{A_n}(\omega)$ if the sequence $A$ is mutually disjoint.   
+\end{enumerate} 
+\end{exerc}
+\end{tcolorbox}
+\begin{shaded}
+\begin{exmp}
+We observe the following properties of the relative frequency.
+\begin{enumerate}
+\item For all events $B \in \sF$, we have $0 \le \frac{N(B)}{N} \le 1$. 
+This follows from the fact that $0 \le N(B) \le N$ for any event $B \in \sF$. 
+\item Let $A\in\sF^\N$ be a sequence of mutually disjoint events,   
+%Suppose $A_i \in \sF$ for all $i \in \N$ such that $A_i \cap A_j = \emptyset$ for all $i \neq j$, 
+then $\frac{N(\cup_{i \in \N}A_i)}{N} =  \sum_{i\in \N}\frac{N(A_i)}{N}$. 
+This follows from the fact that for mutually disjoint event sequence $A$, we have 
+\EQ{
+\Ind{\cup_{i \in \N}A_i}(\omega_n) = \sum_{i \in \N}\Ind{A_i}(\omega_n).
+}
+\item For the certain event $\Omega$, we have $\frac{N(\Omega)}{N} = 1$. 
+This follows from the fact that $N(\Omega) = N$. 
+\end{enumerate}
+Since the relative frequency is positive and bounded, it may converge to a real number as $N$ grows very large, 
+and the limit $\lim_{N \to \infty}\frac{N(B)}{N}$ may exist. 
+\end{exmp}
+\end{shaded} 
+\section{Probability axioms}
+Inspired by the relative frequency, we list the following axioms for a probability function $P: \sF \to [0,1]$. 
+\begin{axiom}[Axioms of probability]
+We define a probability measure on sample space $\Omega$ and event space $\sF$ by a function $P: \sF \to [0,1]$ which satisfies the following axioms. 
+\begin{enumerate}
+\item  [\textbf{Non-negativity:}] For all events $B \in \sF$, we have $P(B) \ge 0$. 
+%\item  [\textbf{Finite additivity}] For any two sets of mutually disjoint events $A, B \in \sF$ such that $A \cap B = \emptyset$, we have $P(A \cup B) = P(A) + P(B)$. 
+\item  [\textbf{$\sigma$-additivity:}] For an infinite sequence $A \in \sF^\N$ of mutually disjoint events,  
+%$A_i \in \sF$ for all $i \in \N$ such that $A_i \cap A_j = \emptyset$ for all $i \neq j$, 
+we have $P(\cup_{i \in \N}A_i) = \sum_{i \in \N}P(A_i)$. 
+\item [\textbf{Certainty:}] $P(\Omega) = 1$. 
+\end{enumerate} 
+\end{axiom}
+\begin{defn}[Probability space] 
+A sample space $\Omega$, an event space $\sF\subseteq \cP(\Omega)$, 
+and a probability measure $P: \sF \to [0,1]$, 
+together define a probability space $(\Omega,\sF,P)$.
+\end{defn}
+\section{Properties of Probability}
+\begin{thm}
+For any probability space $(\Omega, \sF, P)$, 
+we have the following properties of probability measure. 
+\begin{enumerate}
+\item [\textbf{impossibility:}] $P(\emptyset) = 0$.
+\item [\textbf{finite additivity:}] For mutually disjoint events $A\in \sF^n$, 
+%such that $A_i \cap A_j =\emptyset$ for $i \neq j$, 
+we have $P(\cup_{i=1}^nA_i) = \sum_{i=1}^nP(A_i)$. 
+\item [\textbf{monotonicity:}] If events $A, B \in \sF$ such that $A \subseteq B$, then $P(A) \le P(B)$. 
+\item [\textbf{inclusion-exclusion:}] For any events $A, B \in \sF$, we have $P(A \cup B) = P(A) + P(B) - P(A \cap B)$.
+\item [\textbf{continuity:}] For a sequence of events $A \in \sF^\N)$ such that $\lim_nA_n$ exists, we have $P(\lim_{n \to \infty}A_n) = \lim_{n \to \infty}P(A_n)$. 
+\end{enumerate}
+\end{thm}
+\begin{proof}
+We consider the probability space $(\Omega, \sF, P)$.
+\begin{enumerate}
+\item We take disjoint events $E\in\sF^\N$ where $E_1 = \Omega$ and $E_i = \emptyset$ for $i \ge 2$. 
+It follows that $\cup_{i \in \N}E_i = \Omega$ and $E$ is a collection of mutually disjoint events.  
+From the countable additivity axiom of probability, it follows that
+\EQ{
+P(\Omega) = P(\Omega) + \sum_{i \ge 2}P(E_i). 
+}
+Since $P(E_i) \ge 0$, it implies that $P(\emptyset) = 0$. 
+\item 
+We see that finite additivity follows from the countable additivity. 
+We consider disjoint events $A_1, \dots, A_n$, and take $A_{i} = \emptyset$ for all $i > n$. 
+It follows that the sequence of sets $A\in\sF^\N$ is mutually disjoint, and since $P(\emptyset) = 0$, it follows that  
+\EQ{
+P(\cup_{i=1}^nA_i) = P(\cup_{i \in \N}A_i) = \sum_{i=1}^nP(A_i) + \sum_{i > n}P(\emptyset) =  \sum_{i=1}^nP(A_i).
+}
+\item For events $A, B \in \sF$ such that $A \subseteq B$, we can take disjoint events $E_1 = A$ and $E_2 = B\setminus A$. 
+From closure under complements and intersection, it follows that $E_2 \in \sF$. 
+From non-negativity of probability, we have $P(E_2) \ge 0$. 
+Finally, the result follows from finite additivity of disjoint events 
+\EQ{
+P(B) = P(E_1 \cup E_2)= P(E_1) + P(E_2) \ge P(A).
+}
+\item For any two events $A, B \in \sF$, we can write the following events as disjoint unions  
+\meq{3}{
+&A = (A\setminus B) \cup (A\cap B), &&B = (B\setminus A) \cup (A\cap B), && A\cup B = (A\setminus B)\cup(A \cap B)\cup(B \setminus A).
+}
+The result follows from the finite additivity of probability of disjoint events. 
+
+\item To show the continuity of probability in events, we first need to understand the limits of events. 
+We show the continuity of probability in the next section. 
+%We show the continuity for non-decreasing and non-increasing sequence of sets.\\
+\end{enumerate}
+\end{proof}
+\begin{shaded}
+\begin{exmp}
+Consider a single coin tosse with the sample space $\Omega = \set{H,T}$, an event space $\sF = \cP(\Omega)$. 
+The probability measure $P:\sF\to[0,1]$ is defined as 
+\begin{xalignat*}{4}
+&P(\emptyset) = 0,&
+&P(\set{H}) = p&
+&P(\set{T}) = 1-p&
+&P(\set{H,T}) = 1.
+\end{xalignat*}
+Can you verify that $P$ is a probability function?
+\end{exmp}
+\begin{exmp}
+Consider $N$ coin tosses with the sample space $\Omega = \set{H,T}^{[N]}$, an event space $\sF = \cP(\Omega)$. 
+For each outcome $\omega \in \Omega$, we define the number of heads as $N_H(\omega) \triangleq \sum_{n\in[N]}\Ind{\set{H}}(\omega_n)$ and the number of tails as $N_T(\omega) \triangleq N - N_H(\omega)$. 
+The probability measure $P:\sF\to[0,1]$ is defined for each event $A \in \sF$ as 
+\begin{equation*}
+P(A) \triangleq \sum_{\omega \in A}p^{N_H(\omega)}(1-p)^{N_T(\omega)}.
+\end{equation*}
+Can you verify that $P$ is a probability function?
+\end{exmp}
+\end{shaded}
+\section{Limits of Sets}
+\begin{defn}[Limits of monotonic sets]
+For a sequence of non-decreasing sets $(A_n: n \in \N)$, we can define the limit as 
+\EQ{
+\lim_{n \to \infty}A_n \triangleq \cup_{n \in \N}A_n.
+}
+Similarly, for a sequence of non-increasing sets $(A_n: n \in \N)$, we can define the limit as 
+\EQ{
+\lim_{n \to \infty}A_n \triangleq \cap_{n \in \N}A_n.
+}
+\end{defn}
+\begin{shaded}
+\begin{exmp}[Monotone sets]
+Consider a monotonically increasing sequence $a \in \R^\N$ defined as $a_n \triangleq -\frac{1}{n}$ for all  $n \in \N$,  
+which converges to the limit $0$.  
+We consider monotone sequence of sets $A, B \in \sB(\R)^\N$ define as $A_n \triangleq [-2, -\frac{1}{n}]$ and $B_n \triangleq [-2, \frac{1}{n}]$  for all $n \in \N$, which are monotonically increasing and decreasing respectively. 
+We can verify the following limits 
+\meq{2}{
+&\lim_n A_n = \cup_{n \in \N}A_n = [-2, 0), &&\lim_nB_n = \cap_{n \in \N}B_n = [-2, 0].
+}
+\end{exmp}
+\end{shaded}
+%We now generalize this definition to general sequence of sets.
+\begin{defn}[Limits of sets] 
+For a sequence of sets $(A_n: n \in \N)$, we can define the limit superior and limit inferior of this sequence of sets as 
+\meq{2}{
+&\limsup_{n \to \infty}A_n \triangleq \cap_{n \in \N}\cup_{m \ge n}A_m = \lim_{n \to \infty}\cup_{m \ge n}A_m,
+&&\liminf_{n\to\infty}A_n\triangleq \cup_{n \in \N}\cap_{m \ge n}A_m =  \lim_{n \to \infty}\cap_{m \ge n}A_m.
+}
+%In general, $\liminf_{n \to \infty}A_n \subseteq \limsup_{n \to \infty}A_n$. 
+%If the limit superior and limit inferior of any sequence of sets are equal, then the limit is defined as 
+%\EQ{
+%\lim_{n \to \infty}A_n = \limsup_{n \to \infty}A_n = \liminf_{n \to \infty}A_n. 
+%}
+\end{defn}
+\begin{lem} 
+For a sequence of sets $(A_n: n \in \N)$, we have $\liminf_{n \to \infty}A_n \subseteq \limsup_{n \to \infty}A_n$.  
+\end{lem}
+\begin{proof}
+For each $n \in \N$, we define $E_n \triangleq \cup_{m \ge n}A_m$ and $F_n \triangleq \cap_{m \ge n}A_m$. 
+%We see that $F_n \subseteq A_m$ for all $m \ge n$.  
+Consider a fixed $n$, then $F_1, F_2, \dots, F_n \subseteq A_n$, and $F_m \subseteq A_m$ for all $m \ge n$. 
+Therefore, we can write $\cup_{n \in \N}F_n \subseteq \cup_{m \ge n}A_m$ for each $n \in \N$, 
+and hence the result follows. 
+%Let $x \in \liminf_n A_n$, then $x \in F_{n_0}$ for some $n_0 \in \N$.
+%That is, there exists an $n_0 \in \N$, such that $x \in A_m$ for all $m \ge n_0$. 
+%In particular, it means $x \in \cup_{m \ge n}A_m$ for each $n \in \N$, and hence $x \in \limsup_n A_n$. 
+\end{proof}
+\begin{defn}
+If the limit superior and limit inferior of any sequence of sets $(A_n: n \in \N)$ are equal, then the sequence of sets has a limit $A_\infty$, which is defined as 
+\EQ{
+A_\infty \triangleq \lim_{n \to \infty}A_n = \limsup_{n \to \infty}A_n = \liminf_{n \to \infty}A_n. 
+}
+\end{defn}
+\begin{shaded}
+\begin{exmp}[Sequence of sets with different limits]
+We consider sequence of sets $(A_n = [-2, (-1)^n + \frac{1}{n}]: n \in \N)$. 
+It follows that  $F_n = \cap_{m \ge n}A_m = [-2, -1]$ and 
+\EQ{
+E_n = \cup_{m \ge n}A_m = 
+\begin{cases}
+[-2, 1+ \frac{1}{n+1}], & n \text{ odd},\\
+[-2, 1 + \frac{1}{n}], &n \text{ even}.
+\end{cases}
+}
+We can verify the following limits 
+\meq{2}{
+&\liminf_n A_n = \cup_{n \in \N}F_n = [-2, -1], &&\limsup_nA_n = \cap_{n \in \N}E_n = [-2, 1].
+}
+\end{exmp}
+\end{shaded}
+\subsection{Proof of continuity of probability}
+\textbf{Continuity for increasing sets.} 
+Let $(A_n \in \sF: n \in \N)$ be a non-decreasing sequence of events, 
+%such that $A_n \subseteq A_{n+1}$ for all $n \in \N$. 
+%Then, we have 
+then $\lim_{n \to \infty}A_n = \cup_{n\in \N}A_n$. 
+This implies that $(P(A_n): n \in \N)$ is a non-negative non-decreasing bounded sequence, 
+and hence has a limit. 
+It remains to show that $\lim_{n \to \infty}P(A_n) = P(\cup_{n \in \N}A_n)$. 
+To this end, we observe that $(A_1, A_2\setminus A_1, \dots, A_n\setminus A_{n-1})$ is a partition of the event $A_n$, and $P(A_i\setminus A_{i-1}) = P(A_i) - P(A_{i-1})$ for each $i \in \N$. 
+From finite additivity of $P$ for mutually disjoint events, we can write for each $n \in \N$
+\EQ{
+P(A_n) = P(A_1) + \sum_{i=1}^{n-1}P(A_{i+1}\setminus A_i) = P(A_1) + \sum_{i=1}^{n-1}(P(A_{i+1}) -P(A_i)).
+}
+From $\sigma$-additivity of $P$ for sequence of mutually disjoint events, 
+we can write for $\lim_{n \to \infty}A_n = \cup_{n \in \N}A_n$, 
+\EQ{
+P(\cup_{n \in \N}A_n) = P(A_1) + \sum_{i \in \N}(P(A_{i+1}) -P(A_i)) = P(A_1) + \lim_{n \to \infty}\sum_{i=1}^{n-1}(P(A_{i+1}) -P(A_i)) = \lim_{n \to \infty}P(A_n).
+}
+
+\textbf{Continuity for decreasing sets.} Similarly, for a non-increasing sequence of sets $(B_n \in \sF: n \in \N)$, 
+we can find the non-decreasing sequence of sets $(B^c_n \in \sF: n \in \N)$. 
+By the first part, we have 
+\EQ{
+P(\lim_{n \to \infty}B_n) = P(\cap_{n \in \N}B_n) = 1 - P(\cup_{n \in \N}B^c_n)  = 1 - P(\lim_{n \to \infty}B_n^c) = 1 - \lim_{n\to \infty}P(B_n^c) = \lim_{n \to \infty}P(B_n).
+}
+
+\textbf{Continuity for general sequence of sets.} 
+We can similarly prove the general result for a sequence of sets $(A_n \in \sF: n \in \N)$ such that the limits $\lim_{n}A_n$ 
+%and $\lim_nP(A_n)$ exist. 
+exists. 
+We can define non-increasing sequences of sets $(E_n = \cup_{m \ge n}A_m \in \sF: n \in \N)$ and non-decreasing sequences of sets $(F_n = \cap_{m \ge n}A_m \in \sF: n \in \N)$. 
+From the continuity of probability for the monotonic sets, we have 
+\meq{2}{
+&P(\limsup_nA_n) = P(\cap_{n\in\N}E_n) = \lim_{n\to \infty}P(E_n),&&P(\liminf_nA_n) = P(\cup_{n\in\N}F_n) = \lim_{n\to \infty}P(F_n).
+}
+From the definition of two sequences of sets, we obtain 
+\meq{2}{
+&P(E_n) \ge \sup_{m \ge n}P(A_m), && P(F_n) \le \inf_{m \ge n}P(A_m).
+} 
+Therefore taking limsup and liminf, we obtain 
+\EQ{
+\lim_{n\to\infty}P(E_n) = \limsup_{n \in \N} P(A_n) \ge \inf_{n \in \N}\sup_{m \ge n}P(A_m) \ge  \sup_{n \in \N}\inf_{m \ge n}P(A_m) \ge \liminf_{n \in \N}P(A_n)
+= \lim_{n\to\infty}P(F_n).
+} 
+Since $P(\lim_n A_n) = \lim_nP(E_n) = \lim_{n}P(F_n)$ exists, the result follows.
+
+\end{document}

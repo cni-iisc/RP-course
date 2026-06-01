@@ -1,0 +1,268 @@
+\documentclass[letterpaper,10pt,english]{article}
+\input{../../header}
+
+\title{ Lecture-22: Communicating classes}
+\author{}
+
+\begin{document}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Communicating classes}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{defn}
+For states $x, y \in \sX$, 
+it is said that state $y$ is \textbf{accessible} from state $x$ if $p_{xy}^{(n)} > 0$ for some $n \in \Z_+$, and denoted by $x \to y$. 
+If two states $x,y \in \sX$ are accessible to each other, they are said to \textbf{communicate} with each other, denoted by $x \leftrightarrow y$. 
+\end{defn}
+\begin{prop}
+Communication is an equivalence relation. 
+\end{prop}
+\begin{proof} 
+Relation on state space $\sX$ is a subset of product of sets $\sX \times \sX$. 
+Communication is a relation on state space $\sX$, as it relates two states $x,y \in \sX$. 
+To show equivalence, we have to show reflexivity, symmetry, and transitivity of the relation. 
+\begin{itemize}
+\item [Reflexivity:] Since $P^0 = I$, it follows that $p_{xx}^{(0)} = 1 > 0$ for each state $x\in\sX$, and hence $x\leftrightarrow x$. % and the reflexivity of the relation follows. 
+\item [Symmetry:] If $x \leftrightarrow y$, then we know that $x \to y$ and $y \to x$ and hence $y \leftrightarrow x$. 
+%Hence, the symmetry of the relation follows. 
+%Reflexivity and symmetry are obvious for this relation, 
+\item [Transitivity:] For transitivity, suppose $x \leftrightarrow y$ and $y \leftrightarrow z$. 
+Let $m,n \in \Z_+$ such that $p_{xy}^{(m)} >0$ and $p_{yz}^{(n)} >0$. 
+Then by Chapman Kolmogorov equation, we have
+$
+p_{xz}^{(m+n)} = \sum_{w \in \sX} p_{xw}^{(m)}p_{wz}^{(n)} \ge p_{xy}^{(m)}p_{yz}^{(n)} > 0. 
+$
+This implies $x \to z$, and using similar arguments one can show that $z \to x$, and the transitivity follows.  
+%\item [Reflexivity:] If this relation has a single element, then it is obvious. 
+%If not, then for $x \leftrightarrow y$, we have Since $p_{xy}^{(n)}> 0$ and $p_{yx}^{(m)} > 0$ for some $m, n \in \Z_+$. 
+%Therefore, $p_{xx}^{(n+m)} \ge p_{xy}^{(n)}p_{yx}^{(m)} > 0$ and hence we have $x \leftrightarrow x$, implying the reflexivity of the relation.  
+\end{itemize}
+\end{proof}
+\begin{rem}
+Since the communication is an equivalence relation, it partitions state space $\sX$ into equivalence classes. 
+\end{rem}
+\begin{defn}
+Each equivalence class of communication relation is called a \textbf{communicating class}. 
+A property of states is said to be a \textbf{class property} if for each communicating class $\cC$, 
+either all states in $\cC$ have the property, or none do. 
+\end{defn}
+\begin{defn}
+A set of states that communicate are called a \textbf{communicating class}. 
+\begin{compactenum}[(i)]
+\item A communicating class $\cC$ is called \textbf{closed} if no edges leave this class. 
+That is, for all edges $(x,y) \in \cC \times \cC^c$, we have $p_{xy} = 0$. 
+\item An \textbf{open} communicating class is not closed, i.e. there exist an edge that leaves this class. 
+That is, there exists an edge $(x,y) \in \cC\times \cC^c$ such that $p_{xy} > 0$.  
+\end{compactenum}
+\end{defn}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Irreducibility and periodicity}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%A consequence of the previous result is that communicating classes are disjoint or identical. 
+\begin{defn} 
+A Markov chain with a single class is called an \textbf{irreducible} Markov chain. 
+That is, for any two states $x, y \in \sX$, there exists an integer $n \in \Z_+$ such that $p_{xy}^{(n)} > 0$. 
+In other words, any state $y$ can be reached from any state $x$ using transitions of positive probability. 
+\end{defn}
+\begin{defn}
+Let $\cT(x) \triangleq \set{n \in \N : p_{xx}^{(n)} > 0}$ be the set of times when the chain can possibly return to the initial state $x$. 
+The \textbf{period} of any state $x \in \sX$ is defined as
+$
+d(x) \triangleq \gcd\cT(x) =  \gcd\{n \in \N : p_{xx}^{(n)} > 0\}.
+$
+We define $d(x) = \infty$, if $p_{xx}^{(n)} = 0$ for all $n \in \N$. 
+A state $x \in \sX$ is called \textbf{aperiodic} if the period $d(x)$ is $1$.  
+\end{defn}
+
+\begin{prop}
+If $x \leftrightarrow y$, then $d(x) = d(y)$. 
+That is, periodicity is a class property.
+\end{prop}
+\begin{proof}
+Consider two states $x\neq y \in \sX$ and integers $m,n \in \N$ be such that $p_{xy}^{(m)}p_{yx}^{(n)} > 0$. 
+Suppose $s \in \cT(x)$, that is $p_{xx}^{(s)} > 0$. Then
+\meq{2}{ 
+&p_{yy}^{(n+m)} \ge p_{yx}^{(n)}p_{xy}^{(m)} > 0,&& p_{yy}^{(n+s+m)} \ge p_{yx}^{(n)}p_{xx}^{(s)}p_{xy}^{(m)} > 0. 
+}
+Hence $d(y) | n+m$ and $d(y) | n+s+m$, and hence $d(y) | s$ for any $s \in \cT(x)$. 
+In particular, it implies that $d(y) | d(x)$. 
+By symmetrical arguments, we get $d(x) | d(y)$. 
+Hence $d(x) = d(y)$.
+%Source of proof is from \emph{Sheldon Ross: Stochastic Processes}.
+\end{proof}
+\begin{defn}
+For an irreducible chain, the period of the chain is defined to be the period which is common to all states. 
+An irreducible Markov chain is called \textbf{aperiodic} if the single communicating class is aperiodic. 
+\end{defn}
+\begin{prop}
+If the transition matrix $P$ is aperiodic and irreducible, 
+then there is an integer $r_0$ such that $p_{xy}^{(r)}>0$ for all $x,y \in \sX$  and $r \ge r_0$. 
+\end{prop}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Transient and recurrent states}
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+%We would donate the conditional probability and conditional expectation of a measurable event $A$ starting from state $x$ as 
+%\meq{2}{
+%&P_x(A) \triangleq P(A | \{X_0 = x\}), && \E_x1_A \triangleq \E[ 1_A | \{X_0 = x\}]. 
+%}
+
+%%\begin{defn}
+%Let $f_{xy}^{(n)}$ denote the probability that starting from state $x$, the first transition into state $y$ happens at time $n$. Then let
+%\begin{align*}f_{xy} = \sum_{n=1}^\infty f_{xy}^{(n)}\end{align*}
+%Here $f_{xy}$ would therefore denote the probability of ever entering state $y$ given that we start at state $x$. 
+%State $y$ is said to be \textbf{transient} if $f_{yy} < 1$ and \textbf{recurrent} if $f_{yy}=1$. 
+%%\end{defn}
+%\begin{prop} 
+%The total number of visits to a state $y \in \sX$ is denoted by 
+%%\eq{
+%$N_y = \sum_{n \in \Z_+}1\{X_n = y\}$.
+%%}
+%Then, for each $m \in \N$ and $i \neq j$, we have 
+%\eq{
+%P_j\{N_y = m\} &= f_{yy}^{m-1}(1-f_{yy}), ~m \in \N\\
+%P_x\{N_y = m\} &=\begin{cases}
+%1 - f_{xy} & m = 0,\\
+%f_{xy}f_{yy}^{m-1}(1-f_{yy}) & m \in \N.
+%\end{cases}
+%}
+%\end{prop}
+%\begin{proof}
+%For each $k \in \N$, the time of the $k$th visit to the state $y$ is a stopping time. 
+%From strong Markov property, the next return to state $y$ is independent of the past. 
+%Hence, each return to state $y$ is an \textit{iid} Bernoulli random variable with probability $f_{yy}$. 
+%It follows that the number of visits $y$ is the time for first failure to return. 
+%Conditioned on $X_0 = y$, the distribution of $N_y$ is geometric random variable with success probability $1-f_{yy}$. 
+%%Hence the probabilities will multiply. 
+%%Hence starting from state $y$ we visit the state $y$ with probability $f_{yy}$. 
+%%Moreover, we visit the state $y$ exactly $m$ number of times (and no more) with probability $f_{yy}^m(1-f_{yy}).$\\
+%
+%Conditioned on $X_0 = x$, the stopping time of first visit to $y$ is a Bernoulli random variable with probability $f_{xy}$. 
+%Hence, the second result follows. 
+%\end{proof}
+%
+%\begin{cor} 
+%For a Markov chain $X$, 
+%%\eq{
+%$P_j\{N_y < \infty\} = 1\{f_{yy} < 1\}$. 
+%%}
+%\end{cor}
+%\begin{proof}
+%We can write the event $\{N_y < \infty\}$ as disjoint union of events $\{N_y = n\}$, to get 
+%\eq{
+%P_j\{N_y \in \N\} &= \sum_{n \in\N}P_j\{N_y = n\} = 1\{f_{yy} < 1\}.
+%}
+%\end{proof}
+%In particular, this corollary implies the following
+%\begin{enumerate}
+%	\item A transient state is visited a finite amount of times almost surely.
+%	\item A recurrent state is visited infinitely often almost surely.
+%	\item In a finite state Markov chain, not all states may be transient. 
+%\end{enumerate} 
+%\begin{prop}
+%A state $y$ is recurrent iff
+%%\begin{align*}
+%$\sum_{k\in\N} p_{yy}^{(k)} = \infty$.
+%%\end{align*}
+%\end{prop}
+%\begin{proof}
+%For any state $y \in \sX$, we can write
+%\begin{align*}
+%p_{xx}^{(k)} &= \mathbb{P}_i\{X_k=i\} = \E_x 1\{X_k=i\}.
+%\end{align*}
+%Using monotone convergence theorem to exchange expectation and summation, we obtain  
+%%Then, assuming that the infinite summation can be pushed inside the expectation 
+%\begin{align*}
+%\sum_{k\in \N}p_{xx}^{(k)}=\E_x \sum_{k\in\N}1\{X_k=i\} = \E_x N_i.
+%\end{align*}
+%Thus, $\sum_{k\in \N} p_{xx}^{(k)}$ represents the expected number of returns $\E_x N_i$ to a state $x$ starting from state $x$, 
+%which we know to be finite if the state is transient and infinite if the state is recurrent. 
+%%$[\Leftarrow]$ For the reverse argument we will show that if $\sum_{k=1}^{\infty}p_{xx}^{(k)}<\infty$ then the state $x$ will be transient, which should suffice to prove our claim. First we observe that for a transient state $y$, if $M_j$ is the number of visits to the state $y$, then
+%%\begin{align*}P[M_j=m|X_0=j]=f_{yy}^m(1-f_{yy}).\end{align*} 
+%%
+%%Hence now again if we calculate the expected number of times the state $y$ is visited starting from state $y$ can be calculated by the following elementary exercise.
+%%\begin{align*}
+%%\E_j[M_j=m|X_0=j]= & \sum_{m=1}^{\infty}mf_{yy}^m(1-f_{yy})=\frac{f_{yy}}{(1-f_{yy})}=
+%%\begin{cases}
+%%\infty \quad if \quad f_{yy}=1 \Leftrightarrow j \quad  recurrent,\\
+%%C<\infty \quad if \quad f_{yy} \neq 1 \Leftrightarrow j \quad transient.
+%%\end{cases}
+%%\end{align*}
+%\end{proof}
+
+\begin{prop}
+Transience and recurrence are class properties.
+\end{prop}
+\begin{proof}
+Let us start with proving recurrence is a class property. 
+Let $x$ be a recurrent state and let $x \leftrightarrow y$. 
+Hence there exist some $m,n >0$, such that $P_{xy}^{(m)} > 0$ and $p_{yx}^{(n)}>0$. 
+As a consequence of the recurrence, $\sum_{s \in \N} p_{xx}^{(s)} = \infty$. 
+$
+\sum_{s \in \N} p_{yy}^{(m+n+s)} \ge \sum_{s \in \N} p_{yx}^{(n)} p_{xx}^{(s)} P_{xy}^{(m)} = \infty.
+$
+%Hence $y$ is recurrent. 
+If $x$ were transient instead then $\sum_{s\in\N}p_{xx}^{(s)}<\infty$, and we conclude that $y$ is also transient by the following observation
+$
+\sum_{s \in \N}  p_{yy}^{(s)} \le \frac{\sum_{s \in \N} p_{xx}^{(m+n+s)} }{ p_{yx}^{(n)} P_{xy}^{(m)}}< \infty.
+$
+%Hence $y$ is transient.
+\end{proof}
+\begin{cor}
+If $y$ is a recurrent state and there exists a state $x$ such that $y \to x$, then $x \to y$ and $f_{xy} = 1$.
+\end{cor}
+\begin{proof} 
+Let $y \in \sX$ be a recurrent state, and consider state $x \in \sX$ such that $y \to x$. 
+We will show that $f_{xy} = 1$ and hence $f_{xy}^{(n)} > 0$ for some $n \in \Z_+$ and $x \to y$. 
+To this end, we observe that since $y \to x$, 
+there exists an integer $n \in \Z_+$ such that the probability of hitting state $x$ for the first time starting from state $y$ in $n$-steps is positive. 
+That is, 
+\EQ{
+f_{yx}^{(n)} \triangleq P_y\set{X_n = x, X_{n-1} \neq x,\dots, X_{1}\neq x} = P_y\set{\tau_X^{\set{x},1} = n} > 0.
+} 
+%Suppose $f_{xy} < 1$, then 
+From the strong Markov property, we have 
+\EQ{
+1-f_{yy} = P_y\set{\tau_X^{\set{y},1} = \infty} \ge P_y\set{\tau_X^{\set{y},1} = \infty, \tau_X^{\set{x},1}  = n} = P_x\set{\tau_X^{\set{y},1} = \infty}P_y\set{\tau_X^{\set{x},1}  = n} = f_{yx}^{(n)}(1-f_{xy}). % > 0.
+}
+%This is a contradiction 
+Since state $y$ is recurrent, it follows that $f_{xy} = 1$ and hence $x \to y$. 
+\end{proof}
+\begin{cor} 
+Let $x, y \in \sX$ be in the same communicating class and the state $y$ is recurrent.  
+Then, $\lim_{n \in \N}\frac{\sum_{k=1}^np_{xy}^{(k)}}{n} = \frac{1}{\mu_{yy}}$. 
+Furthermore, if the state $y$ is aperiodic, then $\lim_{n \in \N}p_{xy}^{(n)} = \frac{1}{\mu_{yy}}$. 
+\end{cor}
+\begin{proof} 
+Since $y$ is recurrent and $y \to x$, it follow that $f_{xy} = 1$ from the previous Lemma. 
+From the Theorem 1.7 in previous lecture, it follows that $\lim_{n \in \N}\frac{\sum_{k=1}^np_{xy}^{(k)}}{n} = \frac{1}{\mu_{yy}}$. 
+
+Let the period of the state $y$ be $d$. 
+Then we know that there exists a positive integer $r_0$ such that for all $n \ge r_0$, we have $p_{yy}^{(nd)} > 0$. 
+%Then, $p_{yy}^{(nd)} = \E_y\indicator{X_{nd} = y} = \E_y\left[N_y(nd) - N_y((n-1)d)\right]$. 
+%If the state $y$ is aperiodic, then we can write 
+%\EQ{
+%p_{xy}^{(n)} = \sum_{k=1}^nP_x\set{H_y = k, X_n = y} = \sum_{k=1}^nf_{xy}^{(k)}p_{yy}^{(n-k)}. 
+%}
+\end{proof}
+\begin{thm} 
+The states in a communicating class are of one of the following types; all transient, or all null recurrent, or all positive recurrent. 
+\end{thm}
+\begin{proof} 
+It suffices to show that if $x,y$ belong to the same communicating class and $y$ is null recurrent, then $x$ is null recurrent as well. 
+We take $r,s \in \N$, such that $p_{yx}^{(r)}p_{xy}^{(s)} > 0$. 
+It follows that $p_{yy}^{r+\ell+s} \ge p_{yx}^{(r)}p_{xx}^{(\ell)}P_{xy}^{(s)}$ for all $\ell \in \N$. 
+Hence, for any $n > r + s$, we have 
+\EQ{
+\frac{1}{n}\sum_{k=1}^{n}p_{yy}^{(k)} \ge \frac{1}{n}\sum_{k=r+s+1}^{n}p_{yy}^{(k)} \ge \left(\frac{n-r-s}{n}\right)\left(\frac{1}{n-r-s}\sum_{\ell = 1}^{n-r-s}p_{xx}^{(\ell)}\right)p_{yx}^{(r)}P_{xy}^{(s)}.
+}
+Since $y$ is null recurrent LHS goes to zero as $n$ increases, which implies $\lim_{n \in \N}\frac{1}{n}\sum_{\ell = 1}^{n}p_{xx}^{(\ell)} = 0$. 
+Hence, $x$ is null recurrent as well. 
+\end{proof}
+
+\end{document}

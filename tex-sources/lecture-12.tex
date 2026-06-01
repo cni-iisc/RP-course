@@ -1,0 +1,608 @@
+% !TEX spellcheck = en_US
+% !TEX spellcheck = LaTeX
+\documentclass[letterpaper,10pt,english]{article}
+\input{../../header}
+\title{Lecture-12: Conditional Expectation}
+\author{}
+
+\begin{document}
+\maketitle
+
+\section{Conditional expectation given a non trivial event}
+Consider a probability space $(\Omega, \sF, P)$ and an event $B \in \sF$ such that $P(B) > 0$. 
+Then, the conditional probability of any event $A \in \sF$ given an event $B$ is defined as
+\EQ{
+P(A \given B) = \frac{P(A\cap B)}{P(B)}.
+}
+Consider a random variable $X: \Omega\to\R$ defined on a probability space $(\Omega, \sF, P)$, 
+with distribution function $F_X: \R \to [0,1]$, 
+and a non trivial event $B \in \sF$ such that $P(B) > 0$. 
+\begin{defn}%[Conditional distribution given a non trivial event] 
+%Consider a random variable $X: \Omega\to\R$ defined on a probability space $(\Omega, \sF, P)$, 
+%and a non trivial event $B \in \sF$ such that $P(B) > 0$, then 
+The \textbf{conditional distribution of $X$ given event $B$} is denoted by $F_{X| B}: \R \to [0,1]$ 
+and $F_{X| B}(x)$ is defined as the probability of event $A_X(x) \triangleq X^{-1}(-\infty, x]$ conditioned on event $B$ for all $x\in\R$. 
+That is, 
+\EQ{
+F_{X| B}(x) \triangleq P(A_X(x)| B) = \frac{P(A_X(x)\cap B)}{P(B)}\text{ for all }x \in \R. 
+}
+\end{defn}
+\begin{rem} 
+%For a random variable $X:\Omega \to \R$ and a non trivial event $B \in \sF$ defined on a probability space $(\Omega,\sF, P)$, 
+The conditional distribution $F_{X|B}$ is a distribution function. 
+This follows from the fact that 
+%\begin{compactenum}[(i)]
+%\item 
+(i) $F_{X|B} \ge 0$,
+%\item 
+(ii) $F_{X|B}$ is right continuous,  
+%\item 
+(iii) $\lim_{x\downarrow -\infty}F_{X|B}(x) = 0$ and $\lim_{x\uparrow \infty}F_{X|B}(x) = 1$.
+%\end{compactenum}
+\end{rem}
+\begin{rem}
+For a discrete random variable $X:\Omega\to\sX$, the conditional probability mass function of $X$ given a non trivial event $B$ is given by $P_{X|B}(x) = \frac{P(X^{-1}\set{x}\cap B)}{P(B)}$ for all $x \in \sX$. 
+\end{rem}
+\begin{rem}
+For a continuous random variable $X:\Omega\to\R$, the conditional density of $X$ given a non trivial event $B$ is given by $f_{X|B}(x) = \frac{dF_{X|B}(x)}{dx}$ for all $x \in \R$. 
+\end{rem}
+\begin{shaded}
+\begin{exmp}[Conditional distribution] 
+\label{exmp:FairDieConditionHalf}
+Consider the probability space $(\Omega, \sF, P)$ corresponding to a random experiment where a fair die is rolled once. 
+For this case, the outcome space $\Omega = [6]$, the event space $\sF = \cP([6])$, and the probability measure $P(\omega) = \frac{1}{6}$ for all $\omega\in \Omega$. 
+
+We define a random variable $X: \Omega\to\R$ such that $X(\omega) = \omega$ for all $\omega \in \Omega$, 
+and an event $B \triangleq \set{\omega \in \Omega: X(\omega) \le 3} = [3] \in \sF$. 
+We note that $P(B) = 0.5$ and the conditional %distribution 
+PMF of $X$ given $B$ is 
+\EQ{
+%F_{X|B}(x) = \Ind{[3, \infty)}(x) + \frac 2 3\Ind{[2,3)}(x) + \frac 1 3\Ind{[1, 2)}(x).
+P_{X|B}(x) =  \frac 1 3\SetIn{x=3} + \frac 1 3\SetIn{x=2} + \frac 1 3\SetIn{x=1}.
+}
+\end{exmp}
+\end{shaded}
+
+\begin{defn}
+%Consider a random variable $X: \Omega\to\R$ defined on a probability space $(\Omega, \sF, P)$, 
+%and a non trivial event $B \in \sF$ such that $P(B) > 0$, then 
+The \textbf{conditional expectation of $X$ given event $B$} is given as 
+$
+\E[X|B] \triangleq \int_{x\in\R}xdF_{X|B}(x).
+$
+\end{defn}
+\begin{rem}
+For a discrete random variable $X:\Omega\to\sX$, the conditional expectation of $X$ given a non trivial event $B$ is given by $\E[X|B]= \sum_{x\in\sX}xP_{X|B}(x)$. 
+\end{rem}
+\begin{shaded}
+\begin{exmp}[Conditional expectation]
+For the random variable $X$ and event $B$ defined in Example~\ref{exmp:FairDieConditionHalf}, 
+the conditional expectation $\E[X|B] = 2$. 
+\end{exmp}
+\end{shaded}
+\begin{rem}
+Consider two random variables $X,Y$ defined on this probability space, 
+then for $y \in \R$ such that $F_Y(y) > 0$, we can define events $A_X(x) \triangleq X^{-1}(-\infty, x]$ and $A_Y(y) = Y^{-1}(-\infty, y]$, 
+such that 
+\EQ{
+P\left(\set{X \le x}\given\set{Y \le y}\right) = \frac{F_{X,Y}(x,y)}{F_Y(y)}.
+}
+The key observation is that $\set{Y \le y}$ is a non-trivial event. 
+How do we define conditional expectation based on events such as $\set{Y = y}$? 
+When random variable $Y$ is continuous, this event has zero probability measure. 
+\end{rem}
+
+\section{Conditional expectation given an event space}
+Consider random variables $X:\Omega\to\R$ and $Y:\Omega\to\R$ defined on the same probability space $(\Omega, \sF, P)$ 
+such that $\E\abs{X} < \infty$, and a smaller event space $\sG \subset \sF$. 
+For each non trivial event $G \in \sG$, we know how to define the conditional distribution $F_{X|G}$ and $\E[X|G]$. 
+For any trivial event $N \in \sG$, these are undefined. 
+
+%, %and we can define them as zero. 
+\begin{defn}%[Conditional expectation given an event space]
+%Consider a random variable $X:\Omega\to\R$ defined on a probability space $(\Omega, \sF, P)$ such that $\E\abs{X} < \infty$ and a smaller event space $\sG \subset \sF$. 
+The \textbf{conditional expectation of random variable $X$ given event space $\sG$} is a random variable $\E[X\given \sG]: \Omega \to \R$ defined on the same probability space, 
+such that 
+\begin{compactenum}[(i)]
+\item $Z \triangleq \E[X\given \sG]$ is $\sG$ measurable, %i.e. $Y^{-1}(-\infty, y] \in \sG$ for all $y \in \R$, 
+\item for all $G\in \sG$, we have
+$
+%\int_AXdP = 
+\E[X\Ind{G}] = \E[Z\Ind{G}], %=\int_AYdP,
+$
+\item $\E\abs{Z}<\infty$.
+\end{compactenum}
+\end{defn}
+\begin{lem} 
+%Consider a random variable $X:\Omega\to\R$ defined on a probability space $(\Omega,\sF, P)$ and a sub event space $\sG\subseteq \sF$. 
+The conditional expectation of $X$ given $\sG$  is an a.s. unique random variable.
+\end{lem}
+\begin{proof}
+Consider two random variables $Z_1 = \E[X|\sG]$ and $Z_2 = \E[X|\sG]$. 
+Then from the definition, $Z_1, Z_2$ are $\sG$ measurable random variables, 
+and $Z_1-Z_2$ is also $\sG$ measurable. 
+Therefore, $G_n \triangleq \set{Z_1 - Z_2 > \frac{1}{n}} \in \sG$ and $\E[(Z_1-Z_2)\Ind{G_n}] = 0$ by definition. 
+It follows from continuity of probability, that $P(\lim_n G_n) = 0$. 
+Similarly, defining $F_n \triangleq \set{Z_2 - Z_1 > \frac 1 n}$, we can show that $P(\lim_nF_n) = 0$. 
+%It follows that $P(\lim_n F_n^c\cap G_n^c) = 1$. 
+\end{proof}
+\begin{shaded}
+\begin{exmp}[Conditional expectation as averaging]
+Consider a random variable $X:\Omega\to\R$ defined on a probability space $(\Omega,\sF,P)$ with $\E\abs{X} < \infty$, 
+and the coarsest event space $\sG = \set{\emptyset, \Omega} \subseteq \sF$ and finest event space $\sF$. 
+We observe that $\E[X|\sG] = \E X$ a.s. uniquely, since 
+%\begin{compactenum}[(i)]
+%\item 
+(i) $\E X$ is a constant and hence $\sG$ measurable, 
+%\item 
+(ii) $\E[\E X \Ind{\emptyset}] = \E[X \Ind{\emptyset}] = 0$ and $\E[\E X \Ind{\Omega}] = \E[X \Ind{\Omega}] = \E X$, and 
+%\item 
+(iii) $\E\abs{\E X} = \abs{\E X} \le \E \abs{X} < \infty$ from the Jensen's inequality. 
+%\end{compactenum}
+
+We also observe that $\E[X|\sF] = X$ a.s. uniquely, since 
+%\begin{compactenum}[(i)]
+%\item 
+(i) $X$ is $\sF$ measurable random variable, 
+%\item 
+(ii) $\E[ X \Ind{G}] = \E[X \Ind{G}]$ for all events $G\in \sF$, and 
+%\item 
+(iii) $\E\abs{X} < \infty$. 
+%\end{compactenum}
+\end{exmp}
+\end{shaded}
+%\begin{rem}
+%Expectation is averaging, and conditional expectation is averaging over event spaces. 
+%%Consider a random variable $X:\Omega\to\R$ defined on a probability space $(\Omega,\sF,P)$ with $\E\abs{X} < \infty$.
+%For the coarsest event space $\set{\emptyset, \Omega} \subseteq \sF$ and finest event space $\sF$, 
+%we can observe that the coarsest averaging is $\E[X|\set{\emptyset, \Omega}] = \E X$ 
+%and the finest averaging is $\E[X|\sF] = X$. 
+%\end{rem}
+\begin{lem} 
+The mean of conditional expectation of random variable $X$ given event space $\sG$ is $\E X$. 
+\end{lem}
+\begin{proof} 
+From the definition of event space $\Omega\in\sG$, 
+and from the definition of conditional expectation, we get 
+$
+\E[\E[X\mid \sG]] 
+= \E[\E[X\mid \sG]\Ind{\Omega}] 
+= \E[X\Ind{\Omega}]
+= \E X.  
+$
+\end{proof}
+%\subsection{Conditional expectation conditioned on a random variable}
+\begin{defn}%[Conditional expectation given a random variable]
+%Consider two random variables $X, Y:\Omega\to\R$ defined on the same probability space $(\Omega, \sF, P)$ such that $\E\abs{X} < \infty$. 
+The conditional expectation of $X$ given $Y$ is a random variable $\E[X\given Y] \triangleq \E[X\given\sigma(Y)]$ defined on the same probability space. 
+\end{defn}
+\begin{shaded}
+\begin{exmp}[Conditioning on simple random variables] 
+For a simple random variable $Y: \Omega \to \sY \subseteq \R$ defined on the probability space $(\Omega, \sF, P)$, 
+we define fundamental events $E_y \triangleq Y^{-1}\set{y} \in \sF$ for all $y \in \sY$. 
+Then the sequence of events $E \triangleq (E_y \in \sF: y \in \sY)$ partitions the sample space, 
+and we can write the event space generated by random variable $Y$ as $\sigma(Y) = (\cup_{y\in I}E_y: I \subseteq \sY)$. 
+
+For a random variable $X: \Omega \to \R$ defined on the same probability space, 
+the random variable $Z \triangleq \E[X\given Y]$ is $\sigma(Y)$ measurable. 
+Therefore, $\E[X| Y] = \sum_{y\in\sY}\alpha_y\Ind{E_y}$ for some $\alpha\in\R^\sY$. 
+We verify that $Z:\Omega\to\R$ is a $\sigma(Y)$ measurable random variable, 
+since $\sigma(Z) \subseteq \sigma(Y)$. 
+We can also check that $\E\abs{Z} < \infty$. 
+Further, we have $\E[Z\Ind{E_y}] = \E[X\Ind{E_y}]$ for any $y \in \sY$, 
+which implies that $\alpha_y = \frac{\E[X\Ind{E_y}]}{P_Y(y)}$ for any $y \in \sY$.
+Notice that 
+\EQ{
+\E[X\mid E_y] 
+= \int_{x\in\R}x dF_{X\mid E_y}(x) 
+= \frac{1}{P_Y(y)}\int_{x\in\R}x d P(A_X(x)\cap E_y)
+= \frac{1}{P_Y(y)}\E[X\Ind{E_y}]
+= \alpha_y.
+}
+\end{exmp}
+\end{shaded}
+\begin{rem} 
+There are three main takeaways from this definition. 
+For a random variable $Y$, 
+the event space generated by $Y$ is $\sigma(Y)$.  
+\begin{enumerate}
+\item 
+The conditional expectation $\E[X|Y] = \E[X|\sigma(Y)]$ and is $\sigma(Y)$ measurable. 
+That is, $\E[X|Y]$ is a Borel measurable function of $Y$. 
+In particular when $Y$ is discrete, this implies that $\E[X|Y]$ is a simple random variable that takes value $\E[X|E_y]$ when $\omega \in E_y$, and the probability of this event is $P_Y(y)$. 
+When $Y$ is continuous, $\E[X|Y]$ is a continuous random variable with density $f_Y$. 
+
+\item Expectation is averaging. 
+Conditional expectation is averaging over event spaces. 
+We can observe that the coarsest averaging is $\E[X|\set{\emptyset, \Omega}] = \E X$ 
+and the finest averaging is $\E[X|\sigma(X)] = X$. 
+Further, $\E[X|\sigma(Y)]$ is averaging of $X$ over events generated by $Y$.   
+If we take any event $A \in \sigma(Y)$ generated by $Y$, 
+then the conditional expectation of $X$ given $Y$ is fine enough to find the averaging of $X$ when this event occurs.   
+That is, $\E[X\Ind{A}] = \E[\E[X|Y]\Ind{A}]$.
+
+\item If $X \in L^1$, then the conditional expectation $\E[X|Y] \in L^1$. 
+\end{enumerate}
+\end{rem}
+
+
+
+\section{Conditional distribution given an event space} 
+\begin{defn}%[Conditional probability given an event space] 
+The \textbf{conditional probability %$P(A|\sG)$ 
+of an event $A\in\sF$ given event space $\sG$} is 
+defined as $P(A\mid \sG) \triangleq \E[\Ind{A}\mid\sG]$. 
+\end{defn}
+\begin{rem}
+From the definition of conditional expectation, 
+it follows that $P(A\mid \sG):\Omega\to[0,1]$ is a $\sG$ measurable random variable, such that 
+$\E[\Ind{G}P(A|\sG)] = P(A\cap G)$ for all $G \in \sG$, 
+and is uniquely defined up to sets of probability zero. 
+\end{rem}
+%\begin{defn}
+%A conditional probability is called regular if $P(\cdot \mid \sG): \sG \to [0,1]$ is a probability measure on $(\Omega, \sF)$. 
+%\end{defn}
+\begin{shaded}
+\begin{exmp} 
+For the trivial sigma algebra   $\sG =\set{\emptyset ,\Omega}$, 
+the conditional probability is the constant function
+$P(A\mid \set{\emptyset ,\Omega})=P (A).$
+\end{exmp}
+\begin{exmp} 
+If $A\in \sG$, then $P(A\mid\sG)=\Ind{A}$. 
+\end{exmp}
+\end{shaded}
+\begin{defn}%[Conditional distribution given an event space]
+%Consider a random variable $X:\Omega \to \R$ defined on probability space $(\Omega,\sF, P)$ such that $\E\abs{X} < \infty$ and a sub event space $\sG \subseteq \sF$. 
+%Then, we can define 
+The \textbf{conditional distribution of random variable $X$ given sub event space $\sG$} is defined as 
+$
+F_{X \mid \sG}(x)\triangleq P(A_X(x)\mid \sG)\text{ for all }x \in \R.
+$
+\end{defn}
+\begin{rem} 
+Recall that $F_{X\mid\sG}(x): \Omega\to[0,1]$ a random variable, for each $x\in\R$. 
+Further, we observe that $F_{X\mid\sG}$ is monotone nondecreasing in $x \in \R$,  right continuous at all $x\in\R$, and has limits $\lim_{x\downarrow-\infty}F_{X\mid\sG}(x) = 0$ and $\lim_{x\uparrow\infty}F_{X\mid\sG}(x) = 1$. 
+It follows that $F_{X\mid\sG}: \Omega \to [0,1]^\R$ is a random distribution. 
+\end{rem}
+\begin{thm} 
+Let $g:\R\to\R$ be a Borel measurable function and $\sG$ be a sub-event space. 
+Then, the conditional expectation $\E[g(X)\mid\sG] = \int_{x\in\R}g(x)dF_{X\mid\sG}(x).$
+\end{thm}
+\begin{proof}
+It suffices to show this for simple random variables $X:\Omega\to\sX$. 
+Since $g$ is Borel measurable, then $g(X)$ is a random variable. 
+We will show that $\E[g(X)\mid\sG] = \sum_{x\in\sX}g(x)P_{X\mid\sG}(x)$ by showing that it satisfies three properties of conditional expectation.  
+For part (i), we observe that from the definition of conditional probability $P_{X\mid\sG}(x)$ is a $\sG$-measurable random variable for all $x\in\sX$, and so is the linear combination $ \sum_{x\in\sX}g(x)P_{X\mid\sG}(x)$. 
+For part (ii), we let $G \in \sG$. 
+Then, it follows from the  linearity of expectation and the definition of conditional probability, that 
+\EQ{
+\E[\sum_{x\in\sX}g(x)P_{X\mid\sG}(x)\Ind{G}]
+= \sum_{x\in\sX}g(x)\E[P_{X\mid\sG}(x)\Ind{G}] = \sum_{x\in\sX}g(x)\E[\Ind{E_x\cap G}]
+= \E[X\Ind{G}].
+}
+For part (iii), it follows from the triangle inequality, the linearity of expectation, and the definition of conditional probability that
+$
+\E\abs{\sum_{x\in\sX}g(x)P_{X\mid\sG}(x)} \le \sum_{x\in\sX}\abs{g(x)} \E P_{X\mid\sG}(x)
+= \sum_{x\in\sX}\abs{g(x)}P_X(x) = \E\abs{X} < \infty.
+$
+\end{proof}
+\begin{rem} 
+The conditional characteristic function is given by 
+$\Phi_{X\mid\sG}(u) = \E[e^{juX}\mid\sG] = \int_{x\in\R}e^{jux}dF_{X\mid\sG}(x).$
+\end{rem}
+\begin{defn}%[Conditional distribution given a random variable]
+%Consider two random variables $X, Y:\Omega\to\R$ defined on the same probability space $(\Omega, \sF, P)$ 
+%such that $\E\abs{X} < \infty$. 
+The \textbf{conditional distribution of random variable $X$ given random variable $Y$} is defined as $F_{X\mid Y}(x) \triangleq P(A_X(x)\mid\sigma(Y)]$ for all $x\in \R$.
+\end{defn}
+\begin{shaded}
+\begin{exmp}[Conditional distribution given simple random variables] 
+%For a simple random variable $Y: \Omega \to \sY \subseteq \R$ defined on the probability space $(\Omega, \sF, P)$, 
+%we define fundamental events $E_y \triangleq Y^{-1}\set{y} \in \sF$ for all $y \in \sY$. 
+%Then the sequence of events $E \triangleq (E_y \in \sF: y \in \sY)$ partitions the sample space, 
+%and we can write the event space generated by random variable $Y$ as $\sigma(Y) = (\cup_{y\in I}E_y: I \subseteq \sY)$. 
+Consider a random variable $X: \Omega \to \R$ and a simple random variable $Y:\Omega\to\sY$ defined on the same probability space. 
+Since random variables $F_{X\mid Y}(x) = \E[\Ind{A_X(x)}\mid Y]$ are $\sigma(Y)$ measurable, 
+they can can be written as $F_{X\mid Y}(x) = \sum_{y\in\sY}\beta_{x,y}\Ind{E_y}$ for some $\beta_x\in\R^\sY$ and $E_y = Y^{-1}\set{y}$ for all $y \in \sY$. 
+Further, we have $\E[F_{X\mid Y}(x)\Ind{E_y}] = \E[\Ind{A_X(x)}\Ind{E_y}]$ for any $y \in \sY$, 
+which implies that $\beta_{x,y} =\frac{P(A_X(x)\cap E_y)}{P_Y(y)} = F_{X\mid E_y}(x)$ for any $y \in \sY$. 
+It follows that $F_{X\mid Y}$ is a $\sigma(Y)$ measurable simple random variable. 
+%with probability mass function $$
+\end{exmp}
+\end{shaded}
+
+\begin{shaded}
+\begin{exmp}[Conditional expectation]
+Consider a random experiment of a fair die being thrown and a random variable $X:\Omega\to\R$ taking the value of the outcome of the experiment. 
+That is, for outcome space $\Omega = [6]$ and event space $\sF = \cP(\Omega)$, we have  $X(\omega) = \omega$ with $P_X(x) = 1/6$ for $x \in [6]$. 
+Define another random variable $Y = \SetIn{X \le 3}$.
+Then the conditional expectation of $X$ given $Y$ is a random variable given by
+\EQ{
+\E[X|Y] = \E[X\mid\set{Y =1}]\SetIn{Y = 1} + \E[X\mid \set{Y=1}]\SetIn{Y = 0}
+= 2\Ind{Y^{-1}(1)} + 5\Ind{Y^{-1}(0)}.
+}
+Since $P\set{Y = 1} = P\set{Y = 0} = 0.5$, it follows that that $\E[\E[X|Y]] = \E[X]  = 3.5$.
+\end{exmp}
+\end{shaded}
+
+\begin{shaded}
+\begin{exmp}[Conditional distribution]
+Consider the zero-mean Gaussian random variable $N:\Omega\to\R$ with variance $\sigma^2$, and another independent random variable $Y \in \set{-1,1}$ with PMF $(1-p, p)$ for some $p \in [0,1]$. 
+Let $X = Y + N$, then the conditional distribution of $X$ given simple random variable $Y$ is 
+\EQ{
+F_{X|Y} = F_{X\mid Y^{-1}(-1)} \Ind{Y^{-1}(-1)} + F_{X\mid Y^{-1}(1)} \Ind{Y^{-1}(1)} ,
+}
+where $F_{X\mid Y^{-1}(\mu)}$ is $\int_{-\infty}^xe^{-\frac{(t-\mu)^2}{\sigma^2}}dt$. 
+\end{exmp}
+\end{shaded}
+
+\begin{defn} When $X, Y$ are both continuous random variables, 
+there exists a joint density $f_{X,Y}(x,y)$ for all $(x, y) \in \R^2$. 
+For each $y \in \sY$ such that $f_Y(y) > 0$, we can define a function $f_{X\mid Y}: \R^2 \to \R_+$ such that   
+\EQ{
+f_{X\mid Y}(x,y) \triangleq \frac{f_{X,Y}(x,y)}{f_Y(y)}, \text{ for all } x \in \R.
+}
+\end{defn}
+\begin{tcolorbox}
+\begin{exerc}
+For continuous random variables $X,Y$, 
+show that the function $f_{X\mid Y^{-1}(y)}$ is a density of continuous random variable $X$ for each $y\in \R$. 
+\end{exerc}
+\end{tcolorbox}
+\end{document}
+
+\subsection{Conditioning on simple random variables}
+Consider two random variables $X, Y$ defined on the same probability space $(\Omega, \sF, P)$.  
+If the random variable $Y: \Omega \to \sY$ is simple, then the events $(E_y: y \in \sY)$ partition the sample space, 
+where $E_y \triangleq Y^{-1}\set{y}$. 
+Further the simple random variable $Y$ has a PMF $P_Y \triangleq (P(E_y): y \in \sY)$.   
+If $y \in \sY$ such that $P_Y(y)>0$, then we can define a function $F_{X|E_y}: \R\to[0,1]$ 
+such that
+\EQN{
+\label{eqn:ConditionalDistributionGivenEvent}
+F_{X\given E_y}(x) \triangleq P\left(\set{X \le x}\given E_y\right) = \frac{P\set{X \le x, Y =y}}{P_Y(y)}, \text{ for all } x \in \R.  
+}
+\begin{shaded}
+\begin{exerc}
+For simple random variable $Y: \Omega \to \sY$, 
+show that the function $F_{X\given E_y}$ conditioned on the event $E_y = \set{Y=y}$ is a distribution. 
+%, and is a function of $y \in \sY$. 
+\end{exerc}
+\end{shaded}
+\begin{defn}
+Consider random variables $X,Y$ defined on the same probability space $(\Omega, \sF, P)$. 
+If $Y: \Omega \to \sY$ is simple, 
+then for all $y \in \sY$ such that $P_Y(y) > 0$, 
+we can define event $E_y \triangleq Y^{-1}\set{y}$ and the \textbf{conditional distribution of $X$ given event $E_y$} as $F_{X \given E_y}: \R \to [0,1]$ defined in~\eqref{eqn:ConditionalDistributionGivenEvent}.
+\end{defn}
+\begin{defn}
+%For a simple random variable $Y \in \sY$, 
+%the distribution $F_{X\given E_y}$ is called the \textbf{conditional distribution of $X$ given event $E_y$}. 
+%% and is a function of the realization $y \in \sY$. 
+Consider random variables $X, Y$ defined on the same probability space $(\Omega, \sF, P)$. 
+If $Y:\Omega\to\sY$ is simple such that $E_y \triangleq Y^{-1}\set{y}$ for all $y \in \sY$, 
+then the \textbf{conditional distribution of $X$ given $Y$} is denoted by $F_{X|Y}: \Omega \to [0,1]^\R$ and defined as 
+\EQ{
+F_{X|Y}(\omega) \triangleq \sum_{y \in\sY}F_{X|E_y}\Ind{E_y}(\omega).
+}
+\end{defn}
+\begin{rem}
+We observe that $F_{X|\set{Y=y}} = F_{X|E_y}$. 
+Hence, the conditional distribution $F_{X|Y}$ is a measurable function of the simple random variable $Y = \sum_{y\in\sY}y\Ind{E_y}$, 
+and hence it is a random variable.
+%such that
+%\EQ{
+%F_{X\given Y}: \omega \mapsto F_{X\given Y = Y(\omega)}.
+%} 
+%We can write the conditional distribution $F_{X|Y} = \sum_{y \in\sY}F_{X|E_y}\Ind{E_y}$.
+\end{rem}
+
+\subsection{Conditional densities}
+When $X, Y$ are both continuous random variables, 
+there exists a joint density $f_{X,Y}(x,y)$ for all $(x, y) \in \R^2$. 
+For each $y \in \sY$ such that $f_Y(y) > 0$, we can define a function $f_{X\given Y = y}: \R \to \R_+$ such that   
+\EQ{
+f_{X\given Y = y}(x) \triangleq \frac{f_{X,Y}(x,y)}{f_Y(y)}, \text{ for all } x \in \R.
+}
+\begin{shaded}
+\begin{exerc}
+For continuous random variables $X,Y$, 
+show that the function $f_{X\given Y= y}$ is a density of continuous random variable $X$ for each $y\in \R$. 
+\end{exerc}
+\end{shaded}
+%\begin{defn}
+%The \textbf{conditional density of $X$ given $Y$} for continuous random variables $X,Y$ is defined as a measurable function of the random variable $Y$, and hence it is random variable such that 
+%\EQ{
+%f_{X\given Y}: \omega \mapsto f_{X \given Y = Y(\omega)}. %\frac{f_{X,Y}(x,Y(\omega))}{f_Y(Y(\omega))}.
+%}
+%\end{defn}
+%%\begin{defn}
+%%For continuous random variables $X, Y$, 
+%%the distribution $F_{X\given Y = y}(x)$ is called the \textbf{conditional distribution of $X$ given $Y=y$} and is a function of the realization $y \in \sY$. 
+%%The \textbf{conditional distribution of $X$ given $Y$} is the family of conditional distributions of $X$ give $Y =y$ for all $y \in \sY$. 
+%%That is, 
+%%\EQ{
+%%F_{X\given Y}(x) \triangleq \set{F_{X\given \set{Y = y}}(x): y \in \sY}.
+%%} 
+%%\end{defn}
+%%The conditional density $f_{X\given Y}(x|y)$ is a function of $y \in \R$. 
+
+\section{Conditional expectation in terms of conditional distribution}
+Since we have defined the conditional distribution and densities, we can define the conditional expectation given an event as an integration with respect to the conditional distribution given that event.  
+In the following, we will assume the random variables $X,Y$ are defined on the same probability space $(\Omega, \sF, P)$ and $\E\abs{X} < \infty$ such that $\E X$ exists and is finite. 
+\subsection{Simple random variables}
+When $Y:\Omega\to\sY$ is a simple random variable, 
+we can define the conditional expectation of $X$ given the event $E_y = Y^{-1}\set{y}$ for $P_Y(y) > 0$ as 
+\EQ{
+\E[X\given E_y] \triangleq \int_{x \in \R}xdF_{X|E_y}(x) = \int_{(x,t)\in\R^2}x\frac{d_xF_{X,Y}(x,t)}{P_Y(y)}\SetIn{t=y} =\frac{\E[X\Ind{E_y}]}{P_Y(y)}.
+}
+%\begin{rem} 
+%The conditional expectation of  $X$ given the event $\set{Y=y}$ is a function of realization $y \in \sY$ for $P_Y(y) > 0$.
+%\end{rem}
+\begin{defn}[Conditional expectation for conditioning on simple random variables] 
+When $Y$ is a simple random variable, we can define the conditional expectation of $X$ given the random variable $Y$ is a measurable function of random variable $Y$, denoted by $\E[X\given Y]: \Omega \to \R$ such that 
+\EQ{
+\E[X\given Y]: \omega  \mapsto \int_{x \in \R}xdF_{X|\set{Y = Y(\omega)}}(x).
+}
+Hence, we can write
+\EQ{
+\E[X\given Y] = \sum_{y \in \sY}\E[X\given E_y]\Ind{E_y} =\sum_{y \in\sY}\frac{\E[X\Ind{E_y}]}{P_Y(y)}\Ind{E_y}.
+}
+\end{defn}
+\begin{rem}
+The random variable $\E[X\given Y]$ takes value $\E[X\given E_y]$ with probability $P_Y(y)$ for all $y \in \sY$. 
+\end{rem}
+\begin{lem} 
+For simple random variable $Y: \Omega \to \sY$, 
+the mean of random variable $\E[X \given Y]$ is $\E[X]$. 
+\end{lem}
+\begin{proof}
+Since $\E[X|Y]$ is a function of the random variable $Y$, we have 
+\EQ{
+\E[\E[X\given Y]] = \sum_{y \in \sY}P_Y(y)\E[X\given E_y] = \sum_{y \in \sY}\E[X\Ind{E_y}]=\E[X].
+}
+%From the definition of conditional distribution of $X$ given the event $Y =y$, we get $F_{X \given Y = y}(x)P_Y(y) = P\set{X \le x, Y = y}$. 
+%Interchanging derivative, summation, and integration from the application of dominated convergence theorem, and from the law of total probability, we get 
+%\EQ{
+%\E[\E[X\given Y]] = \int_{x \in \R}x dF_X(x) = \E[X]. 
+%}
+\end{proof}
+%\begin{proof}
+%Since $\E[X|Y]$ is a function of the random variable $Y$, we have 
+%\EQ{
+%\E[\E[X\given Y]] = \sum_{y \in \sY}P_Y(y)\E[X\given Y = y] = \sum_{y \in \sY}P_Y(y)\int_{x \in \R}xdF_{X\given Y =y}(x).
+%}
+%From the definition of conditional distribution of $X$ given the event $Y =y$, we get $F_{X \given Y = y}(x)P_Y(y) = P\set{X \le x, Y = y}$. 
+%Interchanging derivative, summation, and integration from the application of dominated convergence theorem, and from the law of total probability, we get 
+%\EQ{
+%\E[\E[X\given Y]] = \int_{x \in \R}x dF_X(x) = \E[X]. 
+%}
+%\end{proof}
+
+\subsection{Continuous random variables} 
+When $X, Y$ are continuous random variables, we can define the conditional expectation of $X$ given $Y$ as a continuous random variable $\E[X\given Y]: \Omega \to \R$ such that 
+\EQ{
+\E[X\given Y]: \omega \mapsto \int_{x \in \R}xf_{X|Y = Y(\omega)}(x)dx,
+}
+with the density $f_Y(y)$ for all $y \in \R$.  
+\begin{lem} 
+For continuous random variables $X, Y$, 
+the mean of random variable $\E[X \given Y]$ is $\E[X]$. 
+\end{lem}
+\begin{proof}
+Since $\E[X|Y]$ is a function of the random variable $Y$ and its density is $f_Y(y)$, we get 
+\EQ{
+\E[\E[X\given Y]] = \int_{y \in \R}dy f_Y(y)\E[X\given Y = y] = \int_{y \in \R}dy f_Y(y)\int_{x \in \R}xf_{X\given Y =y}dx.
+}
+From the definition of conditional density of $X$ given $Y =y$, we get $f_{X \given Y = y}(x)f_Y(y) = f_{X,Y}(x,y)$. 
+Interchanging integrations from Fubini's theorem, and from the law of total probability, we get 
+\EQ{
+\E[\E[X\given Y]] = \int_{x \in \R}x dx  \int_{y \in \R} f_{X,Y}(x,y)dy = \int_{x \in \R}xf_X(x) dx = \E[X]. 
+}
+\end{proof}
+
+\section{Conditional expectation conditioned on an event space}
+%\begin{defn}[Event space generated by a random variable] 
+%Let $X: \Omega \to \R$ be a random variable on the probability space $(\Omega, \sF, P)$, 
+%then the smallest event space generated by the events of the form $X^{-1}(-\infty, x]$ for $x \in \R$ is called the \textbf{event space generated} by this random variable $X$, 
+%and denoted by $\sigma(X)$. 
+%\end{defn}
+%\begin{shaded}
+%\begin{exmp}[Indicator function] 
+%Let $A \in \sF$ be an event, then $X = \mathbbm{1}_A$ is a random variable and 
+%\EQ{
+%X^{-1}(-\infty, x] = \begin{cases}
+%\Omega, &x \ge 1,\\
+%A^c, & x \in [0, 1),\\
+%\emptyset, &x < 0.
+%\end{cases}
+%}
+%This implies that the smallest event space generated by this random variable is 
+%$\sigma(X) = \set{\emptyset, A, A^c, \Omega}$. 
+%\end{exmp}
+%\end{shaded}
+%\begin{shaded}
+%\begin{exmp}[Simple random variables] 
+%Let $X$ be a simple random variable, then $X = \sum_{x \in \sX}x\mathbbm{1}_{A_x}$ where $(A_x = X^{-1}\set{x} \in \sF: x \in \sX)$ is a finite partition of the sample space $\Omega$. 
+%Without loss of generality, we can denote $\sX  = \set{x_1, \dots, x_n}$ where $x_1 \le \dots \le x_n$. 
+%Then, 
+%\EQ{
+%X^{-1}(-\infty, x] = \begin{cases}
+%\Omega, &x \ge x_n,\\
+%\cup_{j=1}^iA_{x_i}, & x \in [x_i, x_{i+1}), i \in [n-1],\\
+%\emptyset, &x < x_1.
+%\end{cases}
+%}
+%Then the smallest event space generated by the simple random variable $X$ is $\set{\cup_{x \in S}A_x: S \subseteq \sX}$. 
+%\end{exmp}
+%\end{shaded}
+\begin{defn}[Conditional expectation]
+Consider two random variables $X,Y$ defined on the same probability space $(\Omega, \sF, P)$. 
+\begin{enumerate}[(i)]
+\item The \textbf{conditional distribution} of the random variable $X$ given a non-trivial event $B$ generated by the random variable $Y$ is 
+\EQ{
+F_{X \given B}(x) \triangleq \frac{P(\set{X \le x}\cap B)}{P(B)}. 
+}
+We can define $F_{X\given B} = 0$ for trivial events $B \in \sigma(Y)$ such that $P(B) = 0$. 
+
+\item The \textbf{conditional expectation} of random variable $X$ given any event $B$ generated by random variable $Y$ is given by 
+\EQ{
+\E[X \given B] = \int_{x \in \R}xdF_{X\given B}.
+}
+We can define $\E[X\given B] = 0$ for trivial events $B \in \sigma(Y)$ such that $P(B) = 0$. 
+
+%\item  The \textbf{conditional distribution} of the random variable $X$ given the random variable $Y$, 
+%is a function of the random variable $Y$, and hence a random variable. 
+%In particular, for each event $\set{Y \le y}$
+%\EQ{
+%F_{X\given Y}\SetIn{Y \le y} = F_{X \given \set{Y \le y}}\SetIn{Y \le y}  
+%= \frac{F_{X,Y}(\cdot,y)}{F_Y(y)}\SetIn{Y \le y} ~\text{ for all }y \in \R.
+%}
+%That is, this conditional distribution is the collection $(F_{X \given B}: B \in \sigma(Y))$ of conditional distributions for each event $B$ generated by the random variable $Y$. 
+%The probability of the event $B$ and the probability of the conditional distribution $F_{X \given B}\mathbbm{1}_B$ is $P(B)$. 
+%
+%\item The \textbf{conditional expectation} of random variable $X$ given the random variable $Y$, 
+%is a function of the random variable $Y$, and hence a random variable. 
+%In particular, for each event $\set{Y \le y}$, we have the event 
+%\EQ{
+%\E[X\given Y]\SetIn{Y \le y} = \E[X \given \set{Y \le y}]\SetIn{Y \le y}  
+%= \SetIn{Y \le y} \int_{x \in \R}x dF_{X\given \set{Y \le y}}(x),\text{ for all }y \in \R.
+%}
+%That is, this conditional expectation is the collection of events $ (\E[X|B]: B \in \sigma(Y))$ corresponding to the  conditional expectation given the events generated by the random variable $Y$. 
+%The probability of the event $B$ and the probability of the conditional expectation $\E[X\given B]\mathbb{1}_B$ is $P(B)$. 
+%
+%\item The mean of random variable $\E[X\given Y]\SetIn{Y \le y}$ for all $y \in \R$ is given by 
+%\EQ{
+%\E[\E[X\given Y]\SetIn{Y \le y}] 
+%= \int_{t \in \R}dF_Y(t)\SetIn{Y \le y}  \int_{x \in \R}x dF_{X\given \set{Y \le y}}(x) 
+%= \int_{(x,t) \in \R^2}x \SetIn{t \le y}dF_{X,Y}(x,t)
+%= \E[X\SetIn{Y \le y}].
+%}
+%Similarly, for all events $B \in \sigma(Y)$, we have the event 
+%\EQ{
+%\E[\E[X\given Y]\mathbbm{1}_B] = \E[X\mathbbm{1}_B].
+%}
+\item The conditional expectation $\E[X\given Y]$ is a function of $Y$ and $\sigma(Y)$ measurable, 
+and for all events $B \in \sigma(Y)$, we have 
+\EQ{
+\E[\E[X\given Y]\mathbbm{1}_B] = \E[X\mathbbm{1}_B]. 
+}
+
+\end{enumerate}
+\end{defn}
+%\begin{shaded}
+%\begin{exmp}[Conditional expectation given indicator function] 
+%Let $X$ be a random variable and $Y = \mathbbm{1}_B$ for some event $B \in \sF$.  
+%\end{exmp}
+%\end{shaded}
+
+%\begin{defn}
+%A random variable is independent of an event space $\sG$ if 
+%\EQ{
+%P(X^{-1}(-\infty, x]\cap  B) = F_X(x)P(B),\text{ for all }x \in \R, B \in \sG.
+%}
+%\end{defn}
+
+
+\end{document}

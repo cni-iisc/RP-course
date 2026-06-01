@@ -1,0 +1,268 @@
+\documentclass[12pt,aspectratio=169]{beamer}
+\input{header_beamer}
+\usetheme{Boadilla}
+\usecolortheme{beaver}
+\setbeamertemplate{page number in head/foot}{}
+\setbeamertemplate{navigation symbols}{}
+
+\title{Lecture-26: Properties of Poisson point processes}
+\date{}
+\begin{document}
+\pagestyle{empty}
+\maketitle
+
+
+\begin{frame}{Laplace functional}
+Let $\sX = \R^d$ be the $d$-dimensional Euclidean space. 
+Recall that all the random points are unique for a simple point process $S:\Omega\to\sX^\N$ , 
+and hence $S$ can also be considered as a set of countable points in $\sX$. 
+Let $N:\Omega\to\Z_+^{\sB(\sX)}$ be the counting process associated with the simple point process $S$. 
+\begin{block}{Reminder}<2->
+We observe that $dN(x) = 0$ for all $x \notin S$ and $dN(x) = \delta_x\SetIn{x \in S}$.  
+Hence, for any Borel measurable function $f : \sX \to \R$ and bounded $A \in \sB(\sX)$, we have
+$
+\int_{x \in A}f(x)dN(x) = \sum_{x \in S\cap A}f(x). % = \sum_{S_i \in A}f(S_i).
+$
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{Definition}
+The \textbf{Laplace functional} $\sL_S: \R_+^\sX\to\R_+$ of a point process $S:\Omega\to\sX^\N$ and associated counting process $N:\Omega\to\Z_+^{\sB(\sX)}$ is defined for all non-negative Borel measurable function $f: \sX \to \R_+$ as 
+\EQ{
+\sL_{S}(f) \triangleq \E \exp\left(-\int_{\R^d}f(x)dN(x)\right).
+}
+\end{Definition}
+\begin{block}{Reminder}<2->
+For a simple function $f = \sum_{i = 1}^{k}t_i\Ind{A_i}$, we can write the Laplace functional as a function of the vector $(t_1, t_2, \dots, t_k)$, 
+$
+\sL_{S}(f) = \E\exp\left(-\sum_{i=1}^kt_i\int_{A_i}dN(x)\right) = \E\exp\left(-\sum_{i=1}^kt_iN(A_i)\right).
+$
+We observe that this is a joint Laplace transform of the random vector $(N(A_1), \dots, N(A_k))$. 
+This way, one can compute all finite dimensional distribution of the counting process $N$. 
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{prop}
+The Laplace functional of a Poisson point process $S:\Omega\to\sX^\N$ with intensity measure $\Lambda:\sB(\sX)\to\R_+$ evaluated at any non-negative Borel measurable function $f:\sX\to\R_+$, 
+is 
+\begin{equation*}
+\sL_{S}(f) = \exp\left(-\int_{\sX}(1-e^{-f(x)})d\Lambda(x)\right).
+\end{equation*}  
+\end{prop}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Proof}
+For a bounded Borel measurable set $A \in \sB(\sX)$, consider the truncated function $g = f\Ind{A}$. 
+Then,
+\begin{equation*}
+\sL_{S}(g) 
+= \E\exp(-\int_{\sX}g(x)dN(x)) 
+= \E\exp(-\int_{A}f(x)dN(x)).
+\end{equation*} 
+Clearly $dN(x) = \delta_{x}\SetIn{x \in S}$ and hence we can write $\sL_{S}(g) = \E\exp\left(-\sum_{x \in S\cap A}f(x)\right)$. 
+We know that the probability of $N(A) = |S \cap A| = n$ points in set $A$ is given by 
+\EQ{
+P\set{N(A) = n} = e^{-\Lambda(A)}\frac{\Lambda(A)^n}{n!}.
+}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{Proof}[Proof continued]
+Given there are $n$ points in set $A$, the density of $n$ point locations are independent and given by
+\EQ{
+f_{S_1,\dots, S_n \given N(A) = n}(x_1, \dots, x_n) = \prod_{i=1}^n\left(
+\frac{d\Lambda(x_i)}{\Lambda(A)}\SetIn{x_i \in A}\right). %~x_1, \dots, x_n \in A.
+}
+Hence, we can write the Laplace functional as 
+\eq{
+\sL_{S}(g) &= e^{-\Lambda(A)}\sum_{n \in \Z_+}\frac{\Lambda(A)^n}{n!}\prod_{i=1}^n\int_{A}e^{-f(x_i)}\frac{d\Lambda(x_i)}{\Lambda(A)}%\\
+= \exp\left(-\int_{\sX}(1-e^{-g(x)})d\Lambda(x)\right).
+}
+Result follows from taking increasing sequences of sets $A_k \uparrow \sX$ and monotone convergence theorem.
+\end{Proof}
+\end{frame}
+
+\begin{frame}{Superposition of point processes}
+\begin{Definition}
+Let $S^k:\Omega\to\sX^\N$ be a simple point process with intensity measures $\Lambda_k:\sB(\sX)\to\R_+$ and counting process $N_k:\Omega\to\Z_+^{\sB(\sX)}$, 
+for each $k \in \N$. 
+The \textbf{superposition} of point processes $(S^k: k \in \N)$ is defined as a point process $S \triangleq \cup_kS^k$.
+\end{Definition}
+\begin{block}{Reminder}<2->
+The counting process associated with superposition point process $S: \Omega\to\sX^\N$ is given by $N: \Omega\to\Z_+^{\sB(\sX)}$
+defined by $N \triangleq \sum_kN_k$, 
+and the intensity measure of point process $S$ is given by $\Lambda: \sB(\sX)\to\R_+$ defined by $\Lambda = \sum_k\Lambda_k$ from monotone convergence theorem.
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Reminder}
+The superposition process $S$ is simple iff $\sum_kN_k$ is locally finite.  
+\end{block}
+\begin{block}{Theorem}<2->
+The superposition of independent Poisson point processes $(S^k: k \in \N)$ with intensities $(\Lambda_k: k \in \N)$ 
+is a Poisson point process with intensity measure $\sum_k \Lambda_k$ if and only if the latter is a locally finite measure.
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{Proof} 
+Consider the superposition $S = \cup_kS^k$ of independent Poisson point processes $S^k \in \sX$ with intensity measures $\Lambda_k$. 
+We will prove just the sufficiency part this theorem. 
+We assume that $\sum_k\Lambda_k$ is locally finite measure. 
+It is clear that $N(A) = \sum_kN_k(A)$ is finite by locally finite assumption, for all bounded sets $A \in \sB(\sX)$. 
+In particular, we have $dN(x) = \sum_kdN_k(x)$ for all $x \in \sX$.  
+From the monotone convergence theorem and the independence of counting processes, 
+we have for a non-negative Borel measurable function $f: \sX \to \R_+$, 
+\EQ{
+\sL_S(f) 
+= \E\exp\left(-\int_{\sX}f(x)\sum_kdN_k(x)\right) 
+= \prod_k\sL_{S^k} 
+= \exp\left(-\int_{\sX}(1-e^{-f(x)})\sum_k\Lambda_k(x)\right).
+}
+\end{Proof}
+\end{frame}
+
+
+\begin{frame}{Thinning of point processes}
+\begin{Definition}
+Consider a probability \textbf{retention function} $p: \sX \to [0,1]$ and an independent Bernoulli point retention process $Y:\Omega \to \set{0,1}^\sX$ such that $\E Y(x) = p(x)$ for all $x \in \sX$. 
+The \textbf{thinning} of point process $S: \Omega \to \sX^\N$ with the probability retention function $p: \sX \to [0,1]$ is a point process  $S^{(p)}: \Omega \to \sX^\N$ defined by  
+\EQ{
+S^{(p)} \triangleq (S_n \in S: Y(S_n) = 1),
+}
+where $Y(S_n)$ is an independent indicator for the retention of each point $S_n$ and $\E[Y(S_n)\given S_n] = p(S_n)$. 
+\end{Definition}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Theorem}
+The thinning of a Poisson point process $S:\Omega\to\sX^\N$ of intensity measure $\Lambda:\sB(\sX)\to\R_+$ with the retention probability function $p:\sX\to[0,1]$,  
+yields a Poisson point process $S^{(p)}:\Omega\to\sX^\N$ of intensity measure $\Lambda^{(p)}:\sB(\sX)\to\R_+$ defined for all bounded $A \in \sB(\sX)$ as 
+$
+\Lambda^{(p)}(A) \triangleq \int_A p(x) d\Lambda(x).
+$
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Proof}
+\begin{itemize}
+\item Let $A \in \sB(\sX)$ be a bounded Boreal measurable set, and let $f: \sX \to \R_+$ be a non-negative function. 
+Let $N^{(p)}$ be the associated counting process to the thinned point process $S^{(p)}$. 
+\item <2-> Hence, for any bounded set $A \in \sB(\sX)$, we have $N^{(p)}(A) = \sum_{x \in S \cap A}Y(x)$. 
+That is, 
+$
+dN^{(p)}(x) 
+= \delta_{x}Y(x)\SetIn{x \in S}.
+$
+\item <3-> Therefore, for any non-negative function $g(x) = f(x)\SetIn{x \in A}$, we can write 
+$
+\int_{x \in \sX}g(x)dN^{(p)}(x) 
+= \int_{x \in A}f(x)dN^{(p)}(x) 
+= \sum_{x \in S\cap A}f(x)Y(x).
+$
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\begin{block}{Proof continued}
+\begin{itemize}
+\item We can write the Laplace functional of the thinned point process $S^{(p)}$ for the non-negative function $g(x) = f(x)\SetIn{x \in A}$, as 
+\eq{
+\sL_{S^{(p)}}(g) 
+&= \E\left[\E[\exp\left(-\int_Af(x)dN^p(x)\right)\mid N(A)]\right] \\
+&= \sum_{n \in \Z_+}P\set{N(A) = n}\prod_{i=1}^n\E[^{-f(S_i)Y(S_i)}\mid\set{S_i \in A}].
+}
+\item <2-> The first equality follows from the definition of Laplace functional and taking nested expectations. 
+Second equality follows from the fact that the distribution of all points of a Poisson point process are  \iid. 
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{Proof}[Proof continued]
+\begin{itemize}
+\item Since $Y$ is a Bernoulli process independent of the underlying process $S$ with $\E[Y(S_i)] = p(S_i)$, we get 
+\EQ{
+\E[e^{-f(S_i)Y(S_i)}\mid\set{S_i \in S \cap A}] = \E[e^{-f(S_i)}p(S_i) + (1-p(S_i))\mid\set{S_i \in S \cap A}]. 
+}
+\item <2-> From the distribution $\frac{\Lambda'(x)}{\Lambda(A)}$ for $x \in S \cap A$ for the Poisson point process $S$, we get  
+\eq{
+\sL_{S^{(p)}}(g) 
+&= e^{-\Lambda(A)}\sum_{n \in \Z_+}\frac{1}{n!}\left(\int_A(p(x)e^{-f(x)}+ (1-p(x))d\Lambda(x)\right)^n \\
+&= \exp\left(-\int_{\sX}(1-e^{-g(x)})p(x)d\Lambda(x)\right).
+}
+\item <3-> Result follows from taking increasing sequences of sets $A_k \uparrow \sX$ and monotone convergence theorem.
+\end{itemize}
+\end{Proof}
+\end{frame}
+
+
+\end{document}
+
+
+A point Process $\{N(t),~t\ge 0\}$ is said to be \textbf{nonhomogeneous Poisson Process} with instantaneous rate $m(t)$ if it has stationary independent increments, and 
+	\begin{eqnarray*}\label{eq:NonHomogeneousPoisson}
+		P\{N(t)=0\}&=&1-m(t)+o(t). \\
+		P\{N(t+\delta)-N(t)=0\} &=& 1-m(t)\delta+o(\delta). \\
+		P\{N(t+\delta)-N(t)=1\} &=& m(t)\delta+o(\delta). \\
+		P\{N(t+\delta)-N(t)>1\} &=& o(\delta). \\
+	\end{eqnarray*}
+
+\begin{prop}[Non-Homogeneous Distribution] Distribution of non-homogeneous Poisson Process $N(t)$ with instantaneous rate $m(t)$ is given by
+	\begin{equation*}
+		P\{N(t)=n\}=\frac{(\bar{m}(t))^n}{n!}e^{-\bar{m}(t)},
+	\end{equation*}
+	where $\bar{m}(t)$ is the cumulative rate till time $t$, i.e. $\bar{m}(t)=\int_{0}^{t}m(s)ds$. 
+\end{prop}
+\begin{Proof}
+	Let's denote $f(t) = P\{N(t)=0\}$. Further, from independent increment property of $N(t)$, we notice that $\{N(t+\delta) = 0\}$ is intersection of two independent events given below, 
+	\begin{equation*}
+		\{N(t+\delta)=0\} \iff \{N(t)=0\}\cap\{N(t+\delta)-N(t)=0\}.
+	\end{equation*}
+	From Definition~\ref{defn:NonHomogeneousPoisson}, it follows that
+	\begin{equation*}
+		f(t+\delta) = f(t)[1 - m(t)\delta + o(\delta)].
+	\end{equation*}
+	Re-arranging the terms in the above equation, dividing by $\delta$, and taking limit as $\delta \downarrow 0$, we get 
+	\begin{equation*}
+		f'(t) = -m(t)f(t).
+	\end{equation*}
+	Since $f(0) = 1$, it can be verified that $f(t) = \exp(-\bar{m}(t))$ is solution for $f(t)$.
+	%\begin{eqnarray*}
+	%f(t+\triangle) &=& P\{N_{t+\triangle}=0] \\
+	%&=&  P\{N(t)=0, N_{t+\triangle}-N(t)=0]\\
+	%&\stackrel{(a)}{=}& P\{N(t)=0] P\{N_{t+\triangle}-N(t)=0]\\
+	%&=& f(t)[1-m(t)\triangle +o(\triangle)].\\
+	%\frac{f(t+\triangle)-f(t)}{\triangle} &=& -m(t) f(t) +f(t) \frac{0(\triangle)}{\triangle}. \\
+	%\lim_{\triangle\downarrow 0}\frac{f(t+\triangle)-f(t)}{\triangle} &=& -m(t) f(t) \\
+	%\frac{d f(t)}{t} &=& -m(t) f(t),  \\
+	%\end{eqnarray*}
+	%where (a) follows from independent increment property. Since, $\overline{m}(t)=\int ^{t}_{0} m(s) ds $, $f(t)=P\{N(t)=0]$, $ f(0)=P\{N_{0}=0] =1$ the solution of the differential equation can be verified to be $f(t)=e^{-\overline{m}(t)}$, as follows: 
+	%\begin{eqnarray*}
+	%f(0)&=& e^{-\overline{m}(t)}\\
+	%&=& e^{-0}=1 \\
+	%f'(t) &=& e^{-\overline{m}(t)}\frac{d}{dt} \int^{t}_{0}m(S) ds\\
+	%&=& m(t)e^{-\overline{m}(t)}, t\ge 0 \\
+	%\end{eqnarray*}
+	%
+	%\begin{eqnarray*}
+	%P\{N_{t+\triangle}-N(t)=0] &=& 1-m(t)\triangle +o(\triangle) \\
+	%P\{N_{\triangle}-N_{0}=0] &=& 1-m(0)\triangle +o(\triangle) 
+	%\end{eqnarray*}
+	%Since $ N_{0}=0$, 
+	%\begin{eqnarray*}
+	%P\{N_{\triangle} =0]&=& 1-m(0)\triangle +0(\triangle) \\
+	%\lim_{\triangle\downarrow 0}f(\triangle) &=& f(0)=1.
+	%\end{eqnarray*}
+	We have shown $P\{N(t)=0\} = \exp(-\bar{m}(t))$. By induction, we can show the result for any $n$.
+\end{Proof}
+\end{frame}
+\begin{frame}

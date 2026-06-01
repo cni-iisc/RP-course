@@ -1,0 +1,365 @@
+\documentclass[12pt,aspectratio=169]{beamer}
+\input{header_beamer}
+\usetheme{Boadilla}
+\usecolortheme{beaver}
+\setbeamertemplate{page number in head/foot}{}
+\setbeamertemplate{navigation symbols}{}
+\title{Lecture-15: $L^p$ convergence}% of random variables}
+\date{}
+
+\begin{document}
+\pagestyle{empty}
+\maketitle
+
+\begin{frame}{$L^p$ convergence}
+\begin{Definition}[Convergence in $L^p$]<1->
+Let $p \ge 1$, 
+then we say that a random sequence $X: \Omega \to \R^\N$ defined on a probability space $(\Omega,\sF,P)$ \textbf{converges in $L^p$} to a random variable $X_\infty:\Omega \to \R$, 
+if 
+\EQ{
+\lim_n\norm{X_n - X_\infty}_p = 0.
+}
+The convergence in $L^p$ is denoted by $\lim_nX_n = X_\infty$ in $L^p$. 
+\end{Definition}
+\begin{block}{Reminder}<2->
+For $p \in [1, \infty)$, the convergence of a random sequence $X: \Omega\to\R^\N$ in $L^p$  to a random variable $X_\infty:\Omega \to \R$ is equivalent to 
+\EQ{
+\lim_n\E\abs{X_n-X_\infty}^p = 0.
+}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{prop}[Convergences $L^p$ implies in probability]<1-> 
+Consider $p \in [1, \infty)$ and a sequence of random variables $X:\Omega\to\R^\N$ defined on a probability space $(\Omega,\sF, P)$ such that $\lim_nX_n = X_\infty$ in $L^p$, then $\lim_nX_n = X_\infty$ in probability.
+\end{prop}
+\begin{Proof}<2->
+Let $\epsilon > 0$, then from the Markov's inequality applied to random variable $\abs{X_n-X}^p$, we have
+\EQ{
+P\set{\abs{X_n-X_\infty} > \epsilon} \le \frac{\E\abs{X_n-X_\infty}^p}{\epsilon}.
+}
+\end{Proof}
+\end{frame}
+
+\begin{frame}
+\begin{Example}[Convergence almost surely doesn't imply convergence in $L^p$] 
+Consider the probability space $([0,1], \sB([0,1]), \lambda)$ such that $\lambda([a,b]) = b-a$ for all $0 \le a \le b \le 1$. 
+We define the scaled indicator random variable $X_n: \Omega \to \set{0,1}$ such that
+\EQ{
+X_n(\omega) = 2^n\Ind{\left[0, \frac{1}{n}\right]}(\omega).
+}
+We define $N = \set{0}$, 
+and for any $\omega \notin N$, we can find $m \triangleq \lceil \frac{1}{\omega}\rceil$, 
+such that for all $n > m$, we have $X_n(\omega) = 0$. 
+Since $\lambda(N) = 0$, it implies that $\lim_nX_n = 0$ a.s. 
+However, we see that $\E\abs{X_n}^p = \frac{2^{np}}{n}$. 
+\end{Example}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Reminder}
+Convergence almost surely implies convergence in probability. 
+Therefore, above example also serves as a counterexample to the fact that convergence in probability doesn't imply convergence in $L^p$.
+\end{block}
+\begin{block}{Theorem : $L^2$ weak law of large numbers}<2-> 
+Consider a sequence of uncorrelated random variables $X:\Omega\to\R^\N$ defined on a probability space $(\Omega,\sF, P)$ such that $\E X_n = \mu$ and $\Var(X_n) = \sigma^2$ for all $n \in \N$. 
+Defining the sum $S_n\triangleq \sum_{i=1}^nX_i$ and the $n$-empirical mean $\bar{X}_n \triangleq \frac{S_n}{n}$, 
+we have $\lim_n\bar{X}_n=\mu$ in $L^2$ and in probability.
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{Proof} 
+From the uncorrelatedness of random sequence $X$, 
+and linearity of expectation, we get
+\EQ{
+\Var(\bar{X}_n) = \E(\bar{X}_n-\mu)^2 = \frac{1}{n^2}\E(S_n-n\mu)^2 = \frac{\sigma^2}{n}.
+}
+It follows that $\lim_n\bar{X}_n = \mu$ in $L^2$. 
+Since the convergence in $L^p$ implies convergence in probability, the result holds.
+\end{Proof}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Theorem : $L^1$ weak law of large numbers} 
+Consider an \iid random sequence $X:\Omega\to\R^\N$ defined on a probability space $(\Omega,\sF, P)$ such that $\E\abs{X_1}< \infty$ and $\E X_1 = \mu$. 
+Defining the sum $S_n\triangleq \sum_{i=1}^nX_i$ and the $n$-empirical mean $\bar{X}_n \triangleq \frac{S_n}{n}$, 
+we have $\lim_n\bar{X}_n=\mu$ in probability.
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{Example}[Convergence in $L^p$ doesn't imply almost surely] 
+Consider the probability space $([0,1], \sB([0,1]), \lambda)$ such that $\lambda([a,b]) = b-a$ for all $0 \le a \le b \le 1$. 
+For each $k \in \N$, we consider the sequence $S_k = \sum_{i=1}^ki$, and define integer intervals $I_k \triangleq \set{S_{k-1}+1, \dots, S_{k}}$. 
+Clearly, the intervals $(I_k:k \in \N)$ partition the natural numbers, 
+and each $n \in \N$ lies in some $I_{k_n}$, such that $n = S_{k+n-1}+i_n$ for $i_n \in [k_n]$. 
+Therefore, for each $n \in \N$, we define indicator random variable $X_n: \Omega \to \set{0,1}$ such that 
+\EQ{
+X_n(\omega) \triangleq \Ind{\left[\frac{i_n-1}{k_n}, \frac{i_n}{k_n}\right]}(\omega).
+}
+For any $\omega \in [0,1]$, we have $X_n(\omega) = 1$ for infinitely many values since there exist infinitely many $(i,k)$ pairs such that $\frac{(i-1)}{k} \le \omega \le \frac{i}{k}$, 
+and hence $\lim\sup_nX_n(\omega) = 1$ and hence $\lim_nX_n(\omega) \neq 0$. 
+However, $\lim_nX_n(\omega) = 0$ in $L^p$, since 
+\EQ{
+\E\abs{X_n}^p = \lambda\set{X_n(\omega) \neq 0} =\frac{1}{k_n} .
+}
+\end{Example}
+\end{frame}
+
+\begin{frame}{$L^1$ convergence theorems}
+\begin{block}{Theorem : Monotone Convergence Theorem}
+Consider a non-decreasing non-negative random sequence $X: \Omega\to\R_+^\N$ defined on a probability space $(\Omega,\sF,P)$, 
+such that $X_n \in L^1$ for all $n \in \N$. 
+Let $X_\infty(\omega) \triangleq \sup_nX_n(\omega)$ for all $\omega \in \Omega$, then  
+$
+\E X_\infty = \sup_n\E X_n.
+$
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{Proof}
+From the monotonicity of sequence $X$ and the monotonicity of expectation, we have $\sup_n\E X_n \le \E X_\infty$. 
+Let $\alpha \in (0,1)$ and $Y: \Omega\to\R_+$ a non-negative simple random variable such that $Y \le X_\infty$. 
+We define 
+\EQ{
+E_n \triangleq \set{\omega \in \Omega: X_n(\omega) \ge \alpha Y} \in \sF. 
+} 
+From the monotonicity of sequence $X$, 
+the sequence of events $E \in \sF^\N$ are monotonically non-decreasing such that $\cup_{n \in \N}E_n = \Omega$. 
+It follows that 
+\EQ{
+\alpha\E[Y\Ind{E_n}] \le \E[X_n\Ind{E_n}] \le \E X_n.
+}
+We will use the fact that $\lim_n\E[Y\Ind{E_n}] = \E[Y]$, then $\alpha\E Y \le \sup_n\E X_n$. 
+Taking supremum over all $\alpha \in (0,1)$ and all simple functions $Y \le X_\infty$, we get $\E X_\infty \le \sup_n\E X_n$. 
+\end{Proof}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Theorem : Fatou's Lemma}
+Consider a non-negative random sequence $X: \Omega\to\R_+^\N$ defined on a probability space $(\Omega,\sF,P)$. 
+Let $X_\infty(\omega) \triangleq \lim\inf_nX_n(\omega)$ for all $\omega\in\Omega$, then 
+$
+\E X_\infty \le \lim\inf_n\E X_n.
+$
+\end{block}
+
+\begin{Proof}<2->
+We define $Y_n \triangleq \inf_{k \ge n}X_k$ for all $n \in \N$. 
+It follows that $Y: \Omega \to \R_+^\N$ is a non-negative non-decreasing sequence of random variables, 
+and $X_\infty = \sup_nY_n = \lim_nY_n$. 
+Applying monotone convergence theorem to random sequence $Y$, we get $\E X_\infty = \sup_n\E Y_n$. 
+The result follows from the monotonicity of expectation, 
+and the fact that $Y_n \le X_k$ for all $k \ge n$, to get $\E Y_n \le \inf_{k\ge n}\E X_k$.  
+\end{Proof}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Theorem : Dominated Convergence Theorem}
+Let $X: \Omega \to \R^\N$ be a random sequence defined on a probability space $(\Omega, \sF, P)$. %, such that $X_n \in L^1$ for all $n \in \N$. 
+If $\lim_nX_n = X_\infty$ a.s. and there exists a $Y: \Omega \to \R_+$ such that $Y \in L^1$ and $\abs{X_n} \le Y$ a.s. for all $n\in\N$, 
+then $\E X_\infty = \lim_n\E X_n$. 
+\end{block}
+
+\begin{Proof}<2->
+From the hypothesis, we have $Y+X_n \ge 0$ a.s. and $Y-X_n \ge 0$ a.s. 
+Therefore, from Fatou's Lemma and linearity of expectation, we have 
+\begin{xalignat*}{2}
+&\E Y + \E X_\infty \le \liminf_n \E(Y+X_n) = \E Y + \liminf_n\E X_n,&
+&\E Y - \E X_\infty \le \liminf_n \E(Y-X_n) = \E Y - \limsup_n\E X_n. 
+\end{xalignat*} 
+Therefore, we have $\limsup_n\E X_n \le \E X_\infty \le \liminf_n\E X_n$, and the result follows. 
+\end{Proof}
+\end{frame}
+
+
+\begin{frame}{Convergence theorems for conditional means}
+\begin{prop} 
+Let $X:\Omega\to\R^\N$ be a random sequence on the probability space $(\Omega, \sF, P)$ such that $\E\abs{X_n} < \infty$ for all $n \in \N$.  
+Let $\sG$ and $\sH$ be event spaces such that $\sG, \sH \subset \sF$. 
+Then the following theorems hold.
+\begin{enumerate}
+\item<2-> \textbf{Conditional monotone convergence theorem:} 
+Consider a random sequence $X:\Omega\to\R_+^\N$ that is non-negative and non-decreasing a.s..
+We define $X_\infty:\Omega\to\R_+$ for each $\omega \in \Omega$ as $X_\infty(\omega)\triangleq \sup_{n \in \N}X_n(\omega)$.  
+If $X_\infty \in L^1$, then $\E[X_n\mid \sG] \uparrow \E[X_\infty\mid\sG]$ a.s. 
+\end{enumerate}
+\end{prop}
+\end{frame}
+
+\begin{frame}
+\begin{prop}[Continued.]
+\begin{enumerate}
+\setcounter{enumi}{1}
+\item \textbf{Conditional Fatou's lemma:} 
+Consider a random sequence $X:\Omega\to\R_+^\N$ that is non-negative and non-decreasing a.s.. 
+If $\lim\inf_n X_n \in L^1$, then $\E[\lim\inf_nX_n\mid \sG] \le \lim\inf_n\E[X_n\mid \sG]$ a.s. 
+
+\item<2-> \textbf{Conditional dominated convergence theorem:} 
+Consider a random sequence $X:\Omega\to\R_+^\N$ and a random variable $Y:\Omega\to\R_+$ such that $Y \in L^1$ and $\abs{X_n} \le Y$ a.s. for all $n \in  \N$. 
+If $\lim_n X_n = X_\infty$ a.s., then $\E[X_n\mid \sG] \to  \E[X_\infty\mid\sG]$ a.s. and in $L^1$.
+\end{enumerate}
+\end{prop}
+\end{frame}
+
+\begin{frame}
+\begin{Proof}
+Let $X:\Omega\to\R^\N$ be a random sequence on the probability space $(\Omega, \sF, P)$ such that $X_n \in L^1$ for all $n \in \N$.  
+\begin{enumerate}
+\item<2-> \textbf{Conditional monotone-convergence theorem:} 
+By monotonicity, we have $\E[X_n\mid \sG] \uparrow Y$ a.s. where $Y:\Omega\to \R_+$ is $\sG$ measurable. 
+The monotone convergence theorem implies that, for each $G \in  \sG$,
+\EQ{
+\E[Y \Ind{G}] = \lim_n
+\E[\Ind{G}\E[X_n\mid \sG]] = \lim_n
+\E[\Ind{G}X_n] = \E[\Ind{G}X_\infty].
+}
+\end{enumerate}
+\end{Proof}
+\end{frame}
+
+\begin{frame}
+\begin{Proof}[Proof Continued.]
+\begin{enumerate}
+\setcounter{enumi}{1}
+\item \textbf{Conditional Fatou's lemma:} 
+Defining $Y_n \triangleq \inf_{k\ge n} X_k$, we get $Y_n \uparrow Y_\infty = \lim\inf_k X_k$. 
+By monotonicity,
+\EQ{
+\E[Y_n\mid \sG] \le \inf_{k\ge n}\E[X_k\mid \sG]\text{ a.s.}.
+}
+The conditional monotone-convergence theorem implies that
+\EQ{
+\E[Y_\infty\mid \sG] = \lim_{n\in \N}\E[Y_n\mid \sG] \le \lim\inf_n\E[X_n\mid \sG]\text{ a.s.}.
+}
+\end{enumerate}
+\end{Proof}
+\end{frame}
+
+\begin{frame}
+\begin{Proof}[Proof Continued.]
+\begin{enumerate}
+\setcounter{enumi}{2}
+\item \textbf{Conditional dominated-convergence theorem:}
+By the conditional Fatou's lemma, we have
+\begin{align*}
+\E[Z + X_\infty\mid \sG] \le \lim\inf_n\E[Z + X_n\mid \sG]\text{ a.s. }, \\
+\E[Z - X_\infty\mid \sG] \le \lim\inf_n\E[Z - X_n\mid \sG] \text{ a.s. },
+\end{align*}
+and the a.s.-statement follows.
+\end{enumerate}
+\end{Proof}
+\end{frame}
+\end{document}
+
+
+\begin{frame}{Uniform integrability}
+\begin{Definition}[uniform integrability] 
+A family $X_t \in (L^1)^T$ of random variables indexed by $T$ is \textbf{uniformly integrable} if 
+\EQ{
+\lim_{a \to \infty}\sup_{t \in T}\E[\abs{X_t}\SetIn{\abs{X_t}> a}] = 0.
+\end{Definition}
+
+\begin{Example}[Single element family] 
+If $\abs{T} = 1$, then the family is uniformly integrable, 
+since $X_1 \in L^1$ and $\lim_a\E[\abs{X_1}\SetIn{\abs{X_t} > a}] = 0$. 
+This is due to the fact that $(X_n \triangleq \abs{X}\SetIn{\abs{X} \le n}: n \in \N)$ is a sequence of increasing random variables $\lim_nX_n  = X$. 
+From monotone convergence theorem, we get  $\lim_n\E\abs{X_n} = \E\lim_n\abs{X_n}$. 
+Therefore, 
+\EQ{
+\lim_a\E[\abs{X}\SetIn{\abs{X} > a}] = \E\abs{X} - \lim_a\E[\abs{X}\SetIn{\abs{X} \le a}] = 0. 
+}
+\end{Example}
+\end{frame}
+
+\begin{frame}
+\begin{prop}
+Let $X \in L^p$ and $(A_n: n \in \N) \subset \sF$ be a sequence of events such that $\lim_nP(A_n) = 0$, then 
+\EQ{
+\lim_n\norm{\abs{X}\mathbbm{1}_{A_n}}_p = 0.
+}
+\end{prop}
+
+\begin{Example}[Dominated family] 
+If there exists $Y \in L^1$ such that $\sup_{t \in T}\abs{X_t} \le \abs{Y}$, 
+then the family of random variables $(X_t: t \in T)$ is uniformly integrable. 
+This is due to the fact that 
+\EQ{
+\sup_{t \in T}\E[\abs{X}\SetIn{\abs{X} > a}] \le \E[\abs{Y}\SetIn{\abs{Y} > a}]. 
+}
+\end{Example}
+\end{frame}
+
+\begin{frame}
+\begin{Example}[Finite family] then the family of random variables $(X_t: t \in T)$ is uniformly integrable. 
+This is due to the fact that $\sup_{t \in T}\abs{X_t} \le \sum_{t \in T}\abs{X_t} \in L^1$. 
+\end{Example}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Theorem : Convergence in probability with uniform integrability implies convergence in $L^p$} 
+Consider a sequence of random variables $(X_n: n\in \N) \subset L^p$ for $p \ge 1$.  
+Then the following are equivalent. 
+\begin{enumerate}[(a)]
+\item The  sequence $(X_n: n\in \N)$ converges in $L^p$, i.e. $\lim_n\E\abs{X_n -  X}^p = 0$.
+\item The sequence  $(X_n: n\in \N)$ is Cauchy in $L^p$, i.e. $\lim_{m,n \to \infty}\E\abs{X_n-X_m}^p = 0$. 
+\item $\lim_nX_n = X$ in probability and the sequence $(\abs{X_n}^p: n \in \N)$ is uniformly integrable.  
+\end{enumerate}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{Proof} 
+For a random sequence $(X_n: n\in \N)$ in $L^p$, 
+we will show that $(a)\implies (b) \implies (c) \implies (a)$. 
+\begin{enumerate}[(a)]
+\item[$(a)\implies (b):$]  We assume the sequence $(X_n: n\in \N)$ converges in $L^p$. 
+Then, from Minkowski's inequality, we can write 
+\EQ{
+ (\E\abs{X_n-X_m}^p)^{\frac{1}{p}} \le (\E\abs{X_n-X}^p)^{\frac{1}{p}} + (\E\abs{X_m-X}^p)^{\frac{1}{p}}.
+}
+\item[$(b) \implies (c):$] We assume that the sequence  $(X_n: n\in \N)$ is Cauchy in $L^p$, i.e. $\lim_{m,n \to \infty}\E\abs{X_n-X_m}^p = 0$.  
+Let $\epsilon > 0$, then for each $n \in \N$, there exists $N_\epsilon$ such that for all $n,m \ge N_\epsilon$
+\EQ{
+\E\abs{X_n-X_m}^p \le \frac{\epsilon}{2}.
+}
+Let $A_a =\set{\omega \in A: \abs{X_n} > a}$. 
+Then, using triangle inequality and the fact that $\mathbbm{1}_{A_a} \le 1$, from the linearity and monotonicity of expectation, 
+we can write for $n \ge N_\epsilon$ 
+\EQ{
+(\E[\abs{X_n}^p\SetIn{\abs{X_n} > a}])^{\frac{1}{p}}
+\le (\E[\abs{X_{N_\epsilon}}^p\mathbbm{1}_{A_a}])^{\frac{1}{p}}  + (\E[\abs{X_n - X_{N_\epsilon}}^p] )^{\frac{1}{p}}
+\le (\E[\abs{X_{N_\epsilon}}^p\mathbbm{1}_{A_a}])^{\frac{1}{p}}+ \frac{\epsilon}{2}.
+}
+Therefore, we can write $\sup_n \E[\abs{X_n}^p\SetIn{\abs{X_n} > a}]  \le \sup_{m \le N_\epsilon}\E[\abs{X_m}^p\mathbbm{1}_{A_a}]+ \frac{\epsilon}{2}$. 
+Since $(\abs{X_n}^p: n\le N_\epsilon)$ is finite family of random variables in $L^1$, it is uniformly integrable. 
+Therefore, there exists $a_\epsilon \in \R_+$ such that $\sup_{m \le N_\epsilon}(\E[\abs{X_m}^p\mathbbm{1}_{A_a}])^{\frac{1}{p}} < \frac{\epsilon}{2}$. 
+Taking $a' = \max\set{a, a_\epsilon}$, we get $\sup_n (\E[\abs{X_n}^p\SetIn{\abs{X_n} > a'}])^{\frac{1}{p}} \le \epsilon$. 
+Since the choice of $\epsilon$ was arbitrary, it follows that 
+\EQ{
+\lim_{a \to \infty}\sup_n (\E[\abs{X_n}^p\SetIn{\abs{X_n} > a'}])^{\frac{1}{p}} = 0.
+}
+The convergence in probability follows from the Markov inequality, i.e.
+\EQ{
+P\set{\abs{X_n-X_m}^p > \epsilon} \le \frac{1}{\epsilon}\E\abs{X_n-X_m}^p. 
+}
+\item[$(c)\implies (a):$] 
+Since the sequence $(X_n: n\in \N)$ is convergent in probability to a random variable $X$, there exists a subsequence $(n_k: k \in \N) \subset \N$ such that $\lim_kX_{n_k} = X$ a.s. 
+Since $(\abs{X_n}^p: n \in \N)$ is a family of uniformly integrable sequence, by Fatou's Lemma
+\EQ{
+\E\abs{X}^p \le \lim\inf_k\E\abs{X_{n_k}}^p \le \sup_n\E\abs{X_n}^p < \infty.
+}
+Therefore, $X \in L^1$, and we define $A_n(\epsilon) = \set{\abs{X_n-X} > \epsilon}$ for any $\epsilon > 0$. 
+From Minkowski's inequality, we get 
+\EQ{
+\norm{X_n-X}_p \le \norm{(X_n-X)\SetIn{\abs{X_n-X}^p \le \epsilon}}_p+\norm{X_n\mathbbm{1}_{A_n(\epsilon)}}_p+\norm{X\mathbbm{1}_{A_n(\epsilon)}}_p.
+}
+We can check that $\norm{(X_n-X)\mathbbm{1}_{A_n^c(\epsilon)}}_p \le \epsilon$. 
+Further, since $\lim_nX_n = X$ in probability, $(A_n: n \in \N) \subset \sF$ is decreasing sequence of events, 
+and since $X_n, X \in L^1$, we have $\lim_n\norm{X_n\mathbbm{1}_{A_n(\epsilon)}} = \lim_n\norm{X\mathbbm{1}_{A_n(\epsilon)}} = 0$.
+\end{enumerate}
+\end{Proof}
+\end{frame}
+\end{document}

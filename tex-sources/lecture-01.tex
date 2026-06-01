@@ -1,0 +1,524 @@
+% !TEX spellcheck = en_US
+% !TEX spellcheck = LaTeX
+\documentclass[letterpaper,10pt,english]{article}
+%\input{header.tex}
+
+
+\usepackage{%
+	amsfonts,%
+	amsmath,%	
+	amssymb,%
+	amsthm,%
+	babel,%
+	bbm,%
+	%biblatex,%
+	caption,%
+	centernot,%
+	color,%
+	enumerate,%
+	%enumitem,%
+	epsfig,%
+	epstopdf,%
+	etex,%
+	fancybox,%
+	framed,%
+	fullpage,%
+	%geometry,%
+	graphicx,%
+	hyperref,%
+	latexsym,%
+	mathptmx,%
+	mathtools,%
+	multicol,%
+	paralist,%
+	pgf,%
+	pgfplots,%
+	pgfplotstable,%
+	pgfpages,%
+	proof,%
+	psfrag,%
+	%subfigure,%	
+	tcolorbox,%
+	tfrupee,%
+	tikz,%
+	times,%
+	%ulem,%
+	url,%
+	xcolor,%
+	mathpazo,%
+}
+
+\definecolor{shadecolor}{gray}{.95}%{rgb}{1,0,0}
+\usepackage[margin=1in,top=0.75in]{geometry}
+\usepackage[mathscr]{eucal}
+\usepgflibrary{shapes}
+\usepgfplotslibrary{fillbetween}
+\usetikzlibrary{%
+  arrows,%
+  backgrounds,%
+  chains,%
+  decorations.pathmorphing,% /pgf/decoration/random steps | erste Graphik
+  decorations.text,% 
+  matrix,%
+  positioning,% wg. " of "
+  fit,%
+  patterns,%
+  petri,%
+  plotmarks,%
+  scopes,%
+  shadows,%
+  shapes.misc,% wg. rounded rectangle
+  shapes.arrows,%
+  shapes.callouts,%
+  shapes%
+}
+
+%\pgfplotsset{compat=newest} %<------ Here
+\pgfplotsset{compat=1.11} %<------ Or use this one
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{clm}[thm]{Claim}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{axiom}[thm]{Axiom}
+\newtheorem{assum}[thm]{Assumption}
+\newtheorem{exerc}[thm]{Exercise}
+\newtheorem*{defin}{Definition}
+
+\theoremstyle{remark}
+\newtheorem{rem}{Remark}
+\newtheorem{note}{Note}
+
+\newcommand{\iid}{\emph{i.i.d.}\ }
+\newcommand{\Cov}{\operatorname{Cov}}
+%\newcommand{\det}{\operatorname{det}}
+%\newcommand{\Real}{\mathbb{R}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\cov}{\operatorname{cov}}
+
+%\renewcommand{\proof}[1]{\begin{proof}#1\end{proof}}
+\newcommand{\EQ}[1]{\begin{equation*}#1\end{equation*}}
+\newcommand{\EQN}[1]{\begin{equation}#1\end{equation}}
+\newcommand{\eq}[1]{\begin{align*}#1\end{align*}}
+\newcommand{\meq}[2]{\begin{xalignat*}{#1}#2\end{xalignat*}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\inner}[1]{\left\langle #1\right\rangle}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\expect}[1]{\mathbb{E}\left[{#1}\right]}
+\newcommand{\prob}[1]{\mathbb{P}\left[{#1}\right]}
+\newcommand{\given}{\; \big\vert \;} 
+\newcommand{\set}[1]{\left\{#1\right\}} 
+\newcommand{\indicator}[1]{1_{\set{#1}}} 
+\newcommand{\Ind}[1]{\mathbbm{1}_{#1}} 
+\newcommand{\SetIn}[1]{\mathbbm{1}_{\set{#1}}} 
+\newcommand{\red}[1]{\textcolor{red}{#1}} 
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newcommand{\bA}{\mathbf{A}}
+\newcommand{\bI}{\mathbf{I}}
+\newcommand{\bU}{\mathbf{1}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\bX}{\mathbf{X}}
+\newcommand{\bZ}{\mathbf{Z}}
+
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+
+\newcommand{\sA}{\mathscr{A}}
+\newcommand{\sB}{\mathscr{B}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sE}{\mathscr{E}}
+\newcommand{\sF}{\mathscr{F}}
+\newcommand{\sG}{\mathscr{G}}
+\newcommand{\sH}{\mathscr{H}}
+\newcommand{\sL}{\mathscr{L}}
+\newcommand{\sS}{\mathscr{S}}
+\newcommand{\sT}{\mathscr{T}}
+\newcommand{\sX}{\mathscr{X}}
+\newcommand{\sY}{\mathscr{Y}}
+\newcommand{\sZ}{\mathscr{Z}}
+
+\newcommand{\tS}{\tilde{S}}
+% Debug
+\newcommand{\todo}[1]{\begin{color}{blue}{{\bf~[TODO:~#1]}}\end{color}}
+
+% a few handy macros
+
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+\newcommand\matlab{{\sc matlab}}
+\newcommand{\goto}{\rightarrow}
+\newcommand{\bigo}{{\mathcal O}}
+%\newcommand{\half}{\frac{1}{2}}
+%\newcommand\implies{\quad\Longrightarrow\quad}
+\newcommand\reals{{{\rm l} \kern -.15em {\rm R} }}
+\newcommand\complex{{\raisebox{.043ex}{\rule{0.07em}{1.56ex}} \hskip -.35em {\rm C}}}
+
+
+% macros for matrices/vectors:
+
+% matrix environment for vectors or matrices where elements are centered
+\newenvironment{mat}{\left[\begin{array}{ccccccccccccccc}}{\end{array}\right]}
+\newcommand\bcm{\begin{mat}}
+\newcommand\ecm{\end{mat}}
+
+% matrix environment for vectors or matrices where elements are right justifvied
+\newenvironment{rmat}{\left[\begin{array}{rrrrrrrrrrrrr}}{\end{array}\right]}
+\newcommand\brm{\begin{rmat}}
+\newcommand\erm{\end{rmat}}
+
+% for left brace and a set of choices
+%\newenvironment{choices}{\left\{ \begin{array}{ll}}{\end{array}\right.}
+\newcommand\when{&\text{if~}}
+\newcommand\otherwise{&\text{otherwise}}
+% sample usage:
+%  \delta_{ij} = \begin{choices} 1 \when i=j, \\ 0 \otherwise \end{choices}
+
+
+% for labeling and referencing equations:
+\newcommand{\eql}{\begin{equation}\label}
+\newcommand{\eqn}[1]{(\ref{#1})}
+% can then do
+%  \eql{eqnlabel}
+%  ...
+%  \end{equation}
+% and refer to it as equation \eqn{eqnlabel}.  
+% some useful macros for finite difference methods:
+\newcommand\unp{U^{n+1}}
+\newcommand\unm{U^{n-1}}
+% for chemical reactions:
+\newcommand{\react}[1]{\stackrel{K_{#1}}{\rightarrow}}
+\newcommand{\reactb}[2]{\stackrel{K_{#1}}{~\stackrel{\rightleftharpoons}
+   {\scriptstyle K_{#2}}}~}
+\makeatletter
+\def\th@plain{%
+  \thm@notefont{}% same as heading font
+  \itshape % body font
+}
+\def\th@definition{%
+  \thm@notefont{}% same as heading font
+  \normalfont % body font
+}
+\makeatother
+\date{}
+
+
+
+
+
+\title{Lecture-01: Sample and Event Space}
+\author{}
+
+\begin{document}
+\maketitle
+
+\section{Functions and cardinality} 
+
+\emph{Notation:} 
+We denote 
+the set of first $N$ positive integers by $[N] \triangleq \set{1, 2, \dots, N}$, 
+the set of positive integers (natural numbers) by $\N \triangleq \set{1, 2, \dots}$, 
+the set of integers by $\Z \triangleq \set{\dots, -1, 0, 1, \dots}$, 
+the set of non-negative integers by $\Z_+ \triangleq \set{0, 1, \dots}$, 
+the set of rational numbers by $\Q$, % \triangleq \set{\frac{p}{q}: p, q \in \Z\text{ and are coprime }, q \neq 0}$, 
+the set of reals by $\R$, 
+and the set of non-negative reals by $\R_+$. 
+Power set of a set $A$ is the collection of all subsets of $A$ and denoted by $\cP(A) \triangleq \set{B: B \subseteq A}$. 
+\begin{defn}[Function]
+For sets $A, B$, we denote a function from set $B$ to set $A$ by $f: B \to A$,   
+where $(b, f(b)) \in B \times A$ and for each $b \in B$ there is only one value $f(b) \in A$.  
+That is, 
+\EQ{
+\set{(b, f(b)): b \in B} \subseteq B \times A. 
+}
+The set $B$ and $A$ are called the \textbf{domain} and \textbf{co-domain} of function $f$, 
+and the set $f(B) = \set{f(b) \in A: b \in B}$ is called the \textbf{range} of function $f$. 
+\end{defn}
+\begin{shaded}
+\begin{exmp}
+Let $B = \set{1,2,3}$ and $A = \set{a,b}$, then $\set{(1,a), (2,a), (3,b)}$ corresponds to a function $f:B \to A$ such that $f(1)= f(2) = a, f(3) =b$. 
+We will denote this function by ordered tuple $(aab)$.  
+\end{exmp}
+\end{shaded}
+\emph{Notation:} The collection of all $A$-valued functions with the domain $B$ is denoted by $A^B$.   
+\begin{shaded}
+\begin{exmp}
+Let $B = \set{1,2,3}$ and $A = \set{a,b}$, then the collection $A^B$ is defined by the set of ordered tuples 
+\EQ{
+\set{(aaa), (aab), (aba), (abb), (baa), (bab), (bba), (bbb)}.
+%&\set{\set{(1,a), (2,a), (3,a)}, \set{(1,a), (2,a), (3,b)}, \set{(1,a), (2,b), (3,b)}, \set{(1,a), (2,b), (3,a)}}\\
+%&\cup\set{\set{(1,b), (2,a), (3,a)}, \set{(1,b), (2,a), (3,b)}, \set{(1,b), (2,b), (3,b)}, \set{(1,b), (2,b), (3,b)}}.
+}
+\end{exmp}
+\end{shaded}
+\begin{defn}[Inverse Map]
+For a function $f \in A^B$, we define \textbf{set inverse map} $f^{-1}(C) = \set{b \in B: f(b) \in C}$ for all subsets $C \subseteq A$.  
+\end{defn}
+\begin{rem} 
+This is a slight abuse of notation, since $f^{-1}: \cP(A) \to \cP(B)$ is a map from sets to sets. 
+\end{rem}
+\begin{shaded}
+\begin{exmp}
+Let $B = \set{1,2,3}$ and $A = \set{a,b}$ and $f$ be denoted by the ordered tuple $(aba)$, 
+then $f^{-1}(\set{a}) = \set{1,3}$ and $f^{-1}(\set{b}) = \set{2}$.  
+\end{exmp}
+\end{shaded}
+\begin{defn}[Injective, surjective, bijective]
+A function $f \in A^B$ is 
+\begin{itemize}
+\item[\textbf{injective:}] if for any distinct $b \neq c \in B$, we have $f(b) \neq f(c)$,
+\item[\textbf{surjective:}] if $f(B) = A$, and 
+\item[\textbf{bijective:}] if it is injective and surjective.  
+\end{itemize}
+\end{defn}
+\begin{shaded}
+\begin{exmp}
+\begin{itemize}
+\item[\textbf{injective:}] Let $B = \set{1,2,3}$ and $A = \set{a,b,c,d}$.  
+Then $(abc)$ is an injective function.   
+\item[\textbf{surjective:}] Let $B = \set{1,2,3,4}$ and $A = \set{a,b,c}$.  
+Then $(abca)$ is a surjective function.   
+\item[\textbf{bijective:}] Let $B = \set{1,2,3}$ and $A = \set{a,b,c}$.  
+Then $(abc)$ is a bijective function.    
+\end{itemize}
+\end{exmp}
+\end{shaded}
+
+\begin{defn}[Cardinality]
+We denote the cardinality of a set $A$ by $\abs{A}$. 
+If there is a bijection between two sets, they have the same cardinality.  
+Any set which is bijective to the set $[N]$ has cardinality $N$.
+\end{defn}
+\begin{shaded}
+\begin{exmp}
+The cardinality of $A = \set{a,b,c}$ is $\abs{A} = 3$, since there is a bijection between $B = \set{1,2,3}$ and $A = \set{a,b,c}$.  
+\end{exmp}
+\end{shaded}
+\begin{defn}[Countable]
+Any set which is bijective to a subset of natural numbers $\N$ is called a \textbf{countable} set.  
+Any set which has a finite cardinality is called a \textbf{countably finite} set. 
+Any set which is bijective to the set of natural numbers $\N$ is called a \textbf{countably infinite} set. 
+\end{defn}
+
+%For sets $A,B$, the collection $A^B$ is the collection of all $A$-valued functions with the domain $B$. 
+%That is, any element $f \in A^B$ is a function $f:B \to A$ and $f(b) \in A$ for all $b \in B$. 
+%%We can verify that $\abs{A^B} = \abs{A}^{\abs{B}}$. 
+\begin{tcolorbox}
+\begin{exerc}
+Show the following are true. 
+\begin{enumerate}
+\item $\abs{A^B} = \abs{A}^{\abs{B}}$. 
+\item $A^{[N]}$ is set of all $A$-valued $N$-length sequences. 
+\item $A^\N$ is a set of all $A$-valued countably infinite sequences indexed by the set of natural numbers $\N$.
+\item The sets $\N, \Z_+, \Z, \Q$ have the same cardinality. 
+\end{enumerate}
+\end{exerc}
+\end{tcolorbox}
+\section{Sample space}
+
+Consider an experiment where the outcomes are random and unpredictable. 
+\begin{defn}[Sample space]
+The set of all possible outcomes of a random experiment is called \textbf{sample space} and denoted by $\Omega$. 
+\end{defn}
+\begin{shaded}
+\begin{exmp}[Single coin toss] 
+Consider a single coin toss, where the outputs can be heads or tails, denoted by $H$ and $T$ respectively.  
+The set of all possible outcomes is $\Omega = \set{H, T}$.
+\end{exmp}
+\begin{exmp}[Finite coin tosses] 
+Consider $N$ tosses of a single coin, where the possible output of each coin toss belongs to the set $\set{H,T}$ as before.  
+In this case, the sample space is $\Omega = \set{H, T}^{[N]}$, 
+and a single outcome is a sequence $\omega = (\omega_1, \dots, \omega_N)$ where $\omega_i \in \set{H,T}$ for all $i \in [N]$.  
+\end{exmp}
+\begin{exmp}[Countably infinite coin tosses] 
+Consider an infinite sequence of coin tosses. 
+The set of all possible outcomes is $\Omega = \set{H, T}^\N$. 
+A single outcome is a sequence $\omega = (\omega_i \in \set{H,T}: i \in \N) \in \Omega$.  
+\end{exmp}
+\begin{exmp}[Point on non-negative real line] 
+The set of all possible outcomes for a single point on non-negative real line is $\Omega = \R_+$. 
+\end{exmp}
+\begin{exmp}[Countable points on non-negative real line]
+The set of all possible outcomes is $\Omega = \R_+^\N$, 
+where a single outcome is a sequence $\omega = (\omega_i \in \R_+: i \in \N) \in \Omega$. 
+\end{exmp}
+\end{shaded}
+
+\section{Event space}
+\begin{defn}[Event space]
+A collection of subsets of sample space $\Omega$ is called the \textbf{event space} if it is a $\sigma$-algebra over subsets of $\Omega$, and denoted by $\sF$. 
+In other words, the collection $\sF$ satisfies the following properties. 
+\begin{enumerate}
+\item Event space includes the certain event $\Omega$. That is, $\Omega \in \sF$. 
+\item Event space is closed under complements. That is, if $A \in \sF$, then $A^c \in \sF$. 
+\item Event space is closed under countable unions. That is, if $A_i \in \sF$ for all $i \in \N$, then $\cup_{i \in \N}A_i \in \sF$.
+\end{enumerate}
+The elements of the event space $\sF$ are called \textbf{events}. 
+\end{defn}
+\begin{shaded}
+\begin{exmp}[Coarsest event space]
+For any sample space $\Omega$, the trivial event space is $\sF = \set{\emptyset, \Omega}$. 
+\end{exmp}
+\begin{exmp}[Single coin toss] 
+Recall that the sample space for a single coin toss is $\Omega = \set{H, T}$. 
+We define an event space $\sF \triangleq \set{\emptyset, \set{H}, \set{T}, \set{H,T}}$. 
+Can you verify that $\sF$ is a $\sigma$-algebra?
+\end{exmp}
+\begin{exmp}[Finest event space for finite coin tosses] 
+Recall that the sample space for $N$ coin tosses is $\Omega = \set{H, T}^N$, 
+%Consider $N$ tosses of a single coin, where the possible output of each coin toss belongs to the set $\set{H,T}$ as before.  
+%In this case, the sample space is 
+%\EQ{
+%\Omega = \set{H, T}^{[N]} = \set{(\omega_1, \dots, \omega_N): \omega_i \in \set{H,T} \text{ for all } i \in [N]}.
+%} 
+An event space for this sample space is $\sF \triangleq \cP(\Omega) = \set{A: A \subseteq \Omega}$. 
+Can you verify that $\sF$ is a $\sigma$-algebra?
+\end{exmp}
+\end{shaded}
+\begin{rem}
+%From the definition of an event space, the following statements hold true.
+%\begin{enumerate}
+%\item 
+We observe that $\sF \subseteq \cP(\Omega)$. 
+However, not all subsets of the sample space $\Omega$ necessary belong to the event space. 
+That is, $\sF \subset \cP(\Omega)$. 
+To show this, it suffices to construct a set $A \subset \Omega$ that is not in $\sF$. 
+\end{rem}
+\subsection{Properties of event space}
+\begin{prop}[Properties of event space] Event space contains the impossible event, is closed under finite unions, and closed under countable intersections.
+\end{prop}
+\begin{proof}
+From the inclusion of certain event and the closure complements of $\sigma$-algebras, 
+it follows that the impossible event $\emptyset \in \sF$. 
+That is, since $\Omega \in \sF$ and $\emptyset = \Omega^c$, we have $\emptyset \in \sF$.
+
+We need to show that if $A,B \in \sF$, then the union $A\cup B \in \sF$. 
+This follows from the fact that we can $A_1 = A, A_2 = B$ and $A_i = \emptyset$ for all $i \ge 2$, 
+and apply closure under countable unions. 
+
+We need to show that for any sequence of events such that $A_i \in \sF$ for all $i \in \N$, we have $\cap_{i \in \N}A_i \in \sF$. 
+To show this, we first notice that $A_i^c \in \sF$ for all $i \in \N$ from the closure under complements. 
+Further, we have $\cup_{i \in \N}A_i^c \in \sF$ from the closure under countable unions, 
+and then the result follows from taking the complement and the closure under complements. 
+\end{proof}
+%\begin{rem}
+%\item 
+%\end{rem}
+%\begin{rem}
+%\item 
+%Event space is closed under finite unions. 
+%In particular, if $A, B \in \sF$, then $A\cup B \in \sF$. 
+
+%\end{enumerate}
+%\end{rem}
+%\begin{rem}
+%\item 
+%Event space is closed under countable intersections. 
+%That is, $A_i \in \sF$ for all $i \in \N$, then $\cap_{i \in \N}A_i \in \sF$. 
+%\end{enumerate}
+%\end{rem}
+
+\subsection{Event space generated by a family of sets}
+\begin{defn}[Event space generated by a family of sets] 
+Consider a sample space $\Omega$ and a family $F \subset \cP(\Omega)$ of subsets of $\Omega$.   
+Then the event space generated by $F$ is the smallest event space containing each element of $F$, 
+and is denoted by $\sigma(F)$. 
+\end{defn}
+\begin{shaded}
+\begin{exmp}[Event space generated by a single event]
+For any sample space $\Omega$ and a subset $A \subseteq \Omega$, the smallest event space generated by this event $A$ is 
+$\sF = \set{\emptyset, A, A^c, \Omega}$. 
+\end{exmp}
+\begin{exmp}[Countably infinite coin tosses] 
+Recall that the sample space for a countably infinite number of coin tosses is $\Omega = \set{H, T}^\N$.  
+%A single coin is tossed countably infinite times. 
+%A single outcome of this repeated coin toss can be denoted by a sequence $\omega = (\omega_1, \omega_2, \dots)$, 
+%where $\omega_i \in \set{H, T}$ is the output of $i$th coin toss. 
+%Then, we can write the sample space as 
+%\EQ{
+%\Omega = \set{H, T}^{[N]} = \set{(\omega_1, \omega_2, \dots ): \omega_i \in \set{H,T} \text{ for all } i \in \N}.
+%} 
+We will construct an event space $\sF$ on this outcome space, which would not be the power set of the sample space. 
+By definition, we must have the certain and the impossible event in an event space.
+We consider the event space $\sF$ generated by the events 
+\EQN{
+\label{eqn:Axioms:EventSpace:OneHeadEvent}
+A_n \triangleq \set{\omega \in \Omega: \omega_i = H \text{ for some }i \in [n]},\text{ for each }n \in \N. 
+} 
+That is $A_n$ is the event of getting at least one head in first $n$ tosses. 
+We see that $(A_n \in \sF: n \in \N)$ is a sequence of increasing events.  
+From the closure under countable union, we have $\cup_{n \in \N}A_n = \Omega\setminus(T, T, \dots) \in \sF$. 
+% and hence $(B_n \triangleq A_{n+1}\setminus A_n \in \sF: n \in \N)$ is a sequence of disjoint events, 
+%where the event $B_n$ corresponds to seeing first head after $n-1$ consecutive tails. 
+\end{exmp}
+\end{shaded}
+\begin{tcolorbox}
+\begin{exerc}
+Consider a countably infinite sequence of coin tosses, 
+with the sample space $\Omega = \set{H,T}^\N$ and the the event space $\sF$ generated by the events $(A_n: n \in \N)$ defined in Eq.~\eqref{eqn:Axioms:EventSpace:OneHeadEvent}. 
+Let $B_n$ be the event of observing first head in $n$th toss, 
+then show that $B_n \in \sF$ for all $ n \in \N$.  
+\end{exerc}
+\end{tcolorbox}
+
+%\begin{proof}
+%We see that the event $B_1 = A_1$ and the event $B_{n+1}$ can be written as 
+%\EQ{
+%B_{n+1} = \set{\omega \in \Omega: \omega_i = T \text{ for }i \le n, \omega_{n+1} = H} = A_{n+1}\setminus A_{n}. 
+%}
+%Therefore, $B_n \in \sF$ for all $n \in \N$. 
+%\end{proof}
+\begin{defn}[Borel event space] 
+For sample space $\R$, 
+a \emph{Borel event space} is generated by the subsets $B_x \triangleq (-\infty, x] \subseteq \R$ for each $x \in \R$, 
+and denoted by $\sB(\R) = \sigma(\set{B_x: x \in \R})$. 
+\end{defn}
+\begin{tcolorbox}
+\begin{exerc}
+Show that the events $\set{x}, (x, y), [x, y]$ belong to the Borel event space $\sB(\R)$ for all $x, y \in \R$.  
+\end{exerc}
+\end{tcolorbox}
+%\begin{shaded}
+%\begin{exmp} 
+%Let $x,y\in\R$ and $x < y$ , then we will show that the events $\set{x}, (x, y), [x, y]$ belong to Borel event space $\sB(\R)$.  
+%We observe that $(-\infty, x]^c = (x,\infty) \in \sB(\R)$. 
+%Similarly, $(y, \infty) \in \sB(\R)$. 
+%It follows that $(x,\infty)\cap(-\infty, y] = (x, y] \in \sB(\R)$. 
+%Consider a decreasing sequence $u$ such that $u_n \downarrow x$ and an increasing sequence $\ell$ such that $\ell_n\uparrow x$. 
+%We observe that $(-\infty, \ell_n]\in \sB(\R)$ and $\cup_{n\in\N}(-\infty, \ell_n] = (-\infty,x) \in \sB(\R)$.  
+%Therefore, it follows that $[x,y] = (-\infty, x)^c\cap(-\infty, y] \in \sB(\R)$. 
+%We can similarly show that $(-\infty, y)\in \sB(\R)$, and it follows that $(x,y) = (-\infty, x]^c\cap(-\infty, y) \in \sB(\R)$. 
+%We observe that $x \in [\ell_n,u_n] \in \sB(\R)$ for all $n \in \N$, and $\set{x} = \cap_{n \in \N}[\ell_n, u_n] \in \sB(\R)$. 
+%\end{exmp}
+%\end{shaded}
+\end{document}

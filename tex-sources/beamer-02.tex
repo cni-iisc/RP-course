@@ -1,0 +1,374 @@
+% !TEX spellcheck = en_US
+% !TEX spellcheck = LaTeX
+\documentclass[12pt,aspectratio=169]{beamer}
+\input{header_beamer}
+\usetheme{Boadilla}
+\usecolortheme{beaver}
+\setbeamertemplate{page number in head/foot}{}
+\setbeamertemplate{navigation symbols}{}
+
+\title{Lecture-02: Probability Function}
+\date{}
+
+\begin{document}
+\pagestyle{empty}
+\maketitle
+
+\begin{frame}{Indicator functions}
+Consider a random experiment over an outcome space $\Omega$ and an event space $\sF$. 
+    \begin{block}{Definition}<2->
+    The indicator of an event $B \in \sF$ is denoted by 
+    \EQ{
+    \Ind{B}(\omega) = 
+    \begin{cases}
+    1, & \omega \in B,\\
+    0, & \omega \notin B.
+    \end{cases}
+    }
+    \end{block}
+    \begin{Example}<3->
+    Consider a roll of dice that has an outcome space $\Omega = [6]$ and event space $\sF = \cP(\Omega)$. 
+    For an event $O \triangleq \set{1,3,5}$ that represents odd outcomes for dice roll, we observe that $\Ind{O}(1) = 1$ and $\Ind{O}(2) = 0$. 
+    \end{Example}
+\end{frame}
+
+\begin{frame}{More Examples}
+    \begin{Example}
+    \begin{itemize}
+    \item <1-> Consider $N$ trials of a random experiment over outcome space $\Omega$ and the event space $\sF$.  
+    \item <2-> Let $\omega_n \in \Omega$ denote the outcome of the experiment of the $n$th trial. 
+    \item <3-> For each event $B \in \sF$, we define an indicator function 
+    \EQ{
+    \Ind{B}(\omega_n) = 
+    \begin{cases}
+    1, & \omega_n \in B,\\
+    0, & \omega_n \notin B.
+    \end{cases}
+    }
+    \item <4-> The number of times the event $B$ occurs in $N$ trials is $N(B) = \sum_{n=1}^N\Ind{B}(\omega_n)$. 
+    \item <5-> The relative frequency of an event $A$ in $N$ trials is $\frac{N(B)}{N}$. 
+    \end{itemize}
+    \end{Example}
+\end{frame}
+
+\begin{frame}{Disjoint events}
+    \begin{block}{Definition}<1->
+    Let $(\Omega,\sF)$ be a pair of sample and event space, 
+    and a sequence of events $A \in \sF^\N$. 
+    The sequence is \textbf{mutually disjoint} if $A_n\cap A_m = \emptyset$ for any $m\neq n \in \N$. 
+    If $\cup_{n \in \N}A_n = \Omega$, then $A$ is a \textbf{partition} of sample space $\Omega$.   
+    \end{block}
+
+    \begin{block}{Exercise}<2->
+    \begin{enumerate}
+        \item <2-> Consider the sample space $\Omega = \set{H,T}^\N$ and event space $\sF = \sigma(A_n: n \in \N)$ where $A_n \triangleq \set{\omega \in \Omega: \omega_i = H \text{ for some } i \in [n]}$. 
+        Construct a sequence of non-trivial disjoint events. 
+    
+        \item <3-> Let $(\Omega,\sF)$ be a pair of sample and event space. 
+        For any sequence of events $A \in \sF^\N$, show that
+        \begin{enumerate}
+            \item <4-> $\Ind{\cap_{n\in\N}A_n}(\omega) = \prod_{n \in \N}\Ind{A_n}(\omega)$, 
+            \item <5-> $\Ind{\cup_{n \in \N}A_n}(\omega) = \sum_{n \in \N}\Ind{A_n}(\omega)$ if the sequence $A$ is mutually disjoint.   
+        \end{enumerate} 
+    \end{enumerate}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Properties of relative frequency}
+    %\begin{Example}
+    %We observe the following properties of the relative frequency.
+    \begin{enumerate}
+        \item <1-> For all events $B \in \sF$, we have $0 \le \frac{N(B)}{N} \le 1$. 
+        This follows from the fact that $0 \le N(B) \le N$ for any event $B \in \sF$. 
+        \item <2-> Let $A\in\sF^\N$ be a sequence of mutually disjoint events,   
+        %Suppose $A_i \in \sF$ for all $i \in \N$ such that $A_i \cap A_j = \emptyset$ for all $i \neq j$, 
+        then $\frac{N(\cup_{i \in \N}A_i)}{N} =  \sum_{i\in \N}\frac{N(A_i)}{N}$. 
+        This follows from the fact that for mutually disjoint event sequence $A$, we have 
+        \EQ{
+        \Ind{\cup_{i \in \N}A_i}(\omega_n) = \sum_{i \in \N}\Ind{A_i}(\omega_n).
+        }
+        \item <3-> For the certain event $\Omega$, we have $\frac{N(\Omega)}{N} = 1$. 
+        This follows from the fact that $N(\Omega) = N$. 
+        \item <4-> Since the relative frequency is positive and bounded, it may converge to a real number as $N$ grows very large, and the limit $\lim_{N \to \infty}\frac{N(B)}{N}$ may exist. 
+    \end{enumerate}
+    %\end{Example}
+\end{frame}
+
+\begin{frame}{Probability axioms}
+    \begin{block}{Axioms of probability}
+    We define a probability measure on sample space $\Omega$ and event space $\sF$ by a function $P: \sF \to [0,1]$ which satisfies the following axioms. 
+    \begin{enumerate}
+        \item <2-> [\textbf{Non-negativity:}] For all events $B \in \sF$, we have $P(B) \ge 0$. 
+        %\item  [\textbf{Finite additivity}] For any two sets of mutually disjoint events $A, B \in \sF$ such that $A \cap B = \emptyset$, we have $P(A \cup B) = P(A) + P(B)$. 
+        \item <3-> [\textbf{$\sigma$-additivity:}] For an infinite sequence $A \in \sF^\N$ of mutually disjoint events,  
+        %$A_i \in \sF$ for all $i \in \N$ such that $A_i \cap A_j = \emptyset$ for all $i \neq j$, 
+        we have $P(\cup_{i \in \N}A_i) = \sum_{i \in \N}P(A_i)$. 
+        \item <4-> [\textbf{Certainty:}] $P(\Omega) = 1$. 
+    \end{enumerate} 
+    \end{block}
+\end{frame}
+
+\begin{frame}{Probability space}
+    \begin{block}{Definition}
+    A sample space $\Omega$, an event space $\sF\subseteq \cP(\Omega)$, 
+    and a probability measure $P: \sF \to [0,1]$, 
+    together define a probability space $(\Omega,\sF,P)$.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Properties of Probability}
+    
+    \begin{block}{Properties} 
+        \begin{enumerate}
+            \item <1-> [\textbf{Impossibility:}] $P(\emptyset) = 0$.
+            \item <2-> [\textbf{Finite Additivity:}] For mutually disjoint events $A\in \sF^n$, 
+            %such that $A_i \cap A_j =\emptyset$ for $i \neq j$, 
+            we have $P(\cup_{i=1}^nA_i) = \sum_{i=1}^nP(A_i)$. 
+            \item <3-> [\textbf{Monotonicity:}] If events $A, B \in \sF$ such that $A \subseteq B$, then $P(A) \le P(B)$. 
+            \item <4-> [\textbf{Inclusion-Exclusion:}] For any events $A, B \in \sF$, we have $P(A \cup B) = P(A) + P(B) - P(A \cap B)$.
+            \item <5-> [\textbf{Continuity:}] For a sequence of events $A \in \sF^\N$ such that $\lim_nA_n$ exists, we have $P(\lim_{n \to \infty}A_n) = \lim_{n \to \infty}P(A_n)$. 
+        \end{enumerate}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Proof}
+We consider the probability space $(\Omega, \sF, P)$.
+    \begin{itemize}
+        \item <1-> We take disjoint events $E\in\sF^\N$ where $E_1 = \Omega$ and $E_i = \emptyset$ for $i \ge 2$. 
+        \implies $\cup_{i \in \N}E_i = \Omega$ and $E$ is a collection of mutually disjoint events.  
+        \EQ{
+        P(\Omega) = P(\Omega) + \sum_{i \ge 2}P(E_i). 
+        }
+        Since $P(E_i) \ge 0$, it implies that $P(\emptyset) = 0$. 
+        \item <2-> We consider disjoint events $A_1, \dots, A_n$, and take $A_{i} = \emptyset$ for all $i > n$. 
+        \implies $A\in\sF^\N$ is mutually disjoint, and since $P(\emptyset) = 0$,  
+        \EQ{
+        P(\cup_{i=1}^nA_i) = P(\cup_{i \in \N}A_i) = \sum_{i=1}^nP(A_i) + \sum_{i > n}P(\emptyset) =  \sum_{i=1}^nP(A_i).
+        }
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Proof continued}
+    \begin{itemize}
+        \item <1-> For events $A, B \in \sF$ $A \subseteq B$, take disjoint events $E_1 = A$ and $E_2 = B\setminus A$. 
+        \implies $E_2 \in \sF$, $P(E_2) \ge 0$. 
+        \EQ{
+        P(B) = P(E_1 \cup E_2)= P(E_1) + P(E_2) \ge P(A).
+        }
+        \item <2-> For any two events $A, B \in \sF$, 
+        \EQ{&A = (A\setminus B) \cup (A\cap B)}
+        \EQ{&&B = (B\setminus A) \cup (A\cap B)} 
+        \EQ{A\cup B = (A\setminus B)\cup(A \cap B)\cup(B \setminus A)}
+        
+        \item <3-> We show the continuity of probability in the next section. 
+        %We show the continuity for the non-decreasing and non-increasing sequence of sets.\\
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{Examples}
+    \begin{itemize}
+        \item <1-> Consider a single coin tosse with the sample space $\Omega = \set{H,T}$, an event space $\sF = \cP(\Omega)$. 
+        The probability measure $P:\sF\to[0,1]$ is defined as 
+        \begin{xalignat*}{4}
+        &P(\emptyset) = 0,&
+        &P(\set{H}) = p&
+        &P(\set{T}) = 1-p&
+        &P(\set{H,T}) = 1.
+        \end{xalignat*}
+        
+        \item <2-> Consider $N$ coin tosses with the sample space $\Omega = \set{H,T}^{[N]}$, an event space $\sF = \cP(\Omega)$. The number of heads as $N_H(\omega) \triangleq \sum_{n\in[N]}\Ind{\set{H}}(\omega_n)$ and the number of tails as $N_T(\omega) \triangleq N - N_H(\omega)$.  
+        \begin{equation*}
+        P(A) \triangleq \sum_{\omega \in A}p^{N_H(\omega)}(1-p)^{N_T(\omega)}.
+        \end{equation*}
+    \end{itemize}
+    \end{Examples}
+    \begin{itemize}
+    \item <3-> Can you verify that $P$ is a probability function in the above two examples?
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Limits of sets}
+    \begin{Definition}[Limits of monotonic sets]
+    \begin{itemize}
+    \item <1-> For a sequence of non-decreasing sets $(A_n: n \in \N)$, we can define the limit as 
+    \EQ{
+    \lim_{n \to \infty}A_n \triangleq \cup_{n \in \N}A_n.
+    }
+    \item <2-> Similarly, for a sequence of non-increasing sets $(A_n: n \in \N)$, we can define the limit as 
+    \EQ{
+    \lim_{n \to \infty}A_n \triangleq \cap_{n \in \N}A_n.
+    }
+    \end{itemize}
+    \end{Definition}
+\end{frame}
+
+\begin{frame}
+    \begin{Example}[Monotone sets]
+    \begin{itemize}
+    \item <1-> Consider a monotonically increasing sequence $a \in \R^\N$, $a_n \triangleq -\frac{1}{n}$ for all  $n \in \N$,  
+    which converges to the limit $0$.  
+    \item <2-> Consider monotone sequence of sets $A, B \in \sB(\R)^\N$, $A_n \triangleq [-2, -\frac{1}{n}]$ and $B_n \triangleq [-2, \frac{1}{n}]$  for all $n \in \N$, which are monotonically increasing and decreasing respectively. 
+    \item <3-> We can verify the following limits 
+    \meq{2}{
+    &\lim_n A_n = \cup_{n \in \N}A_n = [-2, 0), &&\lim_nB_n = \cap_{n \in \N}B_n = [-2, 0].
+    }
+    \end{itemize}
+    \end{Example}
+\end{frame}
+
+
+\begin{frame}{Limits of sets}
+    \begin{Definition}
+    For a sequence of sets $(A_n: n \in \N)$, we can define the limit superior and limit inferior of this sequence of sets as 
+    \begin{itemize}
+    \item <2-> \EQ{
+    \limsup_{n \to \infty}A_n \triangleq \cap_{n \in \N}\cup_{m \ge n}A_m = \lim_{n \to \infty}\cup_{m \ge n}A_m}
+    \item <3-> \EQ{\liminf_{n\to\infty}A_n\triangleq \cup_{n \in \N}\cap_{m \ge n}A_m = \lim_{n \to \infty}\cap_{m \ge n}A_m.
+    }
+    \end{itemize}
+    %In general, $\liminf_{n \to \infty}A_n \subseteq \limsup_{n \to \infty}A_n$. 
+    %If the limit superior and limit inferior of any sequence of sets are equal, then the limit is defined as 
+    %\EQ{
+    %\lim_{n \to \infty}A_n = \limsup_{n \to \infty}A_n = \liminf_{n \to \infty}A_n. 
+    %}
+    \end{Definition}
+\end{frame}
+
+
+\begin{frame}{Lemma} 
+    \begin{block}{Lemma}<1->
+    For a sequence of sets $(A_n: n \in \N)$, we have $\liminf_{n \to \infty}A_n \subseteq \limsup_{n \to \infty}A_n$.  
+    \end{block}
+    \begin{block}{Proof}<2->
+    \begin{itemize}
+        \item <3-> For each $n \in \N$, we define $E_n \triangleq \cup_{m \ge n}A_m$ and $F_n \triangleq \cap_{m \ge n}A_m$. 
+        %We see that $F_n \subseteq A_m$ for all $m \ge n$.  
+        \item <4-> Consider a fixed $n$, then $F_1, F_2, \dots, F_n \subseteq A_n$, and $F_m \subseteq A_m$ for all $m \ge n$. 
+        \item <5-> Therefore, we can write $\cup_{n \in \N}F_n \subseteq \cup_{m \ge n}A_m$ for each $n \in \N$, 
+        and hence the result follows. 
+        %Let $x \in \liminf_n A_n$, then $x \in F_{n_0}$ for some $n_0 \in \N$.
+        %That is, there exists an $n_0 \in \N$, such that $x \in A_m$ for all $m \ge n_0$. 
+        %In particular, it means $x \in \cup_{m \ge n}A_m$ for each $n \in \N$, and hence $x \in \limsup_n A_n$. 
+    \end{itemize}
+    \end{block}
+\end{frame}
+
+
+\begin{frame}{Sequence of sets with limit}
+    \begin{Definition}<1->
+        If the limit superior and limit inferior of any sequence of sets $(A_n: n \in \N)$ are equal, then the sequence of sets has a limit $A_\infty$, which is defined as 
+        \EQ{
+        A_\infty \triangleq \lim_{n \to \infty}A_n = \limsup_{n \to \infty}A_n = \liminf_{n \to \infty}A_n. 
+        } 
+    \end{Definition}
+\end{frame}
+
+\begin{frame}{Example}
+    \begin{Example}[Sequence of sets with different limits]
+    \begin{itemize}
+        \item <1-> We consider sequence of sets $(A_n = [-2, (-1)^n + \frac{1}{n}]: n \in \N)$. 
+        It follows that  $F_n = \cap_{m \ge n}A_m = [-2, -1]$ and 
+        \EQ{
+        E_n = \cup_{m \ge n}A_m = 
+        \begin{cases}
+        [-2, 1+ \frac{1}{n+1}], & n \text{ odd},\\
+        [-2, 1 + \frac{1}{n}], &n \text{ even}.
+        \end{cases}
+        }
+        \item <2-> We can verify the following limits 
+        \meq{2}{
+        &\liminf_n A_n = \cup_{n \in \N}F_n = [-2, -1], &&\limsup_n A_n = \cap_{n \in \N}E_n = [-2, 1].
+        }
+    \end{itemize}
+    \end{Example}
+\end{frame}
+
+\begin{frame}{Continuity of probability for increasing sets}
+    \begin{block}{Proof} 
+    \begin{itemize}
+        \item <1-> Let $(A_n \in \sF: n \in \N)$ be a non-decreasing sequence of events, 
+        %such that $A_n \subseteq A_{n+1}$ for all $n \in \N$. 
+        %Then, we have 
+        then $\lim_{n \to \infty}A_n = \cup_{n\in \N}A_n$. 
+        \item <2-> $(P(A_n): n \in \N)$ is a non-negative non-decreasing bounded sequence, and hence has a limit. 
+        \item <3-> $(A_1, A_2\setminus A_1, \dots, A_n\setminus A_{n-1})$ is a partition of the event $A_n$, and $P(A_i\setminus A_{i-1}) = P(A_i) - P(A_{i-1})$ for each $i \in \N$.
+    \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Continuity of probability for increasing sets}
+    \begin{block}{Proof continued}
+    \begin{itemize}
+        \item <1-> For each $n \in \N$
+        \EQ{
+        P(A_n) = P(A_1) + \sum_{i=1}^{n-1}P(A_{i+1}\setminus A_i) = P(A_1) + \sum_{i=1}^{n-1}(P(A_{i+1}) -P(A_i)).
+        }
+        \item <2-> We can write for $\lim_{n \to \infty}A_n = \cup_{n \in \N}A_n$, 
+        \EQ{
+        P(\cup_{n \in \N}A_n) = P(A_1) + \sum_{i \in \N}(P(A_{i+1}) -P(A_i))}
+        \EQ{= P(A_1) + \lim_{n \to \infty}\sum_{i=1}^{n-1}(P(A_{i+1}) -P(A_i)) = \lim_{n \to \infty}P(A_n).
+        }
+    \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Continuity of probability for decreasing sets} 
+    \begin{block}{Proof}
+    \begin{itemize}
+        \item <1-> For a non-increasing sequence of sets $(B_n \in \sF: n \in \N)$, 
+        we can find the non-decreasing sequence of sets $(B^c_n \in \sF: n \in \N)$. 
+        \item <2->
+        \EQ{
+        P(\lim_{n \to \infty}B_n) = P(\cap_{n \in \N}B_n) = 1 - P(\cup_{n \in \N}B^c_n)  = 1 - P(\lim_{n \to \infty}B_n^c) 
+        }
+        \EQ{= 1 - \lim_{n\to \infty}P(B_n^c) = \lim_{n \to \infty}P(B_n).
+        }
+    \end{itemize}
+    \end{block}
+\end{frame}
+    
+\begin{frame}{Continuity of probability for general sequence of sets} 
+    \begin{block}{Proof}
+    \begin{itemize}
+        \item <1-> Non-increasing sequences of sets: $(E_n = \cup_{m \ge n}A_m \in \sF: n \in \N)$ \\
+        Non-decreasing sequences of sets: $(F_n = \cap_{m \ge n}A_m \in \sF: n \in \N)$. 
+        \item <2->  
+        \EQ{P(\limsup_nA_n) = P(\cap_{n\in\N}E_n) = \lim_{n\to \infty}P(E_n)
+        }
+        \EQ{P(\liminf_nA_n) = P(\cup_{n\in\N}F_n) = \lim_{n\to \infty}P(F_n)
+        }
+    \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Continuity of probability for general sequence of sets}
+    \begin{block}{Proof continued}
+    \begin{itemize}
+        \item <1-> From the definition of two sequences of sets, we obtain 
+        \meq{2}{
+        &P(E_n) \ge \sup_{m \ge n}P(A_m), && P(F_n) \le \inf_{m \ge n}P(A_m).
+        } 
+        \item <2-> Taking limsup and liminf, we obtain 
+        \EQ{
+        \lim_{n\to\infty}P(E_n) = \limsup_{n \in \N} P(A_n) \ge \inf_{n \in \N}\sup_{m \ge n}P(A_m) \ge  \sup_{n \in \N}\inf_{m \ge n}P(A_m) \ge \liminf_{n \in \N}P(F_n)}
+        \EQ{  \lim_{n\to\infty}P(E_n) = \limsup_{n \in \N} P(A_n) \ge \liminf_{n \in \N}P(A_n)
+        = \lim_{n\to\infty}P(F_n)
+        } 
+    \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Continuity of probability for general sequence of sets}
+    \begin{block}{Proof continued}
+    \begin{itemize}
+        \item <1-> But, 
+        \EQ{\liminf_{n \in \N}P(A_n) \le \limsup_{n \in \N} P(A_n)}
+        \item <2-> Therefore, 
+        \EQ{ \lim_{n\to\infty}P(E_n) = \lim_{n\to\infty}P(F_n)}
+        \item <3-> Since $P(\lim_n A_n) = \lim_nP(E_n) = \lim_{n}P(F_n)$ exists, the result follows.
+    \end{itemize}
+    \end{block}
+\end{frame}
+\end{document}

@@ -1,0 +1,326 @@
+% !TEX spellcheck = en_US
+% !TEX spellcheck = LaTeX
+\documentclass[letterpaper,10pt,english]{article}
+\input{../../header}
+\title{Lecture-17: Tractable Random Processes}
+\author{}
+
+\begin{document}
+\maketitle
+
+\section{Examples of Tractable Stochastic Processes} 
+Recall that a random process $X: \Omega \to \sX^T$ defined on the probability space $(\Omega,\sF, P)$ with index set $T$ and state space $\sX \subseteq \R$,  
+is completely characterized by its finite dimensional distributions $F_{X_S}: \R^S \to [0,1]$ for all finite $S \subseteq T$, 
+where 
+\EQ{
+F_{X_S}(x_S) 
+\triangleq P(A_{X_S}(x_S))
+= P(\cap_{s \in S}X_s^{-1}(-\infty, x_s]),\quad x_S \in \R^S. 
+}
+Simpler characterizations of a stochastic process $X$ are in terms of its moments. 
+That is, the first moment such as mean, and the second moment such as correlations and covariance functions. 
+\meq{3}{
+&m_X(t) \triangleq \E X_t,&
+&R_X(t,s) \triangleq \E X_tX_s,&
+&C_X(t,s) \triangleq \E (X_t - m_X(t))(X_s-m_X(s)).
+}
+In general, it is very difficult to characterize a stochastic process completely in terms of its finite dimensional distribution. 
+However, we have listed few analytically tractable examples below, where we can completely characterize the stochastic process. 
+
+%We will consider the probability space $(\Omega, \sF, P)$, and a random process $X: \Omega \to \sX^T$ for index set $T$ and state space $\sX \subseteq \R$. 
+\subsection{Independent and identically distributed (\iid) processes} 
+\begin{defn}[\iid process]
+A random process $X: \Omega \to \sX^T$ is an \textbf{independent and identically distributed} (\iid) random process with the common distribution $F:\R \to [0,1]$, if for any finite $S \subseteq T$ and a real vector $x_S \in \R^S$ we can write the finite dimensional distribution for this process as 
+\EQ{
+F_{X_S}(x_S) = P\left(\cap_{s \in S}\set{X_s(\omega) \le x_s}\right) = \prod_{s \in S}F(x_s).
+}
+\end{defn}
+\begin{rem}
+It's easy to verify that the first and the second moments are independent of time indices. 
+That is, if $0 \in T$ then $X_t = X_0$ in distribution, and we have 
+\meq{3}{
+&m_X = \E X_0 , && R_X(t,s) = (\E X_0^2)\SetIn{t=s} + m_X^2\SetIn{t\neq s}, && C_X(t,s) = \Var(X_0)\SetIn{t=s}.
+}
+\end{rem}
+
+\subsection{Stationary processes}
+\begin{defn}[Stationary process]
+We consider the index set $T \subseteq \R$ that is closed under addition and subtraction.   
+A stochastic process $X: \Omega \to \sX^T$ is \textbf{stationary} if all finite dimensional distributions are shift invariant. 
+That is, for any finite $S \subseteq T$ and $t \in T$, we have 
+\EQ{
+F_{X_S}(x_S) 
+= P(\cap_{s\in S}\set{X_s(\omega) \le x_s}) 
+= P(\cap_{s\in S}\set{X_{s+t}(\omega) \le x_s}) 
+= F_{X_{t+S}}(x_S).
+}
+\end{defn}
+\begin{rem} 
+That is, for any finite $n \in \N$ and $t \in \R$, the random vectors $(X_{s_1}, \dots, X_{s_n})$ and $(X_{s_1+t}, \dots, X_{s_1+t})$ have the identical joint distribution for all $s_1 \le \dots \le s_n$.  
+\end{rem}
+
+\begin{shaded}
+%\begin{exmp}[IID processes] 
+\begin{lem} 
+Any \emph{i.i.d.} process with index set $T \subseteq \R$ is stationary.
+\end{lem}
+\begin{proof}
+Let $X: \Omega \to \sX^T$ be an \emph{i.i.d.} random process, where $T \subseteq \R$. 
+Then, for any finite index subset $S \subseteq T, t \in T$ and $x_S \in \R^S$, we can write 
+\EQ{
+F_{X_S}(x_S) 
+= P(\bigcap_{s \in S}\set{X_s \le x_s}) 
+= \prod_{s \in S}P\circ X_s^{-1}(-\infty, x_s] 
+= \prod_{s \in S}P\circ X_{t+s}^{-1}(-\infty, x_s] 
+%&= \prod_{u \in t+S}P\set{X_u \le x_u} 
+= P(\bigcap_{s \in t+S}\set{X_s \le x_s})  
+= F_{X_{t+S}}(x_S).
+}
+First equality follows from the definition, the second from the independence of process $X$, 
+the third from the identical distribution for the process $X$. 
+In particular, we have shown that process $X$ is also stationary. 
+\end{proof}
+%\end{exmp}
+\end{shaded}
+\begin{rem}
+For a stationary stochastic process, all the existing moments are shift invariant when they exist.  
+\end{rem}
+\begin{defn}
+A \textbf{second order} stochastic process $X$ has finite auto-correlation $R_X(t,t) < \infty$ for all %indices 
+$t \in T$. 
+\end{defn}
+\begin{rem}
+This implies $R_X(t_1, t_2) < \infty$ by Cauchy-Schwartz inequality, 
+and hence the mean, auto-correlation, and the auto-covariance functions are well defined and finite. 
+\end{rem}
+\begin{rem}
+For a stationary process $X$, we have $X_t = X_0$ and $(X_t,X_s) = (X_{t-s}, X_{0})$ in distribution. 
+Therefore, for a second order stationary process $X$, we have 
+\meq{3}{
+&m_X = \E X_0 , && R_X(t, s) = R_X(t-s,0) = \E X_{t-s}X_0, && C_X(t-s, 0) = R_X(t-s, 0) - m_X^2.
+}
+\end{rem}
+\begin{defn}
+A random process $X$ is \textbf{wide sense stationary} if 
+\begin{enumerate}
+\item $m_X(t) = m_X(t+s)$ for all $s,t \in T$, and 
+\item $R_X(t,s) = R_x(t+u, s+u)$ for all $s,t,u \in T$. 
+\end{enumerate} 
+\end{defn}
+\begin{rem}
+It follows that a second order stationary stochastic process $X$,  is wide sense stationary. 
+A second order wide sense stationary process is not necessarily stationary. 
+We can similarly define joint stationarity and joint wide sense stationarity for two stochastic processes $X$ and $Y$.
+\end{rem}
+\begin{shaded}
+\begin{exmp}[Gaussian process] 
+Let $X: \Omega \to \R^\R$ be a continuous-time Gaussian process, defined by its finite dimensional distributions. 
+In particular, for any finite $S \subset \R$, column vector $x_S \in \R^S$,
+%we can define a column vector $x_S$ such that $x_S(s) = x_s$ for $s \in S$, 
+mean vector $\mu_S \triangleq \E X_S$, 
+and the covariance matrix $C_S \triangleq \E X_SX_S^T$, 
+the finite-dimensional density is given by 
+\EQ{
+f_{X_S}(x_S) = \frac{1}{(2\pi)^{\abs{S}/2}\sqrt{\det(C_S)}}\exp\left(-\frac{1}{2}(x_S-\mu_S)^TC_S^{-1}(x_S-\mu_S)\right).
+} 
+\end{exmp}
+\begin{thm} 
+A wide sense stationary Gaussian process is stationary. 
+\end{thm}
+\proof{
+%\begin{rem}
+For Gaussian random processes, first and the second moment suffice to get any finite dimensional distribution. 
+%\end{rem}
+Let $X$ be a wide sense stationary Gaussian process and let $S \subseteq \R$ be finite. 
+From the wide sense stationarity of $X$, we have $\E X_S = \mu\bU_S$ and 
+\EQ{
+\E(X_s-\mu)(X_u-\mu) = C_{s-u},~\text{ for all } s,u \in S. 
+}
+This means that $C_S = C_{t+S}$, and the result follows.  
+}
+\end{shaded}
+
+\subsection{Random Walk}
+\begin{defn}
+Let $X: \Omega \to \sX^\N$ be an \iid random sequence defined on the probability space $(\Omega, \sF, P)$ and the state space $\sX = \R^d$. 
+A random sequence $S: \Omega \to \sX^{\Z_+}$ is called a \textbf{random walk} with step-size sequence $X$, 
+if $S_0 \triangleq 0$ and $S_n \triangleq \sum_{i=1}^nX_i$ for $n \in \N$. 
+\end{defn}
+%, then the process $S = (S_n: n \in \N)$ is called a \textbf{random walk}. 
+\begin{rem}
+We can think of $S_n$ as the random location of a particle after $n$ steps, 
+where the particle starts from origin and takes steps of size $X_i$ at the $i$th step. 
+From the \iid nature of step-size sequence, 
+we observe that $\E S_n = n\E X_1$ and $C_S(n,m) = (n\wedge m)\Var[X_1]$.
+\end{rem}
+\begin{rem} 
+For the process $S: \Omega \to \sX^\N$ it suffices to look at finite dimensional distributions for finite sets $[n] \subseteq \N$ for all $n \in \N$. 
+If the \iid step-size sequence $X$ has a common density function, 
+then from the transformation of random vectors, 
+we can find the finite dimensional density 
+\EQ{
+f_{S_1, \dots, S_n}(s_1, s_2, \dots, s_n) 
+= \frac{1}{\abs{J(s)}}f_{X_1, \dots, X_n}(s_1, s_2-s_1, \dots, s_n-s_{n-1})
+= f_{X_1}(s_1)\prod_{i=2}^nf_{X_1}(s_i-s_{i-1}).
+}
+Recall that $J_{ij}(s) = \frac{\partial s_i}{\partial x_j} = \SetIn{j \le i}$ and hence $J(s)$ is a lower triangular matrix with all non-zero entries being unity, and hence $\abs{J(s)} = 1$.
+\end{rem}
+\begin{thm} 
+The stochastic process $S: \Omega \to \Z_+^{\Z_+}$ has stationary and independent increments.
+\end{thm}
+\begin{proof}
+One needs to show that for $(m_1, \dots, m_n) \subseteq \Z_+$, 
+the joint distribution of increments $(S_{m_2}-S_{m_1}, \dots, S_{m_n}-S_{m_{n-1}})$ is independent and distributed identically to $(S_{k+m_2}-S_{k+m_1}, \dots, S_{k+m_n}-S_{k+m_{n-1}})$ for any and $k \in \Z_+$.  
+For any $j \in [n-1]$, 
+we define event space $\sE_j \triangleq \sigma(X_{m_j+1}, \dots, X_{m_{j+1}})$ and observe that the $j$th increment $S_{m_{j+1}}-S_{m_j}$ is measurable with respect to $j$th event space $\sE_j$. 
+Since $X$ is an independent process, it follows that $(\sE_1, \dots, \sE_{n-1})$ are independent event spaces, and hence so are the increments. 
+Stationarity of increments follow from the fact that the process $X$ is \iid and $j$th increment $S_{k+m_{j+1}}-S_{k+m_j}$ is sum of $m_{j+1}-m_j$ \iid random variables, and hence an identical distribution for all $k \in \Z_+$. 
+\end{proof}
+\begin{cor} 
+Let $p \in \N$ and for each $i \in [p]$ let $n \in \N^p, k \in \Z_+^p$ such that $n_1 \le \dots \le n_p$ and $k_1 \le \dots \le k_p$. 
+%For a finite ordered set $S = (n_1, n_1+n_2, \dots, n_1 + n_2 + \dots + n_p) \subset \N$ and $k_S = (k_1, k_1+k_2, \dots, k_1 + k_2+ \dots + k_p)$, we have 
+Then, we can write the joint mass function 
+\EQ{
+P_{S_{n_1}, \dots, S_{n_p}}(k_1, \dots, k_p) 
+= P(\cap_{i \in [k]}\set{S_{n_i} = k_i}) 
+= \prod_{i = 1}^{p}P_{S_{n_i-n_{i-1}}}(k_i-k_{i-1}).
+}
+\end{cor}
+\begin{proof}
+The result follows from stationary and independent increment property of the random walk $S$. %counting process $S_n$. 
+\end{proof}
+%%\begin{cor} 
+%%Second order moment for the number of success process is given by $R_{N}(n,m) = \E N_n N_m = $
+%%\end{cor}
+%%\begin{proof}
+%%The result follows from stationary and independent increment property of the counting process $N_n$. 
+%%\end{proof}
+
+
+%From previous section, we know following properties of random walks. 
+%\begin{thm} 
+%For a random walk $(S_n: n \in \N)$ with \emph{iid} step-size sequence $X$, the following are true. 
+%\begin{enumerate}[i\_]
+%\item The first two moments are $\E S_n = n\E X_i$ and $\Var[S_n] = n\Var[X_i]$. 
+%\item Random walk is non-stationary with stationary and independent increments. 
+%\item Random walk is homogeneous Markov sequence. 
+%\end{enumerate}
+%\end{thm}
+%For a Bernoulli sequence $X: \Omega \to\set{0,1}^\N$ with $P\set{X_i = 1} = p$, 
+%the one dimensional random walk $S$ with step-size sequence $X$ is a positive integer valued random sequence. 
+%%with unit step-size. 
+\begin{rem} 
+For a one-dimensional random walk $S: \Omega\to\Z_+^\N$ with \iid step size sequence $X:\Omega\to\set{0,1}^\N$ such that $P\set{X_1 = 1} = p$, 
+the distribution for the random walk at $n$th step $S_n$ is Binomial $(n,p)$. 
+That is, 
+\EQ{
+P\set{S_n = k} = \binom{n}{k}p^k(1-p)^{n-k},\quad k \in \set{0, \dots, n}.
+} 
+%\begin{enumerate}[i\_]
+%%\item The first two moments are $\E S_n = n(p-q)$ and $\Var[S_n] = n(1 - (p-q)^2)$. 
+%\item The distribution for the random walk at $n$th step $S_n$ is Binomial $(n,p)$. 
+%\item $P\{S_n = k\} = \binom{n}{(n+k)/2}p^{(n+k)/2}q^{(n-k)/2}$ for $n+k$ even, and $0$ otherwise. 
+%\end{enumerate}
+\end{rem}
+
+%\subsubsection{Independent increments process}
+\subsection{L\'evy processes}
+A right continuous with left limits stochastic process $X:\Omega\to\R^T$ for index set $T \subseteq \R_+$ with $X_0 = 0$ almost surely, is a \textbf{L\'evy process} if the following conditions hold. 
+\begin{enumerate}[(L1)]
+%\item $X_{0}=0$ almost surely.
+\item The increments are independent. 
+For any instants $ 0\le t_{1}<t_{2}<\cdots <t_{n}<\infty$, the random variables $X_{t_{2}}-X_{t_{1}},X_{t_{3}}-X_{t_{2}},\dots ,X_{t_{n}}-X_{t_{n-1}}$ are independent.
+\item The increments are stationary. 
+For any instants $0\le t_{1}<t_{2}<\cdots <t_{n}<\infty$ and time-difference $s > 0$, 
+the random vectors $(X_{t_{2}}-X_{t_{1}},X_{t_{3}}-X_{t_{2}},\dots ,X_{t_{n}}-X_{t_{n-1}})$ and $(X_{s+t_{2}}-X_{s+t_{1}},X_{s+t_{3}}-X_{s+t_{2}},\dots ,X_{s+t_{n}}-X_{s+t_{n-1}})$ are equal in distribution. 
+%For any $s<t$,  $X_{t}-X_{s}$, is equal in distribution to $X_{t-s}$.
+\item Continuous in probability. For any $\epsilon > 0$ and $t\ge 0$ it holds that $\lim _{h\to 0}P(\set{\abs{X_{t+h}-X_{t}}>\epsilon})=0$. 
+\end{enumerate}
+
+\begin{shaded}
+\begin{exmp}
+Two examples of L\'evy processes are Poisson process and Wiener process. 
+The distribution of Poisson process at time $t$ is Poisson with rate $\lambda t$ and the distribution of Wiener process at time $t$ is zero mean Gaussian with variance $t$. 
+\end{exmp}
+
+\begin{exmp}
+A random walk $S:\Omega\to\sX^{\Z_+}$ with \iid step-size sequence $X:\Omega\to\sX^\N$, is non-stationary with stationary and independent increments. 
+To see non-stationarity, we observe that the mean $m_S(n) = n \E X_1$ depends on the step of the random walk. 
+We have already seen the increment process of random walks. 
+\end{exmp}
+%
+%\begin{thm} 
+%The stochastic process $S: \Omega \to \Z_+^{\Z_+}$ has stationary and independent increments.
+%\end{thm}
+%\begin{proof}
+%We can look at one increment $S_{m+n}-S_m = \sum_{i = 1}^{n}X_{m+i}.$
+%This increment is a function of sequence of random variables $(X_{m+1}, \dots, X_{m+n})$ and hence independent of $(X_1, \dots, X_m)$. 
+%The random variable $S_m$ depends solely on $(X_1, \dots, X_m)$ and hence the independence follows. 
+%Stationarity follows from the fact that the Bernoulli process $X$ is \iid and $S_{m+n}-S_m$ is sum of $n$ \iid Bernoulli random variables, 
+%and hence has a Binomial $(n,p)$ distribution identical to that of $S_n$. 
+%\end{proof}
+\end{shaded}
+
+\subsection{Markov processes}
+\begin{defn}
+A stochastic process $X$ is \textbf{Markov} if conditioned on the present state, future is independent of the past. 
+We denote the history of the process until time $t$ as $\sF_t = \sigma(X_s, s \le t)$. 
+That is, for any ordered index set $T$ containing any two indices $u > t$, we have  %such that $t < u$, % \in T$, 
+\EQ{
+P(\set{X_u \le x_u}\mid \sF_t) = P(\set{X_{u} \le x_u}\mid \sigma(X_t)).
+}
+The range of the process is called the \textbf{state space}. 
+\end{defn}
+\begin{rem}
+%For a stationary Markov process, we would have 
+We next re-write the Markov property more explicitly for the process $X$. 
+For all $x, y \in \sX$, finite set $S \subseteq T$ such that $\max S < t < u$, and $H_S  = \cap_{s \in S}\set{X_s \le x_s} \in \sF_t$, we have 
+\EQ{
+P(\set{X_u \le y}\mid H_S \cap \set{X_t \le x}) = P(\set{X_{u} \le y}\mid \set{X_t \le x}).
+}
+\end{rem}
+\begin{rem}
+When the state space $\sX$ is countable, we can write $H_S = \cap_{s \in S}\set{X_s = x_s}$ and the Markov property can be written as 
+\EQ{
+P(\set{X_u = y}\mid H_S \cap \set{X_t = x}) = P(\set{X_{u} = x_u}\mid \set{X_t = x}).
+}
+\end{rem}
+\begin{rem}
+In addition, when the index set is countable, i.e. $T = \Z_+$, then we can take past as $S = \set{0, \dots, n-1}$, 
+present as instant $n$, and the future as $n+1$. 
+Then, the Markov property can be written as 
+\EQ{
+P(\set{X_{n+1} = y}\mid H_{n-1} \cap \set{X_n = x}) = P(\set{X_{n+1} = y}\mid \set{X_n = x}),
+}
+for all $n \in \Z_+, x,y \in \sX$. 
+\end{rem}
+We will study this process in detail in coming lectures. 
+\begin{shaded}
+\begin{exmp}
+A random walk $S:\Omega\to\sX^{\Z_+}$ with \iid step-size sequence $X:\Omega\to\sX^\N$, is a homogeneous Markov sequence. 
+For any $n \in \Z_+$ and $x,y, s_1, \dots, s_{n-1} \in \sX$, we can write the conditional probability 
+\EQ{
+P(\set{S_{n+1} = y}\mid\set{S_n = x, S_{n-1} = s_{n-1}, \dots, S_1 = s_1}) 
+= P(\set{S_{n+1} - S_n = y-x})
+=  P(\set{S_{n+1} = y}\mid\set{S_n = x}).
+}
+\end{exmp}
+\begin{lem} 
+The stochastic process $S:\Omega\to\Z_+^{\Z_+}$ is homogeneously Markov. 
+\end{lem}
+\begin{proof} 
+Since the process has stationary and independent increments, we have 
+\EQ{
+P(\set{S_{n+m} = k} \mid\set{S_1 = k_1, S_2  = k_2, \dots, S_n = k_n}) 
+= P(\set{S_{n+m}  - S_n = k - k_n}) 
+= P(\set{S_{n+m} = k}\mid\set{S_n = k_n}). 
+}
+\end{proof}
+\end{shaded}
+
+
+
+
+
+\end{document}
+

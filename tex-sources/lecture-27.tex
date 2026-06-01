@@ -1,0 +1,416 @@
+% !TEX spellcheck = en_US
+% !TEX spellcheck = LaTeX
+\documentclass[letterpaper,10pt,english]{article}
+\input{header}
+\title{Lecture-27: Poisson process on the half-line}
+\author{}
+
+\begin{document}
+\maketitle
+
+%\section{Equivalent characterizations}
+%A counting process $N$ has the \textbf{completely independence property},  
+%if for any collection of finite disjoint and bounded sets $A_1, \dots, A_k \in \sB$, 
+%\EQ{
+%P\bigcap_{i=1}^k\set{N(A_i) = n_i} = \prod_{i=1}^kP\set{N(A_i) = n_i}.
+%}
+%\begin{thm} 
+%\label{thm:void}
+%Distribution of a simple point process is completely determined by void probabilities. 
+%\end{thm}
+%\begin{proof}
+%We will show this by induction on the number of points in a bounded set $A \in \sB$. 
+%We assume that $(A_k \in \sB: k \in \N)$ is a sequence of sufficiently small sets partitioning $A$ such that $N(A_i) \in \set{0,1}$ for all $i \in \N$. 
+%%We can write 
+%%\EQ{
+%%P\set{N(A) = 1} = \sum_{k \in \N}P\set{N(A_k)=1, N(A\setminus A_k) = 0}. 
+%%}
+%%We observe the following set equality 
+%%$
+%%\set{N(A_k)=1, N(A\setminus A_k) = 0}\cup\set{N(A) = 0} = \set{N(A \setminus A_k) = 0},
+%%$
+%%and hence we can write 
+%%\EQ{
+%%P\set{N(A) = 1} = \sum_{k \in \N}\left(P\set{N(A \setminus A_k)=0}-P\set{N(A) = 0}\right). 
+%%}
+%We assume that $N(A) = n$ and by the induction hypothesis $P\set{N(B) = n-1}$ can be completely characterized by the void probabilities for all bounded sets $B \in \sB$. 
+%Then, we can write
+%\EQ{
+%P\set{N(A) = n} = \sum_{k \in \N}P\set{N(A_k) = 1, N(A \setminus A_k) = n-1} = \sum_{k \in \N}\left(P\set{N(A \setminus A_k)=n-1}-P\set{N(A) = n-1}\right). 
+%}
+%\end{proof}
+%\begin{thm}[Equivalences] 
+%\label{thm:equiv}
+%Following are equivalent for a simple counting process $N: \Omega \to {\Z_+}^\sB$. 
+%\begin{enumerate}[i\_]
+%\item Process $N$ is Poisson with locally finite intensity measure $\Lambda$. 
+%\item For each bounded $A \in \sB$, we have $P\set{N(A) = 0} = e^{-\Lambda(A)}$. 
+%\item %The intensity measure $\Lambda$ is bounded for bounded $A \in \sB$,  and 
+%For each bounded $A \in \sB$,  the number of points $N(A)$ is a Poisson with parameter $\Lambda(A)$. 
+%\item Process $N$ has the completely independence property, and $\E N(A) = \Lambda(A)$. 
+%\end{enumerate}
+%\end{thm}
+%\begin{proof}
+%We will show that $i\_ \implies ii\_ \implies iii\_ \implies iv\_ \implies i\_$. 
+%\begin{enumerate}
+%	\item[$i \implies ii\_$] It follows from the definition of Poisson point processes and definition of Poisson random variables.  
+%	\item[$ii \implies iii\_$] From Theorem~\ref{thm:void}, we know that void probabilities determine the entire distribution. 
+%	Further, we observe that 
+%	\EQ{
+%	\sum_{k\in \N}P\set{N(A) = k} = e^{-\Lambda(A)}\sum_{k\in \N}\frac{\Lambda(A)^k}{k!}.
+%	}
+%	\item[$iii \implies iv\_$] We will show this in two steps. 
+%	\begin{itemize}
+%	\item[Mean:] Since the distribution of random variable $N(A)$ is Poisson, it has mean $\E N(A) = \Lambda(A)$. 
+%	\item[CIP: ] For disjoint and bounded $A_1, \dots, A_k \in \sB$ and $A = \cup_{i=1}^kA_i$, we have $N(A) = N(A_1) + \dots N(A_1)$. 
+%	Taking expectations on both sides, and from the linearity of expectation, we get 
+%	\EQ{
+%	\Lambda(A) = \Lambda(A_1) + \dots + \Lambda(A_k).
+%	} 
+%	From the number of partitions $n_1 + \dots + n_k = n$, we can write 
+%	\EQ{
+%	P\set{N(A)=n} = \frac{1}{n!}\sum_{n_1 + \dots + n_k = n}\binom{n}{n_1, \dots, n_k}P\set{N(A_1) = n_1, \dots, N(A_k) = n_k}. 
+%	}
+%	Using the definition of Poisson distribution, we can write the left hand side of the above equation as 
+%	\EQ{
+%	P\set{N(A) = n} = e^{-\Lambda(A)} \frac{\Lambda(A)^n}{n!} = \prod_{i=1}^ke^{-\Lambda(A_i)} \frac{(\sum_{i=1}^k\Lambda(A_i))^n}{n!} =  \frac{1}{n!}\sum_{n_1 + \dots + n_ k =n}\binom{n}{n_1, \dots, n_k}\prod_{i=1}^ke^{-\Lambda(A_i)} \Lambda(A_i))^{n_i}. 
+%	}
+%	Equating each term in the summation, we get	
+%	\EQ{
+%	P\set{N(A_1) = n_1, \dots, N(A_k) = n_k} = \prod_{i=1}^kP\set{N(A_i) = n_i}. 
+%	}
+%	\end{itemize}
+%
+%	\item[$iv \implies i\_$] Due to complete independence property and since void probabilities describe the entire distribution, 
+%	it suffices to show that $P\set{N(A) = 0} = e^{-\Lambda(A)}$ for all bounded $A \in \sB$. 
+%	For disjoint and bounded $A_1, \dots, A_k \in \sB$ and $A = \cup_{i=1}^kA_i$, 
+%	we have 
+%	\meq{2}{
+%	&\Lambda(A) = \sum_{i=1}^k\Lambda(A_i),&\text{ and }&-\ln P\set{N(A) = 0} = -\sum_{i=1}^k \ln P\set{N(A_i) = 0}.
+%	} 
+%	This implies that $-\ln P\set{N(A) = 0} = \Lambda(A)$, and the result follows. 
+%\end{enumerate}
+%\end{proof}
+%
+%%\red{
+%%\begin{thm} 
+%%Following are equivalent for a simple counting process $N$. 
+%%\begin{enumerate}[i\_]
+%%\item Process $N$ is Poisson with intensity measure $\Lambda$. 
+%%\item Process $N$ has the completely independence property, and $\E N(A) = \Lambda(A)$. 
+%%\item For any bounded $A \in \sB$, the intensity measure $\Lambda$ is bounded and $N(A)$ is Poisson with parameter $\Lambda(A)$. 
+%%\end{enumerate}
+%%\end{thm}
+%%\begin{proof} 
+%%We will show that $i\_ \implies ii\_ \implies iii\_ \implies I\_$. 
+%%\begin{enumerate}[i\_]
+%%\item[$i\_ \implies ii\_$] Let the process $N$ be Poisson with intensity measure $\Lambda$. 
+%%Then the complete independence property follows from the definition, 
+%%and since $N(A)$ is a Poisson distributed random variable with mean $\Lambda(A)$. 
+%%\item[$iI\_ \implies iii\_$] Consider a process $N$ with the completely independence property, and $\E N(A) = \Lambda(A)$. 
+%%Let $A \in \sB$ be bounded, then it follows that $\Lambda(A)$ is bounded. 
+%%From the fact that $\Lambda(A) = \sum_{i=1}^k\Lambda(A_i)$ for any partition $(A_1, \dots, A_k)$ of the set $A$, 
+%%we can write $\set{N(A) = 0} = \cap_{i=1}^k\set{N(A_i) = 0}$. 
+%%Therefore, from the complete independence property, we have 
+%%\EQ{
+%%P\set{N(A) = 0} = \prod_{i=1}^kP\set{N(A_i) = 0}. 
+%%}
+%%This is the semi-group property, from which it follows that 
+%%\meq{2}{
+%%&P\set{N(A) = 0} = e^{-\Lambda(A)},&&\sum_{k\in \N}P\set{N(A) = k} = e^{-\Lambda(A)}\sum_{k\in \N}\frac{\Lambda(A)^k}{k!}.
+%%}
+%%From which it follows that $N(A)$ is Poisson with parameter $\Lambda(A)$. 
+%%\item[$iii\_ \implies i\_$] Let $N$ be a simple counting process and $\Lambda$ an intensity measure such that for any $A \in \sB$, 
+%%$\Lambda(A)$ is bounded and $N(A)$ is Poisson with parameter $\Lambda(A)$. 
+%%This implies that for any partition $(A_1, \dots, A_k)$ of the set $A_i$, we have 
+%%\EQ{
+%%P\set{N(A) = 0} = \prod_{i=1}^kP\set{N(A_i) = 0}. 
+%%}
+%%Hence, we can show that the counting process $N$ has the complete independence property. 
+%%\end{enumerate}
+%%\end{proof}
+%%}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Simple point processes on the half-line} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+A stochastic process defined on the half-line $N: \Omega \to \Z_+^{\R_+}$ is a \textbf{counting process} if
+\begin{enumerate}
+  \item $N_0 = 0$, and 
+  \item for each $\omega \in \Omega$, the sample path $N(\omega): \R_+ \to \Z_+$ is non-decreasing, integer valued, and right continuous function of time $t \in \R_+$.% and at points of discontinuity $(N_t- N(t^{-}))\le 1,~~\forall \omega \in \Omega$. 
+\end{enumerate}
+Each discontinuity of the sample path of the counting process can be thought of as a jump of the process, as shown in Figure~\ref{Fig:Poisson}.  
+A simple counting process has the unit jump size almost surely. 
+%This is equivalent to a point process not having an atom at any point on the line. 
+General point processes in higher dimension don't have any inter-arrival time interpretation. 
+%\end{rem}
+\begin{figure}[hhhh]
+\center
+\scalebox{0.8}{\input{../../Figures/Poisson}}
+\caption{Sample path of a simple counting process.}
+\label{Fig:Poisson}
+\end{figure}
+%\begin{lem} 
+%A counting process $N: \Omega \to \Z_+^{\R_+}$ has finitely many jumps in a finite interval $(0,t]$ almost surely. 
+%\end{lem}
+\begin{defn} 
+The points of discontinuity are also called the \textbf{arrival instants} of the counting process $N$. 
+The \textbf{$n$th arrival instant} is a random variable denoted $\tS_n: \Omega \to \R_+$, 
+defined inductively as 
+\meq{2}{
+&\tS_0 \triangleq 0, &&\tS_n \triangleq \inf\set{t \ge 0: N_t \ge n},\quad n \in \N.
+}
+\end{defn}
+\begin{defn} 
+The \textbf{inter arrival time} between $(n-1)${th} and $n${th} arrival is denoted by $X_n$ and written as
+%\EQ{
+$X_n \triangleq \tS_n - \tS_{n-1}$. 
+%}
+\end{defn}
+\begin{rem} 
+For a simple point process, we have
+%\EQ{
+$P\set{X_{n} = 0} = P\set{X_n\le 0} = 0.$
+%}
+\end{rem}
+\begin{lem} 
+Simple counting process $N:\Omega\to\Z_+^{\R_+}$ and arrival process $\tS:\Omega\to\R_+^\N$ are inverse processes, i.e. 
+\EQ{
+\set{\tS_n \le t} = \set{N_t \ge n}.
+}
+\end{lem}
+\begin{proof} 
+Let $\omega \in \set{\tS_n \le t}$, then $N_{\tS_n} = n$ by definition. 
+%from right continuity of the counting process. 
+Since $N$ is a non-decreasing process, we have $N_t \ge N_{\tS_n} = n$. 
+%It follows that $\set{S_n \le t} \subseteq \set{N_t \ge n}$.
+Conversely, let $\omega \in \set{N_t \ge n}$, then it follows from definition that $\tS_n \le t$.
+\end{proof}
+\begin{cor} 
+For arrival instants $\tS:\Omega\to\R_+^\N$ associated with a counting process $N:\Omega\to\Z_+^{\R_+}$ 
+we have 
+$
+\set{\tS_n \le t, \tS_{n+1} > t} = \set{N_t = n} 
+$
+for all $n \in \Z_+$ and $t \in \R_+$. 
+\end{cor}
+\begin{proof}
+It is easy to see that 
+%\EQ{
+$\set{\tS_{n+1} > t } = \set{\tS_{n+1} \le t}^c = \set{N_t \ge n+1}^c = \set{N_t < n+1}$.
+%}
+Hence, %the result follows by writing 
+\EQ{
+\set{N_t = n} = \set{N_t \ge n, N_t < n+1} = \set{\tS_n \le t, \tS_{n+1} > t}.
+}
+\end{proof}
+\begin{lem}
+Let $F_n(x)$ be the distribution function for $S_n$, then 
+%\EQ{
+$P_n(t) \triangleq P\set{N_t = n} = F_{n}(t)-F_{n+1}(t)$. 
+%}
+\end{lem}
+\begin{proof} It suffices to observe that following is a union of disjoint events,
+\EQ{
+\set{\tS_n \le t } = \set{\tS_n \le t, \tS_{n+1} > t} \cup \set{\tS_{n} \le t, \tS_{n+1} \le t}.
+}
+\end{proof}
+
+
+%\begin{cor}[Poisson process on the half-line]
+%A random process $N: \Omega \to \Z_+^{\R_+}$ indexed by time $t \in \Z_+$ is a Poisson process with intensity measure $\Lambda$ iff
+%\begin{enumerate}[(a)]
+%\item Starting with $N(0) = 0$, the process $N_t$ takes a non-negative integer value for all $t \in \R_+$;
+%\item the increment $N(t + s) - N_t$ is surely nonnegative for any $s \in \R_+$;
+%\item the increments $N(t_1), N(t_2) - N(t_1),  \dots , N(t_n) - N(t_{n-1})$ are \textit{independent} for any 
+%$0 < t_1 < t_2 < \dots < t_{n-1} < t_n$; 
+%\item the increment $N(t+s) - N_t$ is distributed as Poisson random variable with parameter $\Lambda((t, t+s])$. 
+%\end{enumerate}
+%The Poisson process is homogeneous with intensity $\lambda$, iff in addition to conditions $(a), (b), (c)$, 
+%the distribution of the increment $N(t + s) - N_t$ depends on the value $s \in \R_+$ but is independent of $t \in \R_+$. 
+%That, is the increments are \textit{stationary}. 
+%\end{cor}
+%\begin{proof} 
+%We have already seen that definition of Poisson processes implies all four conditions. 
+%Conditions $(a)$ and $(b)$ imply that $N$ is a simple counting process on the half-line, 
+%condition $(c)$ is the complete independence property of the point process, 
+%and condition $(d)$ provides the intensity measure. 
+%The result follows from the equivalence $iv\_$ in Theorem~\ref{thm:equiv}. 
+%\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{IID exponential inter-arrival times characterization}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{prop} 
+The counting process $N:\Omega\to\Z_+^{\R_+}$ 
+associated with a simple Poisson point process $S:\Omega\to\R_+^\N$ 
+is Markov. 
+\end{prop}
+\begin{proof} 
+We define the event space $\sF_t \triangleq \sigma(N_s: s \le t)$ as the history of the process until time $t \in \R_+$. 
+Then, from the independent increment property of Poisson processes, we have for any historical event $H_s \in \sF_s$ 
+\EQ{
+P(\set{N_t = n}\given H_s\cap\set{N_s = k})= P(\set{N_t-N_s = n-k} \given H_s\cap \set{N_s = k}) = P(\set{N_t = n}\given \set{N_s = k}). 
+}
+The transition probability matrix is $P(s,t)$ with its $(k,n)$th entry given by $e^{-\Lambda(s,t]}\frac{(\Lambda(s,t])^{n-k}}{(n-k)!}$. 
+%The equality follows from the independence of increments. 
+\end{proof}
+\begin{rem}
+A Markov process $X:\Omega\to\sX^\R$ is time homogeneous if the transition matrix $P(s,t) = P(t-s)$ for all $t \ge s$. 
+Thus the counting process for a homogeneous Poisson point process is time homogeneous Markov process, as the transition probability matrix $P(s,t) = P(t-s)$ with its $(k,n)$th entry given by $e^{-\lambda(t-s)}\frac{(\lambda(t-s))^{n-k}}{(n-k)!}$. 
+\end{rem}
+\begin{thm} 
+The counting process $N:\Omega\to\Z_+^{\R_+}$ 
+associated with a simple Poisson point process $S:\Omega\to\R_+^\N$ 
+is strongly Markov. 
+\end{thm}
+\begin{prop}
+A simple counting process $N:\Omega\to\Z_+^{\R_+}$ is associated with a \textbf{homogeneous Poisson process} with a constant intensity density $\lambda$, 
+iff the inter-arrival time sequence $X:\Omega\to\R_+^\N$ are \iid random variables with an exponential distribution of rate $\lambda$. 
+%That is, it has a distribution function $F: \R_+ \to [0,1]$, such that $F(x) = 1 - e^{-\lambda x}$ for all $x \in \R_+$. 
+\end{prop}
+\begin{proof}
+Let $N_t$ be a counting process associated with a homogeneous Poisson point process on half-line with constant intensity density $\lambda$. 
+From equivalence $iii\_$ in Theorem~\ref{thm:equiv}, we obtain for any positive integer $t$, 
+\EQ{
+P\set{X_1 > t} = P\set{N_t = 0} = e^{-\lambda t}. 
+}
+It suffices to show that inter-arrivals time sequence $X:\Omega\to\R_+^\N$ is \iid.  
+We can show that $N$ is Markov process with strong Markov property. 
+Since the sequence of ordered points $\tS:\Omega\to\R_+^\N$ is a sequence of stopping times for the counting process, 
+it follows from the strong Markov property of this process that $(N_{\tS_n+t} - N_{\tS_n}: t \ge 0)$ is independent of $\sigma(N_s: s \le \tS_n)$ and hence of $\tS_n$ and $N_{\tS_n}$. 
+Further, we see that
+\EQ{
+X_{n+1} = \inf\set{t > 0: N_{\tS_n+t} - N_{\tS_n}  = 1}. 
+}
+It follows that $X:\Omega\to\R_+^\N$ is an independent sequence. 
+For homogeneous Poisson point process, we have $N_{\tS_n+t}-N_{\tS_n} = N_t$ in distribution, 
+and hence $X_{n+1}$ has same distribution as $X_1$ for each $n \in \N$. 
+
+%We can show that $X_n = S_n - S_{n-1}$ is independent of $(N(S_n+t) - N(S_n): t \ge 0)$
+For the given \iid inter-arrival time sequence $X:\Omega\to\R_+^\N$ distributed exponentially with rate $\lambda$, we define the $n$th arrival instant $\tS_n \triangleq \sum_{i=1}^nX_i$ for each $n \in \N$, and the number of arrivals in time duration $(0,t]$ as $N_t\triangleq \sum_{n\in\N}\SetIn{\tS_n\le t}$ for all $t\in \R_+$. 
+It follows that $N_t$ is path wise non-decreasing, integer-valued, right continuous, and simple since $P\set{X_1 \le 0} = 0$. 
+Therefore, $N$ is a simple counting process such that 
+\EQ{
+P\set{N_t = 0} = P\set{X_1 > t} = e^{-\lambda t}. 
+}
+It follows that the void probabilities are exponential and hence the random variable $N_t$ is Poisson with parameter $\lambda t$ for all $t \in \R_+$. 
+Hence, $N$ is a counting process associated with a homogeneous Poisson process with the constant intensity density $\lambda$ from the equivalence $ii\_$ in Theorem~\ref{thm:equiv}. 
+\end{proof}
+%\begin{defn} 
+%A simple counting process $(N_t: t\ge 0) $ is called a homogeneous \textbf{Poisson process} with a finite positive rate $\lambda$, 
+%if the inter-arrival times $(X_{n}: n \in \N)$ are \iid random variables with an exponential distribution of rate $\lambda$. 
+%That is, it has a distribution function $F: \R_+ \to [0,1]$, such that $F(x) = 1 - e^{-\lambda x}$ for all $x \in \R_+$. 
+%%\EQ{
+%%F(x) = P\set{X_{1}\le x} = \begin{cases}
+%%1-e^{-\lambda x}, & x\ge 0  \\
+%%0,  & \text{ else}.
+%%\end{cases}
+%%}
+%%\end{defn}
+
+For many proofs regarding Poisson processes, 
+we partition the sample space with the disjoint events $\set{N_t = n}$ for $n \in \Z_+$. 
+We need the following lemma that enables us to do that. 
+\begin{lem} 
+For any finite time $t > 0$, the number of points on the interval $(0,t]$ from a Poisson process is finite almost surely.
+\end{lem}
+\begin{proof} By strong law of large numbers, we have $\lim_{n \to \infty} \frac{S_{n}}{n} = \E[X_{1}] = \frac{1}{\lambda}$ almost surely. 
+%Therefore, we have $S_n \to \infty$, a.s. This implies $P\set{N_t < \infty} =1$. To see this, 
+Fix $t > 0$ and we define a sample space subset $M = \set{\omega \in \Omega: N(\omega, t) = \infty }$. 
+For any $\omega \in M$, we have $S_{n}(\omega)\le t$ for all $n \in \N$. 
+This implies $\lim\sup_n\frac{S_{n}}{n} = 0$  and $\omega \not\in \set{\lim_n \frac{S_{n}}{n} = \frac{1}{\lambda} }$. 
+Hence, the probability measure for set $M$ is zero. 
+\end{proof}
+
+\subsection{Distribution functions}
+\begin{lem} 
+The following are true for the $n$th arrival instant $\tS_n$ of the Poisson arrival process $\tS:\Omega\to\R_+^\N$ with constant intensity density $\lambda$.
+\begin{enumerate}[(a)]
+\item The moment generating function is 
+$
+M_{\tS_n}(\theta) = \E[e^{\theta \tS_n} ] = \frac{\lambda^n}{(\lambda-\theta)^n}\SetIn{\theta < \lambda} + \infty\SetIn{\theta \ge \lambda}.
+%\infty, & \theta \ge \lambda.
+%\begin{cases}
+%\frac{\lambda^n}{(\lambda-\theta)^n}, & \theta < \lambda \\ 
+%\infty, & \theta \ge \lambda.
+%\end{cases} 
+$ 
+\item The distribution function is  
+$F_n(t) \triangleq P\set{\tS_n \le t} = 1 - e^{-\lambda t}\sum_{k=0}^{n-1}\frac{(\lambda t)^k}{k!}$.
+\item The density function is Gamma distributed with parameters $n$ and $\lambda$. That is, $f_{n}(s) =\frac{\lambda (\lambda s)^{n-1}} {(n-1)!} e^{-\lambda s}$. 
+\end{enumerate}
+\end{lem}
+
+% UNCOMMENT THIS %
+%\begin{proof} 
+%Since $S_n = \sum_{k=1}^nX_k$, where $X_k$ are \iid, the moment generating function $\mathbb{E} [ e^{\theta S_{n}} ]$ of $S_n$ is 
+% \EQ{
+%  \mathbb{E} [ e^{\theta S_{n}} ] = \left(\mathbb{E}[e^{\theta X_{1}}]\right)^{n}. 
+% } 
+%Since each $X_k$ is \iid exponential with rate $\lambda$, it is easy to see that moment generating function of inter-arrival time $X_1$ is 
+% \EQ{
+%  \mathbb{E} [ e^{\theta X_1} ] = 
+%		\begin{cases}
+%		\frac{\lambda}{(\lambda-\theta)}, & \theta < \lambda \\
+%		\infty, & \theta \ge \lambda.
+%		\end{cases} 
+% } 
+%\end{proof}
+% UNCOMMENT THIS %
+%\begin{proof} Notice that $X_i$'s are \iid and $S_1 = X_1$. In addition, we know that $S_n = X_n + S_{n-1}$. Since, $X_n$ is independent of $S_{n-1}$, we know that distribution of $S_n$ would be convolution of distribution of $S_{n-1}$ and $X_1$. Since $X_n$ and $S_1$ have identical distribution, we have $f_{n}=f_{n-1}*f_{1}$. The result follows from straightforward induction.
+%\end{proof}
+
+%Process $N_t$ is of real interest, and we can compute the distribution of $N_t$ for each $t$ from the distribution of $S_n$ in the following.
+%\begin{figure}[hhhh]
+%\center
+	%\include{./Figures/Poisson}
+ %% \caption{}\label{}
+%\end{figure}
+\begin{cor} 
+Consider the counting process $N:\Omega\to\Z_+^{\R_+}$ associated with the Poisson arrival process $\tS:\Omega\to\R_+^\N$ having constant intensity density $\lambda$. 
+The following are true.
+\begin{enumerate}[(a)]
+\item The relation between distribution of $n$th arrival instant and probability mass function for the counting process is given by  $F_n(t)= \sum_{j \ge n}P_j(t)$. 
+\item For each $t\in\R_+$, the probability mass function $P_{N_t}\in\cM(\Z_+)$ for discrete random variable $N_t:\Omega\to\Z_+$ is given by $P_n(t) \triangleq P_{N_t}(n) = P\set{N_t=n)}= e^{-\lambda t}\frac{(\lambda t)^{n}}{n!}$. 
+\item  The relation between distribution of $n$th arrival instant and the mean of the counting process is given by $\sum_{n \in \N}F_n(t) = \E N_t$. 
+\item For each $t\in\R_+$, the mean  $\E[N_t] = \lambda t$, explaining the rate parameter $\lambda$ for the Poisson process. 
+\end{enumerate}
+\end{cor}
+\begin{proof}
+We observe the inverse relationship $\set{\tS_n \le t} = \set{N_t \ge n}$ for all $n \in \Z_+$ and $t\in\R_+$.  
+\begin{enumerate}[(a)]
+\item The result follows by taking the probability on both sides of the inverse relationship, to get  
+$
+F_n(t)  
+= P\set{\tS_n \le t} 
+= P\set{N_t \ge n}  
+= \sum_{j \ge n}P\set{N_t = j}
+= \sum_{j \ge n}P_j(t).
+$
+\item The result follows from the explicit from for the distribution of $\tS_n$ and recognizing that $P_n(t) = F_n(t) - F_{n+1}(t)$. 
+\item The result from the following observation
+$
+\sum_{n \in \N}F_n(t) = \E\sum_{n \in \N}\SetIn{N_t \ge n} = \sum_{n \in \N}P\set{N_t \ge n} = \E N_t.
+$
+\item The result follows by summing the distribution function of the $n$th arrivals, to get 
+$\E N_t = \sum_{n\in\N}F_n(t) = e^{-\lambda t}\sum_{n\in\N}\sum_{k \ge n}\frac{(\lambda t)^k}{k!} = 
+\lambda t e^{-\lambda t}\sum_{k\in\N}\frac{(\lambda t)^{k-1}}{(k-1)!} = \lambda t$. 
+\end{enumerate}
+%\begin{eqnarray*}
+%   P\set{N_t =n}&=&  P\set{S_{n}\le t, S_{n+1} >t)\\
+%   &=&  \int^{t}_{0} P\left\set{ {S_{n+1}>t}|{S_{n}=s}\right}f_{n}(s)  ds\\
+%   &\stackrel{(a)}{=}& \int^{t}_{0} P\set{X_{n+1}>t-s} f_{n}(s) ds\\
+%   &=&  \int^{t}_{0}e^{-\lambda(t- s)} \frac{\lambda^{n}s^{n-1}}{(n-1)!}e^{-\lambda s}  ds\\
+%   &=&\frac{e^{-\lambda t} (\lambda t)^{n}}{n !}.
+%\end{eqnarray*}
+% where (a) follows from the memoryless property of exponential distribution. %($P\set{X_{n+1}>s+t|X_{k+1}>t)=P\set{X_{k+1}>s)$).\\
+\end{proof}
+
+\begin{rem} 
+A Poisson process is not a stationary process. 
+That is, the finite dimensional distributions are not shift invariant. 
+This is clear from looking at the first moment $\E N_t = \lambda t$, which is linearly increasing in time. 
+\end{rem}
+\end{document}

@@ -1,0 +1,369 @@
+\documentclass[12pt,aspectratio=169]{beamer}
+\input{header_beamer}
+\usetheme{Boadilla}
+\usecolortheme{beaver}
+\setbeamertemplate{page number in head/foot}{}
+\setbeamertemplate{navigation symbols}{}
+
+
+\title{ Lecture-23: Invariant Distribution}
+\date{}
+
+\begin{document}
+\pagestyle{empty}
+\maketitle
+
+\begin{frame}{Invariant Distribution} 
+Let $X: \Omega \to \sX^{\Z_+}$ be a time-homogeneous Markov chain with transition probability matrix $P: \sX\times\sX\to[0,1]$. 
+\begin{Definition}<2->
+A probability distribution $\pi \in \cM(\sX)$ is said to be %\textbf{stationary distribution} or 
+\textbf{invariant distribution} for the Markov chain $X$ if it satisfies the \textbf{global balance equation} $\pi = \pi P$. 
+\end{Definition}
+\begin{Definition}<3->
+When the initial distribution of a Markov chain is $\nu \in \cM(\sX)$, 
+then the conditional probability is denoted by $P_\nu: \sF \to [0,1]$ defined by 
+\EQ{
+P_\nu(A) \triangleq \sum_{x\in\sX}\nu(x)P_x(A)\text{ for all events }A \in \sF.
+} 
+\end{Definition}
+\end{frame}
+
+\begin{frame}
+\begin{Definition} 
+For a Markov chain $X:\Omega\to\sX^{\Z_+}$, 
+we denote the distribution of random variable $X_n:\Omega\to\sX$ by $\nu_n \in \cM(\sX)$ for all $n \in \Z_+$. 
+That is, $\nu_n(x) \triangleq P_{\nu_0}\set{X_n = x}$ for all $x \in \sX$. 
+\end{Definition}
+\begin{block}{Reminder}<2->
+We observe that $\nu_n(x) = \sum_{z\in\sX}\nu_0(z)(P^n)_{zx}$ for all $x \in \sX$. 
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Reminder} 
+Facts about the invariant distribution $\pi$. 
+\begin{itemize}
+\item The global balance equation $\pi = \pi P$ is a matrix equation; that is, we have a collection of $\abs{\sX}$ equations: $\pi_y = \sum_{x \in \sX}\pi_x p_{xy}$ for each $y \in \sX$.
+
+\item<2-> The invariant distribution $\pi$ is a left eigenvector of the stochastic matrix $P$ with the largest eigenvalue $1$. The all-ones vector is the right eigenvector of this stochastic matrix $P$ for the eigenvalue $1$.
+
+\item<3-> From the Chapman-Kolmogorov equation for the initial probability vector $\pi$, we have $\pi = \pi P^n$ for $n \in \N$. That is, if $\nu_0 = \pi$, then $\nu_n = \pi$ for all $n \in \Z_+$.
+
+\item<4-> The resulting process with initial distribution $\pi$ is stationary, and hence has shift-invariant finite-dimensional distributions. For example, for any $k, n \in \Z_+$ and $x_0, \dots, x_n \in \sX$, we have
+\EQ{
+P_{\pi}\set{X_0 = x_0, \dots, X_n = x_n} = P_{\pi}\set{X_k = x_0, \dots, X_{k+n} = x_n} = \pi_{x_0}p_{x_0x_1} \dots p_{x_{n-1}x_n}.
+}
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\begin{block}{Reminder} 
+\begin{itemize}
+\item For an irreducible Markov chain, if $\pi_x > 0$ for some $x \in \sX$, then the entire invariant vector $\pi$ is positive. 
+To this end, we will show that $\pi_y > 0$ for all states $y \in \sX$. 
+Let $y \in \sX$, then from the irreducibility of Markov chain, there exists an $m \in \Z_+$ such that $p_{xy}^{(m)} > 0$. 
+Further, $\pi = \pi P^m$ and hence $\pi_y \ge \pi_x p_{xy}^{(m)} > 0$.  
+
+\item<2-> Any scaled version of $\pi$ satisfies the global balance equation. 
+Therefore, for any invariant vector $\alpha \in \sX^{\R_+}$ of a positive recurrent transition matrix $P$,  
+the sum $\norm{\alpha}_1 = \sum_{x \in \sX}\alpha_x$ must be finite. 
+We can normalize $\alpha$ and get an invariant probability measure $\pi = \frac{\alpha}{\norm{\alpha}_1}$. 
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Theorem} 
+An irreducible Markov chain with transition probability matrix $P:\sX\times\sX\to[0,1]$ is positive recurrent iff there exists a unique invariant probability measure $\pi \in \cM(\sX)$ that satisfies global balance equation $\pi = \pi P$ and $\pi_x = \frac{1}{\mu_{xx}} > 0$ for all $x \in \sX$. 
+\end{block}
+
+\begin{Proof}<2->
+Consider an irreducible Markov chain $X:\Omega\to\sX^{\Z_+}$ with transition probability matrix $P$.  
+%We will first show that positive recurrence of $X$ implies the existence of a positive invariant distribution $\pi$ and its uniqueness. 
+%Then we will show that the existence of a unique positive invariant distribution $\pi$ implies positive recurrence of $X$.  
+\begin{itemize}
+\item[Implication:]<3->
+For Markov chain $X$, let the initial state be $X_0 = x$. 
+Recall that the number of visits to state $y \in \sX$ in the first $n$ steps of the Markov chain $X$ is denoted by $N_y(n) = \sum_{k=1}^n\SetIn{X_k = y}$.  
+It follows that $\sum_{y \in \sX}N_y(n) = n$ for each $n \in \N$. 
+Let $H_x \triangleq \tau_X^{\set{x},1}$ be the first recurrence time to state $x\in\sX$, then we have $N_x(H_x) = 1$ and $\sum_{y \in \sX}N_y(H_x) = H_x$.
+\end{itemize}
+\end{Proof}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Proof (Existence)}
+Define a vector $v \in \R^\sX$ by $v_y \triangleq \E_x[N_y(H_x)]$ for each $y \in \sX$. Observe that $v_y \ge 0$ for each state $y \in \sX$.  
+In particular, $v_x = 1$ and $\sum_{y \in \sX} v_y = \E_x H_x = \mu_{xx} < \infty$.
+
+\begin{itemize}
+\item<2-> We will show that the vector $v$ satisfies the global balance equation $v = vP$. To see this, we first define
+\[
+\lambda_{xy}^{(n)}  \triangleq P_x\set{X_n = y, n \le H_x}
+\]
+for all $n \in \N$ and states $x,y \in \sX$.  
+We observe that $\lambda_{xy}^{(1)} = p_{xy}$ for each $y \in \sX$.
+
+\item<3-> Next, by the monotone convergence theorem:
+\begin{equation*}
+\label{eqn:Eigenvector}
+v_y = \E_x N_y(H_x) = \E_x\sum_{n \in \N} \SetIn{X_n = y, n \le H_x}
+= \sum_{n \in \N} P_x\set{X_n = y, n \le H_x} = \sum_{n \in \N} \lambda_{xy}^{(n)}.
+\end{equation*}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Proof continued (Existence)}
+\begin{itemize}
+\item For $n \ge 2$, partitioning the event $\set{X_n = y, n \le H_x}$ by the events $(\set{X_{n-1} = z} : z \in \sX \setminus \set{x})$, and using the countable additivity and the definition of conditional probability, we get:
+\[
+\lambda_{xy}^{(n)} 
+= \sum_{z \neq x} P\left(\set{X_n = y} \given \set{X_{n-1} = z, n \le H_x, X_0 = x}\right) P_x\set{X_{n-1} = z, n \le H_x}.
+\]
+
+\item<2-> Since $H_x$ is adapted to the natural filtration $\sF_\bullet$ of the Markov chain $X$, we have:
+\[
+\set{n \le H_x, X_0 = x} = \set{X_0 = x} \cap \set{H_x > n-1}^c \in \sF_{n-1}.
+\]
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\begin{block}{Proof continued (Existence)}
+\begin{itemize}
+\item <1-> Together with the Markov property of $X$ and the fact that 
+\[
+\set{X_{n-1}=z, n \le H_x} = \set{X_{n-1}=z, n-1 \le H_x},
+\]
+we obtain,
+\begin{align*}
+%\label{eqn:EigenvectorTerms}
+\lambda_{xy}^{(n)} 
+&= \sum_{z \neq x} P\left( \set{X_n = y} \given \set{X_{n-1} = z} \right) P_x\set{X_{n-1} = z, n-1 \le H_x} \\
+&= \sum_{z \neq x} \lambda_{xz}^{(n-1)} p_{zy}.
+\end{align*}
+
+\item <2-> Substituting the expression for $\lambda_{xy}^{(n)}$ into the expression for $v_y = \sum_{n \in \N} \lambda_{xy}^{(n)}$ from~\eqref{eqn:Eigenvector}, and using the fact that $v_x = 1$, we obtain:
+\[
+v_y = p_{xy} + \sum_{n \ge 2} \sum_{z \neq x} \lambda_{xz}^{(n-1)} p_{zy}
+= v_x p_{xy} + \sum_{z \neq x} v_z p_{z y}
+= \sum_{x \in \sX} v_x p_{x y}.
+\]
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Proof continued (Existence)}
+\begin{itemize}
+\item Since $v$ has a finite sum, it follows that
+\[
+\pi \triangleq \frac{v}{\sum_{x \in \sX} v_x}
+\]
+is an invariant distribution for the Markov chain $X$ with transition matrix $P$.
+
+In addition, we have
+\[
+\pi_x = \frac{v_x}{\sum_{y \in \sX} v_y} = \frac{1}{\mu_{xx}} > 0.
+\]
+
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+
+\begin{frame}
+\begin{block}{Proof Continued (Uniqueness)}
+\begin{itemize}
+    \item Next, we show that this is a unique invariant measure independent of the initial state $x$, 
+    and hence $\pi_y = \frac{1}{\mu_{yy}} > 0$ for all $y \in \sX$.  
+    For uniqueness, we observe from the Chapman-Kolmogorov equations and the invariance of $\pi$ that
+    \[
+    \pi = \frac{1}{n} \pi (P + P^2 + \dots + P^n).
+    \]
+    
+    \item<2-> Hence,
+    \[
+    \pi_y = \sum_{x \in \sX} \pi_x \cdot \frac{1}{n} \sum_{k=1}^n p_{xy}^{(k)}, \quad \text{for all } y \in \sX.
+    \]
+    Taking the limit as $n \to \infty$ on both sides and exchanging the limit and summation on the right-hand side (justified by the bounded convergence theorem, since $\pi$ is summable), we obtain
+    \[
+    \pi_y = \frac{1}{\mu_{yy}} \sum_{x \in \sX} \pi_x = \frac{1}{\mu_{yy}} > 0, \quad \text{for all } y \in \sX.
+    \]
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{Proof}[Proof (Converse)]
+Let $\pi$ be the unique positive invariant distribution of Markov chain $X$, such that $\pi_y = \frac{1}{\mu_{yy}} > 0$ for all states $y \in \sX$. 
+It follows that the Markov chain $X$ is positive recurrent.
+\end{Proof}
+\end{frame}
+
+
+\begin{frame}
+\begin{cor} 
+An irreducible Markov chain on a finite state space $\sX$ has a unique positive stationary distribution $\pi$. 
+\end{cor}
+\begin{Definition}<2->
+An irreducible, aperiodic, positive recurrent Markov chain is called \textbf{ergodic}. 
+\end{Definition}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Reminder} 
+Additional remarks about the stationary distribution $\pi$. 
+\begin{itemize}
+    \item For a Markov chain with multiple positive recurrent communicating classes $\cC_1, \dots, \cC_m$, one can find the positive equilibrium distribution for each class and extend it to the entire state space $\sX$, denoting it by $\pi_k$ for class $k \in [m]$.
+    
+    \item<2-> It is easy to check that any convex combination
+    \[
+    \pi = \sum_{k = 1}^m \alpha_k \pi_k
+    \]
+    satisfies the global balance equation $\pi = \pi P$, where $\alpha_k \ge 0$ for each $k \in [m]$ and $\sum_{k=1}^m \alpha_k = 1$.
+    
+    \item<3-> Hence, a Markov chain with multiple positive recurrent classes has a convex set of invariant probability measures, with the individual invariant distributions $\pi_k$ for each positive recurrent class $k \in [m]$ being the extreme points. 
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\begin{block}{Reminder}
+\begin{itemize}
+\item Let $\mu(0) = e_x$, that is let the initial state of the positive recurrent Markov chain be $X_0 = x$. Then, we know that %for an aperiodic Markov chain $X$, 
+\EQ{
+\pi_y = \frac{1}{\mu_{yy}} = \lim_{n \to \infty}\frac{1}{n}\sum_{k=1}^np_{xy}^{(k)} =  \lim_{n \to \infty}\frac{1}{n}\E_xN_y(n).
+}
+That is, $\pi_y$ is limiting average of number of visits to state $y \in \sX$. 
+
+\item<2-> If a positive recurrent Markov chain is aperiodic, then limiting probability of being in a state $y$ is its invariant probability, 
+that is $\pi_y = \lim_{n \to \infty}p_{xy}^{(n)}$. 
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Theorem} 
+For an ergodic Markov chain $X$ with invariant distribution $\pi$, and $n$th step distribution $\mu(n)$, we have $\lim_{n \to \infty}\mu(n) = \pi$ in the total variation distance. 
+\end{block}
+
+\begin{block}{Proof}<2->
+Consider independent time homogeneous Markov chains $X: \Omega \to \sX^{\Z_+}$ and $Y: \Omega \to \sX^{\Z_+}$ each with transition matrix $P$. 
+The initial state of Markov chain $X$ is assumed to be $X_0 = x$, whereas the Markov chain $Y$ is assumed to have an initial distribution $\pi$. 
+It follows that $Y$ is a stationary process, while $X$ is not. 
+In particular, 
+\meq{2}{
+&\mu_y(n) = P_x\set{X_n = y} = p_{xy}^{(n)}, && P_{\pi}\set{Y_n = y} = \pi_y.
+} 
+Let $\tau = \inf\{n \in \Z_+: X_n = Y_n\}$ be the first time that two Markov chains meet, called the \textit{coupling time}. \\
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Proof continued}
+\begin{itemize}
+\item \textbf{Finiteness:} First, we show that the coupling time is almost surely finite. 
+To this end, we define a a new Markov chain on state space $\sX \times \sX$ with transition probability matrix $Q$ such that $q((x,w), (y,z)) = p_{xy}p_{wz}$ for each pair of states $(x,w), (y,z) \in \sX \times \sX$. 
+The $n$-step transition probabilities for this couples Markov chain are given by 
+\EQ{
+q^{(n)}((x,w), (y,z)) \triangleq p^{(n)}_{xy}p^{(n)}_{wz}.
+} 
+\item<2-> \textbf{Ergodicity:} Since the Markov chain $X$ with transition probability matrix $P$ is irreducible and aperiodic, for each $x,y,w,z \in \sX$ there exists an $n_0 \in \Z_+$ such that $q^{(n)}((x,w), (y,z)) = p^{(n)}_{xy}p^{(n)}_{wz} > 0$ for all $n \ge n_0$ from a previous Lemma on aperiodicity. Hence, the irreducibility and aperiodicity of this new \textbf{product} Markov chain follows. 
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Proof continued}
+\begin{itemize}
+\item \textbf{Invariant:} It is easy to check that $\theta(x,w) = \pi_x\pi_{w}$ is the invariant distribution for this product Markov chain, since $\theta(x,w) > 0$ for each $(x,w) \in \sX \times \sX$, $\sum_{x,w \in \sX}\theta(x,w) = 1$, and for each $(y,z) \in \sX \times \sX$, we have 
+\EQ{
+\sum_{x,w \in \sX}\theta(x,w)q((x,w), (y,z)) = \sum_{x \in \sX}\pi_xp_{xy}\sum_{w \in \sX}\pi_{w}p_{wz} = \pi_y\pi_{z} = \theta(y,z). 
+}
+\item<2-> \textbf{Recurrence:} This implies that the product Markov chain is positive recurrent, and each state $(x,x) \in \sX \times \sX$ is reachable with unit probability from any initial state $(y,w) \in \sX \times \sX$.  
+\item<2-> In particular, the coupling time is almost surely finite. 
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{Proof}[Proof continued]
+\begin{itemize}
+\item \textbf{Coupled process:} Second, we show that from the coupling time onwards, the evolution of two Markov chains is identical in distribution.  
+That is, for each $y \in \sX$ and $n \in \Z_+$, 
+\EQ{
+P_{X_{\tau}}\set{X_{n} = y, n \ge \tau} = P_{Y_{\tau}}\set{Y_{n} = y, n \ge \tau}. 
+}
+%This follows from the strong Markov property for the joint process where 
+$\tau$ is stopping time for the joint process $((X_n, Y_n): n \in \Z_+)$ such that $X_\tau = Y_\tau$, 
+and both marginals  have the identical transition matrix.\\ % and that $X_{\tau} = Y_{\tau}$. 
+
+\item<2->
+\textbf{Limit:} For any $y \in \sX$, we can write the difference as 
+\EQ{
+\abs{p_{xy}^{(n)} - \pi_y} = \abs{P_x\set{X_n = y, n < \tau} - P_{\pi}\set{Y_n = y, n < \tau}} \le 2P_{\delta_x, \pi}(\tau > n). 
+}
+Since the coupling time is almost surely finite for each initial state $x,y \in \sX$, 
+we have $\sum_{n \in \N}P_{\delta_x,\pi}\set{\tau = n} = 1$ and the tail-sum $P_{\delta_x,\pi}\set{\tau > n}$ goes to zero as $n$ grows large, and the result follows. 
+\end{itemize}
+\end{Proof}
+\end{frame}
+
+\begin{frame}{Computing invariant distribution}
+When the state space $\sX$ is finite, one can find left eigenvector of probability transition matrix $P$ for the largest eigenvalue~$1$. 
+This is the invariant distribution that satisfies the global balance equation $\pi = \pi P$. 
+\begin{Definition}<2->
+Consider a time homogeneous positive recurrent Markov chain $X:\Omega\to\sX^{\Z_+}$ with probability transition matrix $P$ and invariant distribution $\pi \in \cM(\sX)$. 
+For any two disjoint sets $A, B \subseteq \sX$,  
+the probability flux from set of nodes $A$ to set of nodes $B$ is defined as $\Phi(A,B) =\sum_{x \in A}\sum_{y \in B}\pi_xp_{xy}$. 
+\end{Definition}
+\begin{block}{Reminder}<3->
+The probability flux from a single node $x$ to single node $y$ is denoted by $\Phi(x,y) = \pi_xp_{xy}$. 
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{Definition} 
+For a time homogeneous Markov chain $X:\Omega\to\sX^{\Z_+}$ with probability transition matrix $P$ 
+represented as the weighted transition graph $G = (\sX, E, w)$, 
+a \textbf{cut} is defined as the partition $(\sX_1,\sX_2)$ of nodes.
+\end{Definition}
+\begin{block}{Lemma}<2->
+Probability flux balances across cuts. 
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{Proof}
+A cut for the state space $\sX$ is given by a partition $(\sX_1,\sX_2)$. 
+We show that $\Phi(\sX_1,\sX_2) = \Phi(\sX_2,\sX_1)$. 
+To this see, we observe that by exchanging sums from the monotone convergence theorem, and exchanging $x$ and $y$ as running variables, we can write the probability flux $\Phi(\sX_1,\sX_2)$ as 
+\begin{align*}
+\sum_{y\in \sX_1}\pi_y\sum_{x\notin\sX_1}p_{yx} 
+&= \sum_{y\in\sX_1}\pi_y(1- \sum_{x\in\sX_1}p_{yx}) 
+= \sum_{y\in\sX_1}\pi_y - \sum_{x\in\sX_1}\sum_{y\in\sX_1}\pi_yp_{yx} \\
+&= \sum_{y\in\sX_1}\pi_y - \sum_{x\in\sX_1}(\pi_x- \sum_{y\notin\sX_1}\pi_yp_{yx}) \\
+&= \sum_{y\notin \sX_1}\pi_y\sum_{x\in\sX_1}p_{yx}.
+\end{align*}
+\end{Proof}
+\end{frame}
+
+\begin{frame}
+\begin{cor}
+For any states $y \in \sX$, we have $\pi_y(1-p_{yy}) = \pi_y \sum_{x \neq y}p_{yx} = \sum_{x \neq y}\pi_xp_{xy}$. 
+\end{cor}
+\begin{Proof}<2->
+It follows from probability flux balancing across the cut $(\set{y}, \set{y}^c)$. 
+\end{Proof}
+\end{frame}
+
+\end{document}

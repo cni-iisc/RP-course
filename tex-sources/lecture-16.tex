@@ -1,0 +1,235 @@
+% !TEX spellcheck = en_US
+% !TEX spellcheck = LaTeX
+\documentclass[letterpaper,10pt,english]{article}
+\input{../../header}
+\title{Lecture-16: Weak convergence}% of random variables}
+\author{}
+
+\begin{document}
+\maketitle
+
+%Consider a random sequence $X:\Omega\to\R^\N$ defined on a probability space $(\Omega, \sF, P)$.
+\section{Convergence in distribution}
+\begin{defn}[convergence in distribution] 
+A  random sequence $X:\Omega\to\R^\N$ defined on a probability space $(\Omega, \sF, P)$ \textbf{converges in distribution} to a random variable $X_\infty:\Omega'\to\R$ defined on a probability space $(\Omega', \sF', P')$  if $\lim_nF_{X_n}(x) = F_{X_\infty}(x)$ at all continuity points $x$ of $F_{X_\infty}$. 
+Convergence in distribution is denoted by $\lim_nX_n = X_\infty$ in distribution. 
+\end{defn}
+\begin{prop}
+\label{Prop:ConvDistEquivalence}
+Consider a random sequence$X:\Omega\to\R^\N$ defined on a probability space $(\Omega, \sF, P)$ and a random variable $X_\infty: \Omega'\to\R$ defined on another probability space $(\Omega', \sF', P')$.  
+%, both defined on the same . 
+Then the following statements are equivalent.
+\begin{enumerate}[(a)]
+\item $\lim_nX_n = X_\infty$ in distribution.
+\item $\lim_n\E[g(X_n)] = \E[g(X_\infty)]$ for any bounded continuous Borel measurable function $g:\R\to\R$.
+\item Characteristic functions converge point-wise, i.e. 
+$\lim_n\Phi_{X_n}(u) = \Phi_{X_\infty}(u)$ for each $u \in \R$. 
+\end{enumerate}
+\end{prop}
+\begin{proof}
+Let $X:\Omega\to\R^\N$ be a sequence of random variables and let $X_\infty:\Omega'\to\R$ be a random variable. 
+We will show that $(a) \implies (b) \implies (c) \implies (a)$.
+\begin{enumerate}[(a)]
+\item [$(a) \implies (b)$:] 
+%Let $\lim_nX_n = X_\infty$ in distribution, then 
+Applying the bounded convergence theorem to any bounded continuous Borel measurable function $g:\R\to\R$, we have $\lim_n\int_{x \in \R} g(x)dF_{X_n}(x) = \int_{x \in \R} g(x)\lim_ndF_{X_n}(x)$.
+\item [$(b) \implies (c)$:] 
+%Let $\lim_n\E[g(X_n)] = \E[g(X_\infty)]$ for any bounded continuous function $g$. 
+Taking $g(x) = e^{jux}$, we get the result. 
+\item [$ (c) \implies (a)$:] 
+The proof of this part is technical and is omitted.
+%Let $\lim_n\Phi_{X_n}(u) \to \Phi_X(u)$ for each $u \in \R$. 
+\end{enumerate}
+\end{proof}
+\begin{shaded}
+\begin{exmp}[Convergence in distribution but not in probability] 
+Consider a sequence of non-degenerate continuous \iid random variables $X:\Omega\to\R^\N$ and independent random variable $Y: \Omega'\to\R$, all with the common distribution $F_Y$. 
+Then $F_{X_n} = F_Y$ for all $n \in \N$, and hence $\lim_nX_n = Y$ in distribution. 
+If the common distribution $F_Y$ is zero mean Gaussian with variance $\sigma^2$, 
+then $X_n - Y$ is zero mean Gaussian with variance $2\sigma^2$. 
+Therefore, for $\epsilon < \sigma\sqrt{\pi}$ and all $n \in \N$
+\EQ{
+P\set{\abs{X_n - Y} \le \epsilon} 
+= \frac{1}{\sqrt{4\pi\sigma^2}}\int_{z \in [-\epsilon, \epsilon]}e^{-z^2/4\sigma^2}dz
+\le \frac{\epsilon}{\sigma\sqrt{\pi}} < 1.
+}
+It follows that $P\set{\abs{X_n - Y} > \epsilon} \ge 1- \frac{\epsilon}{\sigma\sqrt{\pi}}$ for all $n \in \N$, and hence $\lim X_n \neq Y$ in probability.
+%However, for any $n \in \N$ and $\epsilon > 0$, from the monotonicity of distribution function, we have 
+%\EQ{
+%P\set{\abs{X_n - Y} \le \epsilon} 
+%= \E\SetIn{X_n \in [Y-\epsilon, Y+\epsilon]} 
+%= \E F_Y(Y+\epsilon) - \E F_Y(Y-\epsilon) < 1.
+%}
+%Defining $Z_1 \triangleq F_Y(Y+\epsilon)$ and $Z_2 \triangleq F_Y(Y-\epsilon)$, 
+%we observe that 
+%\begin{xalignat*}{2}
+%&F_{Z_1}(z) %= P\set{Y \le F_Y^{-1}(z)-\epsilon} 
+%= F_Y(F_Y^{-1}(z)-\epsilon)
+%= z - \epsilon F'_Y(F_Y^{-1}(z)),&
+%&F_{Z_2}(z) %= P\set{Y \le F_Y^{-1}(z)+\epsilon} 
+%= F_Y(F_Y^{-1}(z)+\epsilon)
+%= z + \epsilon F'_Y(F_Y^{-1}(z).
+%\end{xalignat*}
+\end{exmp}
+\end{shaded}
+\begin{lem}[Convergence in probability implies in distribution] 
+Consider a sequence $X:\Omega\to\R^\N$ of random variables and a random variable $X_\infty: \Omega\to\R$ defined on a probability space $(\Omega, \sF, P)$, 
+such that $\lim_nX_n = X_\infty$ in probability, then $\lim_nX_n = X_\infty$ in distribution.
+\end{lem}
+\begin{proof} 
+We will show that all continuity points $x$ of $F_{X_\infty}$, 
+we have $\lim_{n\to\infty}F_{X_n}(x) = F_{X_\infty}(x)$. 
+Fix $\epsilon > 0$. 
+Since $x$ is a continuity point of non-decreasing function $F_{X_\infty}$, 
+choose $\delta > 0$ such that $F_{X_\infty}(x+\delta) - F_{X_\infty}(x-\delta) < \epsilon$. 
+Therefore, it suffices to show that 
+\EQ{
+F_{X_\infty}(x-\delta) \le \lim\inf_{n\to\infty}F_{X_n}(x)\le \lim\sup_{n\to\infty}F_{X_n}(x) \le F_{X_\infty}(x+\delta).
+}
+%Consider the events $A_n(x) \triangleq \set{X_n\le x}$ and $A(x) \triangleq \set{X \le x}$, then we can write  
+%\EQ{
+%A_n(x) = (A_n(x)\cap A(x+\epsilon)) \cup (A_n(x)\cap A^c(x+\epsilon))
+%}
+%Fix $\epsilon > 0$,
+For the chosen $\delta >0$, we consider the event  $A_n(\delta) \triangleq \set{\omega \in \Omega: \abs{X_n(\omega)-X_\infty(\omega)} > \delta} 
+= \set{X_n \notin [X_\infty- \delta, X_\infty+\delta]}\in \sF,$
+and define events $A_{X_n}(x) \triangleq \set{X_n \le x}$ and $A_{X_\infty}(x) \triangleq \set{X_\infty \le x}$. 
+Then, we can write
+\begin{xalignat*}{2}
+&A_{X_n}(x)\cap A_{X_\infty}(x+\delta) \subseteq A_{X_\infty}(x+\delta),&&A_{X_n}(x)\cap A_{X_\infty}^c(x+\delta) \subseteq A_n(\delta),\\
+&A_{X_\infty}(x-\delta)\cap A_{X_n}(x) \subseteq A_{X_n}(x), &&A_{X_\infty}(x-\delta)\cap A_{X_n}^c(x) \subseteq A_n(\delta).
+\end{xalignat*}
+From the above set relations, law of total probability, and union bound, we have 
+\EQ{
+F_{X_\infty}(x-\delta) - P(A_n(\delta)) \le F_{X_n}(x) \le F_{X_\infty}(x+\delta) + P(A_n(\delta)).
+}
+From the convergence in probability, we have $\lim_nP(A_n(\delta)) = 0$, and the result follows. 
+%Therefore, we get 
+%\EQ{
+%F_{X_\infty}(x-\delta) \le \lim\inf_nF_{X_n}(x) \le  \lim\sup_nF_{X_n}(x) \le F_{X_\infty}(x+\delta). 
+%}
+%We get the result at the continuity points of $F_{X_\infty}$, since the choice of $\epsilon$ was arbitrary. 
+\end{proof}
+\begin{thm}[Central Limit Theorem] 
+Consider an \iid random sequence $X:\Omega\to\R^\N$ defined on a probability space $(\Omega, \sF, P)$, 
+with $\E X_n = \mu$ and $\Var(X_n) = \sigma^2$ for all $n\in\N$.  
+We define the $n$-sum as $S_n\triangleq \sum_{i=1}^nX_i$ and consider a standard normal random variable $Y:\Omega\to\R$ with density function $f_Y(y)= \frac{1}{\sqrt{2\pi}}e^{-\frac{y^2}{2}}$ for all $y \in \R$. 
+Then, 
+\EQ{
+\lim_n\frac{S_n-n\mu}{\sigma\sqrt{n}} = Y\text{ in distribution.}
+}
+\end{thm}
+\begin{proof} 
+The classical proof is using the characteristic functions. 
+Let $Z_i \triangleq \frac{X_i-\mu}{\sigma}$ for all $i \in \N$, 
+then the shifted and scaled $n$-sum is given by $\frac{S_n-n\mu}{\sigma\sqrt{n}} = \frac{1}{\sqrt{n}}\sum_{i=1}^nZ_i$. 
+We use the third equivalence in Proposition~\ref{Prop:ConvDistEquivalence} to show that the characteristic function of converges to the characteristic function of the standard normal. 
+We define the characteristic functions 
+\begin{xalignat*}{3}
+&\Phi_{n}(u) \triangleq \E\exp\left(ju\frac{(S_n-n\mu)}{\sigma\sqrt{n}}\right), &
+&\Phi_{Z_i}(u) \triangleq \E\exp(juZ_i), &
+&\Phi_Y(u) \triangleq \E\exp(juY).
+\end{xalignat*}
+We can compute the characteristic function of the standard normal as 
+\EQ{
+\Phi_Y(u) = \frac{1}{\sqrt{2\pi}}\int_{y \in \R}e^{-\frac{u^2}{2}}\exp\left(-\frac{(y-ju)^2}{2}\right)dy = e^{-\frac{u^2}{2}}.
+}
+Since the random sequence $Z: \Omega\to \R^\N$ is a zero mean \iid sequence, 
+it follows that $\Phi_{Z_1}^{(1)}(0) = j\E Z_1 = 0$ and $\Phi_{Z_1}^{(2)}(0) = j^2\E Z_1^2 = - 1$.  
+Using the Taylor expansion of the characteristic function $\Phi_{Z_1}$, we have 
+\EQ{
+\Phi_{n}(u) = \prod_{i=1}^n\E\exp\left(ju\frac{(X_i-\mu)}{\sigma\sqrt{n}}\right) = \left[\Phi_{Z_1}\left(\frac{u}{\sqrt{n}}\right)\right]^n = \left[1 - \frac{u^2}{2n} + o\left(\frac{u^2}{n}\right)\right]^n. 
+}
+For any $u \in \R$, taking limit $n \in \N$, we get the result.
+\end{proof}
+
+\section{Strong law of large numbers}
+\begin{defn} 
+For a random sequence $X:\Omega\to\R^\N$ defined on a probability space $(\Omega,\sF,P)$ with bounded mean $\E\abs{X_n} < \infty$ for all $n \in \N$, 
+we define the $n$-sum as $S_n \triangleq \sum_{i=1}^nX_i$ and the empirical $n$-mean $\frac{S_n}{n}$ for each $n \in \N$. 
+For each $n \in \N$, we define event 
+\EQ{
+E_n \triangleq \set{\omega \in \Omega: \abs{S_n - \E S_n} > n\epsilon} \in \sF.
+} 
+\end{defn}
+\begin{thm}[$L^4$ strong law of large numbers] 
+Let $X:\Omega\to\R^\N$ be a sequence of independent random variables defined on probability space $(\Omega,\sF,P)$ with bounded mean $\E X_n$ for each $n \in \N$ and uniformly bounded fourth central moment $\sup_{n \in \N}\E(X_n-\E X_n)^4 \le B < \infty$. %for all $n \in \N$.  
+Then, the empirical $n$-mean converges to $\lim_n\frac{\E S_n}{n}$ almost surely.
+\end{thm}
+\begin{proof}
+%Applying Jensen's inequality to convex function $g:\R \to \R$ defined by $x \mapsto x^4$, 
+%and to random variable $Z$ that takes value $n(X_i-\E X_i)$ with probability $\frac{1}{n}$ for all $i \in [n]$, 
+%we get 
+%\EQ{
+%(S_n-\E S_n)^4 
+%\le n^3\sum_{i=1}^n(X_i-\E X_i))^4.
+%}
+Recall that $\E(S_n-\E S_n)^4 = \E(\sum_{i=1}^n(X_i-\E X_i))^4 = \sum_{i=1}^n\E(X_i-\E X_i)^4 + 3\sum_{i=1}^n\sum_{j \neq i}\E(X_i-\E X_i)^2\E(X_j-\E X_j)^2$. 
+Recall that when the fourth moment is bounded, then so is second moment. 
+Hence, $\sup_{i\in \N}\E(X_i-\E X_i)^2 \le C$ for some $C \in \R_+$.
+Therefore, from the Markov's inequality, we have %and Minkowski's inequality, we have 
+\EQ{
+P(E_n) 
+\le \frac{\E(S_n-\E S_n)^4}{n^4\epsilon^4} 
+%\le \frac{\sum_{i=1}^{n}\E(X_i-\mu)^4}{n^4\epsilon^4} 
+\le \frac{nB+3n(n-1)C^2}{n^4\epsilon^4}.
+} 
+It follows that the $\sum_{n \in \N}P(E_n) < \infty$, and hence by Borel Canteli Lemma, we have 
+\EQ{
+P\set{E_n^c \text{ for all but finitely many }n} = 1.
+} 
+Since, the choice of $\epsilon$ was arbitrary, the result follows.
+\end{proof}
+\begin{thm}[$L^2$ strong law of large numbers] 
+Let $X:\Omega \to \R^\N$ be a sequence of pair-wise uncorrelated random variables defined on a probability space $(\Omega, \sF, P)$ with bounded mean $\E X_n$ for all $n \in \N$ and uniformly bounded variance $\sup_{n\in\N}\Var(X_n) \le B < \infty$. %for all $n \in \N$.  
+Then, the empirical $n$-mean converges to $\lim_n\frac{\E S_n}{n}$ almost surely.
+\end{thm}
+\begin{proof} 
+For each $n \in \N$, we define events $F_n \triangleq E_{n^2}$, and 
+\EQ{
+G_n \triangleq \set{\max_{n^2 \le k < (n+1)^2}\abs{S_k-S_{n^2} - \E(S_k-S_{n^2})} > n^2\epsilon} 
+= \bigcup_{n^2 \le k < (n+1)^2}\set{\omega \in \Omega: \abs{\sum_{i=n^2}^{k}(X_i - \E X_i)} > n^2\epsilon}.
+}
+From the Markov's inequality and union bound, we have 
+\meq{2}{
+&P(F_n) 
+\le \frac{\sum_{i=1}^{n^2}\Var(X_i)}{n^4\epsilon^2} 
+\le \frac{B}{n^2\epsilon^2},&
+&P(G_n) 
+\le \sum_{k=n^2}^{(n+1)^2-1}\frac{(k-n^2+1)B}{n^4\epsilon^2} 
+\le \frac{(2n+1)^2B}{n^4\epsilon^2}.
+}
+Therefore, $\sum_{n \in \N}P(F_n) < \infty$ and $\sum_{n \in \N}P(G_n) < \infty$, 
+and hence by Borel Canteli Lemma, 
+we have 
+\EQ{
+\lim_n\frac{S_{n^2}-\E S_{n^2}}{n^2} = \lim_n\max_{n^2 \le k < (n+1)^2-1}\frac{S_k-S_{n^2}-\E(S_k-S_{n^2})}{n^2} = 0 \text{ a.s. }
+}
+The result follows from the fact that for any $k \in \N$, there exists $n \in \N$  such that $k \in \set{n^2, \dots, (n+1)^2-1}$ and hence 
+\EQ{
+\frac{\abs{S_k-\E S_k}}{k} \le \left(
+\frac{\abs{S_{n^2}-\E S_{n^2}}}{n^2} + \frac{\abs{S_k-S_{n^2}-\E(S_k-S_{n^2})}}{n^2}
+\right).
+}
+\end{proof}
+\begin{thm}[$L^1$ strong law of large numbers] 
+Let $X:\Omega\to\R^\N$ be a random sequence defined on a probability space $(\Omega,\sF,P)$ such that $\sup_{n\in\N}\E\abs{X_n} \le B < \infty$. %for all $n \in \N$.  
+Then, the empirical $n$-mean converges to $\lim_n\frac{\E S_n}{n}$ almost surely.
+\end{thm}
+%\begin{proof} 
+%\red{
+%For each $n \in \N$, we define truncated random variable $Y_n \triangleq X_n\SetIn{\abs{X_n} \le n}$. 
+%Then, we can write 
+%\EQ{
+%\sum_{n \in \N}P\set{X_n \neq Y_n} = \sum_{n\in \N}P\set{\abs{X_n} > n} \le \E\abs{X_1} < \infty.
+%}
+%We will first show that $\lim_{n}\frac{1}{n}\sum_{i=1}^nY_i = \E X_1$ a.s. 
+%Towards this end, we define event 
+%\EQ{
+%E_n \triangleq \set{\omega \in \Omega: \frac{1}{n}\abs{\sum_{i=1}^n(Y_i(\omega) - \E Y_i)} > \epsilon} \in \sF.
+%} 
+%From the Markov's inequality, we have $P(E_n) \le \frac{\sum_{i=1}^n\Var(Y_i)}{n^2\epsilon^2}$.
+%}
+%\end{proof}
+
+\end{document}

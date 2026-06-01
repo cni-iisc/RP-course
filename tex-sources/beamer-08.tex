@@ -1,0 +1,404 @@
+\documentclass[12pt,aspectratio=169]{beamer}
+\input{header_beamer}
+\usetheme{Boadilla}
+\usecolortheme{beaver}
+\setbeamertemplate{page number in head/foot}{}
+\setbeamertemplate{navigation symbols}{}
+\title{Lecture-08: Expectation}
+\date{}
+
+\begin{document}
+\pagestyle{empty}
+\maketitle
+
+\begin{frame}{Expectation}
+\begin{Example}
+\begin{itemize}
+\item <1-> Consider a probability space $(\Omega, \sF, P)$ with $N$ trials of a random experiment. Define $X: \Omega \to \sX^N$ 
+such that $X_i \triangleq \pi_i\circ X :\Omega \to\sX$ is a discrete random variable associated with the trial $i \in [N]$.   
+\item <2-> If the marginal distributions of $(X_1, \dots, X_N)$ are identical with the common probability mass function $P_{X_1}: \sX \to [0,1]$, then the empirical mean of random variable $X_1$ can be written as 
+\EQ{
+\hat{m} \triangleq \frac{1}{N}\sum_{i=1}^NX_i. 
+}
+\item <3-> For a $X_1: \Omega \to \sX$, 
+we can define $E_{X_1}(x) \triangleq X_1^{-1}\set{x}$ for each $x \in \sX$.  
+\end{itemize}
+\end{Example}
+\end{frame}
+
+\begin{frame}{Expectation}
+\begin{Example}[Continued]
+\begin{itemize}
+\item <1-> $P_{X_1}:\sX \to [0,1]$ for $X_1$ can be estimated for each $x \in \sX$ as
+\EQ{
+\hat{P}_{X_1}(x) \triangleq \frac{1}{N}\sum_{i=1}^N\Ind{E_{X_i}(x)}. 
+}
+\item <2-> $X_1 = \sum_{x \in \sX}x\Ind{E_{X_1}(x)}$, 
+where $E_{X_1} \triangleq (E_{X_1}(x) \in \sF: x \in \sX)$ is a finite partition of $\Omega$ and $P_{X_1}(x) = P(E_{X_1}(x))$. 
+\item <3-> That is, we can write the empirical mean in terms of the empirical PMF as \EQ{
+                    \hat{m} 
+                    = \frac{1}{N}\sum_{i=1}^N\sum_{x \in \sX}x\Ind{E_{X_i}(x)}(\omega)
+                    = \sum_{x \in \sX}x\hat{P}_{X_1}(x).
+                    }
+\end{itemize}
+\end{Example}
+\end{frame}
+
+\begin{frame}{Expectation of simple random variable}
+\begin{Definition}<1-> 
+The \textbf{mean} or \textbf{expectation} of a simple random variable $X:\Omega \to \sX \subseteq \R$ defined on a probability space $(\Omega, \sF, P)$, is denoted by $\E[X]$ and defined as 
+\EQ{
+\E[X] \triangleq \sum_{x \in \sX}xP_X(x).
+}
+\end{Definition}
+\begin{block}{Reminder}<2-> 
+For an indicator random variable $\Ind{A}$, we have $\E\Ind{A} = P(A)$. 
+%That is, the expectation of an indicator function is the probability of the indicated set. 
+\end{block}
+\end{frame}
+
+\begin{frame}{Expectation of simple random variable}
+\begin{block}{Reminder} 
+\begin{itemize}
+    \item <1-> $X = \sum_{x \in \sX}x\Ind{E_X(x)}$ where  $E_X(x) \triangleq X^{-1}\set{x}$ for all $x\in\sX$
+    \item <2-> Expectation of a simple random variable can be expressed an integral \EQ{
+                    \E[X] 
+                    = \int_{\Omega}X(\omega)P(d\omega) 
+                    = \int_\Omega\sum_{x \in \sX}x\Ind{E_X(x)}(\omega)P(d\omega)
+                    }
+    \item <3-> \EQ{
+                    \E[X]
+                    = \sum_{x \in \sX}x\int_{\Omega}\Ind{E_X(x)}(\omega)P(d\omega) 
+                    = \sum_{x \in \sX}x\E[\Ind{E_X(x)}] = \sum_{x \in \sX}xP_X(x).
+                    }
+\end{itemize} 
+\end{block}
+\end{frame}
+
+\begin{frame}{Expectation of simple random variable}
+\begin{block}{Theorem}
+\begin{itemize}
+\item <1-> Consider a non-negative random variable $X: \Omega \to \R_+$ defined on $(\Omega, \sF, P)$.  
+\item <2-> There exists a sequence of non-decreasing non-negative simple random variables $Y: \Omega \to \R_+^\N$ such that for all $\omega \in \Omega$
+\EQ{
+Y_n(\omega) \le Y_{n+1}(\omega), \text{ for all } n \in \N, \text{ and  } \lim_{n}Y_n(\omega) = X(\omega).
+}
+\item <3-> %Then $\E[Y_n]$ is defined for each $n \in \N$, 
+The sequence $(\E[Y_n] \in \R_+: n \in \N)$ is non-decreasing, 
+and the limit $\lim_n\E[Y_n] \in \R_+\cup\set{\infty}$ exists.  
+%\item <4-> This limit is independent of the choice of the sequence and depends only on the probability space. % $(\Omega, \sF, P)$.   
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Expectation of simple random variable}
+\begin{Proof}
+\begin{itemize}
+\item <1-> For each $n \in \N$ and $k \in \set{0, \dots, 2^{2n}-1}$, 
+define $B_{n,k} \triangleq (k2^{-n}, (k+1)2^{-n}]$. 
+\item <2-> $B_n \triangleq (B_{n,k}: k \in \set{0, \dots, 2^{2n}-1})$ partitions the set $(0, 2^n]$ for each $n \in \N$. 
+\item <3-> $\cup_{n \in \N}(0, 2^n] = \R^+$ and $B_{n+1,2k}\cup B_{n+1,2k+1} = B_{n,k}$ for all $n \in \N$ and $k$. 
+\item <4-> For $X: \Omega \to \R_+$, 
+define events $A^X_{n,k} = X^{-1}(B_{n,k}) \in \sF$, 
+and $Y: \Omega\to\R_+^\N$ \EQ{
+Y_n(\omega) 
+\triangleq \sum_{k=0}^{2^{2n}-1}\Ind{A^X_{n,k}}(\omega)\left(\inf_{\omega \in A^X_{n,k}}X(\omega)\right)
+%= \sum_{k=0}^{2^{2n}-1}\Ind{A^X_{n,k}}(\omega)\left(\inf_{X(\omega) \in B_{n,k}}X(\omega)\right)
+= \sum_{k=0}^{2^{2n}-1}k2^{-n}\Ind{A^X_{n,k}}(\omega).
+}
+\end{itemize}
+\end{Proof}
+\end{frame}
+
+\begin{frame}
+\begin{Proof}[Proof Continued]
+\begin{itemize}
+\item <1-> $Y_n$ is a quantized version of $X$, its value is the left end-point $k2^{-n}$ when $X \in B_{n,k}$ for each $k \in \set{0, \dots, 2^{2n}-1}$.  
+\item <2-> Since $\cup_{k=0}^{2^{2n}-1}A^X_{n,k} = X^{-1}(0, 2^n]$, 
+the limiting random variable can take all possible non-negative real values. 
+\item <3-> \eq{Y_{n+1}(\omega) 
+&= \sum_{k=0}^{2^{2(n+1)}-1}\Ind{A^X_{n+1,k}}(\omega)\left(\inf_{X(\omega) \in B_{n+1,k}}X(\omega)\right)\\
+&\ge \sum_{k=0}^{2^{2n}-1}\left(\Ind{A^X_{n+1,2k}}(\omega)\left(\inf_{X(\omega) \in B_{n+1,2k}}X(\omega)\right)\\
+&+ \Ind{A^X_{n+1,2k+1}}(\omega)\left(\inf_{X(\omega) \in B_{n+1,2k+1}}X(\omega)\right)
+}
+\end{itemize}
+\end{Proof}
+\end{frame}
+
+\begin{frame}{Expectation of simple random variable}
+\begin{Proof}[Proof Continued]
+\begin{itemize}
+\item <1-> \EQ{
+Y_{n+1}(\omega) \ge  \sum_{k=0}^{2^{2n}-1}\Ind{A^X_{n,2k}}(\omega)\left(\inf_{X(\omega) \in B_{n,k}}X(\omega)\right)
+= Y_n(\omega).}
+\item <2-> $Y_n(\omega) \le Y_{n+1}(\omega) \le X(\omega)$ and $\lim_nY_n(\omega) = X(\omega)$ for all $\omega \in \Omega$. 
+\item <3-> \EQ{
+                \E[Y_n]
+                = \sum_{k=0}^{2^{2n}-1}k2^{-n}[F_X((k+1)2^{-n})- F_X(k2^{-n})].
+                }
+\item <4->\EQ{
+\lim_n\E[Y_n] 
+= \lim_n\sum_{k=0}^{2^{2n}-1}k2^{-n}[F_X(k2^{-n}+2^{-n})- F_X(k2^{-n)})] 
+= \int_{\R^+} x dF_X(x).
+}
+\end{itemize}
+\end{Proof}
+\end{frame}
+
+\begin{frame}{Expectation of a non-negative random variable}
+\begin{Definition}
+\begin{itemize}
+\item <1-> For a non-negative random variable $X: \Omega \to \R$ defined on $(\Omega,\sF,P)$, 
+consider the sequence of non-decreasing simple random variables $Y: \Omega \to \R_+^\N$ such that $\lim_nY_n = X$. 
+\item <2-> The \textbf{expectation} of the non-negative random variable $X$ is defined as 
+\EQ{
+\E[X] \triangleq \lim_n\E[Y_n]. 
+}
+\end{itemize}
+\end{Definition}
+\begin{block}{Reminder}<3->
+From the definition, it follows that $\E[X] = \int_{\R_+} x dF_X(x)$. 
+\end{block}
+\end{frame}
+
+\begin{frame}{Expectation of a real random variable}
+\begin{Definition} 
+\begin{itemize}
+\item <1-> For a real-valued random variable $X$ defined on $(\Omega, \sF, P)$, define:
+\item <2-> \begin{xalignat*}{2}
+&X_+ \triangleq \max\set{X, 0}, &
+&X_- \triangleq \max\set{0, -X}.
+\end{xalignat*}
+\item <3-> %We can verify that $X_+, X_-$ are non-negative random variables and hence their expectations are well defined.
+We observe that $X(\omega) = X_+(\omega) - X_-(\omega)$ for each $\omega \in \Omega$. 
+\item <4-> If at least one of the $\E[X_+]$ and $\E[X_-]$ is finite, then the \textbf{expectation} of the random variable $X$ is defined as 
+\EQ{
+\E[X] \triangleq \E[X_+] - \E[X_-]. 
+}
+\end{itemize}
+\end{Definition}
+\end{frame}
+
+\begin{frame}{Expectation of a real random variable}
+\begin{block}{Theorem : Expectation as an integral with respect to the distribution function}<1->
+For a random variable $X:\Omega\to\R$ defined on the probability space $(\Omega, \sF, P)$, 
+the expectation is given by 
+\EQ{
+\E[X] = \int_\R x dF_X(x).
+}
+\end{block}
+\end{frame}
+%\begin{Proof}
+%\begin{itemize}
+%\item <1-> Suffices to show this for a non-negative random variable $X$.
+%\item <2-> Result follows from the definition of expectation of a non-negative random variable as the limit of expectation of approximating simple functions.
+%\end{itemize}
+%\end{Proof}                                                  
+
+\begin{frame}{Properties of Expectations}
+\begin{block}{Theorem : Properties}
+%Let $X: \Omega \to \R$ be a random variable defined on the probability space $(\Omega, \sF, P)$. 
+\begin{enumerate}[(i)]
+\item <1-> \textbf{Linearity:}
+Let $a, b \in \R$ and $X, Y$ be defined on $(\Omega, \sF, P)$. 
+If $\E X, \E Y$, and $a\E X + b\E Y$ are well defined, then %$\E(aX+bY)$ is well defined and 
+\EQ{
+\E(aX+bY) = a\E X + b \E Y.
+}
+\item <2-> \textbf{Monotonicity:}
+If $P\set{X \ge Y} = 1$ and $\E[Y]$ is well defined
+with $\E[Y] > -\infty$, then 
+%$\E[X]$ is well defined and 
+\EQ{\E[X] \ge \E[Y]}.
+\item <3-> \textbf{Functions of random variables:}
+Let $g: \R \to \R$ be a Borel measurable function, then 
+%$g(X)$ is a random variable with
+\EQ{\E[g(X)] = \int_{x\in \R}g(x)dF(x)}. 
+\end{enumerate}
+\end{block}
+\end{frame}
+
+\begin{frame}{Properties of Expectations}
+\begin{block}{Theorem : Properties Continued}
+\begin{enumerate}[(i)]
+\setcounter{enumi}{3}
+\item <1-> \textbf{Continuous random variables:} $f_X: \R \to [0, \infty)$ be density function, 
+then \EQ{\E X = \int_{x \in \R}xf_X(x)dx}. 
+\item <2-> \textbf{Discrete random variables:} Let $P_X: \sX \to [0,1]$ be the PMF, 
+then \EQ{\E X = \sum_{x \in \sX}xP_X(x)}. 
+\end{enumerate}
+\end{block}
+\end{frame}
+
+\begin{frame}{Properties of Expectations}
+\begin{block}{Theorem : Properties Continued}
+\begin{enumerate}[(i)]
+\setcounter{enumi}{5}
+\item <1-> \textbf{Integration by parts:} \EQ{\E X = \int_{x \ge 0}(1-F_X(x))dx - \int_{x < 0}F_X(x)dx} is well defined when at least one of the two parts is finite on the right-hand side. 
+\end{enumerate}
+\end{block}
+\end{frame}
+
+\begin{frame}{Properties of Expectations}
+\begin{Proof}
+\begin{enumerate}[(i)]
+\item \textbf{Linearity:}
+\end{enumerate}
+\begin{itemize}
+\item <1-> $X = \sum_{x \in \sX}x\mathbbm{1}_{E_X(x)}$, $Y =  \sum_{y \in \sY}y\mathbbm{1}_{E_Y(y)}$ 
+\item <2-> $(E_X(x)\cap E_Y(y) \in \sF: (x, y)\in \sX \times \sY)$ partition the sample space $\Omega$. 
+\item <3-> $aX + bY = \sum_{(x,y) \in \sX \times \sY}(ax+by)\SetIn{E_X(x)\cap E_Y(y)}$ 
+%and from linearity of sum it follows that
+\item <4-> \eq{
+\E[aX+bY] &= \sum_{(x,y) \in \sX \times \sY}(ax+by)P\set{E_X(x)\cap E_Y(y)} \\
+&= a\sum_{x \in \sX}x\sum_{y\in\sY}P\set{E_X(x)\cap E_Y(y)} 
++ b\sum_{y \in \sY}y\sum_{x \in \sX}P\set{E_X(x)\cap E_Y(y)}\\
+&= a\sum_{x \in \sX}xP(E_X(x)) + b\sum_{y \in \sY}yP(E_Y(y)) = a\E X + b \E Y.
+}
+\end{itemize}
+\end{Proof}
+\end{frame}
+
+\begin{frame}{Properties of Expectations}
+\begin{Proof}[Proof Continued]
+\begin{enumerate}[(i)]
+\setcounter{enumi}{1}
+\item <1-> \textbf{Monotonicity:} $X-Y \ge 0$ almost surely and it suffices to show that $\E X \ge 0$ for non-negative random variable $X$.
+\end{enumerate}
+\begin{enumerate}[(i)]
+\setcounter{enumi}{2}
+\item <2-> \textbf{Functions of random variables:}
+\end{enumerate}
+\begin{itemize}
+\item <2-> For simple random variables, $X: \Omega \to \sX \subset \R$. 
+Since $g: \R \to \R$ is Borel measurable, $Y \triangleq g(X): \Omega\to\sY \triangleq g(\sX)$ is a random variable. 
+\item <3-> $\sX = \cup_{y\in \sY}\cup_{x \in g^{-1}\set{y}}\set{x}$. 
+Further, for each $y \in \sY$, we have 
+\EQ{
+E_Y(y) = \set{\omega \in \Omega: (g\circ X)(\omega) = y} = X^{-1}\circ g^{-1}\set{y} = \cup_{x\in g^{-1}\set{y}}E_X(x).
+}
+\end{itemize}
+\end{Proof}
+\end{frame}
+
+\begin{frame}{Properties of Expectations}
+\begin{Proof}[Proof Continued]
+\begin{enumerate}[(i)]
+\setcounter{enumi}{2}
+\item <1-> \textbf{Functions of random variables: (Continued)}
+\end{enumerate}
+\begin{itemize}
+\item <1-> Since $E_X(x)$ are disjoint for all $x \in \sX$, we get $P(E_Y(y)) = \sum_{x \in g^{-1}\set{y}}P(E_X(x))$. 
+\item <2-> \EQ{
+\E[Y] 
+= \sum_{y \in \sY}yP(E_Y(y)) 
+= \sum_{y \in g(\sX)}\sum_{x \in g^{-1}(y)}g(x)P(E_X(x)) = \sum_{x \in \sX}g(x)P(E_X(x)).
+}  
+\end{itemize}
+\begin{enumerate}[(i)]
+\setcounter{enumi}{3}
+\item <3-> \textbf{Continuous random variables:} $dF_X(x) = f_X(x)dx$ for all $x \in \R$.
+\item <4-> \textbf{Discrete random variables:} $X : \Omega \to \sX$, $dF_X(x) = P_X(x)$ for all $x \in \sX$ and zero otherwise. 
+\end{enumerate}
+\end{Proof}
+\end{frame}
+
+\begin{frame}{Properties of Expectations}
+\begin{Proof}[Proof Continued]
+\begin{enumerate}[(i)]
+\setcounter{enumi}{5}
+\item \textbf{Integration by parts:}
+\end{enumerate}
+\begin{itemize}
+\item <1-> $\E X = \int_{x <0}xdF_X(x)-\int_{x \ge 0}xd(1-F_X)(x)$. 
+\item <2-> By applying integration by parts to the first term on the right,
+\EQ{
+\int_{x <0}xdF_X(x) = xF_X(x)\rvert_{-\infty}^0 - \int_{x < 0}F_X(x)dx.
+}
+\item <3-> Similarly, by applying integration by parts to the second term on the right,
+\EQ{
+-\int_{x \ge 0}xd(1-F_X)(x) = -x(1-F_X(x))\rvert_0^{\infty}+ \int_{x \ge 0}(1-F_X(x))dx.
+}
+\end{itemize}
+\end{Proof}
+\end{frame}
+\end{document}
+
+
+
+
+
+
+
+
+
+
+\subsection{Linearity of expectations}
+\begin{block}{Theorem : Linearity of expectations} 
+Suppose $X: \Omega \to \R^n$ is a random vector defined on the probability space $(\Omega, \sF, P)$. 
+Then, for constants $\alpha_i \in \R$ for all $i \in [n]$, we have
+\EQ{
+\E[\sum_{i=1}^n\alpha_iX_i] = \sum_{i=1}^n\alpha_i\E[X_i].
+}
+\end{Theorem}
+\end{frame}
+\begin{frame}
+\begin{Proof}
+It suffices to show that $\int_{x \in \R^n}x_1dF_{X}(x) = \int_{x_1 \in \R}x_1dF_{X_1}(x_1)$. 
+The result follows from the observation that 
+\EQ{
+\int_{x \in \R^n}x_1dF_{X}(x) = \int_{x_1 \in \R}x_1\int_{x_2, \dots, x_n}dF_X(x) = \int_{x_1 \in \R}x_1dF_{X_1}(x_1). 
+}
+\end{Proof}
+\end{frame}
+\begin{frame}
+\subsection{Functions of random variables}
+\begin{block}{Theorem : Fundamental theorem of expectations} 
+Suppose $X$ is a random variable defined on the probability space $(\Omega, \sF, P)$, 
+and $g: \R \to \R$ is a function such that $g^{-1}(-\infty, x] \in \sB(\R)$ for all $x \in \R$. 
+Then $Y = g(X)$ is also a random variable, 
+and 
+\EQ{
+\E[Y] = \E[g(X)].
+}
+\end{Theorem}
+\end{frame}
+\begin{frame}
+\begin{Proof}
+It suffices to show this is true for simple random variables $X: \Omega \to \sX \subseteq \R$. 
+Let $E_X(x) \triangleq \set{\omega \in \Omega: X(\omega) = x}$ for each $x \in \sX$. 
+Then $(E_X(x) = X^{-1}\set{x} \in \sF: x \in \sX)$ partitions the sample space $\Omega$, 
+and we can write its expectation as 
+\EQ{
+\E[X] =\E[\sum_{x \in \sX}x\SetIn{E_X(x)}] = \sum_{x \in \sX}xP_X(x).
+}
+It follows that $Y: \Omega \to \sY = g(\sX)$ is also a discrete random variable, and we can write 
+\EQ{
+E_Y(y) \triangleq \set{\omega \in \Omega: (g\circ X)(\omega) = y} = \cup_{x \in \sX}\set{X(\omega) = x, g(x) = y} = \cup_{x \in g^{-1}\set{y}} E_X(x).
+} 
+Therefore, we can write the expectation
+\EQ{
+\E[Y] = \E[\sum_{y \in \sY}y\mathbbm{1}_{E_Y(y)}] = \E[\sum_{y \in \sY}y\sum_{x \in g^{-1}\set{y}}\mathbbm{1}_{E_X(x)}] = \E[\sum_{x \in \sX}g(x)\mathbbm{1}_{E_X(x)}]= \sum_{x \in \sX}g(x)P_X(x).
+}
+\end{Proof}
+\end{frame}
+
+\appendix
+\begin{frame}{Indicator functions}
+For a sequence of disjoint events $(A_n \in \sF:n \in \N)$, we have 
+\EQ{
+\SetIn{\cup_{n \in \N}A_n} = \sum_{n \in \N}\mathbbm{1}_{A_n}. 
+}
+For any sequence of events $(A_n\in \sF: n \in \N)$, we have 
+\EQ{
+\SetIn{\cap_{n \in \N}A_n} = \prod_{n \in \N}\mathbbm{1}_{A_n}.
+}
+\subsection{Law of total probability}
+Let $(A_n \in \sF: n \in \N)$ be a partition of the sample space, i.e. $A_n\cap A_m = \emptyset$ for $n \neq m$ and $\cup_{n \in \N}A_n = \Omega$. 
+Then, any event $B = B\cap\Omega = B\cap(\cup_{n \in \N}A_n) = \cup_{n \in \N}(B\cap A_n)$. 
+Therefore, we can write 
+\EQ{
+\mathbbm{1}_B = \sum_{n \in \N}\mathbbm{1}_{B\cap A_n}.
+}
+\end{frame}
+

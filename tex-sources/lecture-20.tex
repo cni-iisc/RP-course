@@ -1,0 +1,421 @@
+\documentclass[letterpaper,10pt,english]{article}
+\input{../../header}
+
+\title{ Lecture-20: Strong Markov Property}
+\author{}
+
+\begin{document}
+\maketitle
+
+\section{$n$-step transition}
+\begin{defn}
+%Hence, it follows that 
+For a time homogeneous Markov chain $X:\Omega\to\sX^{\Z_+}$, we can define \textbf{$n$-step transition probability matrix} $P^{(n)}$, 
+with its $(x,y)$ entry being the \textbf{$n$-step transition probability} for $X_{m+n}$ to be in state $y$ given the event $\set{X_m = x}$. 
+That is, 
+$
+p_{xy}^{(n)} \triangleq P(\set{X_{n+m} = y }|\set{ X_m = x}) 
+$
+for all $x,y \in \sX$ and $m,n \in \Z_+$.
+\end{defn}
+\begin{rem}
+That is, the row $P^{(n)}_x = (p^{(n)}_{xy}: y \in \sX) \in \cM(\sX)$ is the conditional distribution of $X_n$ given the initial state $\set{X_0 = x}$. 
+\end{rem} 
+%\begin{shaded}
+%\begin{exmp}[Sequence of experiments] 
+%Consider the time homogeneous Markov chain $X:\Omega\to\Z^{\Z_+}$ introduced in Example~\ref{exmp:MarkovBerExp}. 
+%%Consider a random sequence of experiments, where the success of $n$th outcome is indicated by $X_n$. 
+%%That is, $X:\Omega \to \set{0,1}^{\Z_+}$ is a random sequence of outcomes of experiments.  
+%%%such that each experiment has two possible outcomes in $\sX = \set{0, 1}$. 
+%%%We assume that it takes unit time to perform each experiment. 
+%%
+%%Let $p,q \in [0,1]$. 
+%%Given the outcome was $0$, the probability of next outcome being $0$ is $1-p$. 
+%%Similarly, given the outcome was $1$, the probability of next outcome being $1$ is $1-q$. 
+%%We can see that $X$ is homogeneous Markov chain, 
+%%with probability transition matrix
+%%\EQ{
+%%P = \begin{bmatrix}1-p & p\\ q & 1-q\end{bmatrix}. 
+%%}
+%We denote the conditional distribution of $X_{n+1}$ given $\set{X_0 = 0}$ by $\nu_{n+1}$, 
+%and the conditional distribution of $X_{n+1}$ given $\set{X_0 = 1}$ by $\mu_{n+1}$. 
+%That is, 
+%\eq{
+%\nu_{n} &= \begin{bmatrix}P_0(\set{X_{n} = 0}) & P_0(\set{X_{n} = 1}) \end{bmatrix},\\
+%\mu_{n} &= \begin{bmatrix}P_1(\set{X_{n} = 0}) & P_1(\set{X_{n} = 1}) \end{bmatrix}.
+%}
+%Let $\pi_0$ be the initial distribution on the experiment outcome, 
+%and $\pi_n$ be the distribution of the experiment outcome at time $n$. 
+%Then, we can write 
+%\EQ{
+%\pi_{n}(0) 
+%\triangleq P\set{X_{n} = 0} 
+%= P_0(\set{X_{n} = 0}) \pi_0(0) +  P_1(\set{X_{n} = 0}) \pi_0(1)\\
+%= \nu_n(0)\pi_0(0) + \mu_n(0)\pi_0(1).
+%}
+%Similarly, we can write $\pi_n(1) =  \nu_n(1)\pi_0(0) + \mu_n(1)\pi_0(1)$. 
+%That is, we can write 
+%\EQ{
+%\pi_n 
+%\triangleq 
+%\begin{bmatrix}\pi_n(0) & \pi_n(1) \end{bmatrix} 
+%= \begin{bmatrix}\pi_0(0) & \pi_0(1)\end{bmatrix} 
+%\begin{bmatrix}\nu_n(0) & \nu_n(1)\\ \mu_n(0) & \mu_n(1)\end{bmatrix} 
+%= \pi_0\begin{bmatrix} \nu_n\\ \mu_n\end{bmatrix} .
+%}
+%That is to compute the unconditional distribution of $X_n$, given initial distribution $\pi_0$, 
+%we need to compute conditional distributions $\nu_n$ and $\mu_n$. 
+%We can see that 
+%\meq{2}{
+%&\nu_1 = \begin{bmatrix}1-p & p\end{bmatrix}, && \nu_2 =  \begin{bmatrix}(1-p)^2 + pq & (1-p)p + p(1-q) \end{bmatrix},\\ 
+%&\mu_1 = \begin{bmatrix}q & 1-q\end{bmatrix}, && \mu_2 =  \begin{bmatrix}q(1-p) + (1-q)q & (1-q)^2 + qp \end{bmatrix}.
+%} 
+%This method of direct computation can quickly become too cumbersome. 
+%\end{exmp}
+%\end{shaded}
+
+\begin{thm} 
+The $n$-step transition probabilities for a homogeneous Markov chain form a semi-group. 
+That is, for all positive integers $m,n \in \Z_+$
+\EQ{
+P^{(m+n)} = P^{(m)}P^{(n)}. 
+}
+\end{thm}
+\begin{proof} 
+The events $\set{ \set{X_m = z}: z \in \sX}$ partition the sample space $\Omega$, and hence we can express the event $\set{X_{m+n} = y}$ as the following disjoint union
+\EQ{
+\set{X_{m+n} = y} = \cup_{z \in \sX}\set{X_{m+n}=y, X_m = z}. 
+}
+It follows from the Markov property and law of total probability that for any states $x, y$ and positive integers $m, n$
+\eq{
+p_{xy}^{(m+n)} &= \sum_{z \in \sX}P_x(\set{X_{n+m} = y,  X_m = z}) 
+=  \sum_{z \in \sX}P(\set{X_{n+m} = y} \mid\set{X_m = z, X_0 = x})P_x(\set{X_m = z}) \\
+&=  \sum_{z \in \sX}P(\set{X_{n+m} = y} \mid \set{X_m = z})P_x(\set{X_m = z}) 
+= \sum_{z \in \sX} p_{xz}^{(m)}p_{zy}^{(n)} = (P^{(m)}P^{(n)})_{xy}.
+}
+Since the choice of  states $x,y \in \sX$ were arbitrary, the result follows. 
+\end{proof}
+\begin{cor} 
+The $n$-step transition probability matrix is given by $P^{(n)} = P^n$ for any positive integer $n$.
+\end{cor}
+\begin{proof}
+In particular, we have $P^{(n+1)} = P^{(n)}P^{(1)} =  P^{(1)}P^{(n)}$. 
+Since $P^{(1)} = P$, we have $P^{(n)} = P^n$ by induction. 
+\end{proof} 
+%\begin{rem} 
+%That is, for all states $x,y$ and non-negative integers $n \in \Z_+$, $p^{(n)}_{xy} = P^n_{xy}$.
+%\end{rem}
+%Henceforth we shall only work with homogeneous DTMCs. 
+%\begin{defn}[Transition Probability Matrix]
+%  $\set{P_{xy}}$ are called transition probabilities as they define the
+%  probability of transiting from state $i$ to state $j$ in one step.
+%  We can create a matrix $P$ out of the transition probabilities where
+%  the $i^{th}$ row and $j^{th}$ column equal $P_{xy}$. Such a matrix
+%  is called a \textbf{Transition Probability Matrix} or \textbf{TPM}.
+%\end{defn}
+
+%\section{Chapman Kolmogorov equations} 
+%We denote by $\pi_0 \in \R_+^{\sX}$ the initial distribution of the Markov chain, that is $\pi_0(x) = P\set{X_0 = x}$. 
+%The distribution of $X_n$ is given by $\pi_n \in \R_+^{\sX}$, such that for any state $x \in \sX$. 
+%\EQ{
+%\pi_n(x) = P\set{X_n = x} = \sum_{z \in \sX}p_{zx}^{(n)}\pi_0(z) = (\pi_0P^n)_x. 
+%}
+%We can write this succinctly in terms of transition probability matrix $P$ as $\mu_n = \mu_0P^n$. 
+%We can alternatively derive this result by the following Lemma. 
+\begin{defn}
+For a time homogeneous Markov chain $X:\Omega\to\sX^{\Z_+}$ we denote the probability mass function of Markov chain at step $n$ by $\pi_n\in \cM(\sX)$. 
+\end{defn}
+\begin{lem}[Chapman Kolmogorov]
+The right multiplication of a probability vector with the transition matrix $P$ transforms the probability distribution of current state to probability distribution of the next state. 
+That is, 
+\EQ{
+\pi_{n+1} = \pi_nP,~\text{ for all } n \in \N.
+}
+\end{lem}
+\begin{proof}
+To see this, we fix $y \in \sX$ and from the law of total probability and the definition conditional probability, we observe that 
+\EQ{
+\pi_{n+1}(y) = P\set{X_{n+1} = y} = \sum_{x \in \sX}P\set{X_{n+1} = y, X_n = x} = \sum_{x \in \sX}P\set{X_n = x}p_{xy} = (\pi_{n}P)_y. 
+}
+\end{proof}
+
+%\begin{lem}
+%The left multiplication of any vector of a function evaluation at all states, with the transition matrix $P$ results in a vector of the expected value of the function at the next state given the current state. 
+%That is, for any function $f:\sX \to \R$, we have $(Pf)_x = \E_x[f(X_1)]$. 
+%\end{lem}
+%\begin{proof}
+%From the definition of transition probability matrix, we have 
+%\EQ{
+%(Pf)_x = \sum_{y \in \sX}p_{xy}f(y) = \sum_{y \in \sX}f(y)\E_x\indicator{X_1 = y} = \E_x[f(X_1)].
+%}
+%\end{proof}
+%\section{$n$-step transition}
+%%Consider a homogeneous Markov chain $X: \Omega \to \sX^{\Z_+}$ %= (X_n \in \sX: n \in \Z_+)$ 
+%%with countable state space $\sX$ and transition matrix $P$. 
+%%\begin{defn}
+%%We would respectively denote the conditional probability of events and conditional expectation of random variables, conditioned on the event $\set{X_0 = x}$, by 
+%%\meq{2}{
+%%&P_x(A) = P(A \mid \set{X_0 = x}), && \E_x[Y] = \expect{Y \mid \set{X_0 = x}}.
+%%}
+%%\end{defn}
+%%\begin{prop}
+%%Conditioned on the initial state, any finite dimensional distribution of a homogeneous Markov chain is stationary. 
+%%\end{prop}
+%%\begin{proof}
+%%To this end, we compute the transition probabilities for the path $(x_1, \dots, x_n)$ taken by the sample path $(X_1, \dots, X_n)$ given the event $\set{X_0 = x_0}$ and by the sample path $(X_{m+1}, \dots, X_{m+n})$ given the event $\set{X_m = x_0}$. 
+%%For each $i \in \set{0, \dots, n}$, we can define events 
+%%\meq{2}{
+%%&H_i \triangleq \cap_{j=1}^i\set{X_j = x_j}, &% \in \sF_i = \sigma(X_0, \dots, X_i),&
+%%&\tilde{H}_i \triangleq \cap_{j=0}^i\set{X_j = x_j} = h_i \cap\set{X_0 = x_0}. % \in \sF_i = \sigma(X_0, \dots, X_i),.
+%%}
+%%We observe that $H_{i} = \set{X_i = x_i}\cap H_{i-1}$ and $H_i, \tilde{H}_i \in \sF_i = \sigma(X_0, \dots, X_i)$ for all $i \in \N$. 
+%%From the definition of $H_{n-1}, \tilde{H}_{n-1}$, and the conditional probability, 
+%%we can write 
+%%\EQ{
+%%P_{x_0}(H_n) = P_{x_0}(\set{X_n = x_n}\cap H_{n-1}) = P(\set{X_n = x_n}\mid \tilde{H}_{n-1})P_{x_0}(H_{n-1}).
+%%}
+%%Using  the fact that $\tilde{H}_{n-1} = \set{X_{n-1} = x_{n-1}}\cap \tilde{H}_{n-2}$, and the Markovity and homogeneity of the process $X$, we obtain
+%%\EQ{
+%%P(\set{X_n = x_n}\mid \tilde{H}_{n-1}) = P(\set{X_n = x_n}\mid \set{X_{n-1} = x_{n-1}}\cap \tilde{H}_{n-2}) = p_{x_{n-1}x_n}.
+%%}
+%%Inductively, we can write the conditional joint distribution of $H_{n}$ given the event $\set{X_0 = x_0}$ as 
+%%\EQ{
+%%P_{x_0}(H_n) = p_{x_0x_1}\dots p_{x_{n-1}x_n}.
+%%}
+%%
+%%Similarly, we can write for the sample path $(X_{m+1}, \dots, X_{m+n})$ given $X_m = x_0$, 
+%%\EQ{
+%%P(\set{X_{m+1} = x_1, \dots, X_{m+n} = x_n}\mid \set{X_m = x_0}) = \prod_{i=1}^n P(\set{X_{m+i} = x_i)}\mid \set{X_{m+i-1} = x_{i-1}})= p_{x_0x_1}p_{x_1x_2} \dots p_{x_{n-1}x_n}.  
+%%}
+%%\end{proof}
+%%\begin{cor}
+%%The $n$-step transition probabilities are stationary for any homogeneous Markov chain.  
+%%That is,  for any states $x_0,y_0 \in \sX$ and $n,m \in \N$, we have 
+% %\EQ{
+%  %P(\set{X_{n+m} = y_0}|\set{ X_m = x_0}) =  P(\set{X_{n} = y_0}|\set{ X_0 = x_0}). 
+% %}
+%%\end{cor}
+%%\begin{proof}
+%%It follows from summing over intermediate steps. 
+%%In particular, we can partition the event $\set{X_n = y_0}$ in terms of disjoint events $\set{E_{n-1}(x,y_0) \triangleq \cap_{i=1}^{n-1}\set{X_i = x_i}\cap\set{X_n = y_0}: x \in \sX^{n-1}}$. 
+%%Then, we can write 
+%%\EQ{
+%%\set{X_n = y_0} = \cup_{x\in \sX^{n-1}}E_{n-1}(x, y_0).
+%%}
+%%Using the law of total probability, we can write the conditional probability 
+%%\EQ{
+%%P_{x_0}\set{X_n = x_n} 
+%%= \sum_{x_1, \dots, x_{n-1} \in \sX}P_{x_0}(E_{n-1}(x, y_0)). 
+%%}
+%%Similarly, we can write using the law of total probability for partition $\set{F_{n-1}(x,y_0): x \in \sX^{n-1}}$ defined by $F_{n-1}(x,y_0) \triangleq \cap_{i=1}^{n-1}\set{X_{m+i} = x_i}\cap\set{X_{m+n}=y_0}$, we can write
+%%\EQ{
+%%P(\set{X_{m+n} = x_n}\mid \set{X_m = x_0}) 
+%%= \sum_{x \in \sX^{n-1}}P(F_{n-1}(x, y_0) \mid \set{X_m = x_0}). 
+%%}
+%%From the stationarity in joint distribution conditioned on initial state for the homogeneous Markov chain $X$, we have 
+%%\EQ{
+%%P(F_{n-1}(x, y_0) \mid \set{X_m = x_0}) 
+%%= P(E_{n-1}(x, y_0) \mid \set{X_0 = x_0}).
+%%}
+%%The result follows. 
+%%\end{proof}
+%%
+%%Hence, it follows that 
+%\begin{defn}
+%For a homogeneous Markov chain $X: \Omega to \sX^{\Z_+}$, we can define $n$-step transition probabilities for $x,y \in \sX$ and $m,n \in \N$
+%\EQ{
+%p_{xy}^{(n)} \triangleq P(\set{X_{n+m} = y }|\set{ X_m = x}). 
+%}
+%\end{defn}
+%That is, the row $P^{(n)}_x = (p^{(n)}_{xy}: y \in \sX)$ is the conditional distribution of $X_n$ given $X_0 = x$.  
+
+%\section{Representation}
+
+% \subsection{Example: M/G/1 Queue}
+% In this queue, arrivals occurs as per a Poisson Process but service times are distributed \emph{iid} $G$. And there is only one server. Let $X(t)$ count the number of customers in the system at time t. Consider $\set{X(t), t\geq 0}$. Let $X_n = X(D_n^+)$ be the number of customers left behind by nth departure.
+
+% \begin{prop}
+% $X_n$ is a DTMC.
+% \end{prop}
+% To see this, let $Y_n$ denote the number of customers arriving during service time of  $(n+1)$th customer. Assume service time $\sim G$. Then
+% \begin{align*}X_{n+1} = X(D_{n+1}^+) = (X_n - 1)^+ + Y_n\end{align*}
+
+% Hence writing the TPM (here take $i\geq 1$)
+% \begin{align*}
+% &P[X_{n+1} = j| X_n = i, X_{n-1} = i_{n-1}, \cdots, X_0 =i_0] \\
+% & =  P[i +Y_n -1 = j| X_n = i, X_{n-1} = i_{n-1}, \cdots, X_0 =i_0] \\
+% & = P[Y_n = j+1-i] := P_{xy}
+% \end{align*}
+%  For $i=0$, $p_{0j} = P[Y_n =j]$. As the arrival process is Poisson, we can compute the TPM hence.
+
+% \subsection{Example: G/M/1 Queue}
+% In this queue, arrivals occur as per a renewal process with interarrival times $\sim G$. The service times are exponentially distributed. Our strategy, therefore is the analogous one, where we sample the queue after the nth arrival. With this in mind, let $X_n = X(A_n^-) $ which is the number of customers seen by the nth arrival. We get
+% \begin{align*}X_{n+1} = (X_n-Y_n+1)^+\end{align*}
+% From this, the TPM may be calculated.
+
+%$\sum_{i \in S}\nu(i) = 1$
+ 
+%\begin{proof}
+%\begin{align*}
+%P_{xy}^{(n+m)} =  & P[X_{n+m} = j| X_0 = i]\\
+%=& \sum_{k \in S} P[X_{n+m} = j,X_m=k| X_0 = i]\\
+%=& \sum_{k \in S}  P[X_{n+m} = j|X_m=k, X_0 = i].P[X_m=k|X_0=i]\\
+%=& \sum_{k \in S}  P[X_{n+m} = j|X_m=k].P[X_m=k|X_0=i]\\
+%=& \sum_{k \in S}  P[X_{n} = j|X_0=k].P[X_m=k|X_0=i]\\
+%=& \sum_{k \in S}  p_{ik}^{(m)}p_{kj}^{(n)}.\\
+%\end{align*}
+%The third equality is just using the property of conditional expectation. The fourth equality is by using the Markov property and the fifth equality is by the time homogeneity of the DTMC.
+%\end{proof}
+%If $P$ is the TPM, this result may be compactly written as $P^{(n)} = P^n$. As a result, $P_{xy}^{(n)} = P^n(x,y)$.
+
+\section{Strong Markov property (SMP)}
+We are interested in generalizing the Markov property to any random times. 
+For a DTMC $X: \Omega \to \sX^{\Z_+}$ and a random variable $\tau: \Omega \to \N$, 
+we are interested in knowing whether for any historical event $H_{\tau-1} = \cap_{n = 0}^{\tau-1}\set{X_n = x_n}$ and any state $x, y \in \sX$, we have 
+\EQ{
+P(\set{X_{\tau+1} = y}\mid H_{\tau-1}\cap\set{X_\tau= x}) = p_{xy}.
+}
+\begin{shaded}
+\begin{exmp}[Two-state DTMC] 
+Consider the two state Markov chain $X \in \set{0, 1}^{\Z_+}$ such that $P_0\set{X_1 = 1} = q$ and $P_1\set{X_1=0} = p$ for $p,q \in [0,1]$.   
+Let $\tau : \Omega \to \N$ be a random variable defined as 
+\EQ{
+\tau \triangleq \sup\set{n \in \N: X_i = 0, \text{ for all }i \le n}. 
+}
+That is, $\set{\tau = n} = \set{X_1 = 0, \dots, X_n = 0, X_{n+1} = 1}$. 
+Hence, for the historical event $H_{\tau-1} = \set{X_1 = \dots, X_{\tau-1} = 0}$, 
+the conditional probability $P(\set{X_{\tau+1}= 1}\mid H_{\tau-1}\cap\set{X_\tau = 0}) = 1$, % is either zero or one, 
+and not equal to $q$. 
+\end{exmp}
+\end{shaded}
+
+\begin{defn}
+Let $\tau:\Omega\to\N$ be a stopping time with respect to a random sequence $X:\Omega\to\sX^{\Z_+}$. % such that $P\set{T< \infty}=1$. 
+Then for all states $x,y \in \sX$ and the event $H_{\tau-1} = \cap_{n=0}^{\tau-1}\set{X_n = x_n}$, the process $X$ satisfies the \textbf{strong Markov property} if 
+\EQ{
+P(\set{X_{\tau+1} = y}\mid\set{X_\tau = x}\cap H_{\tau-1}) = P(\set{X_{\tau+1} = y}\mid \set{X_\tau = x}).
+}
+\end{defn}
+\begin{lem}
+Homogeneous Markov chains satisfy the strong Markov property. 
+\end{lem}
+\begin{proof}
+Let $X:\Omega \to \sX^{\Z_+}$ be a homogeneous DTMC with transition matrix $P$, 
+and $\tau:\Omega\to\N$ be an associated stopping time. 
+We take any historical event $H_{\tau-1} = \cap_{n = 0}^{T-1}\set{X_n = x_n}$, and states $x, y \in \sX$. 
+From the definition of conditional probability, the law of total probability, and the Markovity of the process $X$, we have 
+\eq{
+&P(\set{X_{\tau+1} = y}\mid H_{\tau-1}\cap\set{X_\tau = x}) =\frac{\sum_{n \in \Z_+}P(\set{X_{\tau+1}=y, X_\tau = x} \cap H_{\tau-1}\cap\set{T = n})}{P(\set{X_\tau = x}\cap H_{\tau-1})} \\
+&= \sum_{n \in \Z_+} P(\set{X_{n+1} = y}\mid \set{X_{n} = x}\cap H_{n-1}\cap\set{\tau=n}) P(\set{\tau=n}|\set{X_{T} = x}\cap H_{\tau-1}) \\
+&= p_{xy}\sum_{n \in \Z_+} P(\set{\tau=n}|\set{X_{T} = x}\cap H_{\tau-1}) = p_{xy}.
+}
+This equality follows from the fact that the event $\set{\tau= n}$ is completely determined by $(X_0, \dots, X_n)$. 
+\end{proof}
+%\begin{shaded}
+%\begin{exmp}[For a non stopping time $T$] 
+%As an exercise, if we try to use the Markov property on arbitrary random variable $T$, the SMP may not hold. 
+%For example, define a non-stopping time $T \triangleq \inf \set{n \in \Z_+: X_{n+1}=y}$ for $y \in \sX$. 
+%In this case, we have 
+%\EQ{
+%P(\set{X_{\tau+1}=y} \mid \set{X_\tau=x,\dots, X_0 = x_0}) 
+%= \SetIn{p_{xy} > 0} 
+%\neq  P(\set{X_1=y} \mid\set{X_0=x}) 
+%= p_{xy}.
+%}
+%\end{exmp}
+%\end{shaded}
+\begin{rem} 
+Consider a homogeneous DTMC $X:\Omega\to\sX^{\Z_+}$ and the first instant $\tau_k \triangleq \tau_X^{\set{y},k}$ for the process $X$ to hit $k$ times, a state $y\in\sX$. 
+Recall that $\tau_0 \triangleq 0$ and recurrence time $H_k \triangleq \tau_k - \tau_{k-1} = \inf\set{n \in \N: X_{\tau_{k-1}+n}= y}$ for all $k \in \N$.  
+We define a process $Y:\Omega\to\sX^{\Z_+}$ where $Y_m \triangleq X_{\tau_k + m}$ for all $m \in \Z_+$. 
+If $\tau_k$ is almost surely finite, then it is a stopping time with respect to process $X$. 
+Using strong Markov property of DTMC $X$, we will show that $Y$ is a stochastic replica of $X$ with $X_0 = y$. 
+%Let $y \in \sX$ be a fixed state and $\tau_X^{\set{y},0} \triangleq 0$. 
+%Let $\tau_X^{\set{y},n}$ be the stopping times at which the Markov chain $X$ visits state $y$ for the $n$th time. 
+%That is,
+%\EQ{
+%\tau_X^{\set{y},k} \triangleq \inf\set{n > \tau_X^{\set{y},k-1}: X_n = y}. 
+%}
+% and can be studied as a regenerative process. 
+\end{rem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Hitting and Recurrence Times}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+We will consider a time-homogeneous discrete time Markov chain $X: \Omega \to \sX^{\Z_+}$ on countable state space $\sX$ with transition probability matrix $P: \sX \times \sX \to [0,1]$, 
+and initial state $X_0 = x \in \sX$. 
+We denote the natural filtration generated by the process $X$ as $\sF_\bullet$, 
+where $\sF_n \triangleq \sigma(X_0, \dots, X_n)$ for all $n \in \N$. 
+%\begin{defn} 
+%%Let $X: \Omega \to \sX^{\Z_+}$ be a time-homogeneous Markov chain on state space $\sX$ with transition probability matrix $P$. 
+%For each state $y \in \sX$, we define $\tau_y^{(0)} \triangleq 0$ and inductively define the \textbf{$k$th hitting time to a state $y$} after time $n = 0$, as 
+%\EQ{
+%\tau_k \triangleq \inf\set{n > \tau_{k-1}: X_n = y},\quad k \in \N. 
+%} 
+%\end{defn}
+%\begin{rem} 
+%We observe that $\set{\tau_y^{k} = n} \in \sF_n$ for all $n \in \N$. 
+%Hence if $\tau_k$ is almost surely finite, 
+%then $\tau_k$ is a stopping time for process $X$. 
+%\end{rem}
+%\begin{defn} 
+%The number of visits to a state $y \in \sX$ in first $n$ time steps and its limit as $n \to \infty$ are defined  
+%\meq{2}{
+%&N_y(n) \triangleq \sum_{k=1}^n\SetIn{X_k = y},&
+%&N_y \triangleq \lim_nN_y(n) = \sum_{k \in \N}\SetIn{X_k = y}.
+%}
+%\end{defn}
+\begin{rem}
+Starting from state $x$, the mean number of visits to state $y$ in $n$ steps is $\E_xN_y(n) = \sum_{k=1}^np_{xy}^{(k)}$. 
+From the monotone convergence theorem, we also get that 
+$E_xN_y(\infty) = \sum_{k \in \N}p_{xy}^{(k)}$. 
+\end{rem}
+\begin{rem} 
+If $\tau_{k-1}$ is almost sure finite, then $\tau_{k-1}$ is a stopping time for process $X$. 
+From the strong Markov property of homogeneous DTMC $X$ applied to stopping time $\tau_{k-1}$, 
+it follows that the future $\sigma(X_{\tau_{k-1}+j}: j \in \N)$ is independent of the past $\sigma(X_0, \dots, X_{\tau_{k-1}})$ given the present $\sigma(X_{\tau_{k-1}})$. 
+Since $X_{\tau_{k-1}}= y$ for $k \ge 2$ deterministically, it follows that $\sigma(X_{\tau_{k-1}})$ is a trivial event space and the future $\sigma(X_{\tau_{k-1}+j}: j \in \N)$ is independent of the random past $\sigma(X_0, \dots, X_{\tau_{k-1}})$. 
+We further observe that the distribution of $\sigma(X_{\tau_{k-1}+j}: j \in \N)$ is identical to distribution of $X$ given $X_0= y$. 
+Thus, the process $(X_{\tau_{k-1}+j}: j \in \N)$ is distributed identically for all $k \ge 2$. 
+\end{rem}
+\begin{rem}
+We observe that the recurrence time satisfies $\set{H_k = n} \in \sigma(X_{\tau_{k-1}+j}: j \in [n])$ for all $n \in \N$, 
+and hence the recurrence time $H_k$ is independent of the random past $\sigma(X_0, \dots, X_{\tau_{k-1}})$. 
+Recursively applying this fact, we can conclude that $(H_1, \dots, H_k)$ are independent random variables. 
+Further, since $(X_{\tau_{k-1}+j}: j \in \N)$ is distributed identically for all $k \ge 2$, it follows that $(H_k: k \ge 2)$ are distributed identically.
+\end{rem}
+%\begin{rem}
+%If $\tau_{k-1}$ is almost sure finite, then from strong Markov property of $X$, 
+%we observe that $(X_{\tau_{k-1}+j}: j \in \N)$ is distributed identically to $(X_{\tau_X^{\set{y},\ell}+j}: j \in \N)$. 
+%That is, $(H_k: k \ge 2)$ are distributed identically. %to $H_X^{\set{y},2}$. % for all $k \ge 2$. 
+%\end{rem}
+\begin{lem}
+If $H_1$ and $H_2$ are almost surely finite, 
+then the random sequence $(H_k: k \ge 2)$ is \iid.
+\end{lem}
+\begin{proof} 
+From the above two remarks, it suffices to show that each term of the random sequence $\tau:\Omega\to\N^\N$ is almost surely finite. 
+We will show this by induction. 
+Since $\tau_1 = H_1$ is almost surely finite, it follows that $\tau_1$ is stopping time. 
+Since $\tau_2 = \tau_1+ H_2$ is almost surely finite,  it follows that $\tau_2$ is a stopping time. 
+By inductive hypothesis $\tau_{k-1}$ is almost surely finite, 
+and hence $H_k$ is independent of $(H_1, \dots, H_k)$ and identically distributed to $H_2$ and is almost surely finite. 
+It follows that $\tau_k = \tau_{k-1} + H_k$ is almost surely finite, 
+and the result follows. % for all $k \in \N$. 
+%, and a stopping time.    
+%We will show that $H_k$ and $H_y^{(k+1)}$ are independent for any $k \ge 2$, and the rest follows from induction. 
+%We can show the base case that $\tau_X^{\set{y},2}$ is an almost sure stopping time. 
+%To this end, we observe that 
+%\EQ{
+%H_y^{(k+1)} 
+%= \tau_X^{\set{y},k+1} - \tau_k 
+%= \inf\set{n \in \N: X_{\tau_k+n} = y}.
+%}
+%From strong Markov property of DTMC $X$, we know that for any stopping time $\tau$, the event spaces $\sigma(X_1, \dots, X_\tau)$ and $\sigma(X_{\tau+n}: n \in \N)$ are independent, 
+%and $(X_{\tau+n}: n\in \N)$ is the stochastic replica of $X$ with initial state $X_\tau$. 
+%Therefore, $H_y^{(k+1)}$ is independent of $H_k \in \sigma(X_1, \dots, X_{\tau_k})$ and is distributed identically to $H_X^{\set{y},2}$. 
+%Since the sum of two almost sure finite random variables is finite, $\tau_X^{\set{y},k+1}$ is almost sure finite, 
+%and hence a stopping time.  
+\end{proof}
+
+\end{document}

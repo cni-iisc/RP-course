@@ -1,0 +1,326 @@
+% !TEX spellcheck = en_US
+% !TEX spellcheck = LaTeX
+\documentclass[12pt,aspectratio=169]{beamer}
+\input{header_beamer}
+\usetheme{Boadilla}
+\usecolortheme{beaver}
+\setbeamertemplate{page number in head/foot}{}
+\setbeamertemplate{navigation symbols}{}
+
+\title{Lecture-01: Sample and Event Space}
+\date{}
+
+\begin{document}
+\pagestyle{empty}
+\maketitle
+
+\begin{frame}{Notation}
+
+    \begin{itemize}
+        \item<1-> Set of first $N$ positive integers: $[N] \triangleq \set{1, 2, \dots, N}$
+        \item<2-> Set of positive integers (natural numbers): $\N \triangleq \set{1, 2, \dots}$
+        \item<3-> Set of integers: $\Z \triangleq \set{\dots, -1, 0, 1, \dots}$
+        \item<4-> Set of non-negative integers: $\Z_+ \triangleq \set{0, 1, \dots}$
+        \item<5-> Set of rational numbers: $\Q$, % \triangleq \set{\frac{p}{q}: p, q \in \Z\text{ and are coprime }, q \neq 0}$
+        \item<6-> Set of reals: $\R$
+        \item<7-> Set of non-negative reals: $\R_+$
+        \item<8-> Power set of a set $A$: $\cP(A) \triangleq \set{B: B \subseteq A}$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Function}
+    \begin{block}{Definition}<1->
+        For sets $A, B$, we denote a function from set $B$ to set $A$ by $f: B \to A$, where $(b, f(b)) \in B \times A$ and for each $b \in B$ there is only one value $f(b) \in A$. That is, \EQ{\set{(b, f(b)): b \in B} \subseteq B \times A.}
+    \end{block}
+    \begin{itemize}
+        \item<2-> Set $B$ is called the \textbf{domain} of function $f$
+        \item<3-> Set $A$ is called \textbf{co-domain} of function $f$
+        \item<4-> Set $f(B) =\set{f(b) \in A: b \in B}$ is called the \textbf{range} of function $f$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{example}
+        \begin{itemize}
+            \item Let $B = \set{1,2,3}$ and $A = \set{a,b}$ 
+            \item <2->$\set{(1,a), (2,a), (3,b)}$ corresponds to a function $f:B \to A$ such that $f(1)= f(2) = a, f(3) =b$.
+            \item<3-> We will denote this function by ordered tuple $(aab)$.
+        \end{itemize}
+    \end{example}
+ 
+    \begin{block}{Notation}<4-> 
+        The collection of all $A$-valued functions with the domain $B$ is denoted by $A^B$. 
+    \end{block}
+    
+    \begin{example}<5->
+        Let $B = \set{1,2,3}$ and $A = \set{a,b}$, then the collection $A^B$ is defined by the set of ordered tuples \EQ{\set{(aaa), (aab), (aba), (abb), (baa), (bab), (bba), (bbb)}}
+    \end{example}    
+\end{frame}
+
+\begin{frame}{Inverse Map}
+    \begin{block}{Definition}<1->
+        For a function $f \in A^B$, we define \textbf{set inverse map} $f^{-1}(C) = \set{b \in B: f(b) \in C}$ for all subsets $C \subseteq A$. 
+    \end{block}
+    \begin{rem}<2-> 
+        This is a slight abuse of notation since $f^{-1}: \cP(A) \to \cP(B)$ is a map from sets to sets. 
+    \end{rem}
+    \begin{example}<3->
+        Let $B = \set{1,2,3}$ and $A = \set{a,b}$ and $f$ be denoted by the ordered tuple $(aba)$, then $f^{-1}(\set{a}) = \set{1,3}$ and $f^{-1}(\set{b}) = \set{2}$.
+    \end{example}
+\end{frame}
+
+\begin{frame}{Injective, Surjective, Bijective} 
+    A function $f \in A^B$ is
+    \begin{itemize}
+        \item<1->[\textbf{injective:}] if for any distinct $b \neq c \in B$, we have $f(b) \neq f(c)$,
+        \item<2->[\textbf{surjective:}] if $f(B) = A$, and 
+        \item<3->[\textbf{bijective:}] if it is injective and surjective.  
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Examples}
+    \begin{block}{Injective}
+        Let $B = \set{1,2,3}$ and $A = \set{a,b,c,d}$. Then $(abc)$ is an injective function.   
+    \end{block}
+    \begin{block}{Surjective}<2->
+        Let $B = \set{1,2,3,4}$ and $A = \set{a,b,c}$. Then $(abca)$ is a surjective function.
+    \end{block}
+    \begin{block}{Bijective}<3->
+            Let $B = \set{1,2,3}$ and $A = \set{a,b,c}$. Then $(abc)$ is a bijective function.    
+    \end{block}   
+\end{frame}
+
+\begin{frame}{Cardinality}
+    \begin{block}{Definition}
+        \begin{itemize}
+            \item We denote the cardinality of a set $A$ by $\abs{A}$.
+            \item<2->Cardinality describes a relationship between sets which compares their relative size.
+            \item<3->If there is a bijection between two sets, they have the same cardinality.\\
+            \item<4->Any set which is bijective to the set $[N]$ has cardinality $N$.
+        \end{itemize}
+    \end{block}
+
+    \begin{Example}<5->
+        The cardinality of $A = \set{a,b,c}$ is $\abs{A} = 3$, since there is a bijection between $B = \set{1,2,3}$ and $A = \set{a,b,c}$.  
+    \end{Example}
+\end{frame}
+
+\begin{frame}{Countable}
+    \begin{block}{Definition}
+        \begin{itemize}
+            \item<1-> Any set which is bijective to a subset of natural numbers $\N$ is called a \textbf{countable} set.
+            \item<2->Any set which has a finite cardinality is called a \textbf{countably finite} set.
+            \item<3->Any set which is bijective to the set of natural numbers $\N$ is called a \textbf{countably infinite} set.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Exercise}
+    \begin{block}{Show that}
+        \begin{enumerate}
+            \item $\abs{A^B} = \abs{A}^{\abs{B}}$. 
+            \item $A^{[N]}$ is set of all $A$-valued $N$-length sequences. 
+            \item $A^\N$ is a set of all $A$-valued countably infinite sequences indexed by the set of natural numbers $\N$.
+            \item The sets $\N, \Z_+, \Z, \Q$ have the same cardinality. 
+        \end{enumerate}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Sample Space} 
+    \begin{block}{Definition}<1->
+        The set of all possible outcomes of a random experiment is called \textbf{sample space} and denoted by $\Omega$. 
+    \end{block}
+    \begin{Example}[Single coin toss]<2->
+        Consider a single coin toss, where the outputs can be heads or tails, denoted by $H$ and $T$, respectively.
+        The set of all possible outcomes is $\Omega = \set{H, T}$.
+    \end{Example}
+    \begin{Example}[Finite coin tosses]<3->
+    Consider $N$ finite tosses of a single coin. In this case, the sample space is $\Omega = \set{H, T}^{[N]}$, and a single outcome is a sequence $\omega = (\omega_1, \dots, \omega_N)$ where $\omega_i \in \set{H,T}$ for all $i \in [N]$.  
+    \end{Example}
+\end{frame}
+\begin{frame}{Examples}
+    \begin{Example}[Countably infinite coin tosses]<1->
+        Consider an infinite sequence of coin tosses. 
+        The set of all possible outcomes is $\Omega = \set{H, T}^\N$. 
+        A single outcome is a sequence $\omega = (\omega_i \in \set{H,T}: i \in \N) \in \Omega$. 
+    \end{Example}
+
+    \begin{Example}[Point on non-negative real line]<2->
+        The set of all possible outcomes for a single point on non-negative real line is $\Omega = \R_+$. 
+    \end{Example}
+    \begin{Example}[Countable points on non-negative real line]<3->
+        The set of all possible outcomes is $\Omega = \R_+^\N$, where a single outcome is a sequence $\omega = (\omega_i \in \R_+: i \in \N) \in \Omega$. 
+    \end{Example}
+\end{frame}
+
+
+\begin{frame}{Event space}
+    \begin{block}{Definition}<1->
+    A collection of subsets of sample space $\Omega$ is called the \textbf{event space} if it is a $\sigma$-algebra over subsets of $\Omega$, and denoted by $\sF$. 
+    \end{block}
+    \begin{block}{Properties}<2->
+        In other words, the collection $\sF$ satisfies the following properties. 
+        \begin{enumerate}
+            \item<3-> Event space includes the certain event $\Omega$. That is, $\Omega \in \sF$. 
+            \item<4-> Event space is closed under complements. That is, if $A \in \sF$, then $A^c \in \sF$. 
+            \item<5-> Event space is closed under countable unions. That is, if $A_i \in \sF$ for all $i \in \N$, then $\cup_{i \in \N}A_i \in \sF$.
+        \end{enumerate}
+    \end{block}
+    \begin{block}{Note}<6->
+        The elements of the event space $\sF$ are called \textbf{events}. 
+    \end{block}
+\end{frame}
+
+\begin{frame}{Examples}
+    \begin{Example}[Coarsest event space]<1->
+        For any sample space $\Omega$, the trivial event space is $\sF = \set{\emptyset, \Omega}$. 
+    \end{Example}
+    \begin{Example}[Single coin toss]<2-> 
+        Recall that the sample space for a single coin toss is $\Omega = \set{H, T}$. We define an event space $\sF \triangleq \set{\emptyset, \set{H}, \set{T}, \set{H,T}}$. Can you verify that $\sF$ is a $\sigma$-algebra?
+    \end{Example}
+    \begin{Example}[Finest event space for finite coin tosses]<3-> 
+        Recall that the sample space for $N$ coin tosses is $\Omega = \set{H, T}^N$, 
+        %Consider $N$ tosses of a single coin, where the possible output of each coin toss belongs to the set $\set{H,T}$ as before.  
+        %In this case, the sample space is 
+        %\EQ{
+        %\Omega = \set{H, T}^{[N]} = \set{(\omega_1, \dots, \omega_N): \omega_i \in \set{H,T} \text{ for all } i \in [N]}.
+        %} 
+        An event space for this sample space is $\sF \triangleq \cP(\Omega) = \set{A: A \subseteq \Omega}$. Can you verify that $\sF$ is a $\sigma$-algebra?
+    \end{Example}
+\end{frame}
+
+\begin{frame}
+    \begin{block}{Remark}
+        %From the definition of an event space, the following statements hold true.
+        %\begin{enumerate}
+        %\item 
+        We observe that $\sF \subseteq \cP(\Omega)$. 
+        However, not all subsets of the sample space $\Omega$ necessary belong to the event space. 
+        That is, $\sF \subset \cP(\Omega)$. 
+        To show this, it suffices to construct a set $A \subset \Omega$ that is not in $\sF$. 
+    \end{block}
+\end{frame}
+
+\begin{frame}{Properties of event space}
+    \begin{block}{Property}<1->
+        Event space contains the impossible event, is closed under finite unions, and closed under countable intersections.
+    \end{block}
+    \begin{Proof}<2->
+        \begin{itemize}
+            \item<2-> From the inclusion of certain event and the closure complements of $\sigma$-algebras, it follows that the impossible event $\emptyset \in \sF$. 
+            
+            \item<2-> That is, since $\Omega \in \sF$ and $\emptyset = \Omega^c$, we have $\emptyset \in \sF$.
+            
+            \item<3-> We need to show that if $A,B \in \sF$, then the union $A\cup B \in \sF$. This follows from the fact that we can $A_1 = A, A_2 = B$ and $A_i = \emptyset$ for all $i \ge 2$, and apply closure under countable unions. 
+        \end{itemize}
+    \end{Proof}
+\end{frame}
+
+\begin{frame}{Proof continued}
+    \begin{Proof}
+        \begin{itemize}
+            \item<1-> We need to show that for any sequence of events such that $A_i \in \sF$ for all $i \in \N$, we have $\cap_{i \in \N}A_i \in \sF$. 
+        
+            \item<2-> To show this, we first notice that $A_i^c \in \sF$ for all $i \in \N$ from the closure under complements. 
+        
+            \item<3-> Further, we have $\cup_{i \in \N}A_i^c \in \sF$ from the closure under countable unions, and then the result follows from taking the complement and the closure under complements. 
+        \end{itemize}
+    \end{Proof}
+\end{frame}
+    
+%\begin{rem}
+%\item 
+%\end{rem}
+%\begin{rem}
+%\item 
+%Event space is closed under finite unions. 
+%In particular, if $A, B \in \sF$, then $A\cup B \in \sF$. 
+
+%\end{enumerate}
+%\end{rem}
+%\begin{rem}
+%\item 
+%Event space is closed under countable intersections. 
+%That is, $A_i \in \sF$ for all $i \in \N$, then $\cap_{i \in \N}A_i \in \sF$. 
+%\end{enumerate}
+%\end{rem}
+
+
+\begin{frame}{Event space generated by a family of sets}
+    \begin{Definition}[Event space generated by a family of sets]<1->
+        Consider a sample space $\Omega$ and a family $F \subset \cP(\Omega)$ of subsets of $\Omega$.   
+        Then the event space generated by $F$ is the smallest event space containing each element of $F$, and is denoted by $\sigma(F)$. 
+    \end{Definition}
+        
+    \begin{Example}[Event space generated by a single event]<2->
+        For any sample space $\Omega$ and a subset $A \subseteq \Omega$, the smallest event space generated by this event $A$ is $\sF = \set{\emptyset, A, A^c, \Omega}$. 
+    \end{Example}
+\end{frame}
+
+\begin{frame}{Examples continued}
+    \begin{Example}[Countably infinite coin tosses] 
+        Recall that the sample space for a countably infinite number of coin tosses is $\Omega = \set{H, T}^\N$.  
+        %A single coin is tossed countably infinite times. 
+        %A single outcome of this repeated coin toss can be denoted by a sequence $\omega = (\omega_1, \omega_2, \dots)$, 
+        %where $\omega_i \in \set{H, T}$ is the output of $i$th coin toss. 
+        %Then, we can write the sample space as 
+        %\EQ{
+        %\Omega = \set{H, T}^{[N]} = \set{(\omega_1, \omega_2, \dots ): \omega_i \in \set{H,T} \text{ for all } i \in \N}.
+        %} 
+        We will construct an event space $\sF$ on this outcome space, which would not be the power set of the sample space. 
+        By definition, we must have the certain and the impossible event in an event space.
+        We consider the event space $\sF$ generated by the events 
+        \EQN{\label{eqn:Axioms:EventSpace:OneHeadEvent}
+        A_n \triangleq \set{\omega \in \Omega: \omega_i = H \text{ for some }i \in [n]},\text{ for each }n \in \N.} 
+        That is $A_n$ is the event of getting at least one head in first $n$ tosses. 
+        We see that $(A_n \in \sF: n \in \N)$ is a sequence of increasing events.  
+        From the closure under countable union, we have $\cup_{n \in \N}A_n = \Omega\setminus(T, T, \dots) \in \sF$. 
+% and hence $(B_n \triangleq A_{n+1}\setminus A_n \in \sF: n \in \N)$ is a sequence of disjoint events, 
+%where the event $B_n$ corresponds to seeing first head after $n-1$ consecutive tails. 
+    \end{Example}
+\end{frame}
+
+
+\begin{frame}{Exercise}
+    \begin{block}{Try yourself:}
+        Consider a countably infinite sequence of coin tosses, with the sample space $\Omega = \set{H,T}^\N$ and the the event space $\sF$ generated by the events $(A_n: n \in \N)$ defined in Eq.~\eqref{eqn:Axioms:EventSpace:OneHeadEvent}. 
+        Let $B_n$ be the event of observing first head in $n$th toss, 
+        then show that $B_n \in \sF$ for all $ n \in \N$.  
+    \end{block}
+\end{frame}
+
+%\begin{proof}
+%We see that the event $B_1 = A_1$ and the event $B_{n+1}$ can be written as 
+%\EQ{
+%B_{n+1} = \set{\omega \in \Omega: \omega_i = T \text{ for }i \le n, \omega_{n+1} = H} = A_{n+1}\setminus A_{n}. 
+%}
+%Therefore, $B_n \in \sF$ for all $n \in \N$. 
+%\end{proof}
+
+\begin{frame}{Borel event spaces}
+    \begin{Definition}<1->
+        For sample space $\R$, a \emph{Borel event space} is generated by the subsets $B_x \triangleq (-\infty, x] \subseteq \R$ for each $x \in \R$, and denoted by $\sB(\R) = \sigma(\set{B_x: x \in \R})$. 
+    \end{Definition}
+
+    \begin{block}{Show the following}<2->
+        The events $\set{x}, (x, y), [x, y]$ belong to the Borel event space $\sB(\R)$ for all $x, y \in \R$.  
+    \end{block}
+\end{frame}
+
+\begin{frame}{Solution}
+    \begin{itemize} 
+        \item<1-> Let $x,y\in\R$ and $x < y$ , then we will show that the events $\set{x}, (x, y), [x, y]$ belong to Borel event space $\sB(\R)$.  
+        \item<2-> We observe that $(-\infty, x]^c = (x,\infty) \in \sB(\R)$. 
+        \item<3-> Similarly, $(y, \infty) \in \sB(\R)$. 
+        \item<4-> It follows that $(x,\infty)\cap(-\infty, y] = (x, y] \in \sB(\R)$. 
+        \item<5-> Consider a decreasing sequence $u$ such that $u_n \downarrow x$ and an increasing sequence $\ell$ such that $\ell_n\uparrow x$. 
+        \item<6-> We observe that $(-\infty, \ell_n]\in \sB(\R)$ and $\cup_{n\in\N}(-\infty, \ell_n] = (-\infty,x) \in \sB(\R)$.  
+        \item<7-> Therefore, it follows that $[x,y] = (-\infty, x)^c\cap(-\infty, y] \in \sB(\R)$. 
+        \item<8-> We can similarly show that $(-\infty, y)\in \sB(\R)$, and it follows that $(x,y) = (-\infty, x]^c\cap(-\infty, y) \in \sB(\R)$. 
+        \item<9-> We observe that $x \in [\ell_n,u_n] \in \sB(\R)$ for all $n \in \N$, and $\set{x} = \cap_{n \in \N}[\ell_n, u_n] \in \sB(\R)$. 
+    \end{itemize}
+\end{frame}
+
+
+
+\end{document}

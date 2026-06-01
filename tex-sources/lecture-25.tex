@@ -1,0 +1,288 @@
+% !TEX spellcheck = en_US
+% !TEX spellcheck = LaTeX
+\documentclass[letterpaper,10pt,english]{article}
+\input{../../header}
+\title{Lecture-25: Poisson processes: Conditional distribution}
+\author{}
+
+\begin{document}
+\maketitle
+
+
+\section{Joint conditional distribution of points in a finite window}
+Let $\sX =\R^d$ be a $d$-dimensional Euclidean space, 
+and $S:\Omega\to\sX^\N$ be a Poisson point process with intensity measure $\Lambda: \sB(\sX) \to \R_+$ and associated counting process $N:\Omega\to\Z_+^{\sB(\sX)}$.
+\begin{prop} 
+Let $k \in \N$ be any positive integer. 
+Consider a Poisson point process $S: \Omega \to \sX^\N$ with intensity measure $\Lambda:\sB(\sX)\to\R_+$,  
+a finite partition $A\in \sB(\sX)^k$ that partitions a bounded set $B \in \sB(\sX)$, 
+and a vector $n \in \Z_+^k$ that partitions a non negative integer $m \in \Z_+$. 
+Then, 
+\EQN{
+\label{eqn:multi}
+P(\set{N(A_1) = n_1, \dots, N(A_k) = n_k}\given\set{N(B) = m}) 
+= 
+\binom{m}{n_1, \dots, n_k}\prod_{i=1}^k\left(\frac{\Lambda(A_i)}{\Lambda(B)}\right)^{n_i}.
+}
+\end{prop}
+\begin{proof} 
+From the definition of conditional probability and the fact that $\cap_{i=1}^k\set{N(A_i) = n_i} \subseteq \set{N(B) =m}$, we can write the conditional probability on LHS as the ratio 
+\begin{equation*}
+%P(\set{N(A_1) = n_1, \dots, N(A_k) = n_k}\given\set{N(A) = n}) = 
+\frac{P\set{N(A_1) = n_1, \dots, N(A_k) = n_k, N(B) = m}}{P\set{N(B) = m}} = 
+\frac{P\set{N(A_1) = n_1, \dots, N(A_k) = n_k}}{P\set{N(B) = m}}.
+\end{equation*}
+From the complete independence property and Poisson marginals for the joint distribution of $(N(A_1), \dots, N(A_k))$ for the partition $A \in \sB(\sX)^k$, 
+and the fact that the intensity measure sums over disjoint sets, i.e. $\Lambda(B) = \sum_{i=1}^k\Lambda(A_i)$, we can rewrite the RHS of the above equation as 
+\begin{equation*}
+\frac{P\set{N(A_1) = n_1, \dots, N(A_k) = n_k}}{P\set{N(B) = m}}
+= \frac{\prod_{i=1}^ke^{-\Lambda(A_i)}\frac{\Lambda(A_i)^{n_i}}{n_i!}}{e^{-\Lambda(B)}\frac{\Lambda(B)^m}{m!}}
+= \binom{m}{n_1, \dots, n_k}\prod_{i=1}^k\left(\frac{\Lambda(A_i)}{\Lambda(B)}\right)^{n_i}.
+\end{equation*}
+\end{proof}
+\begin{rem}
+Consider a Poisson point process $S:\Omega\to\sX^\N$ with intensity measure $\Lambda: \sB(\sX) \to \R_+$ and counting process $N:\Omega\to\Z_+^{\sB(\sX)}$. 
+Let $A \in \sB(\sX)^k$ be a partition for bounded set $B \in \sB(\sX)$.  
+\begin{enumerate}[i\_]
+\item Defining $p_i \triangleq \frac{\Lambda(A_i)}{\Lambda(B)}$, we see that $(p_1, \dots, p_k) \in \cM([k])$ is a probability distribution. % over partitions $(A_1, \dots, A_k)$. 
+We also observe that 
+\EQ{
+p_i 
+= P(\set{N(A_i)=1}\given\set{N(B) = 1}) 
+= P(\set{\abs{S \cap A_i} = 1}\given\set{\abs{S \cap B} = 1}).
+}
+When $N(B)=1$, we can call the point of $S$ in $B$ as $S_1$ without any loss of generality. 
+That is, if we call $\set{S_1} = S \cap B$, then we have 
+\EQ{
+p_i = P(\set{S_1 \in A_i}\given\set{S_1 \in B}).
+}
+Similarly, when $N(B) = n_i$, 
+we call the points of $S$ in $B$ as $S_1, \dots, S_{n_i}$ and denote $S\cap B = \set{S_1, \dots, S_{n_i}}$. 
+For this case,  we observe
+\eq{
+&P(\set{N(A_i)=n_i}\given\set{N(B) = n_i}) 
+= P(\set{\abs{S \cap A_i} = n_i}\given\set{\abs{S \cap B} = n_i}) = p_i^{n_i}\\
+&= P(\cap_{j=1}^{n_i}\set{S_j \in A_i}\given \set{\set{S_1, \dots, S_{n_i}} = S\cap B}) 
+= \prod_{j=1}^{n_i}P(\set{S_j \in A_i}\given \set{S_j \in B}). 
+}
+
+\item We can rewrite the Equation~\eqref{eqn:multi} as a multinomial distribution, where 
+\EQ{
+ P(\set{N(A_1) = n_1, \dots, N(A_k) = n_k}\given\set{N(B) = m}) = {m \choose n_1, \dots, n_k} p_1^{n_1} \dots p_k^{n_k}.
+} 
+
+\item For any finite set $F\subseteq \N$ of size $m \in \Z_+$ and $n\in\Z_+^k$ a partition of $m$, 
+we define $\cP_k(F, n)$ to be the collection of all $k$-partitions $E \in \cP(\N)^k$ of $F$ such that $\abs{E_i} = n_i$ for $i \in [k]$. 
+Then, the multinomial coefficient accounts for number of partitions of $m$ points into sets with $n_1,  \dots, n_k$ points. 
+That is, 
+\EQ{ 
+{m \choose n_1, \dots, n_k} = \abs{\cP_k([m], n)}.
+}
+
+\item %Defining $E_i \triangleq S \cap A_i$ and $E = S \cap A$, 
+Recall that the event $\set{N(A_i) = n_i} = \set{\abs{S \cap A_i} = n_i}$. 
+Hence, we can write 
+\eq{
+P(\cap_{i=1}^k\set{\abs{S \cap A_i} = n_i}\given \set{\abs{S \cap B} = m}) 
+&= {m \choose n_1, \dots, n_k} p_1^{n_1} \dots p_k^{n_k}\\
+&= \sum_{E \in \cP_k(S \cap B, n)}\prod_{i=1}^k\prod_{S_j\in E_i}P(\set{S_j \in A_i}\given \set{S_j \in B}).
+}
+
+\item 
+When $N(B) = m$, we denote $S\cap B$ by $F = \set{S_1, \dots, S_m}$ without any loss of generality. 
+We further observe that when $N(A_i) = n_i$ for all $i \in [k]$, 
+then $(S \cap A_1, \dots, S \cap A_k) \in \cP_k(S\cap B,n)$. 
+Therefore, we can re-write the event 
+\EQ{
+\cap_{i=1}^k\set{N(A_i) = n_i} 
+= \cap_{i=1}^k\set{\abs{S \cap A_i} = n_i} 
+= \cup_{E \in \cP_k(S\cap B, n)}(\cap_{i=1}^k\set{S \cap A_i = E_i}).
+} 
+That is, we can write the conditional probability conditioned on $S\cap B = F$, as 
+\eq{
+P(\cap_{i=1}^k\set{N(A_i) = n_i} \given \set{N(B) = m}) 
+&= \sum_{E \in \cP_k(F,n)}P(\cap_{i=1}^k\set{S \cap A_i = E_i}\given\set{S\cap B = F})\\
+&= \sum_{E \in \cP_k(F, n_1, \dots, n_k)}P(\cap_{i=1}^k\cap_{S_j \in E_i}\set{S_j \in A_i}\given\set{S\cap B = F}).
+}
+
+\item   
+Equating the RHS of the above equation term-wise, we obtain that conditioned on each of these points falling inside the window $B$, 
+the conditional probability of each point falling in partition $A_i$ is independent of all other points and given by $p_i$. 
+That is, we have 
+\EQ{
+ P(\cap_{i=1}^k\cap_{S_j \in E_i}\set{S_j \in A_i}\given\set{S\cap B = F}) 
+ = \prod_{i=1}^k\prod_{S_j\in E_i}P(\set{S_j \in A_i}\given \set{S_j \in B}) = \prod_{i=1}^kp_i^{n_i} =  \prod_{i=1}^k\left(\frac{\Lambda(A_i)}{\Lambda(B)}\right)^{n_i} .
+} 
+It means that given $m$ points in the window $B$, the location of these points are independently and identically distributed in $B$ according to the distribution $\frac{\Lambda(\cdot)}{\Lambda(B)}$. 
+
+%\item We can also see this by observing that the event $\set{N(A_i) = n_i} = \set{\sum_{S_j \in S}\indicator{S_j \in A_i} = n_i}$. 
+%Hence, 
+%\EQ{
+%P(\set{N(A_1) = n_1, \dots, N(A_k) = n_k}\given\set{N(A) = n})  
+%= P(\{\sum_{S_j \in S}\indicator{S_j \in A_i} = n_i, i \in [k]\}\given \set{N(A) = n}).
+%}
+%\item Let $A \in \sB$, its partitioning sets $A_1, \dots, A_k \in \sB$, 
+%the numbers $N(A_i) = n_i = 1$ for all $i \in [k]$,  
+%and a bounded set $W \in \sB$ such that $A \subseteq W$ and $N(W) = k$. 
+%Recall that $\set{N(A_i) = 1} = \set{S_j \in A_i \text{ for exactly one }S_j \in S}$. 
+%Given that $\set{N(A) =k}$, we can write the following set equality 
+%\EQ{
+%\set{N(A_1) = 1, \dots, N(A_k) = 1, N(W \setminus A) = 0} = \cup_{\sigma: [k] \to [k] \text{ permutation }}\set{S_{\sigma(1)} \in A_1, \dots, S_{\sigma(k)} \in A_k}.
+%}
+%Therefore, it follows that for any bounded disjoint subsets $A_1, \dots, A_k \in \sB$ such that $A = \cup_{i=1}^k A_i \subseteq W$
+%\EQ{
+%P(\set{S_1 \in A_1, \dots, S_k \in A_k} \given \set{S_1, \dots, S_k \in W}) = \prod_{i=1}^k\frac{\Lambda(A_i)}{\Lambda(W)} = \prod_{i=1}^kP(\set{S_i \in A_i}\given \set{S_i \in W}).
+%}
+\item If the Poisson process is homogeneous, the distribution is uniform over the window $B$. 
+\item For a Poisson process with intensity measure $\Lambda$ and any bounded set $A \in \sB$, 
+the number of points $N(A)$ in the set $A$ is a Poisson random variable with parameter $\Lambda(A)$. 
+Given the number of points $N(A)$, the location of all the points in $S\cap A$ are \iid with density $\frac{\lambda(x)}{\Lambda(A)}$ for all $x \in A$. 
+\end{enumerate}
+\end{rem}
+\begin{shaded}
+\begin{rem}[Simulating a homogeneous Poisson point process] 
+If we are interested in simulating a two dimensional homogeneous Poisson point process with density $\lambda$ in a uniform square $A = [0,1]\times[0,1]$. 
+Then, we first generate the random variable $N(A):\Omega\to\Z_+$ that takes value $n$ with probability $e^{-\lambda}\frac{\lambda^n}{n!}$. 
+Next, for each of the $N(A)=n$ points, we generate the location $(X_i, Y_i) \in \R^2$ uniformly at random. 
+That is, $X:\Omega\to[0,1]^n$ and $Y:\Omega\to[0,1]^n$ are independent \iid uniform sequences.
+\end{rem}
+\end{shaded}
+\begin{cor} 
+For a homogeneous Poisson point process on the half-line with ordered set of points $\tilde{S} = (S_{(n)} \in \R_+: n \in \N)$, 
+we can write the conditional density of ordered points $(S_{(1)}, \dots, S_{(k)})$ given the event $\set{N_t = k}$ as the ordered statistics of \iid uniformly distributed random variables. 
+Specifically, we have 
+\EQ{
+f_{S_{(1)}, \dots, S_{(k)}\given N_t = k}(t_1, \dots, t_k) = k!\frac{\SetIn{0 < t_1 \le \dots \le t_k \le t}}{t^k}. 
+}
+\end{cor}
+\begin{proof}
+Given $\set{N_t = k}$, we can denote the points of the Poisson process in $(0,t]$ by $S_1, \dots, S_k$. 
+From the above remark, we know that $S_1, \dots, S_k$ are \iid uniform in $(0, t]$, 
+conditioned on the number of points $N_t = k$. 
+Hence, we can write 
+\EQ{
+F_{S_1, \dots, S_k\given N_t = k}(t_1, \dots, t_k) 
+= P(\cap_{i=1}^k\set{S_i \in (0, t_i]}\given \set{N_t=k}) 
+= \prod_{i=1}^kP(\set{S_i \in (0, t_i]}\given \set{S_i \in (0, t]}) 
+= \prod_{i=1}^k\frac{t_i}{t}\SetIn{0 < t_i \le t}.
+}  
+Therefore, for $0 < t_1 < \dots < t_k < 1$ and $(h_1, \dots, h_k)$ sufficiently small, we have 
+\EQ{
+P\Big(\cap_{i=1}^k\set{S_i \in (t_i, t_i+h_i]}\Big) = \prod_{i=1}^k\frac{h_i}{t}.
+}
+Since $(S_1, \dots, S_k)$ are conditionally independent given $S\cap A = \set{S_1, \dots, S_k}$, 
+it follows that any permutation $\sigma: [k] \to [k]$, the conditional joint distribution of $(S_{\sigma(1)}, \dots, S_{\sigma(k)})$ is identical to that of $(S_1, \dots, S_k)$ given $S\cap A = \set{S_1, \dots, S_k}$. 
+Further, we observe that the order statistics of $(S_{\sigma(1)}, \dots, S_{\sigma(k)})$ is identical to that of $(S_{1}, \dots, S_{k})$.  
+Therefore, we can write the following equality for the events
+%\EQ{
+%\set{0 < S_{(1)} \le \dots \le S_{(k)} \le t_k \le t} 
+%= \cup_{\sigma: [k] \to [k] \text{ permutation}}\cap_{i=1}^k\set{S_{\sigma(i)}\le t_i}. 
+%}
+\EQ{
+\cap_{i=1}^k\set{S_{(i)}\in (t_i, t_i+h_i]} 
+= \cup_{\sigma: [k] \to [k] \text{ permutation}}\cap_{i=1}^k\set{S_{\sigma(i)}\in (t_i, t_i+h_i]}. 
+}
+The result follows since the number of permutations $\sigma: [k] \to [k]$ is $k!$. 
+%\EQ{
+ %P(\cap_{i=1}^k\set{S_{(i)} \in (0, t_i]}\given \set{N_t=k})  
+%= \sum_{\sigma: [k] \to [k]}P(\cap_{i=1}^k\set{S_{\sigma(i)} \in (0, t_i]}\given \set{N_t=k}).
+%}
+\end{proof}
+%\begin{cor} 
+%Let $(N_t: t \in \R_+)$ be the counting process on the half-line with ordered set of points $(S_{(n)}: n \in \N)$ from a homogeneous Poisson point process.   
+%Let $N_t = k$, instants $0 = t_0 < t_1 < \dots < t_{k-1} < t_k \le t$, sufficiently small durations $0 < h_i < t_i -t_{i-1}$, and intervals $I_i = (t_i-h, t_i]$, 
+%then 
+%\EQ{
+%P(\set{N(I_1) = 1, \dots, N(I_k)=1}\given \set{N_t = k}) = k! \frac{h_1}{t}\dots \frac{h_k}{t}. 
+%}
+%\end{cor}
+%\begin{rem} 
+%Let $I_i = (t_i - h, t_i]$ for sufficiently small $h \in \R_+$. 
+%We notice that the event $\set{N(I_1) = 1, \dots, N(I_k) =1} = \set{S_{(1)} \in I_1, \dots, S_{(k)} \in I_k}$.  
+%Taking limit as $h_i \to 0$, we see that the conditional density of ordered sequence $(S_{(1)}, \dots, S_{(k)})$ given $N_t = k$ is 
+%given by
+%\EQ{
+%f_{S_{(1)}, \dots, S_{(k)}\given N_t = k}(t_1, \dots, t_k) = \frac{k!}{t^k}\indicator{0 < t_1 < \dots < t_k \le t}. 
+%}
+%There are $k!$ sequences $(S_1, \dots, S_k)$ that give the same ordered sequence $(S_{(1)}, \dots, S_{(k)})$. 
+%It follows that 
+%\EQ{
+%%P(\set{N(t_1) = 1, \dots, N(t_k) - N(t_{k-1})=1}\given \set{N_t = k}) = \frac{1}{k!}P(\set{S_1 \le t_1, \dots, S_k \le t_k}\given\set{N_t = k}) = \prod_{i=1}^k\frac{t_i}{t}. 
+%f_{S_{1}, \dots, S_{k}\given N_t = k}(t_1, \dots, t_k) = \prod_{i=1}^k\frac{\indicator{t_i \le t}}{t}. 
+%}
+%That is conditioned on $n$ points in the interval $(0, t]$, the un-ordered arrival points are all uniformly distributed in $(0, t]$, 
+%and the ordered points are ordered statistics of these uniformly distributed points.  
+%\end{rem} 
+
+
+%\section{Poisson Point Processes} 
+%A simple point process $S = \{S_i \in \R^d: i \in \N\}$ is a random countable collection of distinct points in the $d$-dimensional Euclidean space $\R^d$. 
+%Let $\sB$ be the collection of Borel measurable sets in $\R^d$. 
+%Then, the associated counting process $(N(A): A \in \sB)$ is defined as $N(A) = \sum_{i \in \N}1_{\{S_i \in A\}}$. 
+%For a sample realization of a simple point process $S$, we observe that $dN(x) = 0$ for all $x \notin S$. 
+%Hence, for any function $f : \R^d \to \R$, we have
+%\EQ{
+%\int_{x \in A}f(x)dN(x) = \sum_{i \in \N}f(S_i)1_{\{S_i \in A\}}.
+%}
+%%A simple point process can also be thought as a random process $(S(A): A \in \sF)$ indexed by all Boreal measurable sets of $\R^d$. 
+%The finite dimensional distribution of $N$ is joint distribution of $(N(A_1), \dots, N(A_k))$ for some finite $k \in \N$ and bounded sets $A_1, \dots, A_k \in \sF$. 
+%A counting process $N$ has the \textbf{completely independence property},  
+%if for any collection of finite disjoint and bounded sets $A_1, \dots, A_k \in \sF$, 
+%\EQ{
+%P\bigcap_{i=1}^k\{N(A_i) = n_i\} = \prod_{i=1}^nP\{N(A_i) = n_i\}.
+%}
+%
+%A \textbf{Poisson point process} of intensity measure $\Lambda$ is defined in terms of the finite-dimensional distribution of the associated counting process, as  
+%\EQ{
+%P\bigcap_{i=1}^k\{N(A_i) = n_i\} = \prod_{i=1}^k\left(e^{-\Lambda(A_i)}\frac{\Lambda(A_i)^n_i}{n_i!}\right),
+%}
+%for some finite $k \in \N$, mutually disjoint and bounded sets $A_1, \dots, A_k \in \sF$ and $\Lambda(A) \triangleq \int_{x \in A}d\Lambda(x)$. 
+%
+%\begin{thm} 
+%Following are equivalent for a simple counting process $N$. 
+%\begin{enumerate}[i\_]
+%\item Process $N$ is Poisson with intensity measure $\Lambda$. 
+%\item Process $N$ has the completely independence property, and $\E N(A) = \Lambda(A)$. 
+%\item The intensity measure $\Lambda$ is bounded for bounded $A \in \sF$,  and $N(A)$ is a Poisson  with parameter $\Lambda(A)$. 
+%\end{enumerate}
+%\end{thm}
+%
+%\begin{prop} 
+%For a finite $k \in \N$, disjoint bounded sets $A_1, \dots, A_k \in \sF$, numbers $n_1, \dots, n_k \in \Z_+$, let $A = \cup_{i=1}^kA_i$ and $n = \sum_{i=1}^kn_i$. 
+%Then for a Poisson point process, we have 
+%\EQ{
+%P(N(A_1) = n_1, \dots, N(A_k) = n_k | N(A) = n) = \frac{n!}{n_1!\dots n_k!}\prod_{i=1}^n\left(\frac{\Lambda(A_i)}{\Lambda(A)}\right)^{n_i}. 
+%}
+%\end{prop}
+%\begin{rem} 
+%Above proposition implies that $n$ points in a bounded set $A$ are \emph{iid} distributed in this set with density function $\frac{\Lambda'(x)}{\Lambda(A)}$ for $x \in A$. 
+%\end{rem} 
+
+
+%\appendix 
+%\section{Functions with semigroup property}
+%\begin{lem} 
+%\label{lem:semigroup}
+%A unique non-negative right continuous function $f: \R_+ \to \R_+$ satisfying the semigroup property
+%\EQ{
+% f(t+s) = f(t)f(s), \text{ for all } t,s \in \R_+
+% }
+% is $f(t) = e^{\theta t}$, where $\theta = \log f(1)$.
+%\end{lem}
+%\begin{proof}
+%Clearly, we have $f(0) = f^2(0)$. Since $f$ is non-negative, it means $f(0) = 1$. 
+%By definition of $\theta$ and induction for $m,n \in \Z^+$, we see that 
+%\begin{xalignat*}{3}
+%&f(m) = f(1)^m = e^{\theta m},&& e^{\theta} = f(1) = f(1/n)^n.
+% \end{xalignat*}
+%Let $q \in \Q$, then it can be written as $m/n, n \neq 0$ for some $m,n \in \Z^+$. 
+%Hence, it is clear that for all $q \in \Q^+$, we have $f(q) = e^{\theta q}$.
+%either unity or zero. Note, that $f$ is a right continuous function and is non-negative. 
+%Now, we can show that $f$ is exponential for any real positive $t$ by taking a sequence of rational numbers $(q_n: n \in \N)$ decreasing to $t$. 
+%From right continuity of $f$, we obtain 
+%\EQ{
+%f(t) = \lim_{q_n \downarrow t} f(q_n) =   \lim_{q_n \downarrow t} e^{\theta q_{n}}= e^{\theta t}.
+%}
+%\end{proof}
+
+\end{document}

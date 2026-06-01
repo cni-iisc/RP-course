@@ -1,0 +1,346 @@
+\documentclass[letterpaper,10pt,english]{article}
+\input{../../header}
+
+\title{ Lecture-21: Recurrent and transient states}
+\author{}
+
+\begin{document}
+\maketitle
+
+
+\section{Recurrence and Transience}
+We will consider a random sequence $X:\Omega\to\sX^{\Z_+}$ with initial state $X_0 = x\in\sX$ and the $k$th hitting times to state $y$ for all $k \in \N$ denoted by $\tau_k \triangleq \tau_X^{\set{y},k}$ inductively defined as $\tau_k \triangleq \inf\set{n > \tau_{k-1}: X_n = y}$ where $\tau_0 \triangleq 0$. 
+We define the inter-return time sequence $H:\Omega\to\N^\N$ as $H_k \triangleq H_X^{\set{y},k} = \tau_k - \tau_{k-1}$ for all $k \in \N$. 
+%\begin{defn} 
+%For a process $X:\Omega\to\sX^{\R_+}$ event $A$ and random variable $Y:\Omega\to\R$, 
+%we denote the conditional probability and conditional distribution, given the initial state $\set{X_0 = x}$ by $P_x(A) \triangleq P(A\mid\set{X_0 = x})$ and $\E_xY = \E[Y\mid\set{X_0 = x}]$ respectively.
+%\end{defn}
+\begin{defn} 
+For a random sequence $X: \Omega \to \sX^{\Z_+}$ with initial state $X_0 = x$, 
+\begin{compactenum}[(i)]
+\item the \textbf{probability of hitting state $y$ eventually} is denoted by 
+$f_{xy} \triangleq P_x\set{\tau_1 < \infty}$, 
+and 
+\item the \textbf{probability of first visit to state $y$ at time $n \in\N$} is denoted by 
+$f_{xy}^{(n)} 
+\triangleq P_x\set{\tau_1 = n}. %,\quad n \in \N.
+$
+\end{compactenum}
+\end{defn}
+%\begin{defn}
+%The probability that the Markov chain $X$ hits state $y$ eventually, starting from initial state $x$ is 
+%\EQ{
+%%f_{xy} \triangleq P(\set{H_y < \infty} \given \set{X_0 = x}) = P(\cup_{n \in \N}\set{H_y = n} \given \set{X_0 = x}) = \sum_{n \in \N}P(\set{H_y = n}\given \set{X_0 = x}) = \sum_{n \in \N}f_{xy}^{(n)}.
+%f_{xy} 
+%\triangleq P_x\set{H_1 < \infty} 
+%= P_x(\cup_{n \in \N}\set{H_1 = n}) 
+%= \sum_{n \in \N}P_x\set{H_1 = n} 
+%= \sum_{n \in \N}f_{xy}^{(n)}.
+%}
+%\end{defn}
+\begin{rem}
+We can write the finiteness of hitting time $\tau_1$ as the disjoint union $\set{\tau_1 < \infty} = \cup_{n \in \N}\set{\tau_1=n}$. 
+Therefore, $f_{xy} = \sum_{n\in\N}f_{xy}^{(n)}$. 
+\end{rem}
+\begin{rem}
+If $f_{xy} = P_x\set{\tau_1 < \infty} = 1$ for all initial states $x \in \sX$, 
+then $\tau_1$ is almost surely finite and hence a stopping time.
+\end{rem}
+\begin{defn} 
+From the initial state $x$, the distribution 
+\begin{compactenum}[(i)]
+\item for the first hitting time to state $y$ is called the \textbf{first passage time distribution} and denoted by $((f_{xy}^{(n)}: n \in \N), 1 - f_{xy})$, and 
+\item for the first return time to state $x$ is called the \textbf{first recurrence time distribution} and denoted by $((f_{xx}^{(n)}: n \in \N),1 - f_{xx})$. 
+\end{compactenum}
+\end{defn}
+\begin{defn}
+A state $y\in\sX$ is called \textbf{recurrent} if $f_{yy} = 1$, and is called \textbf{transient} if $f_{yy} < 1$. 
+\end{defn}
+\begin{defn}
+For any state $y \in \sX$, the \textbf{mean recurrence time} is denoted by $\mu_{yy} \triangleq \E_y\tau_1$. 
+\end{defn}
+\begin{rem}
+The mean recurrence time for any transient state is infinite. 
+For any recurrent state $y \in \sX$, we write $\tau_1 = \tau_1\SetIn{\tau_1 < \infty} = \sum_{n \in \N}n\SetIn{\tau_1=n}$ almost surely, 
+and the mean recurrence time is given by $\mu_{yy} = \sum_{n \in \N}nf^{(n)}_{yy}$.   
+\end{rem}
+\begin{defn} 
+For a recurrent state $y \in \sX$, 
+\begin{compactenum}[(i)]
+\item if the mean recurrence time is finite, then the state $y$ is called \textbf{positive recurrent}, and  
+\item if the mean recurrence time is infinite, then the state $y$ is called \textbf{null recurrent}.
+\end{compactenum}
+\end{defn}
+
+%\begin{defn} 
+%Let $\tau_y^{(0)} = 0$ and define $\tau_k$ to be the \textbf{$k$th hitting time of state $y$}, defined as 
+%\EQ{
+%\tau_k \triangleq \inf\set{n > \tau_X^{\set{y},k-1}: X_n = y}, ~ k \in \N.
+%}
+%We can also define the \textbf{$k$th excursion time} as $H_k \triangleq \tau_k-\tau_X^{\set{y},k-1}$, for all $k \in \N$. 
+%\end{defn}
+
+
+\begin{prop} 
+For a homogeneous discrete Markov chain $X: \Omega \to \sX^{\Z_+}$, 
+%The total number of visits to a state $y \in \sX$ %after starting from initial state $x$ 
+%is denoted by $N_y = \sum_{n \in \N}\indicator{X_n = y}$.
+%Then, for each $m \in \Z_+$, 
+we have 
+\EQ{
+P_x\set{N_y(\infty) = k} =\begin{cases}
+1 - f_{xy}, & k = 0,\\
+f_{xy}f_{yy}^{k-1}(1-f_{yy}), & k \in \N.
+\end{cases}
+}
+\end{prop}
+\begin{proof} 
+We can write the event of zero visits to state $y$ as $\set{N_y(\infty) = 0} = \set{\tau_1 = \infty}$. 
+Further, we can write the event of $m$ visits to state $y$ as 
+\EQ{
+\set{N_y(\infty) = k} 
+= \set{\tau_k < \infty}\cap\set{\tau_{k+1}=\infty}
+= \cap_{j=1}^k\set{H_j< \infty}\cap\set{H_{k+1} = \infty},\quad k \in \N.
+}
+Recall that $H:\Omega\to\N^\N$ is an independent random sequence with subsequence $(H_k: k \ge 2)$ identically distributed, 
+with $P_x\set{H_j = n} = P_y\set{\tau_1 =n}$ for all $j \ge 2$.  
+Therefore, we get 
+\EQ{
+P_x\set{N_y(\infty)=k} 
+= P_x\set{H_1 < \infty}\prod_{j=2}^kP_x\set{H_j < \infty}P_x\set{H_{k+1}=\infty}
+= f_{xy}f_{yy}^{k-1}(1-f_{yy}).
+}
+%Conditioned on $X_0 = x$, the first passage time $H_y$ to state $y$ being finite is a Bernoulli random variable with probability $f_{xy}$. 
+%The time of the $m$th return to the state $y$ is a recurrence time for each $m \in \Z_+$.  
+%From strong Markov property, each return to state $y$ is independent of the past. 
+%Hence, each return to state $y$ in a finite time is an \textit{iid} Bernoulli random variable with probability $f_{yy}$. 
+%It follows that the number of recurrences to state $y$ is the time for first failure to return. 
+%Conditioned on initial state being $X_0 = y$, the distribution of $N_y$ is geometric random variable with failure probability $1-f_{yy}$. 
+%%Hence the probabilities will multiply. 
+%%Hence starting from state $y$ we visit the state $y$ with probability $f_{yy}$. 
+%%Moreover, we visit the state $y$ exactly $m$ number of times (and no more) with probability $f_{yy}^m(1-f_{yy}).$\\
+%%Conditioned on $X_0 = x$, the stopping time of first visit to $y$ is a Bernoulli random variable with probability $f_{xy}$. 
+%%Hence, the second result follows. 
+\end{proof}
+%\begin{proof}
+%For $m=0$, we can write the following equality from the definition, 
+%\EQ{
+%P_x\set{N_y = 0} = P_x\set{H_1 = \infty} = 1- f_{xy}.
+%} 
+%For $m \in \N$, we first define events $E_k \triangleq \set{\tau_k < \infty}$ for all $k \in \N$. 
+%%we consider $P_x\set{N_y > m}$. 
+%%Let $\tau_y^{(0)} = 0$ and define $\tau_k$ to be the $k$th hitting time of state $y$, defined as 
+%%%\EQ{
+%%$\tau_k \triangleq \inf\set{n > \tau_X^{\set{y},k-1}: X_n = y}. $
+%%%}
+%%Then, we define the excursion times as $H_k \triangleq \tau_k-\tau_X^{\set{y},k-1}$, 
+%%and define events $E_k \triangleq \set{\tau_k < \infty}$ for all $k \in \N$. 
+%Then, 
+%\EQ{
+%P_x\set{N_y = m}  = P_x(\set{\tau_y^{(m)} < \infty}\cap\set{\tau_y^{m+1} = \infty}) = P_x(E_m\cap E_{m+1}^c).
+%%= P_x(\set{\tau_y^{(m)} < \infty}\cap\set{H_y^{m+1} = \infty}).
+%}
+%%From the strong Markov property of homogeneous DTMC, we can write 
+%%\eq{
+%%P_x(\set{\tau_y^{(m)} < \infty}\cap\set{H_y^{m+1} = \infty}) &= 
+%%P(\set{H_y^{m+1} = \infty} \given\set{X_0 = x, S_{y}^{(m)} < \infty, X_{\tau_y^{(m)}} = y})P_x(\set{\tau_y^{(m)} < \infty})\\
+%%&= P_y(\set{H_y^{m+1} = \infty}P_x(\set{\tau_y^{(m)} < \infty}).
+%%}
+%We observe that $(E_k: k \in \N)$ is a decreasing sequence of events, and hence $E_m = \cap_{k=1}^mE_k$.  
+%Together with this observation and from the definition of conditional probability, 
+%we can write 
+%\EQ{
+%P_x\set{N_y = m} = P_x(E_1\cap E_2 \cap \dots \cap E_m \cap E_{m+1}^c) = P_x(E_1)\left(\prod_{k=2}^{m}P(E_k\given E_1 \cap \dots \cap E_{k-1}) \right)P(E_{m+1}^c\given E_1\cap \dots \cap E_m). 
+%}
+%From the definition, we get $P_x(E_1) = P_x\set{H_y < \infty} = f_{xy}$. 
+%We focus on the conditional probability of the following event for $k \in \set{2, \dots, m}$, 
+%which equals 
+%\EQ{
+%P_x(E_k \given E_1\cap \dots\cap E_{k-1}) 
+%= P_x(E_k \given E_{k-1}) = P(\set{H_k< \infty}\given\set{ X_{\tau_X^{\set{y},k-1}} = y, \tau_X^{\set{y},k-1}< \infty, X_0 = x}) 
+%= P_y\set{H_k< \infty} = f_{yy}. 
+%}
+%Equality in the second line follows from the strong Markov property and the definition of $f_{yy}$. 
+%The result follows from the aggregation of the above equalities. 
+%\end{proof}
+%\begin{rem}
+%For a time homogeneous Markov chain $X: \Omega\to\sX^{\Z_+}$ with initial state $x$, 
+%\begin{compactenum}[(i)]
+%\item $P_x\set{N_y < \infty} = \SetIn{f_{yy} < 1} + (1-f_{xy})\SetIn{f_{yy} = 1}$,
+%\item 
+%\end{compactenum}
+%\end{rem}
+\begin{cor}
+\label{cor:01law}
+For a homogeneous Markov chain $X$, we have 
+%\eq{
+$P_x\set{N_y(\infty) < \infty} = \SetIn{f_{yy} < 1} + (1-f_{xy})\SetIn{f_{yy} = 1}$. 
+%}
+\end{cor}
+\begin{proof}
+We can write the event $\set{N_y(\infty) < \infty}$ as disjoint union of events $\set{N_y(\infty) = k}$, to get the result. 
+%\EQ{
+%P_x\set{N_y < \infty} = \sum_{n \in\Z_+}P_x\set{N_y = n} = \SetIn{f_{yy} < 1} + (1-f_{xy})\SetIn{f_{yy} = 1}.
+%}
+\end{proof}
+\begin{rem} 
+For a time homogeneous Markov chain $X: \Omega \to \sX^{\Z_+}$, we have 
+\begin{compactenum}[(i)]
+\item $P_x\set{N_y(\infty) = \infty} = f_{xy}\SetIn{f_{yy}=1}$, and 
+\item $P_y\set{N_y(\infty) = \infty} = \SetIn{f_{yy}=1}$.
+\end{compactenum} 
+\end{rem}
+\begin{cor} 
+The mean number of visits to state $y$, starting from a state $x$ is 
+$
+\E_xN_y(\infty) = \frac{f_{xy}}{1-f_{yy}}\SetIn{f_{yy} < 1} + \infty\SetIn{f_{xy} > 0, f_{yy} = 1}.
+$
+\end{cor}
+\begin{rem} 
+For any state $y \in \sX$, we have $\E_yN_y(\infty) = \frac{f_{yy}}{1-f_{yy}}\SetIn{f_{yy}<1} + \infty\SetIn{f_{yy}=1}$. 
+That is, the mean number of visits to initial state $y$ is finite iff the state $y$ is transient.  
+\end{rem}
+%\begin{proof} 
+%When $i=j$, it follows from the previous Proposition that $N_y$ is geometric random variable with success probability $1-f_{yy}$. 
+%\end{proof}
+
+\begin{shaded}
+\begin{rem}
+In particular, this corollary implies the following consequences. 
+\begin{enumerate}[i\_]
+	\item A transient state is visited a finite amount of times almost surely. 
+	This follows from Corollary~\ref{cor:01law}, since $P_x\set{N_y(\infty) < \infty} = 1$ for all transient states $y \in \sX$ and any initial state $x \in \sX$. 
+	\item A recurrent state is visited infinitely often almost surely. 
+	This also follows from Corollary~\ref{cor:01law}, since $P_y\set{N_y(\infty) < \infty} = 0$ for all recurrent states $y \in \sX$.  
+	\item In a finite state Markov chain, not all states may be transient. 
+	\begin{proof}
+	To see this, we assume that for a finite state space $\sX$, all states $y \in \sX$ are transient. 
+	Then, we know that $N_y(\infty)$ is finite almost surely for all states $y \in \sX$. 
+	It follows that, for any initial state $x \in \sX$
+	\EQ{
+	0 \le P_x\set{\sum_{y \in \sX}N_y(\infty) = \infty} = P_x(\cup_{y \in \sX}\set{N_y(\infty) = \infty}) \le \sum_{y \in \sX}P_x\set{N_y(\infty) = \infty} = 0. 
+	}
+It follows that $\sum_{y \in \sX}N_y(\infty)$ is also finite almost surely for all states $y \in \sX$ for finite state space $\sX$. 
+However, we know that $\sum_{y \in \sX}N_y(\infty) = \sum_{k \in \N}\sum_{y \in \sX}\indicator{X_k = y} = \infty$. 
+This leads to a contradiction. 
+\end{proof}
+\end{enumerate} 
+\end{rem}
+\end{shaded}
+\begin{prop}
+For a homogeneous DTMC $X: \Omega \to \sX^{\Z_+}$, a state $y\in\sX$ is recurrent iff
+%\begin{align*}
+$\sum_{k\in\N} p_{yy}^{(k)} = \infty$, and transient iff $\sum_{k\in\N} p_{yy}^{(k)} < \infty$.
+%\end{align*}
+\end{prop}
+\begin{proof}
+%For any state $x \in \sX$, we can write $p_{xx}^{(k)} = P_x\set{X_k=x} = \E_x \SetIn{X_k=x}$. 
+%Using monotone convergence theorem to exchange expectation and summation, we obtain  
+%$
+%\sum_{k\in \N}p_{xx}^{(k)}=\E_x \sum_{k\in\N}\SetIn{X_k=x} = \E_x N_x.
+%$
+Recall that if the mean recurrence time to a state $y\in\sX$ is $\E_yN_y(\infty) = \sum_{k\in\N}p_{yy}^{(k)}$ finite then the state is transient and infinite if the state is recurrent.
+\end{proof}
+\begin{cor} 
+For a transient state $y \in \sX$, the following limits hold 
+$\lim_{n \to \infty}p_{xy}^{(n)} = 0$, and $\lim_{n \to \infty}\frac{\sum_{k = 1}^np_{xy}^{(k)}}{n} = 0$.
+\end{cor}
+\begin{proof} 
+For a transient state $y \in \sX$ and any state $x \in \sX$, we have $\E_xN_y(\infty)  = \sum_{n \in \N}p_{xy}^{(n)} < \infty$. 
+Since the series sum is finite, it implies that the limiting terms in the sequence $\lim_{n \to \infty}p_{xy}^{(n)} = 0$. 
+Further, we can write $\sum_{k=1}^np_{xy}^{(k)} \le \E_xN_y(\infty) \le M$ for some $M \in \N$ and hence $\lim_{n \to \infty}\frac{\sum_{k = 1}^np_{xy}^{(k)}}{n} = 0$.
+\end{proof}
+%\begin{cor}
+%For a transient state $y \in \sX$, we have $P(N_y < \infty) = 1$. 
+%\end{cor}
+%\begin{proof}
+%\end{proof}
+\begin{lem} 
+\label{lem:StoppingTime}
+For any state $y \in \sX$, let $H:\Omega\to\N^\N$ be the sequence of almost surely finite inter-visit times to state $y$, 
+and $N_y(n) = \sum_{k=1}^n\indicator{X_k = y}$ be the number of visits to state $y$ in $n$ times. 
+Then, $N_y(n) +1$ is a finite mean stopping time with respect to the sequence $H$. 
+\end{lem}
+\begin{proof} 
+We first observe that $N_y(n) + 1 \le n+1$ and hence has a finite mean for each $n \in \N$. 
+Further, we observe that $\set{N_y(n) + 1 = k}$ can be completely determined by observing $H_1, \dots, H_k$, since 
+%To see this, we notice that 
+\EQ{
+\set{N_y(n) + 1 = k} 
+= \set{\sum_{j=1}^{k-1}H_j \le n <  \sum_{j=1}^kH_j} 
+\in \sigma(H_1, \dots, H_k). 
+}
+\end{proof}
+%We define $N_y(n) \triangleq \sum_{k=1}^n\indicator{X_k = y}$ to be the number of visits to state $y$ in $n$ steps of the Markov process $X$. `
+%Then, $\E_xN_y(n)  =  \sum_{k=1}^np_{xy}^{(k)}$.  
+\begin{thm} 
+Let $x, y \in \sX$ be such that $f_{xy} = 1$ and $y$ is recurrent.  
+Then, $\lim_{n \to \infty}\frac{\sum_{k=1}^np_{xy}^{(k)}}{n} = \frac{1}{\mu_{yy}}$. 
+%Furthermore, if $y$ is aperiodic, then $\lim_{n \to \infty}P_{xy}^{(n)} = \frac{1}{\mu_{yy}}$. 
+\end{thm}
+\begin{proof} 
+Let $y \in \sX$ be recurrent. 
+The proof consists of three parts. 
+In the first two parts, we will show that starting from the state $y$, we have the limiting empirical average of mean number of visits to state $y$ is $\lim_{n \to \infty}\frac{1}{n}\E_yN_y(n) = \frac{1}{\mu_{yy}}$. 
+In the third part, we will show that for any starting state $x \in \sX$ such that $f_{xy}=1$, we have  the limiting empirical average of mean number of visits to state $y$ is $\lim_{n \to \infty}\frac{1}{n}\E_xN_y(n) = \frac{1}{\mu_{yy}}$. 
+\begin{itemize}
+\item[Lower bound:]
+%> \sum_{\ell=1}^{N_y(n)}H_1$. 
+We observe that $N_y(n)+1$ is a stopping time with respect to inter-visit times $H$ from Lemma~\ref{lem:StoppingTime}. 
+Further, we have $\sum_{j=1}^{N_y(n)+1}H_j > n$. 
+Applying Wald's Lemma to the random sum $\sum_{j=1}^{N_y(n)+1}H_j$ , we get $\E_y(N_y(n)+1)\mu_{yy} > n$. 
+Taking limits, we obtain $\lim\inf_{n \in \N}\frac{\sum_{k=1}^np_{yy}^{(k)}}{n} \ge \frac{1}{\mu_{yy}}$. 
+
+\item[Upper bound:] 
+Let $X_0 = y$ and consider a fixed positive integer $M\in \N$. 
+Then $H$ is \iid and we define truncated recurrence times $\bar{H}:\Omega\to[M]^\N$ for all $j \in \N$ as  $\bar{H}_j \triangleq M \wedge H_j$. 
+It follows that the sequence $\bar{H}$ is \iid and $\bar{H}_j \le H_j$ for all $j \in \N$. 
+We define the mean of the truncated recurrence times as $\bar{\mu}_{yy} \triangleq \E_y\bar{H}_1$. 
+From the monotonicity of truncation, we get $\bar{\mu}_{yy} \le \mu_{yy}$.  
+
+We define the random variable $\bar{\tau}_k \triangleq \sum_{j=1}^k\bar{H}_j$ for all $k \in \N$, 
+and $\bar{\tau}_k \le \tau_k$ for all $k \in \N$. 
+We can define the associated counting process that counts the number of truncated recurrences in first $n$ steps as 
+$\bar{N}_y(n) \triangleq \sum_{k\in \N}\SetIn{\bar{\tau}_k \le n}$ for all $n \in \N$. 
+We conclude that $\bar{N}_y(n)+1$ is a stopping time with respect to \iid process $\bar{H}$, 
+and $\bar{N}_y(n) \ge N_y(n)$ sample path wise. 
+Further, we have 
+\EQ{
+\sum_{j=1}^{\bar{N}_y(n) + 1}\bar{H}_j
+= \bar{\tau}_{\bar{N}_y(n)+1} 
+= \bar{\tau}_{\bar{N}_y(n)} + \bar{H}_{\bar{N}_y(n)+1}
+\le n + M.
+}
+Applying Wald's Lemma to stopping time $N_y(n)+1$ with respect to \iid sequence $H$ and stopping time $\bar{N}_y(n)+1$ with respect to \iid sequence $\bar{H}$, 
+and monotonicity of expectation, we get 
+\EQ{
+\E_y(N_y(n) + 1)\bar{\mu}_{yy} \le \E_y(\bar{N}_y(n) + 1)\bar{\mu}_{yy} \le n + M. 
+}
+Taking limits, we obtain $\lim\sup_{n \in \N}\frac{\sum_{k=1}^np_{yy}^{(k)}}{n} \le \frac{1}{\bar{\mu}_{yy}}$. 
+Letting $M$ grow arbitrarily large, we obtain the upper bound. 
+%From the strong law of large numbers, we know that the following almost sure equality holds, 
+%\EQ{
+%\lim_{m \in \N}\frac{\sum_{\ell=1}^{m}H_1{m} = \mu_{yy}. 
+%}
+%We recognise that the number of visits $m$ to state $y$ in $n$ steps is $\sum_{k=1}^n1\set{X_k = y}$, 
+%and the sum of hitting times is $\sum_{\ell = 1}^{m}H_1 \le n < \sum_{\ell = 1}^{m+1}H_1$. 
+%That is, we have 
+%\EQ{
+%\frac{m}{\sum_{\ell = 1}^{m+1}H_1 < \frac{\sum_{k=1}^n1\set{X_k = y}}{n} \le \frac{m}{\sum_{\ell = 1}^{m}H_1. 
+%}
+%We can write the sum $\sum_{k=1}^nP_{xy}^{(k)} = \E_x\sum_{k = 1}^n1\set{X_k = y} = \E_xN_y(n)$. 
+%By weak law of large numbers, we get $\lim_{n \to \infty}\frac{\E_xN_y(n)}{n} =  $ 
+
+\item[Starting from $x$: ] Further, we observe that $p_{xy}^{(k)} = \sum_{s=0}^{k-1}f_{xy}^{(k-s)}p_{yy}^{(s)}$.  
+Since $1 = f_{xy} = \sum_{k \in \N}f_{xy}^{(k)}$, we have 
+\EQ{
+\sum_{k=1}^{n}p_{xy}^{(k)} = \sum_{k=1}^n\sum_{s=0}^{k-1}f_{xy}^{(k-s)}p_{yy}^{(s)} = \sum_{s = 0}^{n-1}p_{yy}^{(s)}\sum_{k - s = 1}^{n-s}f_{xy}^{(k-s)}  = \sum_{s = 0}^{n-1}p_{yy}^{(s)} -   \sum_{s = 0}^{n-1}p_{yy}^{(s)}\sum_{k > n-s}f_{xy}^{(k)}. 
+%\le \sum_{s = 0}^{n-1}p_{yy}^{(s)}f_{xy}. 
+}
+Since the series $\sum_{k \in \N}f_{xy}^{(k)}$ converges, we get 
+%\EQ{
+$\lim_{n \to \infty}\frac{\sum_{k=1}^np_{xy}^{(k)}}{n} = \lim_{n \to \infty}\frac{\sum_{k=1}^np_{yy}^{(k)}}{n}. $
+%}
+\end{itemize}
+\end{proof}
+\end{document}
