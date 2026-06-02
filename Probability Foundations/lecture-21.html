@@ -607,7 +607,7 @@ window.Quarto = {
 <h1>Recurrence and Transience</h1>
 <p>We will consider a random sequence <span class="math inline">\(X:\Omega\to\sX^{\Z_+}\)</span> with initial state <span class="math inline">\(X_0 = x\in\sX\)</span> and the <span class="math inline">\(k\)</span>th hitting times to state <span class="math inline">\(y\)</span> for all <span class="math inline">\(k \in \N\)</span> denoted by <span class="math inline">\(\tau_k \triangleq \tau_X^{\set{y},k}\)</span> inductively defined as <span class="math inline">\(\tau_k \triangleq \inf\set{n &gt; \tau_{k-1}: X_n = y}\)</span> where <span class="math inline">\(\tau_0 \triangleq 0\)</span>. We define the inter-return time sequence <span class="math inline">\(H:\Omega\to\N^\N\)</span> as <span class="math inline">\(H_k \triangleq H_X^{\set{y},k} = \tau_k - \tau_{k-1}\)</span> for all <span class="math inline">\(k \in \N\)</span>.</p>
 <div class="defn">
-<p>For a random sequence <span class="math inline">\(X: \Omega \to \sX^{\Z_+}\)</span> with initial state <span class="math inline">\(X_0 = x\)</span>,</p>
+<p><strong>Definition 1</strong>. For a random sequence <span class="math inline">\(X: \Omega \to \sX^{\Z_+}\)</span> with initial state <span class="math inline">\(X_0 = x\)</span>,</p>
 <div class="compactenum">
 <p>the <strong>probability of hitting state <span class="math inline">\(y\)</span> eventually</strong> is denoted by <span class="math inline">\(f_{xy} \triangleq P_x\set{\tau_1 &lt; \infty}\)</span>, and</p>
 <p>the <strong>probability of first visit to state <span class="math inline">\(y\)</span> at time <span class="math inline">\(n \in\N\)</span></strong> is denoted by <span class="math inline">\(f_{xy}^{(n)}
@@ -615,62 +615,62 @@ window.Quarto = {
 </div>
 </div>
 <div class="rem">
-<p>We can write the finiteness of hitting time <span class="math inline">\(\tau_1\)</span> as the disjoint union <span class="math inline">\(\set{\tau_1 &lt; \infty} = \cup_{n \in \N}\set{\tau_1=n}\)</span>. Therefore, <span class="math inline">\(f_{xy} = \sum_{n\in\N}f_{xy}^{(n)}\)</span>.</p>
+<p><strong>Remark 1</strong>. We can write the finiteness of hitting time <span class="math inline">\(\tau_1\)</span> as the disjoint union <span class="math inline">\(\set{\tau_1 &lt; \infty} = \cup_{n \in \N}\set{\tau_1=n}\)</span>. Therefore, <span class="math inline">\(f_{xy} = \sum_{n\in\N}f_{xy}^{(n)}\)</span>.</p>
 </div>
 <div class="rem">
-<p>If <span class="math inline">\(f_{xy} = P_x\set{\tau_1 &lt; \infty} = 1\)</span> for all initial states <span class="math inline">\(x \in \sX\)</span>, then <span class="math inline">\(\tau_1\)</span> is almost surely finite and hence a stopping time.</p>
+<p><strong>Remark 2</strong>. If <span class="math inline">\(f_{xy} = P_x\set{\tau_1 &lt; \infty} = 1\)</span> for all initial states <span class="math inline">\(x \in \sX\)</span>, then <span class="math inline">\(\tau_1\)</span> is almost surely finite and hence a stopping time.</p>
 </div>
 <div class="defn">
-<p>From the initial state <span class="math inline">\(x\)</span>, the distribution</p>
+<p><strong>Definition 2</strong>. From the initial state <span class="math inline">\(x\)</span>, the distribution</p>
 <div class="compactenum">
 <p>for the first hitting time to state <span class="math inline">\(y\)</span> is called the <strong>first passage time distribution</strong> and denoted by <span class="math inline">\(((f_{xy}^{(n)}: n \in \N), 1 - f_{xy})\)</span>, and</p>
 <p>for the first return time to state <span class="math inline">\(x\)</span> is called the <strong>first recurrence time distribution</strong> and denoted by <span class="math inline">\(((f_{xx}^{(n)}: n \in \N),1 - f_{xx})\)</span>.</p>
 </div>
 </div>
 <div class="defn">
-<p>A state <span class="math inline">\(y\in\sX\)</span> is called <strong>recurrent</strong> if <span class="math inline">\(f_{yy} = 1\)</span>, and is called <strong>transient</strong> if <span class="math inline">\(f_{yy} &lt; 1\)</span>.</p>
+<p><strong>Definition 3</strong>. A state <span class="math inline">\(y\in\sX\)</span> is called <strong>recurrent</strong> if <span class="math inline">\(f_{yy} = 1\)</span>, and is called <strong>transient</strong> if <span class="math inline">\(f_{yy} &lt; 1\)</span>.</p>
 </div>
 <div class="defn">
-<p>For any state <span class="math inline">\(y \in \sX\)</span>, the <strong>mean recurrence time</strong> is denoted by <span class="math inline">\(\mu_{yy} \triangleq \E_y\tau_1\)</span>.</p>
+<p><strong>Definition 4</strong>. For any state <span class="math inline">\(y \in \sX\)</span>, the <strong>mean recurrence time</strong> is denoted by <span class="math inline">\(\mu_{yy} \triangleq \E_y\tau_1\)</span>.</p>
 </div>
 <div class="rem">
-<p>The mean recurrence time for any transient state is infinite. For any recurrent state <span class="math inline">\(y \in \sX\)</span>, we write <span class="math inline">\(\tau_1 = \tau_1\SetIn{\tau_1 &lt; \infty} = \sum_{n \in \N}n\SetIn{\tau_1=n}\)</span> almost surely, and the mean recurrence time is given by <span class="math inline">\(\mu_{yy} = \sum_{n \in \N}nf^{(n)}_{yy}\)</span>.</p>
+<p><strong>Remark 3</strong>. The mean recurrence time for any transient state is infinite. For any recurrent state <span class="math inline">\(y \in \sX\)</span>, we write <span class="math inline">\(\tau_1 = \tau_1\SetIn{\tau_1 &lt; \infty} = \sum_{n \in \N}n\SetIn{\tau_1=n}\)</span> almost surely, and the mean recurrence time is given by <span class="math inline">\(\mu_{yy} = \sum_{n \in \N}nf^{(n)}_{yy}\)</span>.</p>
 </div>
 <div class="defn">
-<p>For a recurrent state <span class="math inline">\(y \in \sX\)</span>,</p>
+<p><strong>Definition 5</strong>. For a recurrent state <span class="math inline">\(y \in \sX\)</span>,</p>
 <div class="compactenum">
 <p>if the mean recurrence time is finite, then the state <span class="math inline">\(y\)</span> is called <strong>positive recurrent</strong>, and</p>
 <p>if the mean recurrence time is infinite, then the state <span class="math inline">\(y\)</span> is called <strong>null recurrent</strong>.</p>
 </div>
 </div>
 <div class="prop">
-<p>For a homogeneous discrete Markov chain <span class="math inline">\(X: \Omega \to \sX^{\Z_+}\)</span>, we have</p>
+<p><strong>Proposition 6</strong>. For a homogeneous discrete Markov chain <span class="math inline">\(X: \Omega \to \sX^{\Z_+}\)</span>, we have</p>
 </div>
 <div class="proof">
 <p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> We can write the event of zero visits to state <span class="math inline">\(y\)</span> as <span class="math inline">\(\set{N_y(\infty) = 0} = \set{\tau_1 = \infty}\)</span>. Further, we can write the event of <span class="math inline">\(m\)</span> visits to state <span class="math inline">\(y\)</span> as Recall that <span class="math inline">\(H:\Omega\to\N^\N\)</span> is an independent random sequence with subsequence <span class="math inline">\((H_k: k \ge 2)\)</span> identically distributed, with <span class="math inline">\(P_x\set{H_j = n} = P_y\set{\tau_1 =n}\)</span> for all <span class="math inline">\(j \ge 2\)</span>. Therefore, we get&nbsp;◻</p>
 </div>
 <div class="cor">
-<p><span id="cor:01law" data-label="cor:01law"></span> For a homogeneous Markov chain <span class="math inline">\(X\)</span>, we have <span class="math inline">\(P_x\set{N_y(\infty) &lt; \infty} = \SetIn{f_{yy} &lt; 1} + (1-f_{xy})\SetIn{f_{yy} = 1}\)</span>.</p>
+<p><strong>Corollary 7</strong>. <span id="cor:01law" data-label="cor:01law"></span> For a homogeneous Markov chain <span class="math inline">\(X\)</span>, we have <span class="math inline">\(P_x\set{N_y(\infty) &lt; \infty} = \SetIn{f_{yy} &lt; 1} + (1-f_{xy})\SetIn{f_{yy} = 1}\)</span>.</p>
 </div>
 <div class="proof">
 <p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> We can write the event <span class="math inline">\(\set{N_y(\infty) &lt; \infty}\)</span> as disjoint union of events <span class="math inline">\(\set{N_y(\infty) = k}\)</span>, to get the result.&nbsp;◻</p>
 </div>
 <div class="rem">
-<p>For a time homogeneous Markov chain <span class="math inline">\(X: \Omega \to \sX^{\Z_+}\)</span>, we have</p>
+<p><strong>Remark 4</strong>. For a time homogeneous Markov chain <span class="math inline">\(X: \Omega \to \sX^{\Z_+}\)</span>, we have</p>
 <div class="compactenum">
 <p><span class="math inline">\(P_x\set{N_y(\infty) = \infty} = f_{xy}\SetIn{f_{yy}=1}\)</span>, and</p>
 <p><span class="math inline">\(P_y\set{N_y(\infty) = \infty} = \SetIn{f_{yy}=1}\)</span>.</p>
 </div>
 </div>
 <div class="cor">
-<p>The mean number of visits to state <span class="math inline">\(y\)</span>, starting from a state <span class="math inline">\(x\)</span> is <span class="math inline">\(\E_xN_y(\infty) = \frac{f_{xy}}{1-f_{yy}}\SetIn{f_{yy} &lt; 1} + \infty\SetIn{f_{xy} &gt; 0, f_{yy} = 1}.\)</span></p>
+<p><strong>Corollary 8</strong>. The mean number of visits to state <span class="math inline">\(y\)</span>, starting from a state <span class="math inline">\(x\)</span> is <span class="math inline">\(\E_xN_y(\infty) = \frac{f_{xy}}{1-f_{yy}}\SetIn{f_{yy} &lt; 1} + \infty\SetIn{f_{xy} &gt; 0, f_{yy} = 1}.\)</span></p>
 </div>
 <div class="rem">
-<p>For any state <span class="math inline">\(y \in \sX\)</span>, we have <span class="math inline">\(\E_yN_y(\infty) = \frac{f_{yy}}{1-f_{yy}}\SetIn{f_{yy}&lt;1} + \infty\SetIn{f_{yy}=1}\)</span>. That is, the mean number of visits to initial state <span class="math inline">\(y\)</span> is finite iff the state <span class="math inline">\(y\)</span> is transient.</p>
+<p><strong>Remark 5</strong>. For any state <span class="math inline">\(y \in \sX\)</span>, we have <span class="math inline">\(\E_yN_y(\infty) = \frac{f_{yy}}{1-f_{yy}}\SetIn{f_{yy}&lt;1} + \infty\SetIn{f_{yy}=1}\)</span>. That is, the mean number of visits to initial state <span class="math inline">\(y\)</span> is finite iff the state <span class="math inline">\(y\)</span> is transient.</p>
 </div>
 <div class="shaded">
 <div class="rem">
-<p>In particular, this corollary implies the following consequences.</p>
+<p><strong>Remark 6</strong>. In particular, this corollary implies the following consequences.</p>
 <ol type="1">
 <li><p>A transient state is visited a finite amount of times almost surely. This follows from Corollary&nbsp;<a href="#cor:01law" data-reference-type="ref" data-reference="cor:01law">[cor:01law]</a>, since <span class="math inline">\(P_x\set{N_y(\infty) &lt; \infty} = 1\)</span> for all transient states <span class="math inline">\(y \in \sX\)</span> and any initial state <span class="math inline">\(x \in \sX\)</span>.</p></li>
 <li><p>A recurrent state is visited infinitely often almost surely. This also follows from Corollary&nbsp;<a href="#cor:01law" data-reference-type="ref" data-reference="cor:01law">[cor:01law]</a>, since <span class="math inline">\(P_y\set{N_y(\infty) &lt; \infty} = 0\)</span> for all recurrent states <span class="math inline">\(y \in \sX\)</span>.</p></li>
@@ -682,25 +682,25 @@ window.Quarto = {
 </div>
 </div>
 <div class="prop">
-<p>For a homogeneous DTMC <span class="math inline">\(X: \Omega \to \sX^{\Z_+}\)</span>, a state <span class="math inline">\(y\in\sX\)</span> is recurrent iff <span class="math inline">\(\sum_{k\in\N} p_{yy}^{(k)} = \infty\)</span>, and transient iff <span class="math inline">\(\sum_{k\in\N} p_{yy}^{(k)} &lt; \infty\)</span>.</p>
+<p><strong>Proposition 9</strong>. For a homogeneous DTMC <span class="math inline">\(X: \Omega \to \sX^{\Z_+}\)</span>, a state <span class="math inline">\(y\in\sX\)</span> is recurrent iff <span class="math inline">\(\sum_{k\in\N} p_{yy}^{(k)} = \infty\)</span>, and transient iff <span class="math inline">\(\sum_{k\in\N} p_{yy}^{(k)} &lt; \infty\)</span>.</p>
 </div>
 <div class="proof">
 <p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> Recall that if the mean recurrence time to a state <span class="math inline">\(y\in\sX\)</span> is <span class="math inline">\(\E_yN_y(\infty) = \sum_{k\in\N}p_{yy}^{(k)}\)</span> finite then the state is transient and infinite if the state is recurrent.&nbsp;◻</p>
 </div>
 <div class="cor">
-<p>For a transient state <span class="math inline">\(y \in \sX\)</span>, the following limits hold <span class="math inline">\(\lim_{n \to \infty}p_{xy}^{(n)} = 0\)</span>, and <span class="math inline">\(\lim_{n \to \infty}\frac{\sum_{k = 1}^np_{xy}^{(k)}}{n} = 0\)</span>.</p>
+<p><strong>Corollary 10</strong>. For a transient state <span class="math inline">\(y \in \sX\)</span>, the following limits hold <span class="math inline">\(\lim_{n \to \infty}p_{xy}^{(n)} = 0\)</span>, and <span class="math inline">\(\lim_{n \to \infty}\frac{\sum_{k = 1}^np_{xy}^{(k)}}{n} = 0\)</span>.</p>
 </div>
 <div class="proof">
 <p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> For a transient state <span class="math inline">\(y \in \sX\)</span> and any state <span class="math inline">\(x \in \sX\)</span>, we have <span class="math inline">\(\E_xN_y(\infty)  = \sum_{n \in \N}p_{xy}^{(n)} &lt; \infty\)</span>. Since the series sum is finite, it implies that the limiting terms in the sequence <span class="math inline">\(\lim_{n \to \infty}p_{xy}^{(n)} = 0\)</span>. Further, we can write <span class="math inline">\(\sum_{k=1}^np_{xy}^{(k)} \le \E_xN_y(\infty) \le M\)</span> for some <span class="math inline">\(M \in \N\)</span> and hence <span class="math inline">\(\lim_{n \to \infty}\frac{\sum_{k = 1}^np_{xy}^{(k)}}{n} = 0\)</span>.&nbsp;◻</p>
 </div>
 <div class="lem">
-<p><span id="lem:StoppingTime" data-label="lem:StoppingTime"></span> For any state <span class="math inline">\(y \in \sX\)</span>, let <span class="math inline">\(H:\Omega\to\N^\N\)</span> be the sequence of almost surely finite inter-visit times to state <span class="math inline">\(y\)</span>, and <span class="math inline">\(N_y(n) = \sum_{k=1}^n\indicator{X_k = y}\)</span> be the number of visits to state <span class="math inline">\(y\)</span> in <span class="math inline">\(n\)</span> times. Then, <span class="math inline">\(N_y(n) +1\)</span> is a finite mean stopping time with respect to the sequence <span class="math inline">\(H\)</span>.</p>
+<p><strong>Lemma 11</strong>. <span id="lem:StoppingTime" data-label="lem:StoppingTime"></span> For any state <span class="math inline">\(y \in \sX\)</span>, let <span class="math inline">\(H:\Omega\to\N^\N\)</span> be the sequence of almost surely finite inter-visit times to state <span class="math inline">\(y\)</span>, and <span class="math inline">\(N_y(n) = \sum_{k=1}^n\indicator{X_k = y}\)</span> be the number of visits to state <span class="math inline">\(y\)</span> in <span class="math inline">\(n\)</span> times. Then, <span class="math inline">\(N_y(n) +1\)</span> is a finite mean stopping time with respect to the sequence <span class="math inline">\(H\)</span>.</p>
 </div>
 <div class="proof">
 <p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> We first observe that <span class="math inline">\(N_y(n) + 1 \le n+1\)</span> and hence has a finite mean for each <span class="math inline">\(n \in \N\)</span>. Further, we observe that <span class="math inline">\(\set{N_y(n) + 1 = k}\)</span> can be completely determined by observing <span class="math inline">\(H_1, \dots, H_k\)</span>, since&nbsp;◻</p>
 </div>
 <div class="thm">
-<p>Let <span class="math inline">\(x, y \in \sX\)</span> be such that <span class="math inline">\(f_{xy} = 1\)</span> and <span class="math inline">\(y\)</span> is recurrent. Then, <span class="math inline">\(\lim_{n \to \infty}\frac{\sum_{k=1}^np_{xy}^{(k)}}{n} = \frac{1}{\mu_{yy}}\)</span>.</p>
+<p><strong>Theorem 12</strong>. Let <span class="math inline">\(x, y \in \sX\)</span> be such that <span class="math inline">\(f_{xy} = 1\)</span> and <span class="math inline">\(y\)</span> is recurrent. Then, <span class="math inline">\(\lim_{n \to \infty}\frac{\sum_{k=1}^np_{xy}^{(k)}}{n} = \frac{1}{\mu_{yy}}\)</span>.</p>
 </div>
 <div class="proof">
 <p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> Let <span class="math inline">\(y \in \sX\)</span> be recurrent. The proof consists of three parts. In the first two parts, we will show that starting from the state <span class="math inline">\(y\)</span>, we have the limiting empirical average of mean number of visits to state <span class="math inline">\(y\)</span> is <span class="math inline">\(\lim_{n \to \infty}\frac{1}{n}\E_yN_y(n) = \frac{1}{\mu_{yy}}\)</span>. In the third part, we will show that for any starting state <span class="math inline">\(x \in \sX\)</span> such that <span class="math inline">\(f_{xy}=1\)</span>, we have the limiting empirical average of mean number of visits to state <span class="math inline">\(y\)</span> is <span class="math inline">\(\lim_{n \to \infty}\frac{1}{n}\E_xN_y(n) = \frac{1}{\mu_{yy}}\)</span>.</p>

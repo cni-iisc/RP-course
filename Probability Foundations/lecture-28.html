@@ -605,7 +605,7 @@ window.Quarto = {
 <section id="compound-poisson-process" class="level1">
 <h1>Compound Poisson process</h1>
 <div class="defn">
-<p>A <strong>compound Poisson process</strong> is a real-valued right-continuous process <span class="math inline">\(Z:\Omega\to\R_+^{\R_+}\)</span> with the following properties.</p>
+<p><strong>Definition 1</strong>. A <strong>compound Poisson process</strong> is a real-valued right-continuous process <span class="math inline">\(Z:\Omega\to\R_+^{\R_+}\)</span> with the following properties.</p>
 <ol type="1">
 <li><p><strong>Finitely many jumps:</strong> for all <span class="math inline">\(\omega \in \Omega\)</span>, sample path <span class="math inline">\(t \mapsto Z_t(\omega)\)</span> has finitely many jumps in finite intervals,</p></li>
 <li><p><strong>Independent increments:</strong> for all <span class="math inline">\(t,s \ge 0\)</span>; increments <span class="math inline">\(Z_{t+s}-Z_t\)</span> is independent of past <span class="math inline">\(\sF_t \triangleq \sigma(Z_u: u\le t)\)</span>,</p></li>
@@ -616,13 +616,13 @@ window.Quarto = {
 <p>For each <span class="math inline">\(\omega \in \Omega\)</span> and <span class="math inline">\(n \in \N\)</span>, we can define time and size of <span class="math inline">\(n\)</span>th jump</p>
 </div>
 <div class="rem">
-<p>Recall that <span class="math inline">\(\sF_s = \sigma(Z_u, u \in (0, s])\)</span> is the collection of historical events until time <span class="math inline">\(s\)</span> associated with the process <span class="math inline">\(Z\)</span>. If <span class="math inline">\(\tS_n\)</span> is almost surely finite for all <span class="math inline">\(n \in \N\)</span>, then the sequence of jump times <span class="math inline">\(\tS:\Omega\to\R_+^\N\)</span> is a sequence of stopping times with respect to the natural filtration <span class="math inline">\(\sF_\bullet\)</span> of the process <span class="math inline">\(Z\)</span>.</p>
+<p><strong>Remark 1</strong>. Recall that <span class="math inline">\(\sF_s = \sigma(Z_u, u \in (0, s])\)</span> is the collection of historical events until time <span class="math inline">\(s\)</span> associated with the process <span class="math inline">\(Z\)</span>. If <span class="math inline">\(\tS_n\)</span> is almost surely finite for all <span class="math inline">\(n \in \N\)</span>, then the sequence of jump times <span class="math inline">\(\tS:\Omega\to\R_+^\N\)</span> is a sequence of stopping times with respect to the natural filtration <span class="math inline">\(\sF_\bullet\)</span> of the process <span class="math inline">\(Z\)</span>.</p>
 </div>
 <div class="rem">
-<p>Let <span class="math inline">\(N:\Omega\to\Z_+^{\R_+}\)</span> be the simple counting process associated with the number of jumps of compound Poisson process <span class="math inline">\(Z\)</span> in <span class="math inline">\((0,t]\)</span> defined by <span class="math inline">\(N_t \triangleq \sum_{n\in\N}\SetIn{\tS_n\le t}\)</span> for all <span class="math inline">\(t\in\R_+\)</span>. Then, <span class="math inline">\(\tS_n\)</span> and <span class="math inline">\(Y_n\)</span> are the respectively the arrival instant and the size of the <span class="math inline">\(n\)</span>th jump, and we can write <span class="math inline">\(Z_t = \sum_{i = 1}^{N_t}Y_i\)</span>.</p>
+<p><strong>Remark 2</strong>. Let <span class="math inline">\(N:\Omega\to\Z_+^{\R_+}\)</span> be the simple counting process associated with the number of jumps of compound Poisson process <span class="math inline">\(Z\)</span> in <span class="math inline">\((0,t]\)</span> defined by <span class="math inline">\(N_t \triangleq \sum_{n\in\N}\SetIn{\tS_n\le t}\)</span> for all <span class="math inline">\(t\in\R_+\)</span>. Then, <span class="math inline">\(\tS_n\)</span> and <span class="math inline">\(Y_n\)</span> are the respectively the arrival instant and the size of the <span class="math inline">\(n\)</span>th jump, and we can write <span class="math inline">\(Z_t = \sum_{i = 1}^{N_t}Y_i\)</span>.</p>
 </div>
 <div class="prop">
-<p>A stochastic process <span class="math inline">\(Z:\Omega\to\R_+^{\R_+}\)</span> is a compound Poisson process iff its jump times form a Poisson process and the jump sizes form an random sequence independent of the jump times.</p>
+<p><strong>Proposition 2</strong>. A stochastic process <span class="math inline">\(Z:\Omega\to\R_+^{\R_+}\)</span> is a compound Poisson process iff its jump times form a Poisson process and the jump sizes form an random sequence independent of the jump times.</p>
 </div>
 <div class="proof">
 <p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> We will prove it in two steps.</p>
@@ -647,7 +647,7 @@ window.Quarto = {
 </div>
 <div class="shaded*">
 <div class="exmp">
-<p>Examples of compound Poisson processes.</p>
+<p><strong>Example 3</strong>. Examples of compound Poisson processes.</p>
 <ul>
 <li><p>Arrival of customers in a store is a Poison process <span class="math inline">\(N\)</span>. Each customer <span class="math inline">\(i\)</span> spends an amount <span class="math inline">\(X_i\)</span> independent of the arrival process. Now define <span class="math inline">\(Z_t \triangleq Y_{N_t}\)</span> as the amount spent by the customers arriving until time <span class="math inline">\(t \in \R_+\)</span>. Then <span class="math inline">\(Z:\Omega\to\R_+^{\R_+}\)</span> is a compound Poisson Process.</p></li>
 <li><p>Let the time between successive failures of a machine be independent and exponentially distributed. The cost of repair is random at each failure. Then the total cost of repair in a certain time <span class="math inline">\(t\)</span> is a compound Poisson Process.</p></li>

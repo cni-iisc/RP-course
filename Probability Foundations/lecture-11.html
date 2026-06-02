@@ -616,29 +616,29 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="characteristic-function">Characteristic function</h2>
 <div class="shaded">
 <div class="exmp">
-<p>Let <span class="math inline">\(j \triangleq \sqrt{-1}\)</span>, then we can show that <span class="math inline">\(h_u: \R \to \C\)</span> defined by <span class="math inline">\(h_u(x) \triangleq e^{ju x} = \cos(u x) + j \sin(u x)\)</span> is also Borel measurable for all <span class="math inline">\(u \in \R\)</span>. Thus, <span class="math inline">\(h_u(X):\Omega \to \C\)</span> is a complex valued random variable on this probability space.</p>
+<p><strong>Example 1</strong>. Let <span class="math inline">\(j \triangleq \sqrt{-1}\)</span>, then we can show that <span class="math inline">\(h_u: \R \to \C\)</span> defined by <span class="math inline">\(h_u(x) \triangleq e^{ju x} = \cos(u x) + j \sin(u x)\)</span> is also Borel measurable for all <span class="math inline">\(u \in \R\)</span>. Thus, <span class="math inline">\(h_u(X):\Omega \to \C\)</span> is a complex valued random variable on this probability space.</p>
 </div>
 </div>
 <div class="defn">
-<p>For a random variable <span class="math inline">\(X: \Omega \to \R\)</span> defined on the probability space <span class="math inline">\((\Omega, \sF, P)\)</span>, the <strong>characteristic function</strong> <span class="math inline">\(\Phi_X: \R \to \C\)</span> is defined by <span class="math inline">\(\Phi_X(u) \triangleq \E e^{j u X}\)</span> for all <span class="math inline">\(u \in \R\)</span> and <span class="math inline">\(j^2 = -1\)</span>.</p>
+<p><strong>Definition 2</strong>. For a random variable <span class="math inline">\(X: \Omega \to \R\)</span> defined on the probability space <span class="math inline">\((\Omega, \sF, P)\)</span>, the <strong>characteristic function</strong> <span class="math inline">\(\Phi_X: \R \to \C\)</span> is defined by <span class="math inline">\(\Phi_X(u) \triangleq \E e^{j u X}\)</span> for all <span class="math inline">\(u \in \R\)</span> and <span class="math inline">\(j^2 = -1\)</span>.</p>
 </div>
 <div class="rem">
-<p>The characteristic function <span class="math inline">\(\Phi_X(u)\)</span> is always finite, since <span class="math inline">\(\abs{\Phi_X(u)} = \abs{\E e^{ju X}} \le \E\abs{e^{ju X}} = 1\)</span>.</p>
+<p><strong>Remark 1</strong>. The characteristic function <span class="math inline">\(\Phi_X(u)\)</span> is always finite, since <span class="math inline">\(\abs{\Phi_X(u)} = \abs{\E e^{ju X}} \le \E\abs{e^{ju X}} = 1\)</span>.</p>
 </div>
 <div class="rem">
-<p>For a discrete random variable <span class="math inline">\(X: \Omega \to \sX\)</span> with PMF <span class="math inline">\(P_X:\sX\to [0,1]\)</span>, the characteristic function <span class="math inline">\(\Phi_X(u) %= \E[e^{juX}]
+<p><strong>Remark 2</strong>. For a discrete random variable <span class="math inline">\(X: \Omega \to \sX\)</span> with PMF <span class="math inline">\(P_X:\sX\to [0,1]\)</span>, the characteristic function <span class="math inline">\(\Phi_X(u) %= \E[e^{juX}]
 = \sum_{x \in \sX}e^{ju x}P_X(x).\)</span></p>
 </div>
 <div class="rem">
-<p>For a continuous random variable <span class="math inline">\(X: \Omega \to \R\)</span> with density function <span class="math inline">\(f_X: \R \to \R_+\)</span>, the characteristic function <span class="math inline">\(\Phi_X(u) = \int_{-\infty}^{\infty}e^{ju X}f_X(x)dx.\)</span></p>
+<p><strong>Remark 3</strong>. For a continuous random variable <span class="math inline">\(X: \Omega \to \R\)</span> with density function <span class="math inline">\(f_X: \R \to \R_+\)</span>, the characteristic function <span class="math inline">\(\Phi_X(u) = \int_{-\infty}^{\infty}e^{ju X}f_X(x)dx.\)</span></p>
 </div>
 <div class="shaded">
 <div class="exmp">
-<p>For a Gaussian random variable <span class="math inline">\(X: \Omega \to \R\)</span> with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>, the characteristic function <span class="math inline">\(\Phi_X\)</span> is We observe that <span class="math inline">\(\abs{\Phi_X(u)} = e^{-u^2\sigma^2/2}\)</span> has Gaussian decay with zero mean and variance <span class="math inline">\(1/\sigma^2\)</span>.</p>
+<p><strong>Example 3</strong> (Gaussian random variable). For a Gaussian random variable <span class="math inline">\(X: \Omega \to \R\)</span> with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>, the characteristic function <span class="math inline">\(\Phi_X\)</span> is We observe that <span class="math inline">\(\abs{\Phi_X(u)} = e^{-u^2\sigma^2/2}\)</span> has Gaussian decay with zero mean and variance <span class="math inline">\(1/\sigma^2\)</span>.</p>
 </div>
 </div>
 <div class="thm">
-<p>If <span class="math inline">\(\E\abs{X}^N\)</span> is finite for some integer <span class="math inline">\(N \in \N\)</span>, then <span class="math inline">\(\Phi_X^{(k)}(u)\)</span> is finite and continuous functions of <span class="math inline">\(u \in \R\)</span> for all <span class="math inline">\(k \in [N]\)</span>. Further, <span class="math inline">\(\Phi_X^{(k)}(0) = j^k\E[X^k]\)</span> for all <span class="math inline">\(k \in [N]\)</span>.</p>
+<p><strong>Theorem 4</strong>. If <span class="math inline">\(\E\abs{X}^N\)</span> is finite for some integer <span class="math inline">\(N \in \N\)</span>, then <span class="math inline">\(\Phi_X^{(k)}(u)\)</span> is finite and continuous functions of <span class="math inline">\(u \in \R\)</span> for all <span class="math inline">\(k \in [N]\)</span>. Further, <span class="math inline">\(\Phi_X^{(k)}(0) = j^k\E[X^k]\)</span> for all <span class="math inline">\(k \in [N]\)</span>.</p>
 </div>
 <div class="proof">
 <p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> Since <span class="math inline">\(\E\abs{X}^N\)</span> is finite, then so is <span class="math inline">\(\E\abs{X}^k\)</span> for all <span class="math inline">\(k\in [N]\)</span>. Therefore, <span class="math inline">\(\E[X^k]\)</span> exists and is finite. Exchanging derivative and the integration (which can be done since <span class="math inline">\(e^{ju x}\)</span> is a bounded function with all derivatives), and evaluating the derivative at <span class="math inline">\(u=0\)</span>, we get <span class="math inline">\(\Phi_X^{(k)}(0)
@@ -649,7 +649,7 @@ window.Quarto = {
 = j^k\E[X^k].\)</span>&nbsp;◻</p>
 </div>
 <div class="thm">
-<p>Two random variables have the same distribution iff they have the same characteristic function.</p>
+<p><strong>Theorem 5</strong>. Two random variables have the same distribution iff they have the same characteristic function.</p>
 </div>
 <div class="proof">
 <p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> It is easy to see the necessity and the sufficiency is difficult.&nbsp;◻</p>
@@ -659,21 +659,21 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="moment-generating-function">Moment generating function</h2>
 <div class="shaded">
 <div class="exmp">
-<p>A function <span class="math inline">\(g_t: \R \to \R_+\)</span> defined by <span class="math inline">\(g_t(x) \triangleq e^{t x}\)</span> is monotone and hence Borel measurable for all <span class="math inline">\(t \in \R\)</span>. Therefore, <span class="math inline">\(g_t(X): \Omega \to \R_+\)</span> is a positive random variable on this probability space.</p>
+<p><strong>Example 6</strong>. A function <span class="math inline">\(g_t: \R \to \R_+\)</span> defined by <span class="math inline">\(g_t(x) \triangleq e^{t x}\)</span> is monotone and hence Borel measurable for all <span class="math inline">\(t \in \R\)</span>. Therefore, <span class="math inline">\(g_t(X): \Omega \to \R_+\)</span> is a positive random variable on this probability space.</p>
 </div>
 </div>
 <div class="defn">
-<p>For a random variable <span class="math inline">\(X: \Omega \to \R\)</span> defined on the probability space <span class="math inline">\((\Omega, \sF, P)\)</span>, the <strong>moment generating function</strong> <span class="math inline">\(M_X: \R \to \R_+\)</span> is defined by <span class="math inline">\(M_X(t) \triangleq \E e^{t X}\)</span> for all <span class="math inline">\(t \in \R\)</span> where <span class="math inline">\(M_X(t)\)</span> is finite.</p>
+<p><strong>Definition 7</strong>. For a random variable <span class="math inline">\(X: \Omega \to \R\)</span> defined on the probability space <span class="math inline">\((\Omega, \sF, P)\)</span>, the <strong>moment generating function</strong> <span class="math inline">\(M_X: \R \to \R_+\)</span> is defined by <span class="math inline">\(M_X(t) \triangleq \E e^{t X}\)</span> for all <span class="math inline">\(t \in \R\)</span> where <span class="math inline">\(M_X(t)\)</span> is finite.</p>
 </div>
 <div class="rem">
-<p>Characteristic function always exist, however are complex in general. Sometimes it is easier to work with moment generating functions, when they exist.</p>
+<p><strong>Remark 4</strong>. Characteristic function always exist, however are complex in general. Sometimes it is easier to work with moment generating functions, when they exist.</p>
 </div>
 <div class="lem">
-<p>For a random variable <span class="math inline">\(X\)</span>, if the MGF <span class="math inline">\(M_X(t)\)</span> is finite for some <span class="math inline">\(t \in \R\)</span>, then <span class="math inline">\(M_X(t) = 1 + \sum_{n \in \N} \frac{t^n}{n!}\E[X^n].\)</span></p>
+<p><strong>Lemma 8</strong>. For a random variable <span class="math inline">\(X\)</span>, if the MGF <span class="math inline">\(M_X(t)\)</span> is finite for some <span class="math inline">\(t \in \R\)</span>, then <span class="math inline">\(M_X(t) = 1 + \sum_{n \in \N} \frac{t^n}{n!}\E[X^n].\)</span></p>
 </div>
 <div class="shaded">
 <div class="exmp">
-<p>For a Gaussian random variable <span class="math inline">\(X: \Omega \to \R\)</span> with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>, the moment generating function <span class="math inline">\(M_X\)</span> is <span class="math inline">\(M_X(t) = \exp\Big(\frac{t^2\sigma^2}{2}+t\mu\Big).\)</span></p>
+<p><strong>Example 9</strong> (Gaussian random variable). For a Gaussian random variable <span class="math inline">\(X: \Omega \to \R\)</span> with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>, the moment generating function <span class="math inline">\(M_X\)</span> is <span class="math inline">\(M_X(t) = \exp\Big(\frac{t^2\sigma^2}{2}+t\mu\Big).\)</span></p>
 </div>
 </div>
 </section>
@@ -681,22 +681,22 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="probability-generating-function">Probability generating function</h2>
 <p>For a non-negative integer-valued random variable <span class="math inline">\(X: \Omega \to \sX \subseteq \Z_+\)</span>, it is often more convenient to work with the <span class="math inline">\(z\)</span>-transform of the probability mass function, called the probability generating function.</p>
 <div class="defn">
-<p>For a discrete non-negative integer-valued random variable <span class="math inline">\(X: \Omega \to \sX \subseteq \Z_+\)</span> with probability mass function <span class="math inline">\(P_X: \sX \to [0,1]\)</span>, the <strong>probability generating function</strong> <span class="math inline">\(\Psi_X: \C \to \C\)</span> is defined by</p>
+<p><strong>Definition 10</strong>. For a discrete non-negative integer-valued random variable <span class="math inline">\(X: \Omega \to \sX \subseteq \Z_+\)</span> with probability mass function <span class="math inline">\(P_X: \sX \to [0,1]\)</span>, the <strong>probability generating function</strong> <span class="math inline">\(\Psi_X: \C \to \C\)</span> is defined by</p>
 </div>
 <div class="lem">
-<p>For a non-negative simple random variable <span class="math inline">\(X: \Omega \to \sX\)</span>, we have <span class="math inline">\(\abs{\Psi_X(z)} \le 1\)</span> for all <span class="math inline">\(\abs{z} \le 1\)</span>.</p>
+<p><strong>Lemma 11</strong>. For a non-negative simple random variable <span class="math inline">\(X: \Omega \to \sX\)</span>, we have <span class="math inline">\(\abs{\Psi_X(z)} \le 1\)</span> for all <span class="math inline">\(\abs{z} \le 1\)</span>.</p>
 </div>
 <div class="proof">
 <p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> Let <span class="math inline">\(z \in \C\)</span> with <span class="math inline">\(\abs{z}\le 1\)</span>. Let <span class="math inline">\(P_X : \sX \to [0,1]\)</span> be the probability mass function of the non-negative simple random variable <span class="math inline">\(X\)</span>. Since any realization <span class="math inline">\(x \in \sX\)</span> of random variable <span class="math inline">\(X\)</span> is non-negative, we can write&nbsp;◻</p>
 </div>
 <div class="thm">
-<p>For a non-negative simple random variable <span class="math inline">\(X:\Omega \to \sX\)</span> with finite <span class="math inline">\(k\)</span>th moment <span class="math inline">\(\E X^k\)</span>, the <span class="math inline">\(k\)</span>-th derivative of probability generating function evaluated at <span class="math inline">\(z=1\)</span> is the <span class="math inline">\(k\)</span>-th order factorial moment of <span class="math inline">\(X\)</span>. That is,</p>
+<p><strong>Theorem 12</strong>. For a non-negative simple random variable <span class="math inline">\(X:\Omega \to \sX\)</span> with finite <span class="math inline">\(k\)</span>th moment <span class="math inline">\(\E X^k\)</span>, the <span class="math inline">\(k\)</span>-th derivative of probability generating function evaluated at <span class="math inline">\(z=1\)</span> is the <span class="math inline">\(k\)</span>-th order factorial moment of <span class="math inline">\(X\)</span>. That is,</p>
 </div>
 <div class="rem">
-<p>Moments can be recovered from <span class="math inline">\(k\)</span>th order factorial moments. For example,</p>
+<p><strong>Remark 5</strong>. Moments can be recovered from <span class="math inline">\(k\)</span>th order factorial moments. For example,</p>
 </div>
 <div class="thm">
-<p>Two non-negative integer-valued random variables have the same probability distribution iff their <span class="math inline">\(z\)</span>-transforms are equal.</p>
+<p><strong>Theorem 13</strong>. Two non-negative integer-valued random variables have the same probability distribution iff their <span class="math inline">\(z\)</span>-transforms are equal.</p>
 </div>
 <div class="proof">
 <p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> The necessity is clear. For sufficiency, we see that <span class="math inline">\(\Psi_X^{(k)} = \sum_{x \ge k}k!z^{x-k}P_X(x)\)</span> and hence <span class="math inline">\(\Psi_X^{(k)}(0) = k!P_X(k)\)</span>. Further, interchanging the derivative and the summation (by dominated convergence theorem), we get the second result.&nbsp;◻</p>
@@ -706,41 +706,41 @@ window.Quarto = {
 <section id="gaussian-random-vectors" class="level1">
 <h1>Gaussian Random Vectors</h1>
 <div class="defn">
-<p>For a random vector <span class="math inline">\(X: \Omega\to \R^n\)</span> defined on a probability space <span class="math inline">\((\Omega,\sF,P)\)</span>, we can define the characteristic function <span class="math inline">\(\Phi_X:\R^n\to\C\)</span> by <span class="math inline">\(\Phi_X(u) \triangleq \E e^{j \inner{u,X}}\)</span> where <span class="math inline">\(u \in \R^n\)</span>.</p>
+<p><strong>Definition 14</strong>. For a random vector <span class="math inline">\(X: \Omega\to \R^n\)</span> defined on a probability space <span class="math inline">\((\Omega,\sF,P)\)</span>, we can define the characteristic function <span class="math inline">\(\Phi_X:\R^n\to\C\)</span> by <span class="math inline">\(\Phi_X(u) \triangleq \E e^{j \inner{u,X}}\)</span> where <span class="math inline">\(u \in \R^n\)</span>.</p>
 </div>
 <div class="rem">
-<p>If <span class="math inline">\(X:\Omega\to\R^n\)</span> is an independent random vector, then <span class="math inline">\(\Phi_X(u) = \prod_{i=1}^n\Phi_{X_i}(u_i)\)</span> for all <span class="math inline">\(u \in \R^n\)</span>.</p>
+<p><strong>Remark 6</strong>. If <span class="math inline">\(X:\Omega\to\R^n\)</span> is an independent random vector, then <span class="math inline">\(\Phi_X(u) = \prod_{i=1}^n\Phi_{X_i}(u_i)\)</span> for all <span class="math inline">\(u \in \R^n\)</span>.</p>
 </div>
 <div class="defn">
-<p>For a probability space <span class="math inline">\((\Omega, \sF, P)\)</span>, <strong>Gaussian random vector</strong> is a continuous random vector <span class="math inline">\(X: \Omega \to \R^n\)</span> defined by its density function where the vector <span class="math inline">\(\mu \in \R^n\)</span> and the positive definite matrix <span class="math inline">\(\Sigma \in \R^{n \times n}\)</span>.</p>
+<p><strong>Definition 15</strong>. For a probability space <span class="math inline">\((\Omega, \sF, P)\)</span>, <strong>Gaussian random vector</strong> is a continuous random vector <span class="math inline">\(X: \Omega \to \R^n\)</span> defined by its density function where the vector <span class="math inline">\(\mu \in \R^n\)</span> and the positive definite matrix <span class="math inline">\(\Sigma \in \R^{n \times n}\)</span>.</p>
 </div>
 <div class="rem">
-<p>For a Gaussian random vector with vector <span class="math inline">\(\mu = (\mu_1, \dots, \mu_1)\)</span> for some real scalar <span class="math inline">\(\mu_1\)</span> and matrix <span class="math inline">\(\Sigma = \sigma^2I\)</span> for some positive <span class="math inline">\(\sigma^2 \in \R_+\)</span>, we can write its density as <span class="math inline">\(f_X(x) = \frac{1}{(2\pi\sigma^2)^{n/2}}\exp\left(-\frac{1}{2}\sum_{i=1}^n\frac{(x_i-\mu_1)^2}{\sigma^2}\right)\text{ for all }x \in \R^n.\)</span> It follows that <span class="math inline">\(X\)</span> is an random vector with each component being a Gaussian random variable with mean <span class="math inline">\(\mu_1\)</span> and variance <span class="math inline">\(\sigma^2\)</span>. The characteristic function <span class="math inline">\(\Phi_X\)</span> of an Gaussian random vector <span class="math inline">\(X:\Omega\to \R^n\)</span> parametrized by <span class="math inline">\((\mu_1,\sigma^2)\)</span> is given by <span class="math inline">\(\Phi_X(u) = \prod_{i=1}^n\Phi_{X_i}(u_i) = \exp\Big(-\frac{\sigma^2}{2}\sum_{i=1}^nu_i^2 +j\mu_1\sum_{i=1}^nu_i\Big).\)</span></p>
+<p><strong>Remark 7</strong>. For a Gaussian random vector with vector <span class="math inline">\(\mu = (\mu_1, \dots, \mu_1)\)</span> for some real scalar <span class="math inline">\(\mu_1\)</span> and matrix <span class="math inline">\(\Sigma = \sigma^2I\)</span> for some positive <span class="math inline">\(\sigma^2 \in \R_+\)</span>, we can write its density as <span class="math inline">\(f_X(x) = \frac{1}{(2\pi\sigma^2)^{n/2}}\exp\left(-\frac{1}{2}\sum_{i=1}^n\frac{(x_i-\mu_1)^2}{\sigma^2}\right)\text{ for all }x \in \R^n.\)</span> It follows that <span class="math inline">\(X\)</span> is an random vector with each component being a Gaussian random variable with mean <span class="math inline">\(\mu_1\)</span> and variance <span class="math inline">\(\sigma^2\)</span>. The characteristic function <span class="math inline">\(\Phi_X\)</span> of an Gaussian random vector <span class="math inline">\(X:\Omega\to \R^n\)</span> parametrized by <span class="math inline">\((\mu_1,\sigma^2)\)</span> is given by <span class="math inline">\(\Phi_X(u) = \prod_{i=1}^n\Phi_{X_i}(u_i) = \exp\Big(-\frac{\sigma^2}{2}\sum_{i=1}^nu_i^2 +j\mu_1\sum_{i=1}^nu_i\Big).\)</span></p>
 </div>
 <div class="lem">
-<p>For an zero mean unit variance Gaussian vector <span class="math inline">\(Z:\Omega\to\R^n\)</span>, vector <span class="math inline">\(\alpha \in \R^n\)</span>, and scalar <span class="math inline">\(\mu \in \R\)</span>, the affine combination <span class="math inline">\(Y \triangleq \mu + \inner{\alpha, Z}\)</span> is a Gaussian random variable.</p>
+<p><strong>Lemma 16</strong>. For an zero mean unit variance Gaussian vector <span class="math inline">\(Z:\Omega\to\R^n\)</span>, vector <span class="math inline">\(\alpha \in \R^n\)</span>, and scalar <span class="math inline">\(\mu \in \R\)</span>, the affine combination <span class="math inline">\(Y \triangleq \mu + \inner{\alpha, Z}\)</span> is a Gaussian random variable.</p>
 </div>
 <div class="proof">
 <p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> From the linearity of expectation and the fact that <span class="math inline">\(Z\)</span> is a zero mean vector, we get <span class="math inline">\(\E Y = \mu\)</span>. Further, from the linearity of expectation and the fact that <span class="math inline">\(\E[ZZ^T] = I\)</span>, we get To show that <span class="math inline">\(Y\)</span> is Gaussian, it suffices to show that <span class="math inline">\(\Phi_Y(u) = \exp(-\frac{u^2\sigma^2}{2}+ju\mu)\)</span> for any <span class="math inline">\(u \in \R\)</span>. Recall that <span class="math inline">\(Z\)</span> is an independent random vector with individual components being identically zero mean unit variance Gaussian. Therefore, <span class="math inline">\(\Phi_{Z_i}(u) = \exp(-\frac{u^2}{2})\)</span>, and we can compute the characteristic function of <span class="math inline">\(Y\)</span> as&nbsp;◻</p>
 </div>
 <div class="thm">
-<p>A random vector <span class="math inline">\(X: \Omega\to\R^n\)</span> is Gaussian with parameters <span class="math inline">\((\mu, \Sigma)\)</span> iff <span class="math inline">\(Z \triangleq \Sigma^{-\frac{1}{2}}(X-\mu)\)</span> is an zero mean unit variance Gaussian random vector.</p>
+<p><strong>Theorem 17</strong>. A random vector <span class="math inline">\(X: \Omega\to\R^n\)</span> is Gaussian with parameters <span class="math inline">\((\mu, \Sigma)\)</span> iff <span class="math inline">\(Z \triangleq \Sigma^{-\frac{1}{2}}(X-\mu)\)</span> is an zero mean unit variance Gaussian random vector.</p>
 </div>
 <div class="proof">
 <p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> Let <span class="math inline">\(X = \mu + \Sigma^{\frac{1}{2}}Z\)</span> for an zero mean unit variance Gaussian random vector <span class="math inline">\(Z:\Omega\to\R^n\)</span>, then we will show that <span class="math inline">\(X\)</span> is a Gaussian random vector by transformation of random vector densities. Since the <span class="math inline">\((i,j)\)</span>th component of the Jacobian matrix <span class="math inline">\(J(x)\)</span> is given by <span class="math inline">\(J_{ij}(x) = \frac{\partial x_j}{\partial z_i} = \Sigma^{\frac{1}{2}}_{i,j}\)</span> for all <span class="math inline">\(i,j\in [n],\)</span> we can write the Jacobian matrix <span class="math inline">\(J(x) = \Sigma^{\frac{1}{2}}\)</span>, Since the density of <span class="math inline">\(Z\)</span> is <span class="math inline">\(f_Z(z) = \frac{1}{\sqrt{(2\pi)^n}}\exp(-\frac{1}{2}z^Tz)\)</span>, and from the transformation of random vectors, we get</p>
 <p>Conversely, we can show that if <span class="math inline">\(X\)</span> is a Gaussian random vector, then <span class="math inline">\(Z = \Sigma^{-\frac{1}{2}}(X-\mu)\)</span> is an zero mean unit variance Gaussian random vector by transformation of random vectors.&nbsp;◻</p>
 </div>
 <div class="rem">
-<p>A random vector <span class="math inline">\(X:\Omega\to\R^n\)</span> with mean <span class="math inline">\(\mu \in \R^n\)</span> and covariance matrix <span class="math inline">\(\Sigma \in \R^{n\times n}\)</span> is Gaussian iff <span class="math inline">\(X\)</span> can be written as <span class="math inline">\(X = \mu + \Sigma^{\frac{1}{2}}Z,\)</span> for an Gaussian random vector <span class="math inline">\(Z: \Omega \to \R^n\)</span> with mean&nbsp;<span class="math inline">\(0\)</span> and variance&nbsp;<span class="math inline">\(1\)</span>. It follows that <span class="math inline">\(\E X = \mu\)</span> and <span class="math inline">\(\Sigma = \E(X-\mu)(X-\mu)^T\)</span>.</p>
+<p><strong>Remark 8</strong>. A random vector <span class="math inline">\(X:\Omega\to\R^n\)</span> with mean <span class="math inline">\(\mu \in \R^n\)</span> and covariance matrix <span class="math inline">\(\Sigma \in \R^{n\times n}\)</span> is Gaussian iff <span class="math inline">\(X\)</span> can be written as <span class="math inline">\(X = \mu + \Sigma^{\frac{1}{2}}Z,\)</span> for an Gaussian random vector <span class="math inline">\(Z: \Omega \to \R^n\)</span> with mean&nbsp;<span class="math inline">\(0\)</span> and variance&nbsp;<span class="math inline">\(1\)</span>. It follows that <span class="math inline">\(\E X = \mu\)</span> and <span class="math inline">\(\Sigma = \E(X-\mu)(X-\mu)^T\)</span>.</p>
 </div>
 <div class="rem">
-<p>We observe that the components of the Gaussian random vector <span class="math inline">\(X = \mu + A Z\)</span> for <span class="math inline">\(A = \Sigma^{\frac{1}{2}}\)</span> are Gaussian random variables with mean <span class="math inline">\(\mu_i\)</span> and variance <span class="math inline">\(\sum_{k=1}^nA_{i,k}^2 = (AA^T)_{i,i} = \Sigma_{i,i}\)</span>, since each component <span class="math inline">\(X_i = \mu_i + \sum_{k=1}^nA_{i,k}Z_k\)</span> is an affine combination of zero mean unit variance random variables.</p>
+<p><strong>Remark 9</strong>. We observe that the components of the Gaussian random vector <span class="math inline">\(X = \mu + A Z\)</span> for <span class="math inline">\(A = \Sigma^{\frac{1}{2}}\)</span> are Gaussian random variables with mean <span class="math inline">\(\mu_i\)</span> and variance <span class="math inline">\(\sum_{k=1}^nA_{i,k}^2 = (AA^T)_{i,i} = \Sigma_{i,i}\)</span>, since each component <span class="math inline">\(X_i = \mu_i + \sum_{k=1}^nA_{i,k}Z_k\)</span> is an affine combination of zero mean unit variance random variables.</p>
 </div>
 <div class="rem">
-<p>For any <span class="math inline">\(u \in \R^n\)</span>, we compute the characteristic function <span class="math inline">\(\Phi_X\)</span> from the distribution of <span class="math inline">\(Z\)</span> as</p>
+<p><strong>Remark 10</strong>. For any <span class="math inline">\(u \in \R^n\)</span>, we compute the characteristic function <span class="math inline">\(\Phi_X\)</span> from the distribution of <span class="math inline">\(Z\)</span> as</p>
 </div>
 <div class="lem">
-<p>If the components of the Gaussian random vector are uncorrelated, then they are independent.</p>
+<p><strong>Lemma 18</strong>. If the components of the Gaussian random vector are uncorrelated, then they are independent.</p>
 </div>
 <div class="proof">
 <p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> If a Gaussian vector is uncorrelated, then the covariance matrix <span class="math inline">\(\Sigma\)</span> is diagonal. It follows that we can write <span class="math inline">\(f_X(x) = \prod_{i=1}^nf_{X_i}(x_i)\)</span> for all <span class="math inline">\(x\in\R^n\)</span>.&nbsp;◻</p>
