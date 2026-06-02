@@ -13,53 +13,53 @@ format:
 # Random Variable
 
 ::: defn
-Consider a probability space $(\Omega, \sF, P)$. A **random variable** $X: \Omega \to \R$ is a real-valued function from the sample space to real numbers, such that for each $x \in \R$ the event We say that the random variable $X$ is $\sF$-measurable.
+**Definition 1** (Random variable). Consider a probability space $(\Omega, \sF, P)$. A **random variable** $X: \Omega \to \R$ is a real-valued function from the sample space to real numbers, such that for each $x \in \R$ the event We say that the random variable $X$ is $\sF$-measurable.
 :::
 
 ::: rem
-Recall that the set $A_X(x)$ is always a subset of sample space $\Omega$ for any mapping $X:\Omega\to\R$, and $A_X(x)\in\sF$ is an event when $X$ is a random variable.
+**Remark 1**. Recall that the set $A_X(x)$ is always a subset of sample space $\Omega$ for any mapping $X:\Omega\to\R$, and $A_X(x)\in\sF$ is an event when $X$ is a random variable.
 :::
 
 ::::: shaded
 ::: exmp
-Consider a mapping $X:\Omega\to \set{c} \subseteq \R$ defined on an arbitrary probability space $(\Omega, \sF, P)$, such that $X(\omega) = c$ for all outcomes $\omega \in \Omega$. We observe that That is $A_X(x) \in \sF$ for all event spaces, and hence $X$ is a random variable and measurable for all event spaces.
+**Example 2** (Constant function). Consider a mapping $X:\Omega\to \set{c} \subseteq \R$ defined on an arbitrary probability space $(\Omega, \sF, P)$, such that $X(\omega) = c$ for all outcomes $\omega \in \Omega$. We observe that That is $A_X(x) \in \sF$ for all event spaces, and hence $X$ is a random variable and measurable for all event spaces.
 :::
 
 ::: exmp
-For an arbitrary probability space $(\Omega,\sF, P)$ and an event $A \in \sF$, consider the indicator function $\Ind{A}:\Omega \to [0,1]$. Let $x \in \R$, and $B_x = (-\infty, x]$, then it follows that That is, $A_X(x) \in \sF$ for all $x \in \R$, and hence the indicator function $\Ind{A}$ is a random variable.
+**Example 3** (Indicator function). For an arbitrary probability space $(\Omega,\sF, P)$ and an event $A \in \sF$, consider the indicator function $\Ind{A}:\Omega \to [0,1]$. Let $x \in \R$, and $B_x = (-\infty, x]$, then it follows that That is, $A_X(x) \in \sF$ for all $x \in \R$, and hence the indicator function $\Ind{A}$ is a random variable.
 :::
 :::::
 
 ::: rem
-Since any outcome $\omega \in \Omega$ is random, so is the real value $X(\omega)$.
+**Remark 2**. Since any outcome $\omega \in \Omega$ is random, so is the real value $X(\omega)$.
 :::
 
 ::: rem
-Probability is defined only for events and not for random variables. The events of interest for random variables are the **lower level sets** $A_X(x) = \set{\omega: X(\omega) \le x} = X^{-1}(B_x)$ for any real $x$.
+**Remark 3**. Probability is defined only for events and not for random variables. The events of interest for random variables are the **lower level sets** $A_X(x) = \set{\omega: X(\omega) \le x} = X^{-1}(B_x)$ for any real $x$.
 :::
 
 ::: rem
-Consider a probability space $(\Omega,\sF,P)$ and a random variable $X:\Omega \to \R$ that is $\sG$ measurable for $\sG \subseteq \sF$. If $\sG \subseteq \sH$, then $X$ is also $\sH$ measurable.
+**Remark 4**. Consider a probability space $(\Omega,\sF,P)$ and a random variable $X:\Omega \to \R$ that is $\sG$ measurable for $\sG \subseteq \sF$. If $\sG \subseteq \sH$, then $X$ is also $\sH$ measurable.
 :::
 
 ## Distribution function for a random variable
 
 ::: defn
-For an $\sF$ measurable random variable $X:\Omega\to\R$ defined on the probability space $(\Omega,\sF,P)$, we can associate a **distribution function** (CDF) $F_X: \R \to [0,1]$ such that for all $x \in \R$,
+**Definition 4**. For an $\sF$ measurable random variable $X:\Omega\to\R$ defined on the probability space $(\Omega,\sF,P)$, we can associate a **distribution function** (CDF) $F_X: \R \to [0,1]$ such that for all $x \in \R$,
 :::
 
 ::::: shaded
 ::: exmp
-Let $X:\Omega \to \set{c} \subseteq \R$ be a constant random variable defined on the probability space $(\Omega, \sF, P)$. The distribution function is a right-continuous step function at $c$ with step-value unity. That is, $F_X(x) = \Ind{[c,\infty)}(x)$. We observe that $P(\set{X = c}) = 1$.
+**Example 5** (Constant random variable). Let $X:\Omega \to \set{c} \subseteq \R$ be a constant random variable defined on the probability space $(\Omega, \sF, P)$. The distribution function is a right-continuous step function at $c$ with step-value unity. That is, $F_X(x) = \Ind{[c,\infty)}(x)$. We observe that $P(\set{X = c}) = 1$.
 :::
 
 ::: exmp
-For an indicator random variable $\Ind{A}:\Omega \to \set{0,1}$ defined on a probability space $(\Omega, \sF, P)$ and an event $A \in \sF$, we have
+**Example 6** (Indicator random variable). For an indicator random variable $\Ind{A}:\Omega \to \set{0,1}$ defined on a probability space $(\Omega, \sF, P)$ and an event $A \in \sF$, we have
 :::
 :::::
 
 ::: lem
-The distribution function $F_X$ for any random variable $X$ satisfies the following properties.
+**Lemma 7** (Properties of distribution function). The distribution function $F_X$ for any random variable $X$ satisfies the following properties.
 
 1.  The distribution function is monotonically non-decreasing in $x \in \R$.
 
@@ -81,43 +81,43 @@ The distribution function $F_X$ for any random variable $X$ satisfies the follow
 :::
 
 ::: rem
-If two reals $x_1 < x_2$ then $F_X(x_1) \le F_X(x_2)$ with equality if and only if $P\set{(x_1 < X \le x_2}) = 0$. This follows from the fact that $A_{x_2} = A_{x_1}\cup X^{-1}(x_1, x_2]$.
+**Remark 5**. If two reals $x_1 < x_2$ then $F_X(x_1) \le F_X(x_2)$ with equality if and only if $P\set{(x_1 < X \le x_2}) = 0$. This follows from the fact that $A_{x_2} = A_{x_1}\cup X^{-1}(x_1, x_2]$.
 :::
 
 ## Event space generated by a random variable
 
 ::: defn
-Let $X: \Omega \to \R$ be an $\sF$ measurable random variable defined on the probability space $(\Omega, \sF, P)$. The smallest event space generated by the events $A_X(x) = X^{-1}(B_x) = X^{-1}(-\infty, x]$ for $x \in \R$ is called the **event space generated** by this random variable $X$, and denoted by $\sigma(X) \triangleq \sigma(\set{A_X(x): x \in \R})$.
+**Definition 8** (Event space generated by a random variable). Let $X: \Omega \to \R$ be an $\sF$ measurable random variable defined on the probability space $(\Omega, \sF, P)$. The smallest event space generated by the events $A_X(x) = X^{-1}(B_x) = X^{-1}(-\infty, x]$ for $x \in \R$ is called the **event space generated** by this random variable $X$, and denoted by $\sigma(X) \triangleq \sigma(\set{A_X(x): x \in \R})$.
 :::
 
 ::: rem
-The event space generated by a random variable is the collection of the inverse of Borel sets, i.e. $\sigma(X) = \set{X^{-1}(B): B \in \sB(\R)}$. This follows from the fact that $A_X(x) = X^{-1}(B_x)$ and the inverse map respects countable set operations such as unions, complements, and intersections. That is, if $B \in \sB(\R) = \sigma(\set{B_x:x\in \R})$, then $X^{-1}(B) \in \sigma(\set{A_X(x): x \in \R})$. Similarly, if $A \in \sigma(X) = \sigma(\set{A_X(x): x \in \R})$, then $A = X^{-1}(B)$ for some $B \in \sigma(\set{B_x: x \in \R})$.
+**Remark 6**. The event space generated by a random variable is the collection of the inverse of Borel sets, i.e. $\sigma(X) = \set{X^{-1}(B): B \in \sB(\R)}$. This follows from the fact that $A_X(x) = X^{-1}(B_x)$ and the inverse map respects countable set operations such as unions, complements, and intersections. That is, if $B \in \sB(\R) = \sigma(\set{B_x:x\in \R})$, then $X^{-1}(B) \in \sigma(\set{A_X(x): x \in \R})$. Similarly, if $A \in \sigma(X) = \sigma(\set{A_X(x): x \in \R})$, then $A = X^{-1}(B)$ for some $B \in \sigma(\set{B_x: x \in \R})$.
 :::
 
 ::::: shaded
 ::: exmp
-Let $X:\Omega \to \set{c} \subseteq \R$ be a constant random variable defined on the probability space $(\Omega,\sF,P)$. Then the smallest event space generated by this random variable is $\sigma(X) = \set{\emptyset, \Omega}$.
+**Example 9** (Constant random variable). Let $X:\Omega \to \set{c} \subseteq \R$ be a constant random variable defined on the probability space $(\Omega,\sF,P)$. Then the smallest event space generated by this random variable is $\sigma(X) = \set{\emptyset, \Omega}$.
 :::
 
 ::: exmp
-Let $\Ind{A}$ be an indicator random variable defined on the probability space $(\Omega,\sF,P)$ and event $A \in \sF$, then the smallest event space generated by this random variable is $\sigma(X) = \sigma(\set{\emptyset, A^c, \Omega}) = \set{\emptyset, A, A^c, \Omega}$.
+**Example 10** (Indicator random variable). Let $\Ind{A}$ be an indicator random variable defined on the probability space $(\Omega,\sF,P)$ and event $A \in \sF$, then the smallest event space generated by this random variable is $\sigma(X) = \sigma(\set{\emptyset, A^c, \Omega}) = \set{\emptyset, A, A^c, \Omega}$.
 :::
 :::::
 
 ## Discrete random variables
 
 ::: defn
-If a random variable $X: \Omega \to \sX \subseteq \R$ takes countable values on real-line, then it is called a **discrete random variable**. That is, the range of random variable $\sX$ is countable, and the random variable is completely specified by the **probability mass function**
+**Definition 11** (Discrete random variables). If a random variable $X: \Omega \to \sX \subseteq \R$ takes countable values on real-line, then it is called a **discrete random variable**. That is, the range of random variable $\sX$ is countable, and the random variable is completely specified by the **probability mass function**
 :::
 
 :::: shaded
 ::: exmp
-For the probability space $(\Omega, \sF, P)$, the **Bernoulli random variable** is a mapping $X: \Omega \to \set{0,1}$ and $P_X(1) = p$. We observe that Bernoulli random variable is an indicator for the event $A \triangleq X^{-1}\set{1}$, and $P(A) = p$. Therefore, the distribution function $F_X$ is given by
+**Example 12** (Bernoulli random variable). For the probability space $(\Omega, \sF, P)$, the **Bernoulli random variable** is a mapping $X: \Omega \to \set{0,1}$ and $P_X(1) = p$. We observe that Bernoulli random variable is an indicator for the event $A \triangleq X^{-1}\set{1}$, and $P(A) = p$. Therefore, the distribution function $F_X$ is given by
 :::
 ::::
 
 ::: lem
-Any discrete random variable is a linear combination of indicator function over a partition of the sample space.
+**Lemma 13**. Any discrete random variable is a linear combination of indicator function over a partition of the sample space.
 :::
 
 ::: proof
@@ -125,23 +125,23 @@ Any discrete random variable is a linear combination of indicator function over 
 :::
 
 ::: defn
-Any discrete random variable $X:\Omega \to \sX \subseteq\R$ defined over a probability space $(\Omega,\sF,P)$, with finite range is called a simple random variable.
+**Definition 14**. Any discrete random variable $X:\Omega \to \sX \subseteq\R$ defined over a probability space $(\Omega,\sF,P)$, with finite range is called a simple random variable.
 :::
 
 :::: shaded
 ::: exmp
-Let $X$ be a simple random variable, then $X = \sum_{x \in \sX}x\Ind{A_X(x)}$ where $(A_X(x) = X^{-1}\set{x} \in \sF: x \in \sX)$ is a finite partition of the sample space $\Omega$. Without loss of generality, we can denote $\sX  = \set{x_1, \dots, x_n}$ where $x_1 \le \dots \le x_n$. Then, Then the smallest event space generated by the simple random variable $X$ is $\set{\cup_{x \in S}A_X(x): S \subseteq \sX}$.
+**Example 15** (Simple random variables). Let $X$ be a simple random variable, then $X = \sum_{x \in \sX}x\Ind{A_X(x)}$ where $(A_X(x) = X^{-1}\set{x} \in \sF: x \in \sX)$ is a finite partition of the sample space $\Omega$. Without loss of generality, we can denote $\sX  = \set{x_1, \dots, x_n}$ where $x_1 \le \dots \le x_n$. Then, Then the smallest event space generated by the simple random variable $X$ is $\set{\cup_{x \in S}A_X(x): S \subseteq \sX}$.
 :::
 ::::
 
 ## Continuous random variables
 
 ::: defn
-For a continuous random variable $X$, there exists **density function** $f_X: \R \to [0, \infty)$ such that
+**Definition 16**. For a continuous random variable $X$, there exists **density function** $f_X: \R \to [0, \infty)$ such that
 :::
 
 :::: shaded
 ::: exmp
-For a probability space $(\Omega, \sF, P)$, **Gaussian random variable** is a continuous random variable $X: \Omega \to \R$ defined by its density function
+**Example 17** (Gaussian random variable). For a probability space $(\Omega, \sF, P)$, **Gaussian random variable** is a continuous random variable $X: \Omega \to \R$ defined by its density function
 :::
 ::::

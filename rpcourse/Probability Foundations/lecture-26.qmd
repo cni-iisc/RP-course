@@ -15,19 +15,19 @@ format:
 Let $\sX = \R^d$ be the $d$-dimensional Euclidean space. Recall that all the random points are unique for a simple point process $S:\Omega\to\sX^\N$ , and hence $S$ can also be considered as a set of countable points in $\sX$. Let $N:\Omega\to\Z_+^{\sB(\sX)}$ be the counting process associated with the simple point process $S$.
 
 ::: rem
-We observe that $dN(x) = 0$ for all $x \notin S$ and $dN(x) = \delta_x\SetIn{x \in S}$. Hence, for any Borel measurable function $f : \sX \to \R$ and bounded $A \in \sB(\sX)$, we have $\int_{x \in A}f(x)dN(x) = \sum_{x \in S\cap A}f(x). % = \sum_{S_i \in A}f(S_i).$
+**Remark 1**. We observe that $dN(x) = 0$ for all $x \notin S$ and $dN(x) = \delta_x\SetIn{x \in S}$. Hence, for any Borel measurable function $f : \sX \to \R$ and bounded $A \in \sB(\sX)$, we have $\int_{x \in A}f(x)dN(x) = \sum_{x \in S\cap A}f(x). % = \sum_{S_i \in A}f(S_i).$
 :::
 
 ::: defn
-The **Laplace functional** $\sL_S: \R_+^\sX\to\R_+$ of a point process $S:\Omega\to\sX^\N$ and associated counting process $N:\Omega\to\Z_+^{\sB(\sX)}$ is defined for all non-negative Borel measurable function $f: \sX \to \R_+$ as
+**Definition 1**. The **Laplace functional** $\sL_S: \R_+^\sX\to\R_+$ of a point process $S:\Omega\to\sX^\N$ and associated counting process $N:\Omega\to\Z_+^{\sB(\sX)}$ is defined for all non-negative Borel measurable function $f: \sX \to \R_+$ as
 :::
 
 ::: rem
-For a simple function $f = \sum_{i = 1}^{k}t_i\Ind{A_i}$, we can write the Laplace functional as a function of the vector $(t_1, t_2, \dots, t_k)$, $\sL_{S}(f) = \E\exp\left(-\sum_{i=1}^kt_i\int_{A_i}dN(x)\right) = \E\exp\left(-\sum_{i=1}^kt_iN(A_i)\right).$ We observe that this is a joint Laplace transform of the random vector $(N(A_1), \dots, N(A_k))$. This way, one can compute all finite dimensional distribution of the counting process $N$.
+**Remark 2**. For a simple function $f = \sum_{i = 1}^{k}t_i\Ind{A_i}$, we can write the Laplace functional as a function of the vector $(t_1, t_2, \dots, t_k)$, $\sL_{S}(f) = \E\exp\left(-\sum_{i=1}^kt_i\int_{A_i}dN(x)\right) = \E\exp\left(-\sum_{i=1}^kt_iN(A_i)\right).$ We observe that this is a joint Laplace transform of the random vector $(N(A_1), \dots, N(A_k))$. This way, one can compute all finite dimensional distribution of the counting process $N$.
 :::
 
 ::: prop
-The Laplace functional of a Poisson point process $S:\Omega\to\sX^\N$ with intensity measure $\Lambda:\sB(\sX)\to\R_+$ evaluated at any non-negative Borel measurable function $f:\sX\to\R_+$, is $$\begin{equation*}
+**Proposition 2**. The Laplace functional of a Poisson point process $S:\Omega\to\sX^\N$ with intensity measure $\Lambda:\sB(\sX)\to\R_+$ evaluated at any non-negative Borel measurable function $f:\sX\to\R_+$, is $$\begin{equation*}
 \sL_{S}(f) = \exp\left(-\int_{\sX}(1-e^{-f(x)})d\Lambda(x)\right).
 \end{equation*}$$
 :::
@@ -43,19 +43,19 @@ The Laplace functional of a Poisson point process $S:\Omega\to\sX^\N$ with inten
 ## Superposition of point processes
 
 ::: defn
-Let $S^k:\Omega\to\sX^\N$ be a simple point process with intensity measures $\Lambda_k:\sB(\sX)\to\R_+$ and counting process $N_k:\Omega\to\Z_+^{\sB(\sX)}$, for each $k \in \N$. The **superposition** of point processes $(S^k: k \in \N)$ is defined as a point process $S \triangleq \cup_kS^k$.
+**Definition 3**. Let $S^k:\Omega\to\sX^\N$ be a simple point process with intensity measures $\Lambda_k:\sB(\sX)\to\R_+$ and counting process $N_k:\Omega\to\Z_+^{\sB(\sX)}$, for each $k \in \N$. The **superposition** of point processes $(S^k: k \in \N)$ is defined as a point process $S \triangleq \cup_kS^k$.
 :::
 
 ::: rem
-The counting process associated with superposition point process $S: \Omega\to\sX^\N$ is given by $N: \Omega\to\Z_+^{\sB(\sX)}$ defined by $N \triangleq \sum_kN_k$, and the intensity measure of point process $S$ is given by $\Lambda: \sB(\sX)\to\R_+$ defined by $\Lambda = \sum_k\Lambda_k$ from monotone convergence theorem.
+**Remark 3**. The counting process associated with superposition point process $S: \Omega\to\sX^\N$ is given by $N: \Omega\to\Z_+^{\sB(\sX)}$ defined by $N \triangleq \sum_kN_k$, and the intensity measure of point process $S$ is given by $\Lambda: \sB(\sX)\to\R_+$ defined by $\Lambda = \sum_k\Lambda_k$ from monotone convergence theorem.
 :::
 
 ::: rem
-The superposition process $S$ is simple iff $\sum_kN_k$ is locally finite.
+**Remark 4**. The superposition process $S$ is simple iff $\sum_kN_k$ is locally finite.
 :::
 
 ::: thm
-The superposition of independent Poisson point processes $(S^k: k \in \N)$ with intensities $(\Lambda_k: k \in \N)$ is a Poisson point process with intensity measure $\sum_k \Lambda_k$ if and only if the latter is a locally finite measure.
+**Theorem 4**. The superposition of independent Poisson point processes $(S^k: k \in \N)$ with intensities $(\Lambda_k: k \in \N)$ is a Poisson point process with intensity measure $\sum_k \Lambda_k$ if and only if the latter is a locally finite measure.
 :::
 
 ::: proof
@@ -65,11 +65,11 @@ The superposition of independent Poisson point processes $(S^k: k \in \N)$ with 
 ## Thinning of point processes
 
 ::: defn
-Consider a probability **retention function** $p: \sX \to [0,1]$ and an independent Bernoulli point retention process $Y:\Omega \to \set{0,1}^\sX$ such that $\E Y(x) = p(x)$ for all $x \in \sX$. The **thinning** of point process $S: \Omega \to \sX^\N$ with the probability retention function $p: \sX \to [0,1]$ is a point process $S^{(p)}: \Omega \to \sX^\N$ defined by where $Y(S_n)$ is an independent indicator for the retention of each point $S_n$ and $\E[Y(S_n)\given S_n] = p(S_n)$.
+**Definition 5**. Consider a probability **retention function** $p: \sX \to [0,1]$ and an independent Bernoulli point retention process $Y:\Omega \to \set{0,1}^\sX$ such that $\E Y(x) = p(x)$ for all $x \in \sX$. The **thinning** of point process $S: \Omega \to \sX^\N$ with the probability retention function $p: \sX \to [0,1]$ is a point process $S^{(p)}: \Omega \to \sX^\N$ defined by where $Y(S_n)$ is an independent indicator for the retention of each point $S_n$ and $\E[Y(S_n)\given S_n] = p(S_n)$.
 :::
 
 ::: thm
-The thinning of a Poisson point process $S:\Omega\to\sX^\N$ of intensity measure $\Lambda:\sB(\sX)\to\R_+$ with the retention probability function $p:\sX\to[0,1]$, yields a Poisson point process $S^{(p)}:\Omega\to\sX^\N$ of intensity measure $\Lambda^{(p)}:\sB(\sX)\to\R_+$ defined for all bounded $A \in \sB(\sX)$ as $\Lambda^{(p)}(A) \triangleq \int_A p(x) d\Lambda(x).$
+**Theorem 6**. The thinning of a Poisson point process $S:\Omega\to\sX^\N$ of intensity measure $\Lambda:\sB(\sX)\to\R_+$ with the retention probability function $p:\sX\to[0,1]$, yields a Poisson point process $S^{(p)}:\Omega\to\sX^\N$ of intensity measure $\Lambda^{(p)}:\sB(\sX)\to\R_+$ defined for all bounded $A \in \sB(\sX)$ as $\Lambda^{(p)}(A) \triangleq \int_A p(x) d\Lambda(x).$
 :::
 
 ::: proof

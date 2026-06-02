@@ -16,16 +16,16 @@ Let $X:\Omega\to\R$ and $Y:\Omega\to\R$ be random variables defined on the same 
 
 :::: tcolorbox
 ::: exerc
-Show that the function $g: \R^2 \to \R$ defined by $g: (x,y) \mapsto xy$ is a Borel measurable function.
+**Exercise 1**. Show that the function $g: \R^2 \to \R$ defined by $g: (x,y) \mapsto xy$ is a Borel measurable function.
 :::
 ::::
 
 ::: defn
-For two random variables $X,Y$ defined on the same probability space, the **correlation** between these two random variables is defined as $\E[XY]$. If $\E[XY] = \E[X]\E[Y]$, then the random variables $X,Y$ are called **uncorrelated**.
+**Definition 2** (Correlation). For two random variables $X,Y$ defined on the same probability space, the **correlation** between these two random variables is defined as $\E[XY]$. If $\E[XY] = \E[X]\E[Y]$, then the random variables $X,Y$ are called **uncorrelated**.
 :::
 
 ::: lem
-If $X, Y$ are independent random variables, then they are uncorrelated.
+**Lemma 3**. If $X, Y$ are independent random variables, then they are uncorrelated.
 :::
 
 ::: proof
@@ -38,7 +38,7 @@ If $X, Y$ are independent random variables, then they are uncorrelated.
 
 :::: shaded
 ::: exmp
-Let $X: \Omega \to \R$ be a continuous random variable with even density function $f_X:\R \to \R_+$, and $g: \R \to \R_+$ be another even function that is increasing for $y \in \R_+$. Then $g$ is Borel measurable function and $Y = g(X)$ is a random variable. Further, we can verify that $X, Y$ are uncorrelated and dependent random variables.
+**Example 4** (Uncorrelated dependent random variables). Let $X: \Omega \to \R$ be a continuous random variable with even density function $f_X:\R \to \R_+$, and $g: \R \to \R_+$ be another even function that is increasing for $y \in \R_+$. Then $g$ is Borel measurable function and $Y = g(X)$ is a random variable. Further, we can verify that $X, Y$ are uncorrelated and dependent random variables.
 
 To show dependence of $X$ and $Y$, we take positive $x,y$ such that $F_X(x) < 1$ and $x > x_y$ where $\set{x_y} = g^{-1}(y)\cap \R_+$. Then, we can write the set Hence, we can write the joint distribution at $(x,y)$ as
 
@@ -47,7 +47,7 @@ Since $X$ has even density function, we have $f_X(x) = f_X(-x)$ for all $x \in \
 ::::
 
 ::: thm
-For any two random variables $X,Y$, the correlation is upper bounded by the average of the second moments, with equality iff $X=Y$ almost surely. That is,
+**Theorem 5** (AM greater than GM). For any two random variables $X,Y$, the correlation is upper bounded by the average of the second moments, with equality iff $X=Y$ almost surely. That is,
 :::
 
 ::: proof
@@ -55,7 +55,7 @@ For any two random variables $X,Y$, the correlation is upper bounded by the aver
 :::
 
 ::: thm
-For any two random variables $X,Y$, the correlation of absolute values of $X$ and $Y$ is upper bounded by the square root of product of second moments, with equality iff $X = \alpha Y$ for any constant $\alpha \in \R$. That is,
+**Theorem 6** (Cauchy-Schwarz inequality). For any two random variables $X,Y$, the correlation of absolute values of $X$ and $Y$ is upper bounded by the square root of product of second moments, with equality iff $X = \alpha Y$ for any constant $\alpha \in \R$. That is,
 :::
 
 ::: proof
@@ -65,11 +65,11 @@ For any two random variables $X,Y$, the correlation of absolute values of $X$ an
 # Covariance
 
 ::: defn
-For two random variables $X,Y$ defined on the same probability space, the **covariance** between these two random variables is defined as $\cov(X,Y) \triangleq \E(X-\E X)(Y-\E Y)$.
+**Definition 7** (Covariance). For two random variables $X,Y$ defined on the same probability space, the **covariance** between these two random variables is defined as $\cov(X,Y) \triangleq \E(X-\E X)(Y-\E Y)$.
 :::
 
 ::: lem
-If the random variables $X,Y$ are uncorrelated, then the covariance is zero.
+**Lemma 8**. If the random variables $X,Y$ are uncorrelated, then the covariance is zero.
 :::
 
 ::: proof
@@ -77,7 +77,7 @@ If the random variables $X,Y$ are uncorrelated, then the covariance is zero.
 :::
 
 ::: lem
-Let $X: \Omega \to \R^n$ be an uncorrelated random vector and $a = (a_1, \dots, a_n) \in \R^n$, then
+**Lemma 9**. Let $X: \Omega \to \R^n$ be an uncorrelated random vector and $a = (a_1, \dots, a_n) \in \R^n$, then
 :::
 
 ::: proof
@@ -85,11 +85,11 @@ Let $X: \Omega \to \R^n$ be an uncorrelated random vector and $a = (a_1, \dots, 
 :::
 
 ::: defn
-The ratio of covariance of two random variables $X,Y$ and the square root of product of their variances is called the **correlation coefficient** and denoted by
+**Definition 10** (Correlation coefficient). The ratio of covariance of two random variables $X,Y$ and the square root of product of their variances is called the **correlation coefficient** and denoted by
 :::
 
 ::: thm
-For any two random variables $X,Y$, the absolute value of correlation coefficient is less than or equal to unity, with equality iff $X = \alpha Y + \beta$ almost surely for constants $\alpha = \sqrt{\frac{\Var(X)}{\Var(Y)}}$ and $\beta = \E X - \alpha \E Y$.
+**Theorem 11** (Correlation coefficient). For any two random variables $X,Y$, the absolute value of correlation coefficient is less than or equal to unity, with equality iff $X = \alpha Y + \beta$ almost surely for constants $\alpha = \sqrt{\frac{\Var(X)}{\Var(Y)}}$ and $\beta = \E X - \alpha \E Y$.
 :::
 
 ::: proof
@@ -99,17 +99,17 @@ For any two random variables $X,Y$, the absolute value of correlation coefficien
 # $L^p$ spaces
 
 ::: defn
-A pair $(p,q) \in \R^2$ where $p, q \ge 1$ and $\frac{1}{p}+\frac{1}{q} = 1$, i s called the **conjugate pair**, and the spaces $L^p$ and $L^q$ are called **dual spaces**.
+**Definition 12**. A pair $(p,q) \in \R^2$ where $p, q \ge 1$ and $\frac{1}{p}+\frac{1}{q} = 1$, i s called the **conjugate pair**, and the spaces $L^p$ and $L^q$ are called **dual spaces**.
 :::
 
 :::: shaded
 ::: exmp
-The dual of $L^1$ space is $L^\infty$. The space $L^2$ is dual of itself, and called a **Hilbert space**.
+**Example 13**. The dual of $L^1$ space is $L^\infty$. The space $L^2$ is dual of itself, and called a **Hilbert space**.
 :::
 ::::
 
 ::: thm
-Consider a conjugate pair $(p,q)$ and random variables $X \in L^p, Y \in L^q$. Then,
+**Theorem 14** (H\"older's inequality). Consider a conjugate pair $(p,q)$ and random variables $X \in L^p, Y \in L^q$. Then,
 :::
 
 ::: proof
@@ -117,19 +117,19 @@ Consider a conjugate pair $(p,q)$ and random variables $X \in L^p, Y \in L^q$. T
 :::
 
 ::: defn
-For a pair of random variables $(X,Y) \in (L^p,L^q)$ for conjugate pair $(p,q)$, we can define inner product $\inner{}:L^p\times L^q \to \R$ by
+**Definition 15**. For a pair of random variables $(X,Y) \in (L^p,L^q)$ for conjugate pair $(p,q)$, we can define inner product $\inner{}:L^p\times L^q \to \R$ by
 :::
 
 ::: rem
-For $X \in L^p$ and $Y\in L^q$, the expectation $\E\abs{XY}$ is finite from Hölder's inequality. Therefore, the inner product $\inner{X,Y} = \E[XY]$ is well defined and finite.
+**Remark 1**. For $X \in L^p$ and $Y\in L^q$, the expectation $\E\abs{XY}$ is finite from Hölder's inequality. Therefore, the inner product $\inner{X,Y} = \E[XY]$ is well defined and finite.
 :::
 
 ::: rem
-This inner product is well defined for the conjugate pair $(1,\infty)$.
+**Remark 2**. This inner product is well defined for the conjugate pair $(1,\infty)$.
 :::
 
 ::: thm
-For $1 \le p < \infty$, let $X,Y\in L^p$ be two random variables defined on a probability space $(\Omega, \sF, P)$. Then, with inequality iff $X = \alpha Y$ for some $\alpha \ge 0$ or $Y = 0$.
+**Theorem 16** (Minkowski's inequality). For $1 \le p < \infty$, let $X,Y\in L^p$ be two random variables defined on a probability space $(\Omega, \sF, P)$. Then, with inequality iff $X = \alpha Y$ for some $\alpha \ge 0$ or $Y = 0$.
 :::
 
 ::: proof
@@ -139,5 +139,5 @@ The inequality holds trivially if $\norm{X+Y}_p = 0$. Therefore, we assume that 
 :::
 
 ::: rem
-We have shown that the map $\norm{}_p$ is a norm by proving the Minkowski's inequality. Therefore, $L^p$ is a normed vector space. We can define distance between two random variables $X_1, X_2 \in L^p$ by the norm $\norm{X_1-X_2}_p$.
+**Remark 3**. We have shown that the map $\norm{}_p$ is a norm by proving the Minkowski's inequality. Therefore, $L^p$ is a normed vector space. We can define distance between two random variables $X_1, X_2 \in L^p$ by the norm $\norm{X_1-X_2}_p$.
 :::

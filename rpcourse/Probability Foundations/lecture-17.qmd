@@ -17,26 +17,26 @@ Recall that a random process $X: \Omega \to \sX^T$ defined on the probability sp
 ## Independent and identically distributed () processes
 
 ::: defn
-A random process $X: \Omega \to \sX^T$ is an **independent and identically distributed** () random process with the common distribution $F:\R \to [0,1]$, if for any finite $S \subseteq T$ and a real vector $x_S \in \R^S$ we can write the finite dimensional distribution for this process as
+**Definition 1** (\iid process). A random process $X: \Omega \to \sX^T$ is an **independent and identically distributed** () random process with the common distribution $F:\R \to [0,1]$, if for any finite $S \subseteq T$ and a real vector $x_S \in \R^S$ we can write the finite dimensional distribution for this process as
 :::
 
 ::: rem
-It's easy to verify that the first and the second moments are independent of time indices. That is, if $0 \in T$ then $X_t = X_0$ in distribution, and we have
+**Remark 1**. It's easy to verify that the first and the second moments are independent of time indices. That is, if $0 \in T$ then $X_t = X_0$ in distribution, and we have
 :::
 
 ## Stationary processes
 
 ::: defn
-We consider the index set $T \subseteq \R$ that is closed under addition and subtraction. A stochastic process $X: \Omega \to \sX^T$ is **stationary** if all finite dimensional distributions are shift invariant. That is, for any finite $S \subseteq T$ and $t \in T$, we have
+**Definition 2** (Stationary process). We consider the index set $T \subseteq \R$ that is closed under addition and subtraction. A stochastic process $X: \Omega \to \sX^T$ is **stationary** if all finite dimensional distributions are shift invariant. That is, for any finite $S \subseteq T$ and $t \in T$, we have
 :::
 
 ::: rem
-That is, for any finite $n \in \N$ and $t \in \R$, the random vectors $(X_{s_1}, \dots, X_{s_n})$ and $(X_{s_1+t}, \dots, X_{s_1+t})$ have the identical joint distribution for all $s_1 \le \dots \le s_n$.
+**Remark 2**. That is, for any finite $n \in \N$ and $t \in \R$, the random vectors $(X_{s_1}, \dots, X_{s_n})$ and $(X_{s_1+t}, \dots, X_{s_1+t})$ have the identical joint distribution for all $s_1 \le \dots \le s_n$.
 :::
 
 ::::: shaded
 ::: lem
-Any *i.i.d.* process with index set $T \subseteq \R$ is stationary.
+**Lemma 3**. Any *i.i.d.* process with index set $T \subseteq \R$ is stationary.
 :::
 
 ::: proof
@@ -45,23 +45,23 @@ Any *i.i.d.* process with index set $T \subseteq \R$ is stationary.
 :::::
 
 ::: rem
-For a stationary stochastic process, all the existing moments are shift invariant when they exist.
+**Remark 3**. For a stationary stochastic process, all the existing moments are shift invariant when they exist.
 :::
 
 ::: defn
-A **second order** stochastic process $X$ has finite auto-correlation $R_X(t,t) < \infty$ for all $t \in T$.
+**Definition 4**. A **second order** stochastic process $X$ has finite auto-correlation $R_X(t,t) < \infty$ for all $t \in T$.
 :::
 
 ::: rem
-This implies $R_X(t_1, t_2) < \infty$ by Cauchy-Schwartz inequality, and hence the mean, auto-correlation, and the auto-covariance functions are well defined and finite.
+**Remark 4**. This implies $R_X(t_1, t_2) < \infty$ by Cauchy-Schwartz inequality, and hence the mean, auto-correlation, and the auto-covariance functions are well defined and finite.
 :::
 
 ::: rem
-For a stationary process $X$, we have $X_t = X_0$ and $(X_t,X_s) = (X_{t-s}, X_{0})$ in distribution. Therefore, for a second order stationary process $X$, we have
+**Remark 5**. For a stationary process $X$, we have $X_t = X_0$ and $(X_t,X_s) = (X_{t-s}, X_{0})$ in distribution. Therefore, for a second order stationary process $X$, we have
 :::
 
 ::: defn
-A random process $X$ is **wide sense stationary** if
+**Definition 5**. A random process $X$ is **wide sense stationary** if
 
 1.  $m_X(t) = m_X(t+s)$ for all $s,t \in T$, and
 
@@ -69,35 +69,35 @@ A random process $X$ is **wide sense stationary** if
 :::
 
 ::: rem
-It follows that a second order stationary stochastic process $X$, is wide sense stationary. A second order wide sense stationary process is not necessarily stationary. We can similarly define joint stationarity and joint wide sense stationarity for two stochastic processes $X$ and $Y$.
+**Remark 6**. It follows that a second order stationary stochastic process $X$, is wide sense stationary. A second order wide sense stationary process is not necessarily stationary. We can similarly define joint stationarity and joint wide sense stationarity for two stochastic processes $X$ and $Y$.
 :::
 
 ::::: shaded
 ::: exmp
-Let $X: \Omega \to \R^\R$ be a continuous-time Gaussian process, defined by its finite dimensional distributions. In particular, for any finite $S \subset \R$, column vector $x_S \in \R^S$, mean vector $\mu_S \triangleq \E X_S$, and the covariance matrix $C_S \triangleq \E X_SX_S^T$, the finite-dimensional density is given by
+**Example 6** (Gaussian process). Let $X: \Omega \to \R^\R$ be a continuous-time Gaussian process, defined by its finite dimensional distributions. In particular, for any finite $S \subset \R$, column vector $x_S \in \R^S$, mean vector $\mu_S \triangleq \E X_S$, and the covariance matrix $C_S \triangleq \E X_SX_S^T$, the finite-dimensional density is given by
 :::
 
 ::: thm
-A wide sense stationary Gaussian process is stationary.
+**Theorem 7**. A wide sense stationary Gaussian process is stationary.
 :::
 :::::
 
 ## Random Walk
 
 ::: defn
-Let $X: \Omega \to \sX^\N$ be an random sequence defined on the probability space $(\Omega, \sF, P)$ and the state space $\sX = \R^d$. A random sequence $S: \Omega \to \sX^{\Z_+}$ is called a **random walk** with step-size sequence $X$, if $S_0 \triangleq 0$ and $S_n \triangleq \sum_{i=1}^nX_i$ for $n \in \N$.
+**Definition 8**. Let $X: \Omega \to \sX^\N$ be an random sequence defined on the probability space $(\Omega, \sF, P)$ and the state space $\sX = \R^d$. A random sequence $S: \Omega \to \sX^{\Z_+}$ is called a **random walk** with step-size sequence $X$, if $S_0 \triangleq 0$ and $S_n \triangleq \sum_{i=1}^nX_i$ for $n \in \N$.
 :::
 
 ::: rem
-We can think of $S_n$ as the random location of a particle after $n$ steps, where the particle starts from origin and takes steps of size $X_i$ at the $i$th step. From the nature of step-size sequence, we observe that $\E S_n = n\E X_1$ and $C_S(n,m) = (n\wedge m)\Var[X_1]$.
+**Remark 7**. We can think of $S_n$ as the random location of a particle after $n$ steps, where the particle starts from origin and takes steps of size $X_i$ at the $i$th step. From the nature of step-size sequence, we observe that $\E S_n = n\E X_1$ and $C_S(n,m) = (n\wedge m)\Var[X_1]$.
 :::
 
 ::: rem
-For the process $S: \Omega \to \sX^\N$ it suffices to look at finite dimensional distributions for finite sets $[n] \subseteq \N$ for all $n \in \N$. If the step-size sequence $X$ has a common density function, then from the transformation of random vectors, we can find the finite dimensional density Recall that $J_{ij}(s) = \frac{\partial s_i}{\partial x_j} = \SetIn{j \le i}$ and hence $J(s)$ is a lower triangular matrix with all non-zero entries being unity, and hence $\abs{J(s)} = 1$.
+**Remark 8**. For the process $S: \Omega \to \sX^\N$ it suffices to look at finite dimensional distributions for finite sets $[n] \subseteq \N$ for all $n \in \N$. If the step-size sequence $X$ has a common density function, then from the transformation of random vectors, we can find the finite dimensional density Recall that $J_{ij}(s) = \frac{\partial s_i}{\partial x_j} = \SetIn{j \le i}$ and hence $J(s)$ is a lower triangular matrix with all non-zero entries being unity, and hence $\abs{J(s)} = 1$.
 :::
 
 ::: thm
-The stochastic process $S: \Omega \to \Z_+^{\Z_+}$ has stationary and independent increments.
+**Theorem 9**. The stochastic process $S: \Omega \to \Z_+^{\Z_+}$ has stationary and independent increments.
 :::
 
 ::: proof
@@ -105,7 +105,7 @@ The stochastic process $S: \Omega \to \Z_+^{\Z_+}$ has stationary and independen
 :::
 
 ::: cor
-Let $p \in \N$ and for each $i \in [p]$ let $n \in \N^p, k \in \Z_+^p$ such that $n_1 \le \dots \le n_p$ and $k_1 \le \dots \le k_p$. Then, we can write the joint mass function
+**Corollary 10**. Let $p \in \N$ and for each $i \in [p]$ let $n \in \N^p, k \in \Z_+^p$ such that $n_1 \le \dots \le n_p$ and $k_1 \le \dots \le k_p$. Then, we can write the joint mass function
 :::
 
 ::: proof
@@ -113,7 +113,7 @@ Let $p \in \N$ and for each $i \in [p]$ let $n \in \N^p, k \in \Z_+^p$ such that
 :::
 
 ::: rem
-For a one-dimensional random walk $S: \Omega\to\Z_+^\N$ with step size sequence $X:\Omega\to\set{0,1}^\N$ such that $P\set{X_1 = 1} = p$, the distribution for the random walk at $n$th step $S_n$ is Binomial $(n,p)$. That is,
+**Remark 9**. For a one-dimensional random walk $S: \Omega\to\Z_+^\N$ with step size sequence $X:\Omega\to\set{0,1}^\N$ such that $P\set{X_1 = 1} = p$, the distribution for the random walk at $n$th step $S_n$ is Binomial $(n,p)$. That is,
 :::
 
 ## Lévy processes
@@ -128,41 +128,41 @@ A right continuous with left limits stochastic process $X:\Omega\to\R^T$ for ind
 
 ::::: shaded
 ::: exmp
-Two examples of Lévy processes are Poisson process and Wiener process. The distribution of Poisson process at time $t$ is Poisson with rate $\lambda t$ and the distribution of Wiener process at time $t$ is zero mean Gaussian with variance $t$.
+**Example 11**. Two examples of Lévy processes are Poisson process and Wiener process. The distribution of Poisson process at time $t$ is Poisson with rate $\lambda t$ and the distribution of Wiener process at time $t$ is zero mean Gaussian with variance $t$.
 :::
 
 ::: exmp
-A random walk $S:\Omega\to\sX^{\Z_+}$ with step-size sequence $X:\Omega\to\sX^\N$, is non-stationary with stationary and independent increments. To see non-stationarity, we observe that the mean $m_S(n) = n \E X_1$ depends on the step of the random walk. We have already seen the increment process of random walks.
+**Example 12**. A random walk $S:\Omega\to\sX^{\Z_+}$ with step-size sequence $X:\Omega\to\sX^\N$, is non-stationary with stationary and independent increments. To see non-stationarity, we observe that the mean $m_S(n) = n \E X_1$ depends on the step of the random walk. We have already seen the increment process of random walks.
 :::
 :::::
 
 ## Markov processes
 
 ::: defn
-A stochastic process $X$ is **Markov** if conditioned on the present state, future is independent of the past. We denote the history of the process until time $t$ as $\sF_t = \sigma(X_s, s \le t)$. That is, for any ordered index set $T$ containing any two indices $u > t$, we have The range of the process is called the **state space**.
+**Definition 13**. A stochastic process $X$ is **Markov** if conditioned on the present state, future is independent of the past. We denote the history of the process until time $t$ as $\sF_t = \sigma(X_s, s \le t)$. That is, for any ordered index set $T$ containing any two indices $u > t$, we have The range of the process is called the **state space**.
 :::
 
 ::: rem
-We next re-write the Markov property more explicitly for the process $X$. For all $x, y \in \sX$, finite set $S \subseteq T$ such that $\max S < t < u$, and $H_S  = \cap_{s \in S}\set{X_s \le x_s} \in \sF_t$, we have
+**Remark 10**. We next re-write the Markov property more explicitly for the process $X$. For all $x, y \in \sX$, finite set $S \subseteq T$ such that $\max S < t < u$, and $H_S  = \cap_{s \in S}\set{X_s \le x_s} \in \sF_t$, we have
 :::
 
 ::: rem
-When the state space $\sX$ is countable, we can write $H_S = \cap_{s \in S}\set{X_s = x_s}$ and the Markov property can be written as
+**Remark 11**. When the state space $\sX$ is countable, we can write $H_S = \cap_{s \in S}\set{X_s = x_s}$ and the Markov property can be written as
 :::
 
 ::: rem
-In addition, when the index set is countable, i.e. $T = \Z_+$, then we can take past as $S = \set{0, \dots, n-1}$, present as instant $n$, and the future as $n+1$. Then, the Markov property can be written as for all $n \in \Z_+, x,y \in \sX$.
+**Remark 12**. In addition, when the index set is countable, i.e. $T = \Z_+$, then we can take past as $S = \set{0, \dots, n-1}$, present as instant $n$, and the future as $n+1$. Then, the Markov property can be written as for all $n \in \Z_+, x,y \in \sX$.
 :::
 
 We will study this process in detail in coming lectures.
 
 :::::: shaded
 ::: exmp
-A random walk $S:\Omega\to\sX^{\Z_+}$ with step-size sequence $X:\Omega\to\sX^\N$, is a homogeneous Markov sequence. For any $n \in \Z_+$ and $x,y, s_1, \dots, s_{n-1} \in \sX$, we can write the conditional probability
+**Example 14**. A random walk $S:\Omega\to\sX^{\Z_+}$ with step-size sequence $X:\Omega\to\sX^\N$, is a homogeneous Markov sequence. For any $n \in \Z_+$ and $x,y, s_1, \dots, s_{n-1} \in \sX$, we can write the conditional probability
 :::
 
 ::: lem
-The stochastic process $S:\Omega\to\Z_+^{\Z_+}$ is homogeneously Markov.
+**Lemma 15**. The stochastic process $S:\Omega\to\Z_+^{\Z_+}$ is homogeneously Markov.
 :::
 
 ::: proof

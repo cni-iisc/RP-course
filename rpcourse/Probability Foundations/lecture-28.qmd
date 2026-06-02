@@ -13,7 +13,7 @@ format:
 # Compound Poisson process
 
 ::: defn
-A **compound Poisson process** is a real-valued right-continuous process $Z:\Omega\to\R_+^{\R_+}$ with the following properties.
+**Definition 1**. A **compound Poisson process** is a real-valued right-continuous process $Z:\Omega\to\R_+^{\R_+}$ with the following properties.
 
 1.  **Finitely many jumps:** for all $\omega \in \Omega$, sample path $t \mapsto Z_t(\omega)$ has finitely many jumps in finite intervals,
 
@@ -27,15 +27,15 @@ For each $\omega \in \Omega$ and $n \in \N$, we can define time and size of $n$t
 :::
 
 ::: rem
-Recall that $\sF_s = \sigma(Z_u, u \in (0, s])$ is the collection of historical events until time $s$ associated with the process $Z$. If $\tS_n$ is almost surely finite for all $n \in \N$, then the sequence of jump times $\tS:\Omega\to\R_+^\N$ is a sequence of stopping times with respect to the natural filtration $\sF_\bullet$ of the process $Z$.
+**Remark 1**. Recall that $\sF_s = \sigma(Z_u, u \in (0, s])$ is the collection of historical events until time $s$ associated with the process $Z$. If $\tS_n$ is almost surely finite for all $n \in \N$, then the sequence of jump times $\tS:\Omega\to\R_+^\N$ is a sequence of stopping times with respect to the natural filtration $\sF_\bullet$ of the process $Z$.
 :::
 
 ::: rem
-Let $N:\Omega\to\Z_+^{\R_+}$ be the simple counting process associated with the number of jumps of compound Poisson process $Z$ in $(0,t]$ defined by $N_t \triangleq \sum_{n\in\N}\SetIn{\tS_n\le t}$ for all $t\in\R_+$. Then, $\tS_n$ and $Y_n$ are the respectively the arrival instant and the size of the $n$th jump, and we can write $Z_t = \sum_{i = 1}^{N_t}Y_i$.
+**Remark 2**. Let $N:\Omega\to\Z_+^{\R_+}$ be the simple counting process associated with the number of jumps of compound Poisson process $Z$ in $(0,t]$ defined by $N_t \triangleq \sum_{n\in\N}\SetIn{\tS_n\le t}$ for all $t\in\R_+$. Then, $\tS_n$ and $Y_n$ are the respectively the arrival instant and the size of the $n$th jump, and we can write $Z_t = \sum_{i = 1}^{N_t}Y_i$.
 :::
 
 ::: prop
-A stochastic process $Z:\Omega\to\R_+^{\R_+}$ is a compound Poisson process iff its jump times form a Poisson process and the jump sizes form an random sequence independent of the jump times.
+**Proposition 2**. A stochastic process $Z:\Omega\to\R_+^{\R_+}$ is a compound Poisson process iff its jump times form a Poisson process and the jump sizes form an random sequence independent of the jump times.
 :::
 
 ::: proof
@@ -68,7 +68,7 @@ A stochastic process $Z:\Omega\to\R_+^{\R_+}$ is a compound Poisson process iff 
 
 :::: shaded*
 ::: exmp
-Examples of compound Poisson processes.
+**Example 3**. Examples of compound Poisson processes.
 
 - Arrival of customers in a store is a Poison process $N$. Each customer $i$ spends an amount $X_i$ independent of the arrival process. Now define $Z_t \triangleq Y_{N_t}$ as the amount spent by the customers arriving until time $t \in \R_+$. Then $Z:\Omega\to\R_+^{\R_+}$ is a compound Poisson Process.
 

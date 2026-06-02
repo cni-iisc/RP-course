@@ -18,35 +18,35 @@ Suppose that $X:\Omega \to \R$ is a continuous random variable on the probabilit
 
 :::: shaded
 ::: exmp
-Let $j \triangleq \sqrt{-1}$, then we can show that $h_u: \R \to \C$ defined by $h_u(x) \triangleq e^{ju x} = \cos(u x) + j \sin(u x)$ is also Borel measurable for all $u \in \R$. Thus, $h_u(X):\Omega \to \C$ is a complex valued random variable on this probability space.
+**Example 1**. Let $j \triangleq \sqrt{-1}$, then we can show that $h_u: \R \to \C$ defined by $h_u(x) \triangleq e^{ju x} = \cos(u x) + j \sin(u x)$ is also Borel measurable for all $u \in \R$. Thus, $h_u(X):\Omega \to \C$ is a complex valued random variable on this probability space.
 :::
 ::::
 
 ::: defn
-For a random variable $X: \Omega \to \R$ defined on the probability space $(\Omega, \sF, P)$, the **characteristic function** $\Phi_X: \R \to \C$ is defined by $\Phi_X(u) \triangleq \E e^{j u X}$ for all $u \in \R$ and $j^2 = -1$.
+**Definition 2**. For a random variable $X: \Omega \to \R$ defined on the probability space $(\Omega, \sF, P)$, the **characteristic function** $\Phi_X: \R \to \C$ is defined by $\Phi_X(u) \triangleq \E e^{j u X}$ for all $u \in \R$ and $j^2 = -1$.
 :::
 
 ::: rem
-The characteristic function $\Phi_X(u)$ is always finite, since $\abs{\Phi_X(u)} = \abs{\E e^{ju X}} \le \E\abs{e^{ju X}} = 1$.
+**Remark 1**. The characteristic function $\Phi_X(u)$ is always finite, since $\abs{\Phi_X(u)} = \abs{\E e^{ju X}} \le \E\abs{e^{ju X}} = 1$.
 :::
 
 ::: rem
-For a discrete random variable $X: \Omega \to \sX$ with PMF $P_X:\sX\to [0,1]$, the characteristic function $\Phi_X(u) %= \E[e^{juX}] 
+**Remark 2**. For a discrete random variable $X: \Omega \to \sX$ with PMF $P_X:\sX\to [0,1]$, the characteristic function $\Phi_X(u) %= \E[e^{juX}] 
 = \sum_{x \in \sX}e^{ju x}P_X(x).$
 :::
 
 ::: rem
-For a continuous random variable $X: \Omega \to \R$ with density function $f_X: \R \to \R_+$, the characteristic function $\Phi_X(u) = \int_{-\infty}^{\infty}e^{ju X}f_X(x)dx.$
+**Remark 3**. For a continuous random variable $X: \Omega \to \R$ with density function $f_X: \R \to \R_+$, the characteristic function $\Phi_X(u) = \int_{-\infty}^{\infty}e^{ju X}f_X(x)dx.$
 :::
 
 :::: shaded
 ::: exmp
-For a Gaussian random variable $X: \Omega \to \R$ with mean $\mu$ and variance $\sigma^2$, the characteristic function $\Phi_X$ is We observe that $\abs{\Phi_X(u)} = e^{-u^2\sigma^2/2}$ has Gaussian decay with zero mean and variance $1/\sigma^2$.
+**Example 3** (Gaussian random variable). For a Gaussian random variable $X: \Omega \to \R$ with mean $\mu$ and variance $\sigma^2$, the characteristic function $\Phi_X$ is We observe that $\abs{\Phi_X(u)} = e^{-u^2\sigma^2/2}$ has Gaussian decay with zero mean and variance $1/\sigma^2$.
 :::
 ::::
 
 ::: thm
-If $\E\abs{X}^N$ is finite for some integer $N \in \N$, then $\Phi_X^{(k)}(u)$ is finite and continuous functions of $u \in \R$ for all $k \in [N]$. Further, $\Phi_X^{(k)}(0) = j^k\E[X^k]$ for all $k \in [N]$.
+**Theorem 4**. If $\E\abs{X}^N$ is finite for some integer $N \in \N$, then $\Phi_X^{(k)}(u)$ is finite and continuous functions of $u \in \R$ for all $k \in [N]$. Further, $\Phi_X^{(k)}(0) = j^k\E[X^k]$ for all $k \in [N]$.
 :::
 
 ::: proof
@@ -59,7 +59,7 @@ If $\E\abs{X}^N$ is finite for some integer $N \in \N$, then $\Phi_X^{(k)}(u)$ i
 :::
 
 ::: thm
-Two random variables have the same distribution iff they have the same characteristic function.
+**Theorem 5**. Two random variables have the same distribution iff they have the same characteristic function.
 :::
 
 ::: proof
@@ -70,25 +70,25 @@ Two random variables have the same distribution iff they have the same character
 
 :::: shaded
 ::: exmp
-A function $g_t: \R \to \R_+$ defined by $g_t(x) \triangleq e^{t x}$ is monotone and hence Borel measurable for all $t \in \R$. Therefore, $g_t(X): \Omega \to \R_+$ is a positive random variable on this probability space.
+**Example 6**. A function $g_t: \R \to \R_+$ defined by $g_t(x) \triangleq e^{t x}$ is monotone and hence Borel measurable for all $t \in \R$. Therefore, $g_t(X): \Omega \to \R_+$ is a positive random variable on this probability space.
 :::
 ::::
 
 ::: defn
-For a random variable $X: \Omega \to \R$ defined on the probability space $(\Omega, \sF, P)$, the **moment generating function** $M_X: \R \to \R_+$ is defined by $M_X(t) \triangleq \E e^{t X}$ for all $t \in \R$ where $M_X(t)$ is finite.
+**Definition 7**. For a random variable $X: \Omega \to \R$ defined on the probability space $(\Omega, \sF, P)$, the **moment generating function** $M_X: \R \to \R_+$ is defined by $M_X(t) \triangleq \E e^{t X}$ for all $t \in \R$ where $M_X(t)$ is finite.
 :::
 
 ::: rem
-Characteristic function always exist, however are complex in general. Sometimes it is easier to work with moment generating functions, when they exist.
+**Remark 4**. Characteristic function always exist, however are complex in general. Sometimes it is easier to work with moment generating functions, when they exist.
 :::
 
 ::: lem
-For a random variable $X$, if the MGF $M_X(t)$ is finite for some $t \in \R$, then $M_X(t) = 1 + \sum_{n \in \N} \frac{t^n}{n!}\E[X^n].$
+**Lemma 8**. For a random variable $X$, if the MGF $M_X(t)$ is finite for some $t \in \R$, then $M_X(t) = 1 + \sum_{n \in \N} \frac{t^n}{n!}\E[X^n].$
 :::
 
 :::: shaded
 ::: exmp
-For a Gaussian random variable $X: \Omega \to \R$ with mean $\mu$ and variance $\sigma^2$, the moment generating function $M_X$ is $M_X(t) = \exp\Big(\frac{t^2\sigma^2}{2}+t\mu\Big).$
+**Example 9** (Gaussian random variable). For a Gaussian random variable $X: \Omega \to \R$ with mean $\mu$ and variance $\sigma^2$, the moment generating function $M_X$ is $M_X(t) = \exp\Big(\frac{t^2\sigma^2}{2}+t\mu\Big).$
 :::
 ::::
 
@@ -97,11 +97,11 @@ For a Gaussian random variable $X: \Omega \to \R$ with mean $\mu$ and variance $
 For a non-negative integer-valued random variable $X: \Omega \to \sX \subseteq \Z_+$, it is often more convenient to work with the $z$-transform of the probability mass function, called the probability generating function.
 
 ::: defn
-For a discrete non-negative integer-valued random variable $X: \Omega \to \sX \subseteq \Z_+$ with probability mass function $P_X: \sX \to [0,1]$, the **probability generating function** $\Psi_X: \C \to \C$ is defined by
+**Definition 10**. For a discrete non-negative integer-valued random variable $X: \Omega \to \sX \subseteq \Z_+$ with probability mass function $P_X: \sX \to [0,1]$, the **probability generating function** $\Psi_X: \C \to \C$ is defined by
 :::
 
 ::: lem
-For a non-negative simple random variable $X: \Omega \to \sX$, we have $\abs{\Psi_X(z)} \le 1$ for all $\abs{z} \le 1$.
+**Lemma 11**. For a non-negative simple random variable $X: \Omega \to \sX$, we have $\abs{\Psi_X(z)} \le 1$ for all $\abs{z} \le 1$.
 :::
 
 ::: proof
@@ -109,15 +109,15 @@ For a non-negative simple random variable $X: \Omega \to \sX$, we have $\abs{\Ps
 :::
 
 ::: thm
-For a non-negative simple random variable $X:\Omega \to \sX$ with finite $k$th moment $\E X^k$, the $k$-th derivative of probability generating function evaluated at $z=1$ is the $k$-th order factorial moment of $X$. That is,
+**Theorem 12**. For a non-negative simple random variable $X:\Omega \to \sX$ with finite $k$th moment $\E X^k$, the $k$-th derivative of probability generating function evaluated at $z=1$ is the $k$-th order factorial moment of $X$. That is,
 :::
 
 ::: rem
-Moments can be recovered from $k$th order factorial moments. For example,
+**Remark 5**. Moments can be recovered from $k$th order factorial moments. For example,
 :::
 
 ::: thm
-Two non-negative integer-valued random variables have the same probability distribution iff their $z$-transforms are equal.
+**Theorem 13**. Two non-negative integer-valued random variables have the same probability distribution iff their $z$-transforms are equal.
 :::
 
 ::: proof
@@ -127,23 +127,23 @@ Two non-negative integer-valued random variables have the same probability distr
 # Gaussian Random Vectors
 
 ::: defn
-For a random vector $X: \Omega\to \R^n$ defined on a probability space $(\Omega,\sF,P)$, we can define the characteristic function $\Phi_X:\R^n\to\C$ by $\Phi_X(u) \triangleq \E e^{j \inner{u,X}}$ where $u \in \R^n$.
+**Definition 14**. For a random vector $X: \Omega\to \R^n$ defined on a probability space $(\Omega,\sF,P)$, we can define the characteristic function $\Phi_X:\R^n\to\C$ by $\Phi_X(u) \triangleq \E e^{j \inner{u,X}}$ where $u \in \R^n$.
 :::
 
 ::: rem
-If $X:\Omega\to\R^n$ is an independent random vector, then $\Phi_X(u) = \prod_{i=1}^n\Phi_{X_i}(u_i)$ for all $u \in \R^n$.
+**Remark 6**. If $X:\Omega\to\R^n$ is an independent random vector, then $\Phi_X(u) = \prod_{i=1}^n\Phi_{X_i}(u_i)$ for all $u \in \R^n$.
 :::
 
 ::: defn
-For a probability space $(\Omega, \sF, P)$, **Gaussian random vector** is a continuous random vector $X: \Omega \to \R^n$ defined by its density function where the vector $\mu \in \R^n$ and the positive definite matrix $\Sigma \in \R^{n \times n}$.
+**Definition 15**. For a probability space $(\Omega, \sF, P)$, **Gaussian random vector** is a continuous random vector $X: \Omega \to \R^n$ defined by its density function where the vector $\mu \in \R^n$ and the positive definite matrix $\Sigma \in \R^{n \times n}$.
 :::
 
 ::: rem
-For a Gaussian random vector with vector $\mu = (\mu_1, \dots, \mu_1)$ for some real scalar $\mu_1$ and matrix $\Sigma = \sigma^2I$ for some positive $\sigma^2 \in \R_+$, we can write its density as $f_X(x) = \frac{1}{(2\pi\sigma^2)^{n/2}}\exp\left(-\frac{1}{2}\sum_{i=1}^n\frac{(x_i-\mu_1)^2}{\sigma^2}\right)\text{ for all }x \in \R^n.$ It follows that $X$ is an random vector with each component being a Gaussian random variable with mean $\mu_1$ and variance $\sigma^2$. The characteristic function $\Phi_X$ of an Gaussian random vector $X:\Omega\to \R^n$ parametrized by $(\mu_1,\sigma^2)$ is given by $\Phi_X(u) = \prod_{i=1}^n\Phi_{X_i}(u_i) = \exp\Big(-\frac{\sigma^2}{2}\sum_{i=1}^nu_i^2 +j\mu_1\sum_{i=1}^nu_i\Big).$
+**Remark 7**. For a Gaussian random vector with vector $\mu = (\mu_1, \dots, \mu_1)$ for some real scalar $\mu_1$ and matrix $\Sigma = \sigma^2I$ for some positive $\sigma^2 \in \R_+$, we can write its density as $f_X(x) = \frac{1}{(2\pi\sigma^2)^{n/2}}\exp\left(-\frac{1}{2}\sum_{i=1}^n\frac{(x_i-\mu_1)^2}{\sigma^2}\right)\text{ for all }x \in \R^n.$ It follows that $X$ is an random vector with each component being a Gaussian random variable with mean $\mu_1$ and variance $\sigma^2$. The characteristic function $\Phi_X$ of an Gaussian random vector $X:\Omega\to \R^n$ parametrized by $(\mu_1,\sigma^2)$ is given by $\Phi_X(u) = \prod_{i=1}^n\Phi_{X_i}(u_i) = \exp\Big(-\frac{\sigma^2}{2}\sum_{i=1}^nu_i^2 +j\mu_1\sum_{i=1}^nu_i\Big).$
 :::
 
 ::: lem
-For an zero mean unit variance Gaussian vector $Z:\Omega\to\R^n$, vector $\alpha \in \R^n$, and scalar $\mu \in \R$, the affine combination $Y \triangleq \mu + \inner{\alpha, Z}$ is a Gaussian random variable.
+**Lemma 16**. For an zero mean unit variance Gaussian vector $Z:\Omega\to\R^n$, vector $\alpha \in \R^n$, and scalar $\mu \in \R$, the affine combination $Y \triangleq \mu + \inner{\alpha, Z}$ is a Gaussian random variable.
 :::
 
 ::: proof
@@ -151,7 +151,7 @@ For an zero mean unit variance Gaussian vector $Z:\Omega\to\R^n$, vector $\alpha
 :::
 
 ::: thm
-A random vector $X: \Omega\to\R^n$ is Gaussian with parameters $(\mu, \Sigma)$ iff $Z \triangleq \Sigma^{-\frac{1}{2}}(X-\mu)$ is an zero mean unit variance Gaussian random vector.
+**Theorem 17**. A random vector $X: \Omega\to\R^n$ is Gaussian with parameters $(\mu, \Sigma)$ iff $Z \triangleq \Sigma^{-\frac{1}{2}}(X-\mu)$ is an zero mean unit variance Gaussian random vector.
 :::
 
 ::: proof
@@ -161,19 +161,19 @@ Conversely, we can show that if $X$ is a Gaussian random vector, then $Z = \Sigm
 :::
 
 ::: rem
-A random vector $X:\Omega\to\R^n$ with mean $\mu \in \R^n$ and covariance matrix $\Sigma \in \R^{n\times n}$ is Gaussian iff $X$ can be written as $X = \mu + \Sigma^{\frac{1}{2}}Z,$ for an Gaussian random vector $Z: \Omega \to \R^n$ with mean $0$ and variance $1$. It follows that $\E X = \mu$ and $\Sigma = \E(X-\mu)(X-\mu)^T$.
+**Remark 8**. A random vector $X:\Omega\to\R^n$ with mean $\mu \in \R^n$ and covariance matrix $\Sigma \in \R^{n\times n}$ is Gaussian iff $X$ can be written as $X = \mu + \Sigma^{\frac{1}{2}}Z,$ for an Gaussian random vector $Z: \Omega \to \R^n$ with mean $0$ and variance $1$. It follows that $\E X = \mu$ and $\Sigma = \E(X-\mu)(X-\mu)^T$.
 :::
 
 ::: rem
-We observe that the components of the Gaussian random vector $X = \mu + A Z$ for $A = \Sigma^{\frac{1}{2}}$ are Gaussian random variables with mean $\mu_i$ and variance $\sum_{k=1}^nA_{i,k}^2 = (AA^T)_{i,i} = \Sigma_{i,i}$, since each component $X_i = \mu_i + \sum_{k=1}^nA_{i,k}Z_k$ is an affine combination of zero mean unit variance random variables.
+**Remark 9**. We observe that the components of the Gaussian random vector $X = \mu + A Z$ for $A = \Sigma^{\frac{1}{2}}$ are Gaussian random variables with mean $\mu_i$ and variance $\sum_{k=1}^nA_{i,k}^2 = (AA^T)_{i,i} = \Sigma_{i,i}$, since each component $X_i = \mu_i + \sum_{k=1}^nA_{i,k}Z_k$ is an affine combination of zero mean unit variance random variables.
 :::
 
 ::: rem
-For any $u \in \R^n$, we compute the characteristic function $\Phi_X$ from the distribution of $Z$ as
+**Remark 10**. For any $u \in \R^n$, we compute the characteristic function $\Phi_X$ from the distribution of $Z$ as
 :::
 
 ::: lem
-If the components of the Gaussian random vector are uncorrelated, then they are independent.
+**Lemma 18**. If the components of the Gaussian random vector are uncorrelated, then they are independent.
 :::
 
 ::: proof

@@ -13,11 +13,11 @@ format:
 # Communicating classes
 
 ::: defn
-For states $x, y \in \sX$, it is said that state $y$ is **accessible** from state $x$ if $p_{xy}^{(n)} > 0$ for some $n \in \Z_+$, and denoted by $x \to y$. If two states $x,y \in \sX$ are accessible to each other, they are said to **communicate** with each other, denoted by $x \leftrightarrow y$.
+**Definition 1**. For states $x, y \in \sX$, it is said that state $y$ is **accessible** from state $x$ if $p_{xy}^{(n)} > 0$ for some $n \in \Z_+$, and denoted by $x \to y$. If two states $x,y \in \sX$ are accessible to each other, they are said to **communicate** with each other, denoted by $x \leftrightarrow y$.
 :::
 
 ::: prop
-Communication is an equivalence relation.
+**Proposition 2**. Communication is an equivalence relation.
 :::
 
 ::: proof
@@ -33,15 +33,15 @@ Communication is an equivalence relation.
 :::
 
 ::: rem
-Since the communication is an equivalence relation, it partitions state space $\sX$ into equivalence classes.
+**Remark 1**. Since the communication is an equivalence relation, it partitions state space $\sX$ into equivalence classes.
 :::
 
 ::: defn
-Each equivalence class of communication relation is called a **communicating class**. A property of states is said to be a **class property** if for each communicating class $\cC$, either all states in $\cC$ have the property, or none do.
+**Definition 3**. Each equivalence class of communication relation is called a **communicating class**. A property of states is said to be a **class property** if for each communicating class $\cC$, either all states in $\cC$ have the property, or none do.
 :::
 
 :::: defn
-A set of states that communicate are called a **communicating class**.
+**Definition 4**. A set of states that communicate are called a **communicating class**.
 
 ::: compactenum
 A communicating class $\cC$ is called **closed** if no edges leave this class. That is, for all edges $(x,y) \in \cC \times \cC^c$, we have $p_{xy} = 0$.
@@ -53,15 +53,15 @@ An **open** communicating class is not closed, i.e. there exist an edge that lea
 ## Irreducibility and periodicity
 
 ::: defn
-A Markov chain with a single class is called an **irreducible** Markov chain. That is, for any two states $x, y \in \sX$, there exists an integer $n \in \Z_+$ such that $p_{xy}^{(n)} > 0$. In other words, any state $y$ can be reached from any state $x$ using transitions of positive probability.
+**Definition 5**. A Markov chain with a single class is called an **irreducible** Markov chain. That is, for any two states $x, y \in \sX$, there exists an integer $n \in \Z_+$ such that $p_{xy}^{(n)} > 0$. In other words, any state $y$ can be reached from any state $x$ using transitions of positive probability.
 :::
 
 ::: defn
-Let $\cT(x) \triangleq \set{n \in \N : p_{xx}^{(n)} > 0}$ be the set of times when the chain can possibly return to the initial state $x$. The **period** of any state $x \in \sX$ is defined as $d(x) \triangleq \gcd\cT(x) =  \gcd\{n \in \N : p_{xx}^{(n)} > 0\}.$ We define $d(x) = \infty$, if $p_{xx}^{(n)} = 0$ for all $n \in \N$. A state $x \in \sX$ is called **aperiodic** if the period $d(x)$ is $1$.
+**Definition 6**. Let $\cT(x) \triangleq \set{n \in \N : p_{xx}^{(n)} > 0}$ be the set of times when the chain can possibly return to the initial state $x$. The **period** of any state $x \in \sX$ is defined as $d(x) \triangleq \gcd\cT(x) =  \gcd\{n \in \N : p_{xx}^{(n)} > 0\}.$ We define $d(x) = \infty$, if $p_{xx}^{(n)} = 0$ for all $n \in \N$. A state $x \in \sX$ is called **aperiodic** if the period $d(x)$ is $1$.
 :::
 
 ::: prop
-If $x \leftrightarrow y$, then $d(x) = d(y)$. That is, periodicity is a class property.
+**Proposition 7**. If $x \leftrightarrow y$, then $d(x) = d(y)$. That is, periodicity is a class property.
 :::
 
 ::: proof
@@ -69,17 +69,17 @@ If $x \leftrightarrow y$, then $d(x) = d(y)$. That is, periodicity is a class pr
 :::
 
 ::: defn
-For an irreducible chain, the period of the chain is defined to be the period which is common to all states. An irreducible Markov chain is called **aperiodic** if the single communicating class is aperiodic.
+**Definition 8**. For an irreducible chain, the period of the chain is defined to be the period which is common to all states. An irreducible Markov chain is called **aperiodic** if the single communicating class is aperiodic.
 :::
 
 ::: prop
-If the transition matrix $P$ is aperiodic and irreducible, then there is an integer $r_0$ such that $p_{xy}^{(r)}>0$ for all $x,y \in \sX$ and $r \ge r_0$.
+**Proposition 9**. If the transition matrix $P$ is aperiodic and irreducible, then there is an integer $r_0$ such that $p_{xy}^{(r)}>0$ for all $x,y \in \sX$ and $r \ge r_0$.
 :::
 
 ## Transient and recurrent states
 
 ::: prop
-Transience and recurrence are class properties.
+**Proposition 10**. Transience and recurrence are class properties.
 :::
 
 ::: proof
@@ -87,7 +87,7 @@ Transience and recurrence are class properties.
 :::
 
 ::: cor
-If $y$ is a recurrent state and there exists a state $x$ such that $y \to x$, then $x \to y$ and $f_{xy} = 1$.
+**Corollary 11**. If $y$ is a recurrent state and there exists a state $x$ such that $y \to x$, then $x \to y$ and $f_{xy} = 1$.
 :::
 
 ::: proof
@@ -95,7 +95,7 @@ If $y$ is a recurrent state and there exists a state $x$ such that $y \to x$, th
 :::
 
 ::: cor
-Let $x, y \in \sX$ be in the same communicating class and the state $y$ is recurrent. Then, $\lim_{n \in \N}\frac{\sum_{k=1}^np_{xy}^{(k)}}{n} = \frac{1}{\mu_{yy}}$. Furthermore, if the state $y$ is aperiodic, then $\lim_{n \in \N}p_{xy}^{(n)} = \frac{1}{\mu_{yy}}$.
+**Corollary 12**. Let $x, y \in \sX$ be in the same communicating class and the state $y$ is recurrent. Then, $\lim_{n \in \N}\frac{\sum_{k=1}^np_{xy}^{(k)}}{n} = \frac{1}{\mu_{yy}}$. Furthermore, if the state $y$ is aperiodic, then $\lim_{n \in \N}p_{xy}^{(n)} = \frac{1}{\mu_{yy}}$.
 :::
 
 ::: proof
@@ -105,7 +105,7 @@ Let the period of the state $y$ be $d$. Then we know that there exists a positiv
 :::
 
 ::: thm
-The states in a communicating class are of one of the following types; all transient, or all null recurrent, or all positive recurrent.
+**Theorem 13**. The states in a communicating class are of one of the following types; all transient, or all null recurrent, or all positive recurrent.
 :::
 
 ::: proof

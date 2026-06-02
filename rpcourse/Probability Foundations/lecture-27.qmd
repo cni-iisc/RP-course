@@ -26,19 +26,19 @@ Each discontinuity of the sample path of the counting process can be thought of 
 </figure>
 
 ::: defn
-The points of discontinuity are also called the **arrival instants** of the counting process $N$. The **$n$th arrival instant** is a random variable denoted $\tS_n: \Omega \to \R_+$, defined inductively as
+**Definition 1**. The points of discontinuity are also called the **arrival instants** of the counting process $N$. The **$n$th arrival instant** is a random variable denoted $\tS_n: \Omega \to \R_+$, defined inductively as
 :::
 
 ::: defn
-The **inter arrival time** between $(n-1)$th and $n$th arrival is denoted by $X_n$ and written as $X_n \triangleq \tS_n - \tS_{n-1}$.
+**Definition 2**. The **inter arrival time** between $(n-1)$th and $n$th arrival is denoted by $X_n$ and written as $X_n \triangleq \tS_n - \tS_{n-1}$.
 :::
 
 ::: rem
-For a simple point process, we have $P\set{X_{n} = 0} = P\set{X_n\le 0} = 0.$
+**Remark 1**. For a simple point process, we have $P\set{X_{n} = 0} = P\set{X_n\le 0} = 0.$
 :::
 
 ::: lem
-Simple counting process $N:\Omega\to\Z_+^{\R_+}$ and arrival process $\tS:\Omega\to\R_+^\N$ are inverse processes, i.e.
+**Lemma 3**. Simple counting process $N:\Omega\to\Z_+^{\R_+}$ and arrival process $\tS:\Omega\to\R_+^\N$ are inverse processes, i.e.
 :::
 
 ::: proof
@@ -46,7 +46,7 @@ Simple counting process $N:\Omega\to\Z_+^{\R_+}$ and arrival process $\tS:\Omega
 :::
 
 ::: cor
-For arrival instants $\tS:\Omega\to\R_+^\N$ associated with a counting process $N:\Omega\to\Z_+^{\R_+}$ we have $\set{\tS_n \le t, \tS_{n+1} > t} = \set{N_t = n}$ for all $n \in \Z_+$ and $t \in \R_+$.
+**Corollary 4**. For arrival instants $\tS:\Omega\to\R_+^\N$ associated with a counting process $N:\Omega\to\Z_+^{\R_+}$ we have $\set{\tS_n \le t, \tS_{n+1} > t} = \set{N_t = n}$ for all $n \in \Z_+$ and $t \in \R_+$.
 :::
 
 ::: proof
@@ -54,7 +54,7 @@ For arrival instants $\tS:\Omega\to\R_+^\N$ associated with a counting process $
 :::
 
 ::: lem
-Let $F_n(x)$ be the distribution function for $S_n$, then $P_n(t) \triangleq P\set{N_t = n} = F_{n}(t)-F_{n+1}(t)$.
+**Lemma 5**. Let $F_n(x)$ be the distribution function for $S_n$, then $P_n(t) \triangleq P\set{N_t = n} = F_{n}(t)-F_{n+1}(t)$.
 :::
 
 ::: proof
@@ -64,7 +64,7 @@ Let $F_n(x)$ be the distribution function for $S_n$, then $P_n(t) \triangleq P\s
 # IID exponential inter-arrival times characterization
 
 ::: prop
-The counting process $N:\Omega\to\Z_+^{\R_+}$ associated with a simple Poisson point process $S:\Omega\to\R_+^\N$ is Markov.
+**Proposition 6**. The counting process $N:\Omega\to\Z_+^{\R_+}$ associated with a simple Poisson point process $S:\Omega\to\R_+^\N$ is Markov.
 :::
 
 ::: proof
@@ -72,15 +72,15 @@ The counting process $N:\Omega\to\Z_+^{\R_+}$ associated with a simple Poisson p
 :::
 
 ::: rem
-A Markov process $X:\Omega\to\sX^\R$ is time homogeneous if the transition matrix $P(s,t) = P(t-s)$ for all $t \ge s$. Thus the counting process for a homogeneous Poisson point process is time homogeneous Markov process, as the transition probability matrix $P(s,t) = P(t-s)$ with its $(k,n)$th entry given by $e^{-\lambda(t-s)}\frac{(\lambda(t-s))^{n-k}}{(n-k)!}$.
+**Remark 2**. A Markov process $X:\Omega\to\sX^\R$ is time homogeneous if the transition matrix $P(s,t) = P(t-s)$ for all $t \ge s$. Thus the counting process for a homogeneous Poisson point process is time homogeneous Markov process, as the transition probability matrix $P(s,t) = P(t-s)$ with its $(k,n)$th entry given by $e^{-\lambda(t-s)}\frac{(\lambda(t-s))^{n-k}}{(n-k)!}$.
 :::
 
 ::: thm
-The counting process $N:\Omega\to\Z_+^{\R_+}$ associated with a simple Poisson point process $S:\Omega\to\R_+^\N$ is strongly Markov.
+**Theorem 7**. The counting process $N:\Omega\to\Z_+^{\R_+}$ associated with a simple Poisson point process $S:\Omega\to\R_+^\N$ is strongly Markov.
 :::
 
 ::: prop
-A simple counting process $N:\Omega\to\Z_+^{\R_+}$ is associated with a **homogeneous Poisson process** with a constant intensity density $\lambda$, iff the inter-arrival time sequence $X:\Omega\to\R_+^\N$ are random variables with an exponential distribution of rate $\lambda$.
+**Proposition 8**. A simple counting process $N:\Omega\to\Z_+^{\R_+}$ is associated with a **homogeneous Poisson process** with a constant intensity density $\lambda$, iff the inter-arrival time sequence $X:\Omega\to\R_+^\N$ are random variables with an exponential distribution of rate $\lambda$.
 :::
 
 ::: proof
@@ -92,7 +92,7 @@ For the given inter-arrival time sequence $X:\Omega\to\R_+^\N$ distributed expon
 For many proofs regarding Poisson processes, we partition the sample space with the disjoint events $\set{N_t = n}$ for $n \in \Z_+$. We need the following lemma that enables us to do that.
 
 ::: lem
-For any finite time $t > 0$, the number of points on the interval $(0,t]$ from a Poisson process is finite almost surely.
+**Lemma 9**. For any finite time $t > 0$, the number of points on the interval $(0,t]$ from a Poisson process is finite almost surely.
 :::
 
 ::: proof
@@ -102,7 +102,7 @@ For any finite time $t > 0$, the number of points on the interval $(0,t]$ from a
 ## Distribution functions
 
 ::: lem
-The following are true for the $n$th arrival instant $\tS_n$ of the Poisson arrival process $\tS:\Omega\to\R_+^\N$ with constant intensity density $\lambda$.
+**Lemma 10**. The following are true for the $n$th arrival instant $\tS_n$ of the Poisson arrival process $\tS:\Omega\to\R_+^\N$ with constant intensity density $\lambda$.
 
 (a) The moment generating function is $M_{\tS_n}(\theta) = \E[e^{\theta \tS_n} ] = \frac{\lambda^n}{(\lambda-\theta)^n}\SetIn{\theta < \lambda} + \infty\SetIn{\theta \ge \lambda}.
     %\infty, & \theta \ge \lambda.
@@ -117,7 +117,7 @@ The following are true for the $n$th arrival instant $\tS_n$ of the Poisson arri
 :::
 
 ::: cor
-Consider the counting process $N:\Omega\to\Z_+^{\R_+}$ associated with the Poisson arrival process $\tS:\Omega\to\R_+^\N$ having constant intensity density $\lambda$. The following are true.
+**Corollary 11**. Consider the counting process $N:\Omega\to\Z_+^{\R_+}$ associated with the Poisson arrival process $\tS:\Omega\to\R_+^\N$ having constant intensity density $\lambda$. The following are true.
 
 (a) The relation between distribution of $n$th arrival instant and probability mass function for the counting process is given by $F_n(t)= \sum_{j \ge n}P_j(t)$.
 
@@ -148,5 +148,5 @@ Consider the counting process $N:\Omega\to\Z_+^{\R_+}$ associated with the Poiss
 :::
 
 ::: rem
-A Poisson process is not a stationary process. That is, the finite dimensional distributions are not shift invariant. This is clear from looking at the first moment $\E N_t = \lambda t$, which is linearly increasing in time.
+**Remark 3**. A Poisson process is not a stationary process. That is, the finite dimensional distributions are not shift invariant. This is clear from looking at the first moment $\E N_t = \lambda t$, which is linearly increasing in time.
 :::

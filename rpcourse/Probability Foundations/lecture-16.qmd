@@ -13,11 +13,11 @@ format:
 # Convergence in distribution
 
 ::: defn
-A random sequence $X:\Omega\to\R^\N$ defined on a probability space $(\Omega, \sF, P)$ **converges in distribution** to a random variable $X_\infty:\Omega'\to\R$ defined on a probability space $(\Omega', \sF', P')$ if $\lim_nF_{X_n}(x) = F_{X_\infty}(x)$ at all continuity points $x$ of $F_{X_\infty}$. Convergence in distribution is denoted by $\lim_nX_n = X_\infty$ in distribution.
+**Definition 1** (convergence in distribution). A random sequence $X:\Omega\to\R^\N$ defined on a probability space $(\Omega, \sF, P)$ **converges in distribution** to a random variable $X_\infty:\Omega'\to\R$ defined on a probability space $(\Omega', \sF', P')$ if $\lim_nF_{X_n}(x) = F_{X_\infty}(x)$ at all continuity points $x$ of $F_{X_\infty}$. Convergence in distribution is denoted by $\lim_nX_n = X_\infty$ in distribution.
 :::
 
 ::: prop
-[]{#Prop:ConvDistEquivalence label="Prop:ConvDistEquivalence"} Consider a random sequence$X:\Omega\to\R^\N$ defined on a probability space $(\Omega, \sF, P)$ and a random variable $X_\infty: \Omega'\to\R$ defined on another probability space $(\Omega', \sF', P')$. Then the following statements are equivalent.
+**Proposition 2**. []{#Prop:ConvDistEquivalence label="Prop:ConvDistEquivalence"} Consider a random sequence$X:\Omega\to\R^\N$ defined on a probability space $(\Omega, \sF, P)$ and a random variable $X_\infty: \Omega'\to\R$ defined on another probability space $(\Omega', \sF', P')$. Then the following statements are equivalent.
 
 (a) $\lim_nX_n = X_\infty$ in distribution.
 
@@ -40,12 +40,12 @@ A random sequence $X:\Omega\to\R^\N$ defined on a probability space $(\Omega, \s
 
 :::: shaded
 ::: exmp
-Consider a sequence of non-degenerate continuous random variables $X:\Omega\to\R^\N$ and independent random variable $Y: \Omega'\to\R$, all with the common distribution $F_Y$. Then $F_{X_n} = F_Y$ for all $n \in \N$, and hence $\lim_nX_n = Y$ in distribution. If the common distribution $F_Y$ is zero mean Gaussian with variance $\sigma^2$, then $X_n - Y$ is zero mean Gaussian with variance $2\sigma^2$. Therefore, for $\epsilon < \sigma\sqrt{\pi}$ and all $n \in \N$ It follows that $P\set{\abs{X_n - Y} > \epsilon} \ge 1- \frac{\epsilon}{\sigma\sqrt{\pi}}$ for all $n \in \N$, and hence $\lim X_n \neq Y$ in probability.
+**Example 3** (Convergence in distribution but not in probability). Consider a sequence of non-degenerate continuous random variables $X:\Omega\to\R^\N$ and independent random variable $Y: \Omega'\to\R$, all with the common distribution $F_Y$. Then $F_{X_n} = F_Y$ for all $n \in \N$, and hence $\lim_nX_n = Y$ in distribution. If the common distribution $F_Y$ is zero mean Gaussian with variance $\sigma^2$, then $X_n - Y$ is zero mean Gaussian with variance $2\sigma^2$. Therefore, for $\epsilon < \sigma\sqrt{\pi}$ and all $n \in \N$ It follows that $P\set{\abs{X_n - Y} > \epsilon} \ge 1- \frac{\epsilon}{\sigma\sqrt{\pi}}$ for all $n \in \N$, and hence $\lim X_n \neq Y$ in probability.
 :::
 ::::
 
 ::: lem
-Consider a sequence $X:\Omega\to\R^\N$ of random variables and a random variable $X_\infty: \Omega\to\R$ defined on a probability space $(\Omega, \sF, P)$, such that $\lim_nX_n = X_\infty$ in probability, then $\lim_nX_n = X_\infty$ in distribution.
+**Lemma 4** (Convergence in probability implies in distribution). Consider a sequence $X:\Omega\to\R^\N$ of random variables and a random variable $X_\infty: \Omega\to\R$ defined on a probability space $(\Omega, \sF, P)$, such that $\lim_nX_n = X_\infty$ in probability, then $\lim_nX_n = X_\infty$ in distribution.
 :::
 
 :::: proof
@@ -61,7 +61,7 @@ From the above set relations, law of total probability, and union bound, we have
 ::::
 
 ::: thm
-Consider an random sequence $X:\Omega\to\R^\N$ defined on a probability space $(\Omega, \sF, P)$, with $\E X_n = \mu$ and $\Var(X_n) = \sigma^2$ for all $n\in\N$. We define the $n$-sum as $S_n\triangleq \sum_{i=1}^nX_i$ and consider a standard normal random variable $Y:\Omega\to\R$ with density function $f_Y(y)= \frac{1}{\sqrt{2\pi}}e^{-\frac{y^2}{2}}$ for all $y \in \R$. Then,
+**Theorem 5** (Central Limit Theorem). Consider an random sequence $X:\Omega\to\R^\N$ defined on a probability space $(\Omega, \sF, P)$, with $\E X_n = \mu$ and $\Var(X_n) = \sigma^2$ for all $n\in\N$. We define the $n$-sum as $S_n\triangleq \sum_{i=1}^nX_i$ and consider a standard normal random variable $Y:\Omega\to\R$ with density function $f_Y(y)= \frac{1}{\sqrt{2\pi}}e^{-\frac{y^2}{2}}$ for all $y \in \R$. Then,
 :::
 
 :::: proof
@@ -77,11 +77,11 @@ We can compute the characteristic function of the standard normal as Since the r
 # Strong law of large numbers
 
 ::: defn
-For a random sequence $X:\Omega\to\R^\N$ defined on a probability space $(\Omega,\sF,P)$ with bounded mean $\E\abs{X_n} < \infty$ for all $n \in \N$, we define the $n$-sum as $S_n \triangleq \sum_{i=1}^nX_i$ and the empirical $n$-mean $\frac{S_n}{n}$ for each $n \in \N$. For each $n \in \N$, we define event
+**Definition 6**. For a random sequence $X:\Omega\to\R^\N$ defined on a probability space $(\Omega,\sF,P)$ with bounded mean $\E\abs{X_n} < \infty$ for all $n \in \N$, we define the $n$-sum as $S_n \triangleq \sum_{i=1}^nX_i$ and the empirical $n$-mean $\frac{S_n}{n}$ for each $n \in \N$. For each $n \in \N$, we define event
 :::
 
 ::: thm
-Let $X:\Omega\to\R^\N$ be a sequence of independent random variables defined on probability space $(\Omega,\sF,P)$ with bounded mean $\E X_n$ for each $n \in \N$ and uniformly bounded fourth central moment $\sup_{n \in \N}\E(X_n-\E X_n)^4 \le B < \infty$. Then, the empirical $n$-mean converges to $\lim_n\frac{\E S_n}{n}$ almost surely.
+**Theorem 7** ($L^4$ strong law of large numbers). Let $X:\Omega\to\R^\N$ be a sequence of independent random variables defined on probability space $(\Omega,\sF,P)$ with bounded mean $\E X_n$ for each $n \in \N$ and uniformly bounded fourth central moment $\sup_{n \in \N}\E(X_n-\E X_n)^4 \le B < \infty$. Then, the empirical $n$-mean converges to $\lim_n\frac{\E S_n}{n}$ almost surely.
 :::
 
 ::: proof
@@ -89,7 +89,7 @@ Let $X:\Omega\to\R^\N$ be a sequence of independent random variables defined on 
 :::
 
 ::: thm
-Let $X:\Omega \to \R^\N$ be a sequence of pair-wise uncorrelated random variables defined on a probability space $(\Omega, \sF, P)$ with bounded mean $\E X_n$ for all $n \in \N$ and uniformly bounded variance $\sup_{n\in\N}\Var(X_n) \le B < \infty$. Then, the empirical $n$-mean converges to $\lim_n\frac{\E S_n}{n}$ almost surely.
+**Theorem 8** ($L^2$ strong law of large numbers). Let $X:\Omega \to \R^\N$ be a sequence of pair-wise uncorrelated random variables defined on a probability space $(\Omega, \sF, P)$ with bounded mean $\E X_n$ for all $n \in \N$ and uniformly bounded variance $\sup_{n\in\N}\Var(X_n) \le B < \infty$. Then, the empirical $n$-mean converges to $\lim_n\frac{\E S_n}{n}$ almost surely.
 :::
 
 ::: proof
@@ -97,5 +97,5 @@ Let $X:\Omega \to \R^\N$ be a sequence of pair-wise uncorrelated random variable
 :::
 
 ::: thm
-Let $X:\Omega\to\R^\N$ be a random sequence defined on a probability space $(\Omega,\sF,P)$ such that $\sup_{n\in\N}\E\abs{X_n} \le B < \infty$. Then, the empirical $n$-mean converges to $\lim_n\frac{\E S_n}{n}$ almost surely.
+**Theorem 9** ($L^1$ strong law of large numbers). Let $X:\Omega\to\R^\N$ be a random sequence defined on a probability space $(\Omega,\sF,P)$ such that $\sup_{n\in\N}\E\abs{X_n} \le B < \infty$. Then, the empirical $n$-mean converges to $\lim_n\frac{\E S_n}{n}$ almost surely.
 :::

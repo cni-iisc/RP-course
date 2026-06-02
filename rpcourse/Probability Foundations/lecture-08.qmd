@@ -14,7 +14,7 @@ format:
 
 :::: shaded
 ::: exmp
-Consider a probability space $(\Omega, \sF, P)$. We consider $N$ trials of a random experiment, and define a random vector $X: \Omega \to \sX^N$ such that $X_i \triangleq \pi_i\circ X :\Omega \to\sX$ is a discrete random variable associated with the trial $i \in [N]$. If the marginal distributions of random variables $(X_1, \dots, X_N)$ are identical with the common probability mass function $P_{X_1}: \sX \to [0,1]$, then the empirical mean of random variable $X_1$ can be written as For a random variable $X_1: \Omega \to \sX$, we can define events $E_{X_1}(x) \triangleq X_1^{-1}\set{x}$ for each value $x \in \sX$. The probability mass function $P_{X_1}:\sX \to [0,1]$ for the discrete random variable $X_1$ can be estimated for each $x \in \sX$ as the empirical probability mass function
+**Example 1**. Consider a probability space $(\Omega, \sF, P)$. We consider $N$ trials of a random experiment, and define a random vector $X: \Omega \to \sX^N$ such that $X_i \triangleq \pi_i\circ X :\Omega \to\sX$ is a discrete random variable associated with the trial $i \in [N]$. If the marginal distributions of random variables $(X_1, \dots, X_N)$ are identical with the common probability mass function $P_{X_1}: \sX \to [0,1]$, then the empirical mean of random variable $X_1$ can be written as For a random variable $X_1: \Omega \to \sX$, we can define events $E_{X_1}(x) \triangleq X_1^{-1}\set{x}$ for each value $x \in \sX$. The probability mass function $P_{X_1}:\sX \to [0,1]$ for the discrete random variable $X_1$ can be estimated for each $x \in \sX$ as the empirical probability mass function
 
 Recall that a simple random variable $X_1$ can be written as $X_1 = \sum_{x \in \sX}x\Ind{E_{X_1}(x)}$, where $E_{X_1} \triangleq (E_{X_1}(x) \in \sF: x \in \sX)$ is a finite partition of the sample space $\Omega$ and $P_{X_1}(x) = P(E_{X_1}(x))$. That is, we can write the empirical mean in terms of the empirical PMF as
 :::
@@ -23,19 +23,19 @@ Recall that a simple random variable $X_1$ can be written as $X_1 = \sum_{x \in 
 This example motivates the following definition of mean for simple random variables.
 
 ::: defn
-The **mean** or **expectation** of a simple random variable $X:\Omega \to \sX \subseteq \R$ defined on a probability space $(\Omega, \sF, P)$, is denoted by $\E[X]$ and defined as
+**Definition 2** (Expectation of simple random variable). The **mean** or **expectation** of a simple random variable $X:\Omega \to \sX \subseteq \R$ defined on a probability space $(\Omega, \sF, P)$, is denoted by $\E[X]$ and defined as
 :::
 
 ::: rem
-For an indicator random variable $\Ind{A}$, we have $\E\Ind{A} = P(A)$. That is, the expectation of an indicator function is the probability of the indicated set.
+**Remark 1**. For an indicator random variable $\Ind{A}$, we have $\E\Ind{A} = P(A)$. That is, the expectation of an indicator function is the probability of the indicated set.
 :::
 
 ::: rem
-Since a simple random variable can be written as $X = \sum_{x \in \sX}x\Ind{E_X(x)}$ where $E_X(x) \triangleq X^{-1}\set{x}$ for all $x\in\sX$, we can write the expectation of a simple random variable as an integral
+**Remark 2**. Since a simple random variable can be written as $X = \sum_{x \in \sX}x\Ind{E_X(x)}$ where $E_X(x) \triangleq X^{-1}\set{x}$ for all $x\in\sX$, we can write the expectation of a simple random variable as an integral
 :::
 
 ::: thm
-Consider a non-negative random variable $X: \Omega \to \R_+$ defined on a probability space $(\Omega, \sF, P)$. There exists a sequence of non-decreasing non-negative simple random variables $Y: \Omega \to \R_+^\N$ such that for all $\omega \in \Omega$ Then $\E[Y_n]$ is defined for each $n \in \N$, the sequence $(\E[Y_n] \in \R_+: n \in \N)$ is non-decreasing, and the limit $\lim_n\E[Y_n] \in \R_+\cup\set{\infty}$ exists. This limit is independent of the choice of the sequence and depends only on the probability space.
+**Theorem 3**. Consider a non-negative random variable $X: \Omega \to \R_+$ defined on a probability space $(\Omega, \sF, P)$. There exists a sequence of non-decreasing non-negative simple random variables $Y: \Omega \to \R_+^\N$ such that for all $\omega \in \Omega$ Then $\E[Y_n]$ is defined for each $n \in \N$, the sequence $(\E[Y_n] \in \R_+: n \in \N)$ is non-decreasing, and the limit $\lim_n\E[Y_n] \in \R_+\cup\set{\infty}$ exists. This limit is independent of the choice of the sequence and depends only on the probability space.
 :::
 
 ::: proof
@@ -47,15 +47,15 @@ Since $Y_n: \Omega \to \R$ is a simple random variable for all $n \in \N$, the e
 :::
 
 ::: defn
-For a non-negative random variable $X: \Omega \to \R$ defined on the probability space $(\Omega,\sF,P)$, consider the sequence of non-decreasing simple random variables $Y: \Omega \to \R_+^\N$ such that $\lim_nY_n = X$. The **expectation** of the non-negative random variable $X$ is defined as
+**Definition 4** (Expectation of a non-negative random variable). For a non-negative random variable $X: \Omega \to \R$ defined on the probability space $(\Omega,\sF,P)$, consider the sequence of non-decreasing simple random variables $Y: \Omega \to \R_+^\N$ such that $\lim_nY_n = X$. The **expectation** of the non-negative random variable $X$ is defined as
 :::
 
 ::: rem
-From the definition, it follows that $\E[X] = \int_{\R_+} x dF_X(x)$.
+**Remark 3**. From the definition, it follows that $\E[X] = \int_{\R_+} x dF_X(x)$.
 :::
 
 :::: defn
-For a real-valued random variable $X$ defined on a probability space $(\Omega, \sF, P)$, we can define the following functions
+**Definition 5** (Expectation of a real random variable). For a real-valued random variable $X$ defined on a probability space $(\Omega, \sF, P)$, we can define the following functions
 
 ::: xalignat*
 2 &X\_+ , & &X\_- .
@@ -65,7 +65,7 @@ We can verify that $X_+, X_-$ are non-negative random variables and hence their 
 ::::
 
 ::: thm
-For a random variable $X:\Omega\to\R$ defined on the probability space $(\Omega, \sF, P)$, the expectation is given by
+**Theorem 6** (Expectation as an integral with respect to the distribution function). For a random variable $X:\Omega\to\R$ defined on the probability space $(\Omega, \sF, P)$, the expectation is given by
 :::
 
 ::: proof
@@ -75,7 +75,7 @@ For a random variable $X:\Omega\to\R$ defined on the probability space $(\Omega,
 # Properties of Expectations
 
 ::: thm
-Let $X: \Omega \to \R$ be a random variable defined on the probability space $(\Omega, \sF, P)$.
+**Theorem 7** (Properties). Let $X: \Omega \to \R$ be a random variable defined on the probability space $(\Omega, \sF, P)$.
 
 (i) **Linearity:** Let $a, b \in \R$ and $X, Y$ be random variables defined on the probability space $(\Omega, \sF, P)$. If $\E X, \E Y$, and $a\E X + b\E Y$ are well defined, then $\E(aX+bY)$ is well defined and
 

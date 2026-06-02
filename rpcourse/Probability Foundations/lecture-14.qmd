@@ -15,65 +15,65 @@ format:
 Consider a random sequence $X:\Omega\to\R^\N$ defined on a probability space $(\Omega, \sF, P)$, then each $X_n \triangleq \pi_n\circ X: \Omega \to \R$ is a random variable. There are many possible definitions for convergence of a sequence of random variables. One idea is to consider $X(\omega)\in \R^\N$ as a real valued sequence for each outcome $\omega$, and consider the $\lim_nX_n(\omega)$ for each outcome $\omega$.
 
 ::: defn
-A random sequence $X:\Omega\to\R^\N$ defined on a probability space $(\Omega, \sF, P)$ **converges point-wise** to a random variable $X_\infty:\Omega \to \R$, if for all outcomes $\omega \in \Omega$, we have
+**Definition 1**. A random sequence $X:\Omega\to\R^\N$ defined on a probability space $(\Omega, \sF, P)$ **converges point-wise** to a random variable $X_\infty:\Omega \to \R$, if for all outcomes $\omega \in \Omega$, we have
 :::
 
 ::: rem
-This is a very strong convergence. Intuitively, what happens on an event of probability zero is not important. We will strive for a weaker notion of convergence, where the sequence of random variable converge point-wise on a set of outcomes with probability one.
+**Remark 1**. This is a very strong convergence. Intuitively, what happens on an event of probability zero is not important. We will strive for a weaker notion of convergence, where the sequence of random variable converge point-wise on a set of outcomes with probability one.
 :::
 
 # Almost sure statements
 
 ::: defn
-A statement holds **almost surely** (a.s.) if there exists an event called the **exception set** $N \in \sF$ with $P(N) = 0$ such that the statement holds for all $\omega \notin N$.
+**Definition 2**. A statement holds **almost surely** (a.s.) if there exists an event called the **exception set** $N \in \sF$ with $P(N) = 0$ such that the statement holds for all $\omega \notin N$.
 :::
 
 ::::: shaded
 ::: exmp
-Two random variables $X, Y$ defined on the probability space $(\Omega, \sF, P)$ are said to be equal a.s. if the following exception set has probability measure $P(N) = 0$. Then $Y$ is called a **version** of $X$, and we can define an equivalence class of a.s. equal random variables.
+**Example 3** (Almost sure equality). Two random variables $X, Y$ defined on the probability space $(\Omega, \sF, P)$ are said to be equal a.s. if the following exception set has probability measure $P(N) = 0$. Then $Y$ is called a **version** of $X$, and we can define an equivalence class of a.s. equal random variables.
 :::
 
 ::: exmp
-Two random variables $X, Y$ defined on the probability space $(\Omega, \sF, P)$ are said to be $X \le Y$ a.s. if the exception set $N \triangleq \set{\omega \in \Omega: X(\omega) > Y(\omega)} \in \sF$ has probability measure $P(N) = 0$.
+**Example 4** (Almost sure monotonicity). Two random variables $X, Y$ defined on the probability space $(\Omega, \sF, P)$ are said to be $X \le Y$ a.s. if the exception set $N \triangleq \set{\omega \in \Omega: X(\omega) > Y(\omega)} \in \sF$ has probability measure $P(N) = 0$.
 :::
 :::::
 
 # Almost sure convergence
 
 ::: defn
-A random sequence $X:\Omega\to\R^\N$ defined on the probability space $(\Omega, \sF, P)$ **converges almost surely**, if the following exception set has zero probability. Let $X_\infty$ be the point-wise limit of the sequence of random variables $X:\Omega\to\R^\N$ on the set $N^c$, then we say that the sequence $X$ **converges almost surely** to $X_\infty$, and denote it as
+**Definition 5** (Almost sure convergence). A random sequence $X:\Omega\to\R^\N$ defined on the probability space $(\Omega, \sF, P)$ **converges almost surely**, if the following exception set has zero probability. Let $X_\infty$ be the point-wise limit of the sequence of random variables $X:\Omega\to\R^\N$ on the set $N^c$, then we say that the sequence $X$ **converges almost surely** to $X_\infty$, and denote it as
 :::
 
 :::: shaded
 ::: exmp
-Consider the probability space $([0,1], \sB([0,1]), \lambda)$ such that $\lambda([a,b]) = b-a$ for all $0 \le a \le b \le 1$. For each $n \in \N$, we define the scaled indicator random variable $X_n: \Omega \to \set{0,1}$ such that Let $N = \set{0}$, then for any $\omega \notin N$, there exists $m = \lceil\frac{1}{\omega}\rceil \in \N$, such that for all $n > m$, we have $X_n(\omega) = 0$. That is, $\lim_nX_n = 0$ a.s. since $\lambda(N) = 0$. However, $X_n(0) = n$ for all $n \in \N$.
+**Example 6** (Convergence almost surely but not everywhere). Consider the probability space $([0,1], \sB([0,1]), \lambda)$ such that $\lambda([a,b]) = b-a$ for all $0 \le a \le b \le 1$. For each $n \in \N$, we define the scaled indicator random variable $X_n: \Omega \to \set{0,1}$ such that Let $N = \set{0}$, then for any $\omega \notin N$, there exists $m = \lceil\frac{1}{\omega}\rceil \in \N$, such that for all $n > m$, we have $X_n(\omega) = 0$. That is, $\lim_nX_n = 0$ a.s. since $\lambda(N) = 0$. However, $X_n(0) = n$ for all $n \in \N$.
 :::
 ::::
 
 # Convergence in probability
 
 ::: defn
-A random sequence $X:\Omega\to\R^\N$ defined on the probability space $(\Omega, \sF, P)$ **converges in probability** to a random variable $X_\infty:\Omega\to\R$, if $\lim_nP(A_n(\epsilon)) = 0$ for any $\epsilon > 0$, where
+**Definition 7** (convergence in probability). A random sequence $X:\Omega\to\R^\N$ defined on the probability space $(\Omega, \sF, P)$ **converges in probability** to a random variable $X_\infty:\Omega\to\R$, if $\lim_nP(A_n(\epsilon)) = 0$ for any $\epsilon > 0$, where
 :::
 
 ::: rem
-$\lim_nX_n = X_\infty$ a.s. means that for almost all outcomes $\omega$, the difference $X_n(\omega)-X_\infty(\omega)$ gets small and stays small.
+**Remark 2**. $\lim_nX_n = X_\infty$ a.s. means that for almost all outcomes $\omega$, the difference $X_n(\omega)-X_\infty(\omega)$ gets small and stays small.
 :::
 
 ::: rem
-$\lim_nX_n = X_\infty$ i.p. is a weaker convergence than a.s. convergence, and merely requires that the probability of the difference $X_n(\omega)-X_\infty(\omega)$ being non-trivial becomes small.
+**Remark 3**. $\lim_nX_n = X_\infty$ i.p. is a weaker convergence than a.s. convergence, and merely requires that the probability of the difference $X_n(\omega)-X_\infty(\omega)$ being non-trivial becomes small.
 :::
 
 :::: shaded
 ::: exmp
-Consider the probability space $([0,1], \sB([0,1]), \lambda)$ such that $\lambda([a,b]) = b-a$ for all $0 \le a \le b \le 1$. For each $k \in \N$, we consider the sequence $S_k = \sum_{i=1}^ki$, and define integer intervals $I_k \triangleq \set{S_{k-1}+1, \dots, S_k}$. Clearly, the intervals $(I_k:k \in \N)$ partition the natural numbers where $\abs{I_k} = k$. It follows that each $n \in \N$ lies in some $I_{k_n}$, such that $n = S_{k_n-1}+i_n$ for $i_n \in [k_n]$. Therefore, for each $n \in \N$, we define indicator random variable $X_n: \Omega \to \set{0,1}$ such that For any $\omega \in [0,1]$, we have $X_n(\omega) = 1$ for infinitely many values since there exist infinitely many $(i,k)$ pairs such that $\frac{(i-1)}{k} \le \omega \le \frac{i}{k}$, and hence $\lim\sup_nX_n(\omega) = 1$ and hence $\lim_nX_n(\omega) \neq 0$. However, $\lim_nX_n(\omega) = 0$ in probability, since
+**Example 8** (Convergence in probability but not almost surely). Consider the probability space $([0,1], \sB([0,1]), \lambda)$ such that $\lambda([a,b]) = b-a$ for all $0 \le a \le b \le 1$. For each $k \in \N$, we consider the sequence $S_k = \sum_{i=1}^ki$, and define integer intervals $I_k \triangleq \set{S_{k-1}+1, \dots, S_k}$. Clearly, the intervals $(I_k:k \in \N)$ partition the natural numbers where $\abs{I_k} = k$. It follows that each $n \in \N$ lies in some $I_{k_n}$, such that $n = S_{k_n-1}+i_n$ for $i_n \in [k_n]$. Therefore, for each $n \in \N$, we define indicator random variable $X_n: \Omega \to \set{0,1}$ such that For any $\omega \in [0,1]$, we have $X_n(\omega) = 1$ for infinitely many values since there exist infinitely many $(i,k)$ pairs such that $\frac{(i-1)}{k} \le \omega \le \frac{i}{k}$, and hence $\lim\sup_nX_n(\omega) = 1$ and hence $\lim_nX_n(\omega) \neq 0$. However, $\lim_nX_n(\omega) = 0$ in probability, since
 :::
 ::::
 
 # Infinitely often and all but finitely many
 
 ::: lem
-Let $A \in \sF^\N$ be a sequence of events.
+**Lemma 9** (infinitely often and all but finitely many). Let $A \in \sF^\N$ be a sequence of events.
 
 (a) For some subsequence $(k_n: n \in \N)$ depending on $\omega$, we have
 
@@ -91,7 +91,7 @@ Let $A \in \sF^\N$ be a sequence of events.
 :::
 
 ::: thm
-If a sequence of random variables $X: \Omega \to \R^\N$ defined on a probability space $(\Omega, \sF, P)$ converges a.s. to a random variable $X_\infty:\Omega\to\R$, then it converges in probability to the same random variable.
+**Theorem 10** (Convergence a.s. implies in probability). If a sequence of random variables $X: \Omega \to \R^\N$ defined on a probability space $(\Omega, \sF, P)$ converges a.s. to a random variable $X_\infty:\Omega\to\R$, then it converges in probability to the same random variable.
 :::
 
 ::: proof
@@ -101,7 +101,7 @@ If a sequence of random variables $X: \Omega \to \R^\N$ defined on a probability
 # Borel-Cantelli Lemma
 
 ::: prop
-Let $A \in \sF^\N$ be a sequence of events such that $\sum_{n \in \N}P(A_n) < \infty$, then $P\set{A_n \text{ i.o.}} = 0$.
+**Proposition 11** (Borel-Cantelli Lemma). Let $A \in \sF^\N$ be a sequence of events such that $\sum_{n \in \N}P(A_n) < \infty$, then $P\set{A_n \text{ i.o.}} = 0$.
 :::
 
 ::: proof
@@ -109,7 +109,7 @@ Let $A \in \sF^\N$ be a sequence of events such that $\sum_{n \in \N}P(A_n) < \i
 :::
 
 ::: prop
-Let $A \in \sF^\N$ be a sequence of independent events, then
+**Proposition 12** (Borel zero-one law). Let $A \in \sF^\N$ be a sequence of independent events, then
 :::
 
 ::: proof
@@ -124,7 +124,7 @@ Let $A \in \sF^\N$ be a sequence of independent events, then
 
 :::: shaded
 ::: exmp
-Consider a random Bernoulli sequence $X: \Omega \to \set{0,1}^\N$ defined on the probability space $(\Omega, \sF, P)$ such that $P\set{X_n = 1} = p_n$ for all $n \in \N$. Note that the sequence of random variables is not assumed to be independent, and definitely not identical. If $\lim_np_n = 0$, then we see that $\lim_nX_n = 0$ in probability.
+**Example 13** (Convergence in probability can imply almost sure convergence). Consider a random Bernoulli sequence $X: \Omega \to \set{0,1}^\N$ defined on the probability space $(\Omega, \sF, P)$ such that $P\set{X_n = 1} = p_n$ for all $n \in \N$. Note that the sequence of random variables is not assumed to be independent, and definitely not identical. If $\lim_np_n = 0$, then we see that $\lim_nX_n = 0$ in probability.
 
 In addition, if $\sum_{n\in \N}p_n <\infty$, then $\lim_nX_n = 0$ a.s. To see this, we define event $A_n \triangleq \set{X_n = 1} \in \sF$ for each $n \in \N$. Then, applying the Borel-Cantelli Lemma to sequence of events $A \in \sF^\N$, we get That is, $\lim_nX_n = 0$ for $\omega \in \lim\inf_nA_n^c$, implying almost sure convergence.
 :::
@@ -149,7 +149,7 @@ A sequence $a \in \R^\N$ is said to converge if $\lim\sup_n a_n = \lim\inf_n a_n
 :::
 
 ::: thm
-A sequence $a \in \R^\N$ converges to $a_\infty \in \R$ if for all $\epsilon > 0$ there exists an integer $N \in \N$ such that for all $n \ge N$, we have $\abs{a_n-a_\infty} < \epsilon$.
+**Theorem 14**. A sequence $a \in \R^\N$ converges to $a_\infty \in \R$ if for all $\epsilon > 0$ there exists an integer $N \in \N$ such that for all $n \ge N$, we have $\abs{a_n-a_\infty} < \epsilon$.
 :::
 
 ::: proof

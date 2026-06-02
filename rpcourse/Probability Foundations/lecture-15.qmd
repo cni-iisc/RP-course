@@ -13,15 +13,15 @@ format:
 # $L^p$ convergence
 
 ::: defn
-Let $p \ge 1$, then we say that a random sequence $X: \Omega \to \R^\N$ defined on a probability space $(\Omega,\sF,P)$ **converges in $L^p$** to a random variable $X_\infty:\Omega \to \R$, if The convergence in $L^p$ is denoted by $\lim_nX_n = X_\infty$ in $L^p$.
+**Definition 1** (Convergence in $L^p$). Let $p \ge 1$, then we say that a random sequence $X: \Omega \to \R^\N$ defined on a probability space $(\Omega,\sF,P)$ **converges in $L^p$** to a random variable $X_\infty:\Omega \to \R$, if The convergence in $L^p$ is denoted by $\lim_nX_n = X_\infty$ in $L^p$.
 :::
 
 ::: rem
-For $p \in [1, \infty)$, the convergence of a random sequence $X: \Omega\to\R^\N$ in $L^p$ to a random variable $X_\infty:\Omega \to \R$ is equivalent to
+**Remark 1**. For $p \in [1, \infty)$, the convergence of a random sequence $X: \Omega\to\R^\N$ in $L^p$ to a random variable $X_\infty:\Omega \to \R$ is equivalent to
 :::
 
 ::: prop
-Consider $p \in [1, \infty)$ and a sequence of random variables $X:\Omega\to\R^\N$ defined on a probability space $(\Omega,\sF, P)$ such that $\lim_nX_n = X_\infty$ in $L^p$, then $\lim_nX_n = X_\infty$ in probability.
+**Proposition 2** (Convergences $L^p$ implies in probability). Consider $p \in [1, \infty)$ and a sequence of random variables $X:\Omega\to\R^\N$ defined on a probability space $(\Omega,\sF, P)$ such that $\lim_nX_n = X_\infty$ in $L^p$, then $\lim_nX_n = X_\infty$ in probability.
 :::
 
 ::: proof
@@ -30,16 +30,16 @@ Consider $p \in [1, \infty)$ and a sequence of random variables $X:\Omega\to\R^\
 
 :::: shaded*
 ::: exmp
-Consider the probability space $([0,1], \sB([0,1]), \lambda)$ such that $\lambda([a,b]) = b-a$ for all $0 \le a \le b \le 1$. We define the scaled indicator random variable $X_n: \Omega \to \set{0,1}$ such that We define $N = \set{0}$, and for any $\omega \notin N$, we can find $m \triangleq \lceil \frac{1}{\omega}\rceil$, such that for all $n > m$, we have $X_n(\omega) = 0$. Since $\lambda(N) = 0$, it implies that $\lim_nX_n = 0$ a.s. However, we see that $\E\abs{X_n}^p = \frac{2^{np}}{n}$.
+**Example 3** (Convergence almost surely doesn't imply convergence in $L^p$). Consider the probability space $([0,1], \sB([0,1]), \lambda)$ such that $\lambda([a,b]) = b-a$ for all $0 \le a \le b \le 1$. We define the scaled indicator random variable $X_n: \Omega \to \set{0,1}$ such that We define $N = \set{0}$, and for any $\omega \notin N$, we can find $m \triangleq \lceil \frac{1}{\omega}\rceil$, such that for all $n > m$, we have $X_n(\omega) = 0$. Since $\lambda(N) = 0$, it implies that $\lim_nX_n = 0$ a.s. However, we see that $\E\abs{X_n}^p = \frac{2^{np}}{n}$.
 :::
 ::::
 
 ::: rem
-Convergence almost surely implies convergence in probability. Therefore, above example also serves as a counterexample to the fact that convergence in probability doesn't imply convergence in $L^p$.
+**Remark 2**. Convergence almost surely implies convergence in probability. Therefore, above example also serves as a counterexample to the fact that convergence in probability doesn't imply convergence in $L^p$.
 :::
 
 ::: thm
-Consider a sequence of uncorrelated random variables $X:\Omega\to\R^\N$ defined on a probability space $(\Omega,\sF, P)$ such that $\E X_n = \mu$ and $\Var(X_n) = \sigma^2$ for all $n \in \N$. Defining the sum $S_n\triangleq \sum_{i=1}^nX_i$ and the $n$-empirical mean $\bar{X}_n \triangleq \frac{S_n}{n}$, we have $\lim_n\bar{X}_n=\mu$ in $L^2$ and in probability.
+**Theorem 4** ($L^2$ weak law of large numbers). Consider a sequence of uncorrelated random variables $X:\Omega\to\R^\N$ defined on a probability space $(\Omega,\sF, P)$ such that $\E X_n = \mu$ and $\Var(X_n) = \sigma^2$ for all $n \in \N$. Defining the sum $S_n\triangleq \sum_{i=1}^nX_i$ and the $n$-empirical mean $\bar{X}_n \triangleq \frac{S_n}{n}$, we have $\lim_n\bar{X}_n=\mu$ in $L^2$ and in probability.
 :::
 
 ::: proof
@@ -47,19 +47,19 @@ Consider a sequence of uncorrelated random variables $X:\Omega\to\R^\N$ defined 
 :::
 
 ::: thm
-Consider an random sequence $X:\Omega\to\R^\N$ defined on a probability space $(\Omega,\sF, P)$ such that $\E\abs{X_1}< \infty$ and $\E X_1 = \mu$. Defining the sum $S_n\triangleq \sum_{i=1}^nX_i$ and the $n$-empirical mean $\bar{X}_n \triangleq \frac{S_n}{n}$, we have $\lim_n\bar{X}_n=\mu$ in probability.
+**Theorem 5** ($L^1$ weak law of large numbers). Consider an random sequence $X:\Omega\to\R^\N$ defined on a probability space $(\Omega,\sF, P)$ such that $\E\abs{X_1}< \infty$ and $\E X_1 = \mu$. Defining the sum $S_n\triangleq \sum_{i=1}^nX_i$ and the $n$-empirical mean $\bar{X}_n \triangleq \frac{S_n}{n}$, we have $\lim_n\bar{X}_n=\mu$ in probability.
 :::
 
 :::: shaded*
 ::: exmp
-Consider the probability space $([0,1], \sB([0,1]), \lambda)$ such that $\lambda([a,b]) = b-a$ for all $0 \le a \le b \le 1$. For each $k \in \N$, we consider the sequence $S_k = \sum_{i=1}^ki$, and define integer intervals $I_k \triangleq \set{S_{k-1}+1, \dots, S_{k}}$. Clearly, the intervals $(I_k:k \in \N)$ partition the natural numbers, and each $n \in \N$ lies in some $I_{k_n}$, such that $n = S_{k+n-1}+i_n$ for $i_n \in [k_n]$. Therefore, for each $n \in \N$, we define indicator random variable $X_n: \Omega \to \set{0,1}$ such that For any $\omega \in [0,1]$, we have $X_n(\omega) = 1$ for infinitely many values since there exist infinitely many $(i,k)$ pairs such that $\frac{(i-1)}{k} \le \omega \le \frac{i}{k}$, and hence $\lim\sup_nX_n(\omega) = 1$ and hence $\lim_nX_n(\omega) \neq 0$. However, $\lim_nX_n(\omega) = 0$ in $L^p$, since
+**Example 6** (Convergence in $L^p$ doesn't imply almost surely). Consider the probability space $([0,1], \sB([0,1]), \lambda)$ such that $\lambda([a,b]) = b-a$ for all $0 \le a \le b \le 1$. For each $k \in \N$, we consider the sequence $S_k = \sum_{i=1}^ki$, and define integer intervals $I_k \triangleq \set{S_{k-1}+1, \dots, S_{k}}$. Clearly, the intervals $(I_k:k \in \N)$ partition the natural numbers, and each $n \in \N$ lies in some $I_{k_n}$, such that $n = S_{k+n-1}+i_n$ for $i_n \in [k_n]$. Therefore, for each $n \in \N$, we define indicator random variable $X_n: \Omega \to \set{0,1}$ such that For any $\omega \in [0,1]$, we have $X_n(\omega) = 1$ for infinitely many values since there exist infinitely many $(i,k)$ pairs such that $\frac{(i-1)}{k} \le \omega \le \frac{i}{k}$, and hence $\lim\sup_nX_n(\omega) = 1$ and hence $\lim_nX_n(\omega) \neq 0$. However, $\lim_nX_n(\omega) = 0$ in $L^p$, since
 :::
 ::::
 
 # $L^1$ convergence theorems
 
 ::: thm
-Consider a non-decreasing non-negative random sequence $X: \Omega\to\R_+^\N$ defined on a probability space $(\Omega,\sF,P)$, such that $X_n \in L^1$ for all $n \in \N$. Let $X_\infty(\omega) \triangleq \sup_nX_n(\omega)$ for all $\omega \in \Omega$, then $\E X_\infty = \sup_n\E X_n.$
+**Theorem 7** (Monotone Convergence Theorem). Consider a non-decreasing non-negative random sequence $X: \Omega\to\R_+^\N$ defined on a probability space $(\Omega,\sF,P)$, such that $X_n \in L^1$ for all $n \in \N$. Let $X_\infty(\omega) \triangleq \sup_nX_n(\omega)$ for all $\omega \in \Omega$, then $\E X_\infty = \sup_n\E X_n.$
 :::
 
 ::: proof
@@ -67,7 +67,7 @@ Consider a non-decreasing non-negative random sequence $X: \Omega\to\R_+^\N$ def
 :::
 
 ::: thm
-Consider a non-negative random sequence $X: \Omega\to\R_+^\N$ defined on a probability space $(\Omega,\sF,P)$. Let $X_\infty(\omega) \triangleq \lim\inf_nX_n(\omega)$ for all $\omega\in\Omega$, then $\E X_\infty \le \lim\inf_n\E X_n.$
+**Theorem 8** (Fatou's Lemma). Consider a non-negative random sequence $X: \Omega\to\R_+^\N$ defined on a probability space $(\Omega,\sF,P)$. Let $X_\infty(\omega) \triangleq \lim\inf_nX_n(\omega)$ for all $\omega\in\Omega$, then $\E X_\infty \le \lim\inf_n\E X_n.$
 :::
 
 ::: proof
@@ -75,7 +75,7 @@ Consider a non-negative random sequence $X: \Omega\to\R_+^\N$ defined on a proba
 :::
 
 ::: thm
-Let $X: \Omega \to \R^\N$ be a random sequence defined on a probability space $(\Omega, \sF, P)$. If $\lim_nX_n = X_\infty$ a.s. and there exists a $Y: \Omega \to \R_+$ such that $Y \in L^1$ and $\abs{X_n} \le Y$ a.s. for all $n\in\N$, then $\E X_\infty = \lim_n\E X_n$.
+**Theorem 9** (Dominated Convergence Theorem). Let $X: \Omega \to \R^\N$ be a random sequence defined on a probability space $(\Omega, \sF, P)$. If $\lim_nX_n = X_\infty$ a.s. and there exists a $Y: \Omega \to \R_+$ such that $Y \in L^1$ and $\abs{X_n} \le Y$ a.s. for all $n\in\N$, then $\E X_\infty = \lim_n\E X_n$.
 :::
 
 :::: proof
@@ -91,7 +91,7 @@ Therefore, we have $\limsup_n\E X_n \le \E X_\infty \le \liminf_n\E X_n$, and th
 # Convergence theorems for conditional means
 
 ::: prop
-Let $X:\Omega\to\R^\N$ be a random sequence on the probability space $(\Omega, \sF, P)$ such that $\E\abs{X_n} < \infty$ for all $n \in \N$. Let $\sG$ and $\sH$ be event spaces such that $\sG, \sH \subset \sF$. Then the following theorems hold.
+**Proposition 10**. Let $X:\Omega\to\R^\N$ be a random sequence on the probability space $(\Omega, \sF, P)$ such that $\E\abs{X_n} < \infty$ for all $n \in \N$. Let $\sG$ and $\sH$ be event spaces such that $\sG, \sH \subset \sF$. Then the following theorems hold.
 
 1.  **Conditional monotone convergence theorem:** Consider a random sequence $X:\Omega\to\R_+^\N$ that is non-negative and non-decreasing a.s.. We define $X_\infty:\Omega\to\R_+$ for each $\omega \in \Omega$ as $X_\infty(\omega)\triangleq \sup_{n \in \N}X_n(\omega)$. If $X_\infty \in L^1$, then $\E[X_n\mid \sG] \uparrow \E[X_\infty\mid\sG]$ a.s.
 

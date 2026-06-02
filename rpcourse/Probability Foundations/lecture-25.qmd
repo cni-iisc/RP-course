@@ -15,7 +15,7 @@ format:
 Let $\sX =\R^d$ be a $d$-dimensional Euclidean space, and $S:\Omega\to\sX^\N$ be a Poisson point process with intensity measure $\Lambda: \sB(\sX) \to \R_+$ and associated counting process $N:\Omega\to\Z_+^{\sB(\sX)}$.
 
 ::: prop
-Let $k \in \N$ be any positive integer. Consider a Poisson point process $S: \Omega \to \sX^\N$ with intensity measure $\Lambda:\sB(\sX)\to\R_+$, a finite partition $A\in \sB(\sX)^k$ that partitions a bounded set $B \in \sB(\sX)$, and a vector $n \in \Z_+^k$ that partitions a non negative integer $m \in \Z_+$. Then,
+**Proposition 1**. Let $k \in \N$ be any positive integer. Consider a Poisson point process $S: \Omega \to \sX^\N$ with intensity measure $\Lambda:\sB(\sX)\to\R_+$, a finite partition $A\in \sB(\sX)^k$ that partitions a bounded set $B \in \sB(\sX)$, and a vector $n \in \Z_+^k$ that partitions a non negative integer $m \in \Z_+$. Then,
 :::
 
 ::: proof
@@ -31,7 +31,7 @@ Let $k \in \N$ be any positive integer. Consider a Poisson point process $S: \Om
 :::
 
 ::: rem
-Consider a Poisson point process $S:\Omega\to\sX^\N$ with intensity measure $\Lambda: \sB(\sX) \to \R_+$ and counting process $N:\Omega\to\Z_+^{\sB(\sX)}$. Let $A \in \sB(\sX)^k$ be a partition for bounded set $B \in \sB(\sX)$.
+**Remark 1**. Consider a Poisson point process $S:\Omega\to\sX^\N$ with intensity measure $\Lambda: \sB(\sX) \to \R_+$ and counting process $N:\Omega\to\Z_+^{\sB(\sX)}$. Let $A \in \sB(\sX)^k$ be a partition for bounded set $B \in \sB(\sX)$.
 
 1.  Defining $p_i \triangleq \frac{\Lambda(A_i)}{\Lambda(B)}$, we see that $(p_1, \dots, p_k) \in \cM([k])$ is a probability distribution. We also observe that When $N(B)=1$, we can call the point of $S$ in $B$ as $S_1$ without any loss of generality. That is, if we call $\set{S_1} = S \cap B$, then we have Similarly, when $N(B) = n_i$, we call the points of $S$ in $B$ as $S_1, \dots, S_{n_i}$ and denote $S\cap B = \set{S_1, \dots, S_{n_i}}$. For this case, we observe
 
@@ -52,12 +52,12 @@ Consider a Poisson point process $S:\Omega\to\sX^\N$ with intensity measure $\La
 
 :::: shaded
 ::: rem
-If we are interested in simulating a two dimensional homogeneous Poisson point process with density $\lambda$ in a uniform square $A = [0,1]\times[0,1]$. Then, we first generate the random variable $N(A):\Omega\to\Z_+$ that takes value $n$ with probability $e^{-\lambda}\frac{\lambda^n}{n!}$. Next, for each of the $N(A)=n$ points, we generate the location $(X_i, Y_i) \in \R^2$ uniformly at random. That is, $X:\Omega\to[0,1]^n$ and $Y:\Omega\to[0,1]^n$ are independent uniform sequences.
+**Remark 2** (Simulating a homogeneous Poisson point process). If we are interested in simulating a two dimensional homogeneous Poisson point process with density $\lambda$ in a uniform square $A = [0,1]\times[0,1]$. Then, we first generate the random variable $N(A):\Omega\to\Z_+$ that takes value $n$ with probability $e^{-\lambda}\frac{\lambda^n}{n!}$. Next, for each of the $N(A)=n$ points, we generate the location $(X_i, Y_i) \in \R^2$ uniformly at random. That is, $X:\Omega\to[0,1]^n$ and $Y:\Omega\to[0,1]^n$ are independent uniform sequences.
 :::
 ::::
 
 ::: cor
-For a homogeneous Poisson point process on the half-line with ordered set of points $\tilde{S} = (S_{(n)} \in \R_+: n \in \N)$, we can write the conditional density of ordered points $(S_{(1)}, \dots, S_{(k)})$ given the event $\set{N_t = k}$ as the ordered statistics of uniformly distributed random variables. Specifically, we have
+**Corollary 2**. For a homogeneous Poisson point process on the half-line with ordered set of points $\tilde{S} = (S_{(n)} \in \R_+: n \in \N)$, we can write the conditional density of ordered points $(S_{(1)}, \dots, S_{(k)})$ given the event $\set{N_t = k}$ as the ordered statistics of uniformly distributed random variables. Specifically, we have
 :::
 
 ::: proof

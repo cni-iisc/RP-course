@@ -15,24 +15,24 @@ format:
 Let $X: \Omega \to \sX^{\Z_+}$ be a time-homogeneous Markov chain with transition probability matrix $P: \sX\times\sX\to[0,1]$.
 
 ::: defn
-A probability distribution $\pi \in \cM(\sX)$ is said to be **invariant distribution** for the Markov chain $X$ if it satisfies the **global balance equation** $\pi = \pi P$.
+**Definition 1**. A probability distribution $\pi \in \cM(\sX)$ is said to be **invariant distribution** for the Markov chain $X$ if it satisfies the **global balance equation** $\pi = \pi P$.
 :::
 
 ::: defn
-When the initial distribution of a Markov chain is $\nu \in \cM(\sX)$, then the conditional probability is denoted by $P_\nu: \sF \to [0,1]$ defined by
+**Definition 2**. When the initial distribution of a Markov chain is $\nu \in \cM(\sX)$, then the conditional probability is denoted by $P_\nu: \sF \to [0,1]$ defined by
 :::
 
 ::: defn
-For a Markov chain $X:\Omega\to\sX^{\Z_+}$, we denote the distribution of random variable $X_n:\Omega\to\sX$ by $\nu_n \in \cM(\sX)$ for all $n \in \Z_+$. That is, $\nu_n(x) \triangleq P_{\nu_0}\set{X_n = x}$ for all $x \in \sX$.
+**Definition 3**. For a Markov chain $X:\Omega\to\sX^{\Z_+}$, we denote the distribution of random variable $X_n:\Omega\to\sX$ by $\nu_n \in \cM(\sX)$ for all $n \in \Z_+$. That is, $\nu_n(x) \triangleq P_{\nu_0}\set{X_n = x}$ for all $x \in \sX$.
 :::
 
 ::: rem
-We observe that $\nu_n(x) = \sum_{z\in\sX}\nu_0(z)(P^n)_{zx}$ for all $x \in \sX$.
+**Remark 1**. We observe that $\nu_n(x) = \sum_{z\in\sX}\nu_0(z)(P^n)_{zx}$ for all $x \in \sX$.
 :::
 
 :::: shaded*
 ::: rem
-Facts about the invariant distribution $\pi$.
+**Remark 2**. Facts about the invariant distribution $\pi$.
 
 1.  The global balance equation $\pi = \pi P$ is a matrix equation, that is we have a collection of $\abs{\sX}$ equations $\pi_y = \sum_{x \in \sX}\pi_xp_{xy}$ for each $y \in \sX$.
 
@@ -49,7 +49,7 @@ Facts about the invariant distribution $\pi$.
 ::::
 
 ::: thm
-An irreducible Markov chain with transition probability matrix $P:\sX\times\sX\to[0,1]$ is positive recurrent iff there exists a unique invariant probability measure $\pi \in \cM(\sX)$ that satisfies global balance equation $\pi = \pi P$ and $\pi_x = \frac{1}{\mu_{xx}} > 0$ for all $x \in \sX$.
+**Theorem 4**. An irreducible Markov chain with transition probability matrix $P:\sX\times\sX\to[0,1]$ is positive recurrent iff there exists a unique invariant probability measure $\pi \in \cM(\sX)$ that satisfies global balance equation $\pi = \pi P$ and $\pi_x = \frac{1}{\mu_{xx}} > 0$ for all $x \in \sX$.
 :::
 
 ::: proof
@@ -67,16 +67,16 @@ An irreducible Markov chain with transition probability matrix $P:\sX\times\sX\t
 :::
 
 ::: cor
-An irreducible Markov chain on a finite state space $\sX$ has a unique positive stationary distribution $\pi$.
+**Corollary 5**. An irreducible Markov chain on a finite state space $\sX$ has a unique positive stationary distribution $\pi$.
 :::
 
 ::: defn
-An irreducible, aperiodic, positive recurrent Markov chain is called **ergodic**.
+**Definition 6**. An irreducible, aperiodic, positive recurrent Markov chain is called **ergodic**.
 :::
 
 :::: shaded*
 ::: rem
-Additional remarks about the stationary distribution $\pi$.
+**Remark 3**. Additional remarks about the stationary distribution $\pi$.
 
 1.  For a Markov chain with multiple positive recurrent communicating classes $\cC_1, \dots, \cC_m$, one can find the positive equilibrium distribution for each class, and extend it to the entire state space $\sX$ denoting it by $\pi_k$ for class $k \in [m]$. It is easy to check that any convex combination $\pi = \sum_{k = 1}^m\alpha_k\pi_k$ satisfies the global balance equation $\pi = \pi P$, where $\alpha_k \ge 0$ for each $k \in [m]$ and $\sum_{k=1}^m\alpha_k = 1$. Hence, a Markov chain with multiple positive recurrent classes have a convex set of invariant probability measures, with the individual invariant distribution $\pi_k$ for each positive recurrent class $k \in [m]$ being the extreme points.
 
