@@ -26,41 +26,55 @@ book:
         text: Home
 
   sidebar:
-    collapse-level: 2
+    collapse-level: 1
     pinned: false
     style: floating
 
   chapters:
     - text: "Introduction"
       file: index.qmd
-    - Probability Foundations/lecture-01.qmd
-    - Probability Foundations/lecture-02.qmd
-    - Probability Foundations/lecture-03.qmd
-    - Probability Foundations/lecture-04.qmd
-    - Probability Foundations/lecture-05.qmd
-    - Probability Foundations/lecture-06.qmd
-    - Probability Foundations/lecture-07.qmd
-    - Probability Foundations/lecture-08.qmd
-    - Probability Foundations/lecture-09.qmd
-    - Probability Foundations/lecture-10.qmd
-    - Probability Foundations/lecture-11.qmd
-    - Probability Foundations/lecture-12.qmd
-    - Probability Foundations/lecture-13.qmd
-    - Probability Foundations/lecture-14.qmd
-    - Probability Foundations/lecture-15.qmd
-    - Probability Foundations/lecture-16.qmd
-    - Probability Foundations/lecture-17.qmd
-    - Probability Foundations/lecture-18.qmd
-    - Probability Foundations/lecture-19.qmd
-    - Probability Foundations/lecture-20.qmd
-    - Probability Foundations/lecture-21.qmd
-    - Probability Foundations/lecture-22.qmd
-    - Probability Foundations/lecture-23.qmd
-    - Probability Foundations/lecture-24.qmd
-    - Probability Foundations/lecture-25.qmd
-    - Probability Foundations/lecture-26.qmd
-    - Probability Foundations/lecture-27.qmd
-    - Probability Foundations/lecture-28.qmd
+    - part: "Section 1. Probability space"
+      chapters:
+        - Probability Foundations/lecture-01.qmd
+        - Probability Foundations/lecture-02.qmd
+        - Probability Foundations/lecture-03.qmd
+    - part: "Section 2. Random variables, vectors, and processes"
+      chapters:
+        - Probability Foundations/lecture-04.qmd
+        - Probability Foundations/lecture-05.qmd
+        - Probability Foundations/lecture-06.qmd
+        - Probability Foundations/lecture-07.qmd
+    - part: "Section 3. Expectation"
+      chapters:
+        - Probability Foundations/lecture-08.qmd
+        - Probability Foundations/lecture-09.qmd
+        - Probability Foundations/lecture-10.qmd
+        - Probability Foundations/lecture-11.qmd
+        - Probability Foundations/lecture-12.qmd
+        - Probability Foundations/lecture-13.qmd
+    - part: "Section 4. Convergence"
+      chapters:
+        - Probability Foundations/lecture-14.qmd
+        - Probability Foundations/lecture-15.qmd
+        - Probability Foundations/lecture-16.qmd
+    - part: "Section 5. Random processes and stopping times"
+      chapters:
+        - Probability Foundations/lecture-17.qmd
+        - Probability Foundations/lecture-18.qmd
+    - part: "Section 6. Markov chains"
+      chapters:
+        - Probability Foundations/lecture-19.qmd
+        - Probability Foundations/lecture-20.qmd
+        - Probability Foundations/lecture-21.qmd
+        - Probability Foundations/lecture-22.qmd
+        - Probability Foundations/lecture-23.qmd
+    - part: "Section 7. Poisson processes"
+      chapters:
+        - Probability Foundations/lecture-24.qmd
+        - Probability Foundations/lecture-25.qmd
+        - Probability Foundations/lecture-26.qmd
+        - Probability Foundations/lecture-27.qmd
+        - Probability Foundations/lecture-28.qmd
 
 #bibliography: references.bib
 csl: _extensions/csl/acm-siggraph.csl
