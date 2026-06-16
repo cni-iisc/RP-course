@@ -10,6 +10,8 @@ format:
     number-sections: false
 ---
 
+{{< video https://www.youtube.com/watch?v=7412fJHXC58&list=PLNN9TCnjABcY562vG5XuSfodGs6_BMcAF >}}
+
 # Correlation
 
 Let $X:\Omega\to\R$ and $Y:\Omega\to\R$ be random variables defined on the same probability space $(\Omega,\sF,P)$.

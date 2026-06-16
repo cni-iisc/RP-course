@@ -10,6 +10,8 @@ format:
     number-sections: false
 ---
 
+{{< video https://www.youtube.com/watch?v=Z51fW-vjpm8&list=PLNN9TCnjABcY562vG5XuSfodGs6_BMcAF >}}
+
 # Recurrence and Transience
 
 We will consider a random sequence $X:\Omega\to\sX^{\Z_+}$ with initial state $X_0 = x\in\sX$ and the $k$th hitting times to state $y$ for all $k \in \N$ denoted by $\tau_k \triangleq \tau_X^{\set{y},k}$ inductively defined as $\tau_k \triangleq \inf\set{n > \tau_{k-1}: X_n = y}$ where $\tau_0 \triangleq 0$. We define the inter-return time sequence $H:\Omega\to\N^\N$ as $H_k \triangleq H_X^{\set{y},k} = \tau_k - \tau_{k-1}$ for all $k \in \N$.

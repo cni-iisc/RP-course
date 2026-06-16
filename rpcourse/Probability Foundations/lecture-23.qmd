@@ -10,6 +10,8 @@ format:
     number-sections: false
 ---
 
+{{< video https://www.youtube.com/watch?v=H_KThf5QThc&list=PLNN9TCnjABcY562vG5XuSfodGs6_BMcAF >}}
+
 # Invariant Distribution
 
 Let $X: \Omega \to \sX^{\Z_+}$ be a time-homogeneous Markov chain with transition probability matrix $P: \sX\times\sX\to[0,1]$.

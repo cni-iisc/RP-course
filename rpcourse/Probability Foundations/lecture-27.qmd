@@ -10,6 +10,8 @@ format:
     number-sections: false
 ---
 
+{{< video https://www.youtube.com/watch?v=gSYNw3aR5qI&list=PLNN9TCnjABcY562vG5XuSfodGs6_BMcAF >}}
+
 # Simple point processes on the half-line
 
 A stochastic process defined on the half-line $N: \Omega \to \Z_+^{\R_+}$ is a **counting process** if

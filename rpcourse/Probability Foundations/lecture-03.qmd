@@ -10,7 +10,7 @@ format:
     number-sections: false
 ---
 
-{{< video https://www.youtube.com/watch?v=sQsslbsZVlI >}}
+{{< video https://www.youtube.com/watch?v=sQsslbsZVlI&list=PLNN9TCnjABcY562vG5XuSfodGs6_BMcAF >}}
 
 # Law of Total Probability
 

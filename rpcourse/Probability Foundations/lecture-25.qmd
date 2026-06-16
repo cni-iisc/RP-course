@@ -10,6 +10,8 @@ format:
     number-sections: false
 ---
 
+{{< video https://www.youtube.com/watch?v=QPCXeVbNhnY&list=PLNN9TCnjABcY562vG5XuSfodGs6_BMcAF >}}
+
 # Joint conditional distribution of points in a finite window
 
 Let $\sX =\R^d$ be a $d$-dimensional Euclidean space, and $S:\Omega\to\sX^\N$ be a Poisson point process with intensity measure $\Lambda: \sB(\sX) \to \R_+$ and associated counting process $N:\Omega\to\Z_+^{\sB(\sX)}$.

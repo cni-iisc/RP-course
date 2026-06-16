@@ -10,6 +10,8 @@ format:
     number-sections: false
 ---
 
+{{< video https://www.youtube.com/watch?v=3jcybyA9Q3U&list=PLNN9TCnjABcY562vG5XuSfodGs6_BMcAF >}}
+
 # Point-wise convergence
 
 Consider a random sequence $X:\Omega\to\R^\N$ defined on a probability space $(\Omega, \sF, P)$, then each $X_n \triangleq \pi_n\circ X: \Omega \to \R$ is a random variable. There are many possible definitions for convergence of a sequence of random variables. One idea is to consider $X(\omega)\in \R^\N$ as a real valued sequence for each outcome $\omega$, and consider the $\lim_nX_n(\omega)$ for each outcome $\omega$.

@@ -10,6 +10,8 @@ format:
     number-sections: false
 ---
 
+{{< video https://www.youtube.com/watch?v=OlQQInsetwA&list=PLNN9TCnjABcY562vG5XuSfodGs6_BMcAF >}}
+
 # Compound Poisson process
 
 ::: defn

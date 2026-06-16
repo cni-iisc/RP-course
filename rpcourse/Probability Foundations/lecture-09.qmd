@@ -10,6 +10,8 @@ format:
     number-sections: false
 ---
 
+{{< video https://www.youtube.com/watch?v=bULUWNKuI-4&list=PLNN9TCnjABcY562vG5XuSfodGs6_BMcAF >}}
+
 # Moments
 
 Let $X:\Omega\to\R$ be a random variable defined on the probability space $(\Omega,\sF,P)$ with the distribution function $F_X:\R \to [0,1]$.

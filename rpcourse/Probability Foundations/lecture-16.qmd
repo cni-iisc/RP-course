@@ -10,6 +10,8 @@ format:
     number-sections: false
 ---
 
+{{< video https://www.youtube.com/watch?v=_vsoeOKNWC8&list=PLNN9TCnjABcY562vG5XuSfodGs6_BMcAF >}}
+
 # Convergence in distribution
 
 ::: defn

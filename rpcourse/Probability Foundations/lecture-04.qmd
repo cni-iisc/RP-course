@@ -10,6 +10,8 @@ format:
     number-sections: false
 ---
 
+{{< video https://www.youtube.com/watch?v=MU2m_jr6YQQ&list=PLNN9TCnjABcY562vG5XuSfodGs6_BMcAF >}}
+
 # Random Variable
 
 ::: defn

@@ -10,6 +10,8 @@ format:
     number-sections: false
 ---
 
+{{< video https://www.youtube.com/watch?v=wEBcCGJP8F4&list=PLNN9TCnjABcY562vG5XuSfodGs6_BMcAF >}}
+
 # Markov processes
 
 We have seen that sequences are easiest discrete time random processes. However, they don't capture correlation well.

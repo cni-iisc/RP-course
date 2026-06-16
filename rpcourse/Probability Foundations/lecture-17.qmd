@@ -10,6 +10,8 @@ format:
     number-sections: false
 ---
 
+{{< video https://www.youtube.com/watch?v=foxFoBScCp8&list=PLNN9TCnjABcY562vG5XuSfodGs6_BMcAF >}}
+
 # Examples of Tractable Stochastic Processes
 
 Recall that a random process $X: \Omega \to \sX^T$ defined on the probability space $(\Omega,\sF, P)$ with index set $T$ and state space $\sX \subseteq \R$, is completely characterized by its finite dimensional distributions $F_{X_S}: \R^S \to [0,1]$ for all finite $S \subseteq T$, where Simpler characterizations of a stochastic process $X$ are in terms of its moments. That is, the first moment such as mean, and the second moment such as correlations and covariance functions. In general, it is very difficult to characterize a stochastic process completely in terms of its finite dimensional distribution. However, we have listed few analytically tractable examples below, where we can completely characterize the stochastic process.

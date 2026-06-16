@@ -10,6 +10,8 @@ format:
     number-sections: false
 ---
 
+{{< video https://www.youtube.com/watch?v=OpsLU8dFIY8&list=PLNN9TCnjABcY562vG5XuSfodGs6_BMcAF >}}
+
 # Conditional expectation given a non trivial event
 
 Consider a probability space $(\Omega, \sF, P)$ and an event $B \in \sF$ such that $P(B) > 0$. Then, the conditional probability of any event $A \in \sF$ given an event $B$ is defined as Consider a random variable $X: \Omega\to\R$ defined on a probability space $(\Omega, \sF, P)$, with distribution function $F_X: \R \to [0,1]$, and a non trivial event $B \in \sF$ such that $P(B) > 0$.

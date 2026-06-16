@@ -10,7 +10,7 @@ format:
     number-sections: false
 ---
 
-{{< video https://www.youtube.com/watch?v=DIjEofrAwfE >}}
+{{< video https://www.youtube.com/watch?v=DIjEofrAwfE&list=PLNN9TCnjABcY562vG5XuSfodGs6_BMcAF >}}
 
 # Functions and cardinality
 

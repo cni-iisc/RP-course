@@ -10,6 +10,8 @@ format:
     number-sections: false
 ---
 
+{{< video https://www.youtube.com/watch?v=6KZqXp5-pj0&list=PLNN9TCnjABcY562vG5XuSfodGs6_BMcAF >}}
+
 # Stopping times
 
 Let $(\Omega, \sF, P)$ be a probability space. Consider a random process $X:\Omega\to\sX^T$ defined on this probability space with state space $\sX \subseteq \R$ and ordered index set $T\subseteq \R$ considered as time.

@@ -10,6 +10,8 @@ format:
     number-sections: false
 ---
 
+{{< video https://www.youtube.com/watch?v=JG4uxGDBc_k&list=PLNN9TCnjABcY562vG5XuSfodGs6_BMcAF >}}
+
 # Communicating classes
 
 ::: defn

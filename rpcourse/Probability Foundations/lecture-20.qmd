@@ -10,6 +10,8 @@ format:
     number-sections: false
 ---
 
+{{< video https://www.youtube.com/watch?v=PPBWLf0g9hE&list=PLNN9TCnjABcY562vG5XuSfodGs6_BMcAF >}}
+
 # $n$-step transition
 
 ::: defn

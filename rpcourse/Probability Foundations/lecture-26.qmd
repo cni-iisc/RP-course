@@ -10,6 +10,8 @@ format:
     number-sections: false
 ---
 
+{{< video https://www.youtube.com/watch?v=okLj0_N49rU&list=PLNN9TCnjABcY562vG5XuSfodGs6_BMcAF >}}
+
 # Laplace functional
 
 Let $\sX = \R^d$ be the $d$-dimensional Euclidean space. Recall that all the random points are unique for a simple point process $S:\Omega\to\sX^\N$ , and hence $S$ can also be considered as a set of countable points in $\sX$. Let $N:\Omega\to\Z_+^{\sB(\sX)}$ be the counting process associated with the simple point process $S$.

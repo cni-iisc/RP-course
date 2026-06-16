@@ -10,6 +10,8 @@ format:
     number-sections: false
 ---
 
+{{< video https://www.youtube.com/watch?v=VEYCn_gk3_Q&list=PLNN9TCnjABcY562vG5XuSfodGs6_BMcAF >}}
+
 # Generating functions
 
 Suppose that $X:\Omega \to \R$ is a continuous random variable on the probability space $(\Omega,\sF, P)$ with distribution function $F_X: \R \to [0,1]$.
