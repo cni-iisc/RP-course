@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Parimal Parag">
-<meta name="dcterms.date" content="2026-06-03">
+<meta name="dcterms.date" content="2026-06-16">
 <meta name="description" content="A graduate-level foundational course, originally offered as E2.202 Random Processes in the ECE Department at IISc.">
 
 <title>Recurrent and transient states – Probability and Random Processes</title>
@@ -49,9 +49,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-98d99a9b37e1979b2a11cb4197c2cbae.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-9e366e44bd2eb15a90bf99c53dbad200.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-98d99a9b37e1979b2a11cb4197c2cbae.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-4fb813a46f614d50ca558e8979863fae.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-9485d2876aa1002e62740be884464af3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-4fb813a46f614d50ca558e8979863fae.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -668,7 +668,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Updated</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">June 3, 2026</p>
+      <p class="date">June 16, 2026</p>
     </div>
   </div>
   
@@ -680,6 +680,7 @@ window.Quarto = {
 </header>
 
 
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/Z51fW-vjpm8" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 <section id="recurrence-and-transience" class="level1">
 <h1>Recurrence and Transience</h1>
 <p>We will consider a random sequence <span class="math inline">\(X:\Omega\to\sX^{\Z_+}\)</span> with initial state <span class="math inline">\(X_0 = x\in\sX\)</span> and the <span class="math inline">\(k\)</span>th hitting times to state <span class="math inline">\(y\)</span> for all <span class="math inline">\(k \in \N\)</span> denoted by <span class="math inline">\(\tau_k \triangleq \tau_X^{\set{y},k}\)</span> inductively defined as <span class="math inline">\(\tau_k \triangleq \inf\set{n &gt; \tau_{k-1}: X_n = y}\)</span> where <span class="math inline">\(\tau_0 \triangleq 0\)</span>. We define the inter-return time sequence <span class="math inline">\(H:\Omega\to\N^\N\)</span> as <span class="math inline">\(H_k \triangleq H_X^{\set{y},k} = \tau_k - \tau_{k-1}\)</span> for all <span class="math inline">\(k \in \N\)</span>.</p>
