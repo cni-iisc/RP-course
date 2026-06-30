@@ -1,0 +1,21 @@
+<script>
+// Quarto's default window.Quarto.typesetMath (defined in <head>) calls
+// katex.render with an empty macros table. Replace it so content that is
+// typeset lazily (e.g. margin/footnote popovers) also gets our macros.
+if (window.Quarto && window.katex) {
+  window.Quarto.typesetMath = function (el) {
+    var mathElements = el.getElementsByClassName("math");
+    Array.from(mathElements).forEach(function (mathEl) {
+      var texText = mathEl.firstChild;
+      if (mathEl.tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathEl, {
+          displayMode: mathEl.classList.contains("display"),
+          throwOnError: false,
+          macros: window.katexMacros,
+          fleqn: false
+        });
+      }
+    });
+  };
+}
+</script>

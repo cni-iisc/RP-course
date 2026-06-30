@@ -88,8 +88,11 @@ format:
       dark:
         - darkly
         - styles.scss
+    html-math-method: katex
     include-in-header:
-      - mathjax-macros.html
+      - katex-macros.html
+    include-after-body:
+      - katex-typeset-override.html
     reference-location: margin
     published-title: Updated
     date: last-modified

@@ -1,4 +1,20 @@
 /*-- scss:rules --*/
+
+/* Euler Script for \mathscr, built from the original AMS eusm10 Type 1
+   font (SIL OFL 1.1, see fonts/LICENSE.txt and fonts/README.md) so that
+   plain ASCII A-Z map to the script glyphs KaTeX's .mathscr spans use.
+   \mathcal keeps KaTeX's default Caligraphic font, unaffected. */
+@font-face {
+  font-family: "KaTeX_EulerScript";
+  src: url("fonts/KaTeX_EulerScript-Regular.woff2") format("woff2"),
+       url("fonts/KaTeX_EulerScript-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+.katex .mathscr {
+  font-family: "KaTeX_EulerScript";
+}
 .theorem:not(.exercise):not(.example) {
     display: block;
     padding-top: 1em;
