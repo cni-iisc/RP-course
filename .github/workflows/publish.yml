@@ -25,3 +25,10 @@ jobs:
           path: rpcourse
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Trigger cni_11ty to sync rpcourse content
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.CNI_SYNC_PAT }}
+          repository: cni-iisc/cni_11ty
+          event-type: rpcourse-updated
