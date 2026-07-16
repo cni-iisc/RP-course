@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Parimal Parag">
-<meta name="dcterms.date" content="2026-07-01">
+<meta name="dcterms.date" content="2026-07-16">
 <meta name="description" content="A graduate-level foundational course, originally offered as E2.202 Random Processes in the ECE Department at IISc.">
 
 <title>Communicating classes – Probability and Random Processes</title>
@@ -49,9 +49,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-4fb813a46f614d50ca558e8979863fae.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-9485d2876aa1002e62740be884464af3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-4fb813a46f614d50ca558e8979863fae.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f3f1ef7f74fe3489948abf8f4525a959.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-bfd295fc7290ab13fbcf6debdb5a53cc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-f3f1ef7f74fe3489948abf8f4525a959.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -81,63 +81,105 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 <script>
-window.MathJax = window.MathJax || {};
-window.MathJax.tex = window.MathJax.tex || {};
-window.MathJax.tex.macros = Object.assign(window.MathJax.tex.macros || {}, {
-  set: ["\\left\\{#1\\right\\}", 1],
-  abs: ["\\left\\lvert#1\\right\\rvert", 1],
-  norm: ["\\left\\lVert#1\\right\\rVert", 1],
-  inner: ["\\left\\langle #1\\right\\rangle", 1],
-  floor: ["\\left\\lfloor#1\\right\\rfloor", 1],
-  ceil: ["\\left\\lceil#1\\right\\rceil", 1],
-  given: ["\\; \\big\\vert \\;", 0],
-  Ind: ["\\mathbb{1}_{#1}", 1],
-  SetIn: ["\\mathbb{1}_{\\left\\{#1\\right\\}}", 1],
-  mathbbm: ["\\mathbb{#1}", 1],
-  iid: ["\\emph{i.i.d.}\\", 0],
-  EQ: ["\\begin{equation*}#1\\end{equation*}", 1],
-  EQN: ["\\begin{equation}#1\\end{equation}", 1],
-  eq: ["\\begin{aligned}#1\\end{aligned}", 1],
-  meq: ["\\begin{aligned}#2\\end{aligned}", 2],
-  tr: "\\operatorname{tr}",
-  Var: "\\operatorname{Var}",
-  Cov: "\\operatorname{Cov}",
-  cov: "\\operatorname{cov}",
-  expect: ["\\mathbb{E}\\left[#1\\right]", 1],
-  prob: ["\\mathbb{P}\\left[#1\\right]", 1],
-  E: "\\mathbb{E}",
-  P: "\\mathbb{P}",
-  F: "\\mathbb{F}",
-  N: "\\mathbb{N}",
-  R: "\\mathbb{R}",
-  Z: "\\mathbb{Z}",
-  Q: "\\mathbb{Q}",
-  C: "\\mathbb{C}",
-  D: "\\mathbb{D}",
-  cF: "\\mathcal{F}",
-  cM: "\\mathcal{M}",
-  sF: "\\mathscr{F}",
-  sX: "\\mathscr{X}",
-  sB: "\\mathscr{B}",
-  sG: "\\mathscr{G}",
-  cP: "\\mathcal{P}",
-  bU: "\\mathbf{1}",
-  bA: "\\mathbf{A}",
-  bx: "\\mathbf{x}",
-  bX: "\\mathbf{X}",
-  bZ: "\\mathbf{Z}",
-  tS: "\\tilde{S}",
-  bigo: "\\mathcal{O}",
-  goto: "\\rightarrow",
-  matlab: ["\\textsc{matlab}", 0],
-  reals: "{\\rm l}\\kern-.15em {\\rm R}",
-  complex: "{\\raisebox{.043ex}{\\rule{0.07em}{1.56ex}} \\hskip -.35em {\\rm C}}",
-  meqalign: ["\\begin{aligned}#1\\end{aligned}", 1]
+window.katexMacros = {
+  "\\set": "\\left\\{#1\\right\\}",
+  "\\abs": "\\left\\lvert#1\\right\\rvert",
+  "\\norm": "\\left\\lVert#1\\right\\rVert",
+  "\\inner": "\\left\\langle #1\\right\\rangle",
+  "\\floor": "\\left\\lfloor#1\\right\\rfloor",
+  "\\ceil": "\\left\\lceil#1\\right\\rceil",
+  "\\given": "\\; \\big\\vert \\;",
+  "\\Ind": "\\mathbb{1}_{#1}",
+  "\\SetIn": "\\mathbb{1}_{\\left\\{#1\\right\\}}",
+  "\\mathbbm": "\\mathbb{#1}",
+  "\\iid": "\\emph{i.i.d.}",
+  "\\EQ": "\\begin{equation*}#1\\end{equation*}",
+  "\\EQN": "\\begin{equation}#1\\end{equation}",
+  "\\eq": "\\begin{aligned}#1\\end{aligned}",
+  "\\meq": "{#1}\\begin{aligned}#2\\end{aligned}",
+  "\\tr": "\\operatorname{tr}",
+  "\\Var": "\\operatorname{Var}",
+  "\\Cov": "\\operatorname{Cov}",
+  "\\cov": "\\operatorname{cov}",
+  "\\expect": "\\mathbb{E}\\left[#1\\right]",
+  "\\prob": "\\mathbb{P}\\left[#1\\right]",
+  "\\E": "\\mathbb{E}",
+  "\\P": "\\mathbb{P}",
+  "\\F": "\\mathbb{F}",
+  "\\N": "\\mathbb{N}",
+  "\\R": "\\mathbb{R}",
+  "\\Z": "\\mathbb{Z}",
+  "\\Q": "\\mathbb{Q}",
+  "\\C": "\\mathbb{C}",
+  "\\D": "\\mathbb{D}",
+  "\\cC": "\\mathcal{C}",
+  "\\cF": "\\mathcal{F}",
+  "\\cM": "\\mathcal{M}",
+  "\\cT": "\\mathcal{T}",
+  "\\sA": "\\mathscr{A}",
+  "\\sB": "\\mathscr{B}",
+  "\\sE": "\\mathscr{E}",
+  "\\sF": "\\mathscr{F}",
+  "\\sG": "\\mathscr{G}",
+  "\\sH": "\\mathscr{H}",
+  "\\sL": "\\mathscr{L}",
+  "\\sX": "\\mathscr{X}",
+  "\\sY": "\\mathscr{Y}",
+  "\\cP": "\\mathcal{P}",
+  "\\indicator": "\\mathbb{1}_{#1}",
+  "\\bigtimes": "\\mathop{\\Large\\times}\\limits",
+  "\\bU": "\\mathbf{1}",
+  "\\bA": "\\mathbf{A}",
+  "\\bx": "\\mathbf{x}",
+  "\\bX": "\\mathbf{X}",
+  "\\bZ": "\\mathbf{Z}",
+  "\\tS": "\\tilde{S}",
+  "\\bigo": "\\mathcal{O}",
+  "\\goto": "\\rightarrow",
+  "\\matlab": "\\text{MATLAB}",
+  "\\reals": "{\\rm l}\\kern-.15em {\\rm R}",
+  "\\complex": "{\\raisebox{.043ex}{\\rule{0.07em}{1.56ex}} \\hskip -.35em {\\rm C}}",
+  "\\meqalign": "\\begin{aligned}#1\\end{aligned}"
+};
+
+document.addEventListener("DOMContentLoaded", function () {
+  if (!window.katex) return;
+  var mathElements = Array.from(document.getElementsByClassName("math"));
+  mathElements.forEach(function (el) {
+    var texText = el.firstChild;
+    if (el.tagName == "SPAN" && texText && texText.data) {
+      window.katex.render(texText.data, el, {
+        displayMode: el.classList.contains("display"),
+        throwOnError: false,
+        macros: window.katexMacros,
+        fleqn: false
+      });
+      // Pandoc's own katex script also typesets ".math" spans on
+      // DOMContentLoaded with no macros; drop the class so its pass
+      // (which runs after this one) finds nothing left to redo.
+      el.classList.remove("math");
+    }
+  });
 });
 </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -468,7 +510,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Probability Foundations/lecture-09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Moments and <span class="math inline">\(L^p\)</span> spaces</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Moments and <span class="math inline">L^p</span> spaces</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -515,7 +557,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Probability Foundations/lecture-15.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title"><span class="math inline">\(L^p\)</span> convergence</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title"><span class="math inline">L^p</span> convergence</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -672,7 +714,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Updated</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 1, 2026</p>
+      <p class="date">July 16, 2026</p>
     </div>
   </div>
   
@@ -688,52 +730,52 @@ window.Quarto = {
 <section id="communicating-classes" class="level1">
 <h1>Communicating classes</h1>
 <div class="defn">
-<p><strong>Definition 1</strong>. For states <span class="math inline">\(x, y \in \sX\)</span>, it is said that state <span class="math inline">\(y\)</span> is <strong>accessible</strong> from state <span class="math inline">\(x\)</span> if <span class="math inline">\(p_{xy}^{(n)} &gt; 0\)</span> for some <span class="math inline">\(n \in \Z_+\)</span>, and denoted by <span class="math inline">\(x \to y\)</span>. If two states <span class="math inline">\(x,y \in \sX\)</span> are accessible to each other, they are said to <strong>communicate</strong> with each other, denoted by <span class="math inline">\(x \leftrightarrow y\)</span>.</p>
+<p><strong>Definition 1</strong>. For states <span class="math inline">x, y \in \sX</span>, it is said that state <span class="math inline">y</span> is <strong>accessible</strong> from state <span class="math inline">x</span> if <span class="math inline">p_{xy}^{(n)} &gt; 0</span> for some <span class="math inline">n \in \Z_+</span>, and denoted by <span class="math inline">x \to y</span>. If two states <span class="math inline">x,y \in \sX</span> are accessible to each other, they are said to <strong>communicate</strong> with each other, denoted by <span class="math inline">x \leftrightarrow y</span>.</p>
 </div>
 <div class="prop">
 <p><strong>Proposition 2</strong>. Communication is an equivalence relation.</p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> Relation on state space <span class="math inline">\(\sX\)</span> is a subset of product of sets <span class="math inline">\(\sX \times \sX\)</span>. Communication is a relation on state space <span class="math inline">\(\sX\)</span>, as it relates two states <span class="math inline">\(x,y \in \sX\)</span>. To show equivalence, we have to show reflexivity, symmetry, and transitivity of the relation.</p>
+<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> Relation on state space <span class="math inline">\sX</span> is a subset of product of sets <span class="math inline">\sX \times \sX</span>. Communication is a relation on state space <span class="math inline">\sX</span>, as it relates two states <span class="math inline">x,y \in \sX</span>. To show equivalence, we have to show reflexivity, symmetry, and transitivity of the relation.</p>
 <ul>
-<li><p>Since <span class="math inline">\(P^0 = I\)</span>, it follows that <span class="math inline">\(p_{xx}^{(0)} = 1 &gt; 0\)</span> for each state <span class="math inline">\(x\in\sX\)</span>, and hence <span class="math inline">\(x\leftrightarrow x\)</span>.</p></li>
-<li><p>If <span class="math inline">\(x \leftrightarrow y\)</span>, then we know that <span class="math inline">\(x \to y\)</span> and <span class="math inline">\(y \to x\)</span> and hence <span class="math inline">\(y \leftrightarrow x\)</span>.</p></li>
-<li><p>For transitivity, suppose <span class="math inline">\(x \leftrightarrow y\)</span> and <span class="math inline">\(y \leftrightarrow z\)</span>. Let <span class="math inline">\(m,n \in \Z_+\)</span> such that <span class="math inline">\(p_{xy}^{(m)} &gt;0\)</span> and <span class="math inline">\(p_{yz}^{(n)} &gt;0\)</span>. Then by Chapman Kolmogorov equation, we have <span class="math inline">\(p_{xz}^{(m+n)} = \sum_{w \in \sX} p_{xw}^{(m)}p_{wz}^{(n)} \ge p_{xy}^{(m)}p_{yz}^{(n)} &gt; 0.\)</span> This implies <span class="math inline">\(x \to z\)</span>, and using similar arguments one can show that <span class="math inline">\(z \to x\)</span>, and the transitivity follows.</p></li>
+<li><p>Since <span class="math inline">P^0 = I</span>, it follows that <span class="math inline">p_{xx}^{(0)} = 1 &gt; 0</span> for each state <span class="math inline">x\in\sX</span>, and hence <span class="math inline">x\leftrightarrow x</span>.</p></li>
+<li><p>If <span class="math inline">x \leftrightarrow y</span>, then we know that <span class="math inline">x \to y</span> and <span class="math inline">y \to x</span> and hence <span class="math inline">y \leftrightarrow x</span>.</p></li>
+<li><p>For transitivity, suppose <span class="math inline">x \leftrightarrow y</span> and <span class="math inline">y \leftrightarrow z</span>. Let <span class="math inline">m,n \in \Z_+</span> such that <span class="math inline">p_{xy}^{(m)} &gt;0</span> and <span class="math inline">p_{yz}^{(n)} &gt;0</span>. Then by Chapman Kolmogorov equation, we have <span class="math inline">p_{xz}^{(m+n)} = \sum_{w \in \sX} p_{xw}^{(m)}p_{wz}^{(n)} \ge p_{xy}^{(m)}p_{yz}^{(n)} &gt; 0.</span> This implies <span class="math inline">x \to z</span>, and using similar arguments one can show that <span class="math inline">z \to x</span>, and the transitivity follows.</p></li>
 </ul>
 <p>&nbsp;◻</p>
 </div>
 <div class="rem">
-<p><strong>Remark 1</strong>. Since the communication is an equivalence relation, it partitions state space <span class="math inline">\(\sX\)</span> into equivalence classes.</p>
+<p><strong>Remark 1</strong>. Since the communication is an equivalence relation, it partitions state space <span class="math inline">\sX</span> into equivalence classes.</p>
 </div>
 <div class="defn">
-<p><strong>Definition 3</strong>. Each equivalence class of communication relation is called a <strong>communicating class</strong>. A property of states is said to be a <strong>class property</strong> if for each communicating class <span class="math inline">\(\cC\)</span>, either all states in <span class="math inline">\(\cC\)</span> have the property, or none do.</p>
+<p><strong>Definition 3</strong>. Each equivalence class of communication relation is called a <strong>communicating class</strong>. A property of states is said to be a <strong>class property</strong> if for each communicating class <span class="math inline">\cC</span>, either all states in <span class="math inline">\cC</span> have the property, or none do.</p>
 </div>
 <div class="defn">
 <p><strong>Definition 4</strong>. A set of states that communicate are called a <strong>communicating class</strong>.</p>
 <div class="compactenum">
-<p>A communicating class <span class="math inline">\(\cC\)</span> is called <strong>closed</strong> if no edges leave this class. That is, for all edges <span class="math inline">\((x,y) \in \cC \times \cC^c\)</span>, we have <span class="math inline">\(p_{xy} = 0\)</span>.</p>
-<p>An <strong>open</strong> communicating class is not closed, i.e.&nbsp;there exist an edge that leaves this class. That is, there exists an edge <span class="math inline">\((x,y) \in \cC\times \cC^c\)</span> such that <span class="math inline">\(p_{xy} &gt; 0\)</span>.</p>
+<p>A communicating class <span class="math inline">\cC</span> is called <strong>closed</strong> if no edges leave this class. That is, for all edges <span class="math inline">(x,y) \in \cC \times \cC^c</span>, we have <span class="math inline">p_{xy} = 0</span>.</p>
+<p>An <strong>open</strong> communicating class is not closed, i.e.&nbsp;there exist an edge that leaves this class. That is, there exists an edge <span class="math inline">(x,y) \in \cC\times \cC^c</span> such that <span class="math inline">p_{xy} &gt; 0</span>.</p>
 </div>
 </div>
 <section id="irreducibility-and-periodicity" class="level2">
 <h2 class="anchored" data-anchor-id="irreducibility-and-periodicity">Irreducibility and periodicity</h2>
 <div class="defn">
-<p><strong>Definition 5</strong>. A Markov chain with a single class is called an <strong>irreducible</strong> Markov chain. That is, for any two states <span class="math inline">\(x, y \in \sX\)</span>, there exists an integer <span class="math inline">\(n \in \Z_+\)</span> such that <span class="math inline">\(p_{xy}^{(n)} &gt; 0\)</span>. In other words, any state <span class="math inline">\(y\)</span> can be reached from any state <span class="math inline">\(x\)</span> using transitions of positive probability.</p>
+<p><strong>Definition 5</strong>. A Markov chain with a single class is called an <strong>irreducible</strong> Markov chain. That is, for any two states <span class="math inline">x, y \in \sX</span>, there exists an integer <span class="math inline">n \in \Z_+</span> such that <span class="math inline">p_{xy}^{(n)} &gt; 0</span>. In other words, any state <span class="math inline">y</span> can be reached from any state <span class="math inline">x</span> using transitions of positive probability.</p>
 </div>
 <div class="defn">
-<p><strong>Definition 6</strong>. Let <span class="math inline">\(\cT(x) \triangleq \set{n \in \N : p_{xx}^{(n)} &gt; 0}\)</span> be the set of times when the chain can possibly return to the initial state <span class="math inline">\(x\)</span>. The <strong>period</strong> of any state <span class="math inline">\(x \in \sX\)</span> is defined as <span class="math inline">\(d(x) \triangleq \gcd\cT(x) =  \gcd\{n \in \N : p_{xx}^{(n)} &gt; 0\}.\)</span> We define <span class="math inline">\(d(x) = \infty\)</span>, if <span class="math inline">\(p_{xx}^{(n)} = 0\)</span> for all <span class="math inline">\(n \in \N\)</span>. A state <span class="math inline">\(x \in \sX\)</span> is called <strong>aperiodic</strong> if the period <span class="math inline">\(d(x)\)</span> is <span class="math inline">\(1\)</span>.</p>
+<p><strong>Definition 6</strong>. Let <span class="math inline">\cT(x) \triangleq \set{n \in \N : p_{xx}^{(n)} &gt; 0}</span> be the set of times when the chain can possibly return to the initial state <span class="math inline">x</span>. The <strong>period</strong> of any state <span class="math inline">x \in \sX</span> is defined as <span class="math inline">d(x) \triangleq \gcd\cT(x) =  \gcd\{n \in \N : p_{xx}^{(n)} &gt; 0\}.</span> We define <span class="math inline">d(x) = \infty</span>, if <span class="math inline">p_{xx}^{(n)} = 0</span> for all <span class="math inline">n \in \N</span>. A state <span class="math inline">x \in \sX</span> is called <strong>aperiodic</strong> if the period <span class="math inline">d(x)</span> is <span class="math inline">1</span>.</p>
 </div>
 <div class="prop">
-<p><strong>Proposition 7</strong>. If <span class="math inline">\(x \leftrightarrow y\)</span>, then <span class="math inline">\(d(x) = d(y)\)</span>. That is, periodicity is a class property.</p>
+<p><strong>Proposition 7</strong>. If <span class="math inline">x \leftrightarrow y</span>, then <span class="math inline">d(x) = d(y)</span>. That is, periodicity is a class property.</p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> Consider two states <span class="math inline">\(x\neq y \in \sX\)</span> and integers <span class="math inline">\(m,n \in \N\)</span> be such that <span class="math inline">\(p_{xy}^{(m)}p_{yx}^{(n)} &gt; 0\)</span>. Suppose <span class="math inline">\(s \in \cT(x)\)</span>, that is <span class="math inline">\(p_{xx}^{(s)} &gt; 0\)</span>. Then Hence <span class="math inline">\(d(y) | n+m\)</span> and <span class="math inline">\(d(y) | n+s+m\)</span>, and hence <span class="math inline">\(d(y) | s\)</span> for any <span class="math inline">\(s \in \cT(x)\)</span>. In particular, it implies that <span class="math inline">\(d(y) | d(x)\)</span>. By symmetrical arguments, we get <span class="math inline">\(d(x) | d(y)\)</span>. Hence <span class="math inline">\(d(x) = d(y)\)</span>.&nbsp;◻</p>
+<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> Consider two states <span class="math inline">x\neq y \in \sX</span> and integers <span class="math inline">m,n \in \N</span> be such that <span class="math inline">p_{xy}^{(m)}p_{yx}^{(n)} &gt; 0</span>. Suppose <span class="math inline">s \in \cT(x)</span>, that is <span class="math inline">p_{xx}^{(s)} &gt; 0</span>. Then Hence <span class="math inline">d(y) | n+m</span> and <span class="math inline">d(y) | n+s+m</span>, and hence <span class="math inline">d(y) | s</span> for any <span class="math inline">s \in \cT(x)</span>. In particular, it implies that <span class="math inline">d(y) | d(x)</span>. By symmetrical arguments, we get <span class="math inline">d(x) | d(y)</span>. Hence <span class="math inline">d(x) = d(y)</span>.&nbsp;◻</p>
 </div>
 <div class="defn">
 <p><strong>Definition 8</strong>. For an irreducible chain, the period of the chain is defined to be the period which is common to all states. An irreducible Markov chain is called <strong>aperiodic</strong> if the single communicating class is aperiodic.</p>
 </div>
 <div class="prop">
-<p><strong>Proposition 9</strong>. If the transition matrix <span class="math inline">\(P\)</span> is aperiodic and irreducible, then there is an integer <span class="math inline">\(r_0\)</span> such that <span class="math inline">\(p_{xy}^{(r)}&gt;0\)</span> for all <span class="math inline">\(x,y \in \sX\)</span> and <span class="math inline">\(r \ge r_0\)</span>.</p>
+<p><strong>Proposition 9</strong>. If the transition matrix <span class="math inline">P</span> is aperiodic and irreducible, then there is an integer <span class="math inline">r_0</span> such that <span class="math inline">p_{xy}^{(r)}&gt;0</span> for all <span class="math inline">x,y \in \sX</span> and <span class="math inline">r \ge r_0</span>.</p>
 </div>
 </section>
 <section id="transient-and-recurrent-states" class="level2">
@@ -742,26 +784,26 @@ window.Quarto = {
 <p><strong>Proposition 10</strong>. Transience and recurrence are class properties.</p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> Let us start with proving recurrence is a class property. Let <span class="math inline">\(x\)</span> be a recurrent state and let <span class="math inline">\(x \leftrightarrow y\)</span>. Hence there exist some <span class="math inline">\(m,n &gt;0\)</span>, such that <span class="math inline">\(P_{xy}^{(m)} &gt; 0\)</span> and <span class="math inline">\(p_{yx}^{(n)}&gt;0\)</span>. As a consequence of the recurrence, <span class="math inline">\(\sum_{s \in \N} p_{xx}^{(s)} = \infty\)</span>. <span class="math inline">\(\sum_{s \in \N} p_{yy}^{(m+n+s)} \ge \sum_{s \in \N} p_{yx}^{(n)} p_{xx}^{(s)} P_{xy}^{(m)} = \infty.\)</span> If <span class="math inline">\(x\)</span> were transient instead then <span class="math inline">\(\sum_{s\in\N}p_{xx}^{(s)}&lt;\infty\)</span>, and we conclude that <span class="math inline">\(y\)</span> is also transient by the following observation <span class="math inline">\(\sum_{s \in \N}  p_{yy}^{(s)} \le \frac{\sum_{s \in \N} p_{xx}^{(m+n+s)} }{ p_{yx}^{(n)} P_{xy}^{(m)}}&lt; \infty.\)</span>&nbsp;◻</p>
+<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> Let us start with proving recurrence is a class property. Let <span class="math inline">x</span> be a recurrent state and let <span class="math inline">x \leftrightarrow y</span>. Hence there exist some <span class="math inline">m,n &gt;0</span>, such that <span class="math inline">P_{xy}^{(m)} &gt; 0</span> and <span class="math inline">p_{yx}^{(n)}&gt;0</span>. As a consequence of the recurrence, <span class="math inline">\sum_{s \in \N} p_{xx}^{(s)} = \infty</span>. <span class="math inline">\sum_{s \in \N} p_{yy}^{(m+n+s)} \ge \sum_{s \in \N} p_{yx}^{(n)} p_{xx}^{(s)} P_{xy}^{(m)} = \infty.</span> If <span class="math inline">x</span> were transient instead then <span class="math inline">\sum_{s\in\N}p_{xx}^{(s)}&lt;\infty</span>, and we conclude that <span class="math inline">y</span> is also transient by the following observation <span class="math inline">\sum_{s \in \N}  p_{yy}^{(s)} \le \frac{\sum_{s \in \N} p_{xx}^{(m+n+s)} }{ p_{yx}^{(n)} P_{xy}^{(m)}}&lt; \infty.</span>&nbsp;◻</p>
 </div>
 <div class="cor">
-<p><strong>Corollary 11</strong>. If <span class="math inline">\(y\)</span> is a recurrent state and there exists a state <span class="math inline">\(x\)</span> such that <span class="math inline">\(y \to x\)</span>, then <span class="math inline">\(x \to y\)</span> and <span class="math inline">\(f_{xy} = 1\)</span>.</p>
+<p><strong>Corollary 11</strong>. If <span class="math inline">y</span> is a recurrent state and there exists a state <span class="math inline">x</span> such that <span class="math inline">y \to x</span>, then <span class="math inline">x \to y</span> and <span class="math inline">f_{xy} = 1</span>.</p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> Let <span class="math inline">\(y \in \sX\)</span> be a recurrent state, and consider state <span class="math inline">\(x \in \sX\)</span> such that <span class="math inline">\(y \to x\)</span>. We will show that <span class="math inline">\(f_{xy} = 1\)</span> and hence <span class="math inline">\(f_{xy}^{(n)} &gt; 0\)</span> for some <span class="math inline">\(n \in \Z_+\)</span> and <span class="math inline">\(x \to y\)</span>. To this end, we observe that since <span class="math inline">\(y \to x\)</span>, there exists an integer <span class="math inline">\(n \in \Z_+\)</span> such that the probability of hitting state <span class="math inline">\(x\)</span> for the first time starting from state <span class="math inline">\(y\)</span> in <span class="math inline">\(n\)</span>-steps is positive. That is, From the strong Markov property, we have Since state <span class="math inline">\(y\)</span> is recurrent, it follows that <span class="math inline">\(f_{xy} = 1\)</span> and hence <span class="math inline">\(x \to y\)</span>.&nbsp;◻</p>
+<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> Let <span class="math inline">y \in \sX</span> be a recurrent state, and consider state <span class="math inline">x \in \sX</span> such that <span class="math inline">y \to x</span>. We will show that <span class="math inline">f_{xy} = 1</span> and hence <span class="math inline">f_{xy}^{(n)} &gt; 0</span> for some <span class="math inline">n \in \Z_+</span> and <span class="math inline">x \to y</span>. To this end, we observe that since <span class="math inline">y \to x</span>, there exists an integer <span class="math inline">n \in \Z_+</span> such that the probability of hitting state <span class="math inline">x</span> for the first time starting from state <span class="math inline">y</span> in <span class="math inline">n</span>-steps is positive. That is, From the strong Markov property, we have Since state <span class="math inline">y</span> is recurrent, it follows that <span class="math inline">f_{xy} = 1</span> and hence <span class="math inline">x \to y</span>.&nbsp;◻</p>
 </div>
 <div class="cor">
-<p><strong>Corollary 12</strong>. Let <span class="math inline">\(x, y \in \sX\)</span> be in the same communicating class and the state <span class="math inline">\(y\)</span> is recurrent. Then, <span class="math inline">\(\lim_{n \in \N}\frac{\sum_{k=1}^np_{xy}^{(k)}}{n} = \frac{1}{\mu_{yy}}\)</span>. Furthermore, if the state <span class="math inline">\(y\)</span> is aperiodic, then <span class="math inline">\(\lim_{n \in \N}p_{xy}^{(n)} = \frac{1}{\mu_{yy}}\)</span>.</p>
+<p><strong>Corollary 12</strong>. Let <span class="math inline">x, y \in \sX</span> be in the same communicating class and the state <span class="math inline">y</span> is recurrent. Then, <span class="math inline">\lim_{n \in \N}\frac{\sum_{k=1}^np_{xy}^{(k)}}{n} = \frac{1}{\mu_{yy}}</span>. Furthermore, if the state <span class="math inline">y</span> is aperiodic, then <span class="math inline">\lim_{n \in \N}p_{xy}^{(n)} = \frac{1}{\mu_{yy}}</span>.</p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> Since <span class="math inline">\(y\)</span> is recurrent and <span class="math inline">\(y \to x\)</span>, it follow that <span class="math inline">\(f_{xy} = 1\)</span> from the previous Lemma. From the Theorem 1.7 in previous lecture, it follows that <span class="math inline">\(\lim_{n \in \N}\frac{\sum_{k=1}^np_{xy}^{(k)}}{n} = \frac{1}{\mu_{yy}}\)</span>.</p>
-<p>Let the period of the state <span class="math inline">\(y\)</span> be <span class="math inline">\(d\)</span>. Then we know that there exists a positive integer <span class="math inline">\(r_0\)</span> such that for all <span class="math inline">\(n \ge r_0\)</span>, we have <span class="math inline">\(p_{yy}^{(nd)} &gt; 0\)</span>.&nbsp;◻</p>
+<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> Since <span class="math inline">y</span> is recurrent and <span class="math inline">y \to x</span>, it follow that <span class="math inline">f_{xy} = 1</span> from the previous Lemma. From the Theorem 1.7 in previous lecture, it follows that <span class="math inline">\lim_{n \in \N}\frac{\sum_{k=1}^np_{xy}^{(k)}}{n} = \frac{1}{\mu_{yy}}</span>.</p>
+<p>Let the period of the state <span class="math inline">y</span> be <span class="math inline">d</span>. Then we know that there exists a positive integer <span class="math inline">r_0</span> such that for all <span class="math inline">n \ge r_0</span>, we have <span class="math inline">p_{yy}^{(nd)} &gt; 0</span>.&nbsp;◻</p>
 </div>
 <div class="thm">
 <p><strong>Theorem 13</strong>. The states in a communicating class are of one of the following types; all transient, or all null recurrent, or all positive recurrent.</p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> It suffices to show that if <span class="math inline">\(x,y\)</span> belong to the same communicating class and <span class="math inline">\(y\)</span> is null recurrent, then <span class="math inline">\(x\)</span> is null recurrent as well. We take <span class="math inline">\(r,s \in \N\)</span>, such that <span class="math inline">\(p_{yx}^{(r)}p_{xy}^{(s)} &gt; 0\)</span>. It follows that <span class="math inline">\(p_{yy}^{r+\ell+s} \ge p_{yx}^{(r)}p_{xx}^{(\ell)}P_{xy}^{(s)}\)</span> for all <span class="math inline">\(\ell \in \N\)</span>. Hence, for any <span class="math inline">\(n &gt; r + s\)</span>, we have Since <span class="math inline">\(y\)</span> is null recurrent LHS goes to zero as <span class="math inline">\(n\)</span> increases, which implies <span class="math inline">\(\lim_{n \in \N}\frac{1}{n}\sum_{\ell = 1}^{n}p_{xx}^{(\ell)} = 0\)</span>. Hence, <span class="math inline">\(x\)</span> is null recurrent as well.&nbsp;◻</p>
+<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> It suffices to show that if <span class="math inline">x,y</span> belong to the same communicating class and <span class="math inline">y</span> is null recurrent, then <span class="math inline">x</span> is null recurrent as well. We take <span class="math inline">r,s \in \N</span>, such that <span class="math inline">p_{yx}^{(r)}p_{xy}^{(s)} &gt; 0</span>. It follows that <span class="math inline">p_{yy}^{r+\ell+s} \ge p_{yx}^{(r)}p_{xx}^{(\ell)}P_{xy}^{(s)}</span> for all <span class="math inline">\ell \in \N</span>. Hence, for any <span class="math inline">n &gt; r + s</span>, we have Since <span class="math inline">y</span> is null recurrent LHS goes to zero as <span class="math inline">n</span> increases, which implies <span class="math inline">\lim_{n \in \N}\frac{1}{n}\sum_{\ell = 1}^{n}p_{xx}^{(\ell)} = 0</span>. Hence, <span class="math inline">x</span> is null recurrent as well.&nbsp;◻</p>
 </div>
 
 
@@ -769,6 +811,27 @@ window.Quarto = {
 </section>
 
 </main> <!-- /main -->
+<script>
+// Quarto's default window.Quarto.typesetMath (defined in <head>) calls
+// katex.render with an empty macros table. Replace it so content that is
+// typeset lazily (e.g. margin/footnote popovers) also gets our macros.
+if (window.Quarto && window.katex) {
+  window.Quarto.typesetMath = function (el) {
+    var mathElements = el.getElementsByClassName("math");
+    Array.from(mathElements).forEach(function (mathEl) {
+      var texText = mathEl.firstChild;
+      if (mathEl.tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathEl, {
+          displayMode: mathEl.classList.contains("display"),
+          throwOnError: false,
+          macros: window.katexMacros,
+          fleqn: false
+        });
+      }
+    });
+  };
+}
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right

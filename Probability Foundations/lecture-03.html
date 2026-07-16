@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Parimal Parag">
-<meta name="dcterms.date" content="2026-07-01">
+<meta name="dcterms.date" content="2026-07-16">
 <meta name="description" content="A graduate-level foundational course, originally offered as E2.202 Random Processes in the ECE Department at IISc.">
 
 <title>Independence – Probability and Random Processes</title>
@@ -49,9 +49,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-4fb813a46f614d50ca558e8979863fae.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-9485d2876aa1002e62740be884464af3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-4fb813a46f614d50ca558e8979863fae.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f3f1ef7f74fe3489948abf8f4525a959.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-bfd295fc7290ab13fbcf6debdb5a53cc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-f3f1ef7f74fe3489948abf8f4525a959.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -81,63 +81,105 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 <script>
-window.MathJax = window.MathJax || {};
-window.MathJax.tex = window.MathJax.tex || {};
-window.MathJax.tex.macros = Object.assign(window.MathJax.tex.macros || {}, {
-  set: ["\\left\\{#1\\right\\}", 1],
-  abs: ["\\left\\lvert#1\\right\\rvert", 1],
-  norm: ["\\left\\lVert#1\\right\\rVert", 1],
-  inner: ["\\left\\langle #1\\right\\rangle", 1],
-  floor: ["\\left\\lfloor#1\\right\\rfloor", 1],
-  ceil: ["\\left\\lceil#1\\right\\rceil", 1],
-  given: ["\\; \\big\\vert \\;", 0],
-  Ind: ["\\mathbb{1}_{#1}", 1],
-  SetIn: ["\\mathbb{1}_{\\left\\{#1\\right\\}}", 1],
-  mathbbm: ["\\mathbb{#1}", 1],
-  iid: ["\\emph{i.i.d.}\\", 0],
-  EQ: ["\\begin{equation*}#1\\end{equation*}", 1],
-  EQN: ["\\begin{equation}#1\\end{equation}", 1],
-  eq: ["\\begin{aligned}#1\\end{aligned}", 1],
-  meq: ["\\begin{aligned}#2\\end{aligned}", 2],
-  tr: "\\operatorname{tr}",
-  Var: "\\operatorname{Var}",
-  Cov: "\\operatorname{Cov}",
-  cov: "\\operatorname{cov}",
-  expect: ["\\mathbb{E}\\left[#1\\right]", 1],
-  prob: ["\\mathbb{P}\\left[#1\\right]", 1],
-  E: "\\mathbb{E}",
-  P: "\\mathbb{P}",
-  F: "\\mathbb{F}",
-  N: "\\mathbb{N}",
-  R: "\\mathbb{R}",
-  Z: "\\mathbb{Z}",
-  Q: "\\mathbb{Q}",
-  C: "\\mathbb{C}",
-  D: "\\mathbb{D}",
-  cF: "\\mathcal{F}",
-  cM: "\\mathcal{M}",
-  sF: "\\mathscr{F}",
-  sX: "\\mathscr{X}",
-  sB: "\\mathscr{B}",
-  sG: "\\mathscr{G}",
-  cP: "\\mathcal{P}",
-  bU: "\\mathbf{1}",
-  bA: "\\mathbf{A}",
-  bx: "\\mathbf{x}",
-  bX: "\\mathbf{X}",
-  bZ: "\\mathbf{Z}",
-  tS: "\\tilde{S}",
-  bigo: "\\mathcal{O}",
-  goto: "\\rightarrow",
-  matlab: ["\\textsc{matlab}", 0],
-  reals: "{\\rm l}\\kern-.15em {\\rm R}",
-  complex: "{\\raisebox{.043ex}{\\rule{0.07em}{1.56ex}} \\hskip -.35em {\\rm C}}",
-  meqalign: ["\\begin{aligned}#1\\end{aligned}", 1]
+window.katexMacros = {
+  "\\set": "\\left\\{#1\\right\\}",
+  "\\abs": "\\left\\lvert#1\\right\\rvert",
+  "\\norm": "\\left\\lVert#1\\right\\rVert",
+  "\\inner": "\\left\\langle #1\\right\\rangle",
+  "\\floor": "\\left\\lfloor#1\\right\\rfloor",
+  "\\ceil": "\\left\\lceil#1\\right\\rceil",
+  "\\given": "\\; \\big\\vert \\;",
+  "\\Ind": "\\mathbb{1}_{#1}",
+  "\\SetIn": "\\mathbb{1}_{\\left\\{#1\\right\\}}",
+  "\\mathbbm": "\\mathbb{#1}",
+  "\\iid": "\\emph{i.i.d.}",
+  "\\EQ": "\\begin{equation*}#1\\end{equation*}",
+  "\\EQN": "\\begin{equation}#1\\end{equation}",
+  "\\eq": "\\begin{aligned}#1\\end{aligned}",
+  "\\meq": "{#1}\\begin{aligned}#2\\end{aligned}",
+  "\\tr": "\\operatorname{tr}",
+  "\\Var": "\\operatorname{Var}",
+  "\\Cov": "\\operatorname{Cov}",
+  "\\cov": "\\operatorname{cov}",
+  "\\expect": "\\mathbb{E}\\left[#1\\right]",
+  "\\prob": "\\mathbb{P}\\left[#1\\right]",
+  "\\E": "\\mathbb{E}",
+  "\\P": "\\mathbb{P}",
+  "\\F": "\\mathbb{F}",
+  "\\N": "\\mathbb{N}",
+  "\\R": "\\mathbb{R}",
+  "\\Z": "\\mathbb{Z}",
+  "\\Q": "\\mathbb{Q}",
+  "\\C": "\\mathbb{C}",
+  "\\D": "\\mathbb{D}",
+  "\\cC": "\\mathcal{C}",
+  "\\cF": "\\mathcal{F}",
+  "\\cM": "\\mathcal{M}",
+  "\\cT": "\\mathcal{T}",
+  "\\sA": "\\mathscr{A}",
+  "\\sB": "\\mathscr{B}",
+  "\\sE": "\\mathscr{E}",
+  "\\sF": "\\mathscr{F}",
+  "\\sG": "\\mathscr{G}",
+  "\\sH": "\\mathscr{H}",
+  "\\sL": "\\mathscr{L}",
+  "\\sX": "\\mathscr{X}",
+  "\\sY": "\\mathscr{Y}",
+  "\\cP": "\\mathcal{P}",
+  "\\indicator": "\\mathbb{1}_{#1}",
+  "\\bigtimes": "\\mathop{\\Large\\times}\\limits",
+  "\\bU": "\\mathbf{1}",
+  "\\bA": "\\mathbf{A}",
+  "\\bx": "\\mathbf{x}",
+  "\\bX": "\\mathbf{X}",
+  "\\bZ": "\\mathbf{Z}",
+  "\\tS": "\\tilde{S}",
+  "\\bigo": "\\mathcal{O}",
+  "\\goto": "\\rightarrow",
+  "\\matlab": "\\text{MATLAB}",
+  "\\reals": "{\\rm l}\\kern-.15em {\\rm R}",
+  "\\complex": "{\\raisebox{.043ex}{\\rule{0.07em}{1.56ex}} \\hskip -.35em {\\rm C}}",
+  "\\meqalign": "\\begin{aligned}#1\\end{aligned}"
+};
+
+document.addEventListener("DOMContentLoaded", function () {
+  if (!window.katex) return;
+  var mathElements = Array.from(document.getElementsByClassName("math"));
+  mathElements.forEach(function (el) {
+    var texText = el.firstChild;
+    if (el.tagName == "SPAN" && texText && texText.data) {
+      window.katex.render(texText.data, el, {
+        displayMode: el.classList.contains("display"),
+        throwOnError: false,
+        macros: window.katexMacros,
+        fleqn: false
+      });
+      // Pandoc's own katex script also typesets ".math" spans on
+      // DOMContentLoaded with no macros; drop the class so its pass
+      // (which runs after this one) finds nothing left to redo.
+      el.classList.remove("math");
+    }
+  });
 });
 </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -468,7 +510,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Probability Foundations/lecture-09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Moments and <span class="math inline">\(L^p\)</span> spaces</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Moments and <span class="math inline">L^p</span> spaces</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -515,7 +557,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Probability Foundations/lecture-15.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title"><span class="math inline">\(L^p\)</span> convergence</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title"><span class="math inline">L^p</span> convergence</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -671,7 +713,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Updated</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 1, 2026</p>
+      <p class="date">July 16, 2026</p>
     </div>
   </div>
   
@@ -688,138 +730,138 @@ window.Quarto = {
 <h1>Law of Total Probability</h1>
 <div class="tcolorbox">
 <div id="exerc:CountableCoinToss" class="exerc">
-<p><strong>Exercise 1</strong> (Countably infinite coin tosses). Consider a sequence of coin tosses, such that the sample space is <span class="math inline">\(\Omega = \left\{H,T\right\}^\mathbb{N}\)</span>. For set of outcomes <span class="math inline">\(E_n \triangleq \left\{\omega \in \Omega: \omega_n = H\right\}\)</span>, we consider an event space generated by <span class="math inline">\(\mathscr{F}\triangleq \sigma(\left\{E_n: n\in \mathbb{N}\right\})\)</span>. Let <span class="math inline">\(\mathscr{F}_n\)</span> be the event space generate by the first <span class="math inline">\(n\)</span> coin tosses, i.e.&nbsp;<span class="math inline">\(\mathscr{F}_n \triangleq \sigma(\left\{E_i: i \in [n]\right\})\)</span>. Let <span class="math inline">\(A_n\)</span> be the set of outcomes corresponding to at least one head in first <span class="math inline">\(n\)</span> outcomes <span class="math inline">\(A_n \triangleq \left\{\omega \in \Omega: \omega_i = H \text{ for some } i \in [n]\right\} = \cup_{i=1}^nE_i \in \mathscr{F},\)</span> and <span class="math inline">\(B_n\)</span> be the set of outcomes corresponding to first head at the <span class="math inline">\(n\)</span>th outcome <span class="math inline">\(B_n \triangleq \left\{\omega \in \Omega: \omega_1 = \dots = \omega_{n-1}= T, \omega = H\right\}
-= \cap_{i=1}^{n-1}E_i^c\cap E_n \in \mathscr{F}.\)</span></p>
+<p><strong>Exercise 1</strong> (Countably infinite coin tosses). Consider a sequence of coin tosses, such that the sample space is <span class="math inline">\Omega = \left\{H,T\right\}^\mathbb{N}</span>. For set of outcomes <span class="math inline">E_n \triangleq \left\{\omega \in \Omega: \omega_n = H\right\}</span>, we consider an event space generated by <span class="math inline">\mathscr{F}\triangleq \sigma(\left\{E_n: n\in \mathbb{N}\right\})</span>. Let <span class="math inline">\mathscr{F}_n</span> be the event space generate by the first <span class="math inline">n</span> coin tosses, i.e.&nbsp;<span class="math inline">\mathscr{F}_n \triangleq \sigma(\left\{E_i: i \in [n]\right\})</span>. Let <span class="math inline">A_n</span> be the set of outcomes corresponding to at least one head in first <span class="math inline">n</span> outcomes <span class="math inline">A_n \triangleq \left\{\omega \in \Omega: \omega_i = H \text{ for some } i \in [n]\right\} = \cup_{i=1}^nE_i \in \mathscr{F},</span> and <span class="math inline">B_n</span> be the set of outcomes corresponding to first head at the <span class="math inline">n</span>th outcome <span class="math inline">B_n \triangleq \left\{\omega \in \Omega: \omega_1 = \dots = \omega_{n-1}= T, \omega = H\right\}
+= \cap_{i=1}^{n-1}E_i^c\cap E_n \in \mathscr{F}.</span></p>
 <ol type="1">
-<li><p>Show that <span class="math inline">\(\mathscr{F}= \sigma(\left\{\mathscr{F}_n: n \in \mathbb{N}\right\})\)</span>.</p></li>
-<li><p>Show that <span class="math inline">\(\sigma(\left\{A_n: n \in \mathbb{N}\right\}) \subseteq \mathscr{F}\)</span> and <span class="math inline">\(\sigma(\left\{B_n: n\in \mathbb{N}\right\}) \subseteq \mathscr{F}\)</span>.</p></li>
+<li><p>Show that <span class="math inline">\mathscr{F}= \sigma(\left\{\mathscr{F}_n: n \in \mathbb{N}\right\})</span>.</p></li>
+<li><p>Show that <span class="math inline">\sigma(\left\{A_n: n \in \mathbb{N}\right\}) \subseteq \mathscr{F}</span> and <span class="math inline">\sigma(\left\{B_n: n\in \mathbb{N}\right\}) \subseteq \mathscr{F}</span>.</p></li>
 </ol>
 </div>
 </div>
 <div class="thm">
-<p><strong>Theorem 2</strong> (Law of total probability). <em>For a probability space <span class="math inline">\((\Omega, \mathscr{F}, P)\)</span>, consider a sequence of events <span class="math inline">\(B\in \mathscr{F}^\mathbb{N}\)</span> that partitions the sample space <span class="math inline">\(\Omega\)</span>, i.e.&nbsp;<span class="math inline">\(B_m \cap B_n = \emptyset\)</span> for all <span class="math inline">\(m \neq n\)</span>, and <span class="math inline">\(\cup_{n \in \mathbb{N}}B_n = \Omega\)</span>. Then, for any event <span class="math inline">\(A \in \mathscr{F}\)</span>, we have <span class="math display">\[\begin{equation*}
+<p><strong>Theorem 2</strong> (Law of total probability). <em>For a probability space <span class="math inline">(\Omega, \mathscr{F}, P)</span>, consider a sequence of events <span class="math inline">B\in \mathscr{F}^\mathbb{N}</span> that partitions the sample space <span class="math inline">\Omega</span>, i.e.&nbsp;<span class="math inline">B_m \cap B_n = \emptyset</span> for all <span class="math inline">m \neq n</span>, and <span class="math inline">\cup_{n \in \mathbb{N}}B_n = \Omega</span>. Then, for any event <span class="math inline">A \in \mathscr{F}</span>, we have <span class="math display">\begin{equation*}
 P(A) = \sum_{n \in \mathbb{N}}P(A \cap B_n).
-\end{equation*}\]</span></em></p>
+\end{equation*}</span></em></p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> We can expand any event <span class="math inline">\(A \in \mathscr{F}\)</span> in terms of any partition <span class="math inline">\(B\)</span> of the sample space <span class="math inline">\(\Omega\)</span> as <span class="math display">\[\begin{equation*}
+<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> We can expand any event <span class="math inline">A \in \mathscr{F}</span> in terms of any partition <span class="math inline">B</span> of the sample space <span class="math inline">\Omega</span> as <span class="math display">\begin{equation*}
 A = A \cap \Omega = A \cap (\cup_{n \in \mathbb{N}}B_n) = \cup_{n \in \mathbb{N}}(A \cap B_n).
-\end{equation*}\]</span> From the mutual disjointness of the events <span class="math inline">\(B \in \mathscr{F}^\mathbb{N}\)</span>, it follows that the sequence <span class="math inline">\((A \cap B_n \in \mathscr{F}: n \in \mathbb{N})\)</span> is mutually disjoint. The result follows from the countable additivity of probability of disjoint events.&nbsp;◻</p>
+\end{equation*}</span> From the mutual disjointness of the events <span class="math inline">B \in \mathscr{F}^\mathbb{N}</span>, it follows that the sequence <span class="math inline">(A \cap B_n \in \mathscr{F}: n \in \mathbb{N})</span> is mutually disjoint. The result follows from the countable additivity of probability of disjoint events.&nbsp;◻</p>
 </div>
 <div class="shaded">
 <div class="exmp">
-<p><strong>Example 3</strong> (Countably infinite coin tosses). Consider the sample space <span class="math inline">\(\Omega = \left\{H,T\right\}^\mathbb{N}\)</span> and event space <span class="math inline">\(\mathscr{F}\)</span> generated by sequence <span class="math inline">\(E \in \mathscr{F}^\mathbb{N}\)</span> defined in Exercise&nbsp;<a href="#exerc:CountableCoinToss" data-reference-type="ref" data-reference="exerc:CountableCoinToss">1</a>. We observe that any event <span class="math inline">\(A \in \mathscr{F}_n\)</span> can be written as <span class="math display">\[\begin{equation*}
+<p><strong>Example 3</strong> (Countably infinite coin tosses). Consider the sample space <span class="math inline">\Omega = \left\{H,T\right\}^\mathbb{N}</span> and event space <span class="math inline">\mathscr{F}</span> generated by sequence <span class="math inline">E \in \mathscr{F}^\mathbb{N}</span> defined in Exercise&nbsp;<a href="#exerc:CountableCoinToss" data-reference-type="ref" data-reference="exerc:CountableCoinToss">1</a>. We observe that any event <span class="math inline">A \in \mathscr{F}_n</span> can be written as <span class="math display">\begin{equation*}
 A = \cup_{\omega \in A}\left\{\omega\right\}
 = \cup_{\omega \in A}\cap_{i=1}^n(\left\{\omega \in E_i\right\}\cup\left\{\omega \notin E_i\right\}).
-\end{equation*}\]</span></p>
+\end{equation*}</span></p>
 </div>
 </div>
 </section>
 <section id="independence" class="level1">
 <h1>Independence</h1>
 <div class="defn">
-<p><strong>Definition 4</strong> (Independence of events). For a probability space <span class="math inline">\((\Omega, \mathscr{F}, P)\)</span>, a family of events <span class="math inline">\(A \in \mathscr{F}^I\)</span> is said to be independent, if for any finite set <span class="math inline">\(F \subseteq I\)</span>, we have <span class="math display">\[\begin{equation*}
+<p><strong>Definition 4</strong> (Independence of events). For a probability space <span class="math inline">(\Omega, \mathscr{F}, P)</span>, a family of events <span class="math inline">A \in \mathscr{F}^I</span> is said to be independent, if for any finite set <span class="math inline">F \subseteq I</span>, we have <span class="math display">\begin{equation*}
 P(\cap_{i \in F}A_i) = \prod_{i \in F}P(A_i).
-\end{equation*}\]</span></p>
+\end{equation*}</span></p>
 </div>
 <div class="rem">
-<p><em>Remark 1</em>. The certain event <span class="math inline">\(\Omega\)</span> and the impossible event <span class="math inline">\(\emptyset\)</span> are always independent to every event <span class="math inline">\(A \in \mathscr{F}\)</span>.</p>
+<p><em>Remark 1</em>. The certain event <span class="math inline">\Omega</span> and the impossible event <span class="math inline">\emptyset</span> are always independent to every event <span class="math inline">A \in \mathscr{F}</span>.</p>
 </div>
 <div class="shaded">
 <div class="exmp">
-<p><strong>Example 5</strong> (Two coin tosses). Consider two coin tosses, such that the sample space is <span class="math inline">\(\Omega = \left\{HH, HT, TH, TT\right\}\)</span>, and the event space is <span class="math inline">\(\mathscr{F}= \mathcal{P}(\Omega)\)</span>. It suffices to define a probability function <span class="math inline">\(P: \mathscr{F}\to [0,1]\)</span> on the sample space. We define one such probability function <span class="math inline">\(P\)</span>, such that <span class="math display">\[\begin{equation*}
+<p><strong>Example 5</strong> (Two coin tosses). Consider two coin tosses, such that the sample space is <span class="math inline">\Omega = \left\{HH, HT, TH, TT\right\}</span>, and the event space is <span class="math inline">\mathscr{F}= \mathcal{P}(\Omega)</span>. It suffices to define a probability function <span class="math inline">P: \mathscr{F}\to [0,1]</span> on the sample space. We define one such probability function <span class="math inline">P</span>, such that <span class="math display">\begin{equation*}
 P(\left\{HH\right\}) = P(\left\{HT\right\}) = P(\left\{TH\right\}) =P(\left\{TT\right\}) = \frac{1}{4}.
-\end{equation*}\]</span> Let event <span class="math inline">\(E_1 \triangleq \left\{HH, HT\right\}\)</span> and <span class="math inline">\(E_2 \triangleq \left\{HH, TH\right\}\)</span> correspond to getting a head on the first or the second toss respectively.</p>
-<p>From the defined probability function, we obtain the probability of getting a tail on the first or the second toss is <span class="math inline">\(\frac{1}{2}\)</span>, and identical to the probability of getting a head on the first or the second toss. That is, <span class="math inline">\(P(E_1) = P(E_2) = \frac{1}{2}\)</span> and the intersecting event <span class="math inline">\(E_1\cap E_2 = \left\{HH\right\}\)</span> with the probability <span class="math inline">\(P(E_1 \cap E_2) = \frac{1}{4}\)</span>. That is, for events <span class="math inline">\(E_1, E_2 \in \mathscr{F}\)</span>, we have <span class="math display">\[\begin{equation*}
+\end{equation*}</span> Let event <span class="math inline">E_1 \triangleq \left\{HH, HT\right\}</span> and <span class="math inline">E_2 \triangleq \left\{HH, TH\right\}</span> correspond to getting a head on the first or the second toss respectively.</p>
+<p>From the defined probability function, we obtain the probability of getting a tail on the first or the second toss is <span class="math inline">\frac{1}{2}</span>, and identical to the probability of getting a head on the first or the second toss. That is, <span class="math inline">P(E_1) = P(E_2) = \frac{1}{2}</span> and the intersecting event <span class="math inline">E_1\cap E_2 = \left\{HH\right\}</span> with the probability <span class="math inline">P(E_1 \cap E_2) = \frac{1}{4}</span>. That is, for events <span class="math inline">E_1, E_2 \in \mathscr{F}</span>, we have <span class="math display">\begin{equation*}
 P(E_1 \cap E_2) = P(E_1)P(E_2).
-\end{equation*}\]</span> That is, events <span class="math inline">\(E_1\)</span> and <span class="math inline">\(E_2\)</span> are independent.</p>
+\end{equation*}</span> That is, events <span class="math inline">E_1</span> and <span class="math inline">E_2</span> are independent.</p>
 </div>
 </div>
 <div class="shaded">
 <div class="exmp">
-<p><strong>Example 6</strong> (Countably infinite coin tosses). Consider the outcome space <span class="math inline">\(\Omega = \left\{H,T\right\}^\mathbb{N}\)</span> and event space <span class="math inline">\(\mathscr{F}\)</span> generated by the sequence <span class="math inline">\(E\)</span> defined in Exercise&nbsp;<a href="#exerc:CountableCoinToss" data-reference-type="ref" data-reference="exerc:CountableCoinToss">1</a>. We define a probability function <span class="math inline">\(P:\mathscr{F}\to [0,1]\)</span> by <span class="math inline">\(P(\cap_{i\in F}E_i)= p^{\left\lvert F\right\rvert}\)</span> for any finite subset <span class="math inline">\(F \subseteq \mathbb{N}\)</span>. By definition, <span class="math inline">\(E \in \mathscr{F}^\mathbb{N}\)</span> is a sequence of independent events. Consider <span class="math inline">\(A, B \in \mathscr{F}^\mathbb{N}\)</span>, where <span class="math inline">\(A_n \triangleq \cup_{i=1}^nE_i\)</span> and <span class="math inline">\(B_n \triangleq \cap_{i=1}^{n-1}E_i^c\cap E_n \in \mathscr{F}\)</span> for all <span class="math inline">\(n\in\mathbb{N}\)</span>. It follows that <span class="math inline">\(P(A_n) = 1-(1-p)^n\)</span> and <span class="math inline">\(P(B_n) = p(1-p)^{n-1}\)</span> for <span class="math inline">\(n \in \mathbb{N}\)</span>.</p>
-<p>For any <span class="math inline">\(\omega \in \Omega\)</span>, we can define the number of heads in first <span class="math inline">\(n\)</span> trials by <span class="math inline">\(k_n(\omega) \triangleq\sum_{i=1}^n\mathbbm{1}_{\left\{H\right\}}(\omega_i) = \sum_{i=1}^n\mathbbm{1}_{\left\{\omega \in E_i\right\}}\)</span>. For any general event <span class="math inline">\(A \in \mathscr{F}_n = \sigma(\left\{E_i: i \in [n]\right\})\)</span>, we can write <span class="math display">\[\begin{equation*}
+<p><strong>Example 6</strong> (Countably infinite coin tosses). Consider the outcome space <span class="math inline">\Omega = \left\{H,T\right\}^\mathbb{N}</span> and event space <span class="math inline">\mathscr{F}</span> generated by the sequence <span class="math inline">E</span> defined in Exercise&nbsp;<a href="#exerc:CountableCoinToss" data-reference-type="ref" data-reference="exerc:CountableCoinToss">1</a>. We define a probability function <span class="math inline">P:\mathscr{F}\to [0,1]</span> by <span class="math inline">P(\cap_{i\in F}E_i)= p^{\left\lvert F\right\rvert}</span> for any finite subset <span class="math inline">F \subseteq \mathbb{N}</span>. By definition, <span class="math inline">E \in \mathscr{F}^\mathbb{N}</span> is a sequence of independent events. Consider <span class="math inline">A, B \in \mathscr{F}^\mathbb{N}</span>, where <span class="math inline">A_n \triangleq \cup_{i=1}^nE_i</span> and <span class="math inline">B_n \triangleq \cap_{i=1}^{n-1}E_i^c\cap E_n \in \mathscr{F}</span> for all <span class="math inline">n\in\mathbb{N}</span>. It follows that <span class="math inline">P(A_n) = 1-(1-p)^n</span> and <span class="math inline">P(B_n) = p(1-p)^{n-1}</span> for <span class="math inline">n \in \mathbb{N}</span>.</p>
+<p>For any <span class="math inline">\omega \in \Omega</span>, we can define the number of heads in first <span class="math inline">n</span> trials by <span class="math inline">k_n(\omega) \triangleq\sum_{i=1}^n\mathbbm{1}_{\left\{H\right\}}(\omega_i) = \sum_{i=1}^n\mathbbm{1}_{\left\{\omega \in E_i\right\}}</span>. For any general event <span class="math inline">A \in \mathscr{F}_n = \sigma(\left\{E_i: i \in [n]\right\})</span>, we can write <span class="math display">\begin{equation*}
 P(A) = \sum_{\omega \in A} \prod_{i=1}^n\Big[P\left\{\omega \in E_i\right\}  + P\left\{\omega \in E_i^c\right\}\Big]
 = \sum_{\omega \in A}p^{k_n(\omega)}(1-p)^{n-k_n(\omega)}.
-\end{equation*}\]</span></p>
+\end{equation*}</span></p>
 </div>
 </div>
 <div class="shaded">
 <div class="exmp">
-<p><strong>Example 7</strong> (Counter example). Consider a probability space <span class="math inline">\((\Omega, \mathscr{F}, P)\)</span> and the events <span class="math inline">\(A_1, A_2, A_3 \in \mathscr{F}\)</span>. The condition <span class="math inline">\(P(A_1\cap A_2\cap A_3) = P(A_1)P(A_2)P(A_3)\)</span> is not sufficient to guarantee independence of the three events. In particular, we see that if</p>
+<p><strong>Example 7</strong> (Counter example). Consider a probability space <span class="math inline">(\Omega, \mathscr{F}, P)</span> and the events <span class="math inline">A_1, A_2, A_3 \in \mathscr{F}</span>. The condition <span class="math inline">P(A_1\cap A_2\cap A_3) = P(A_1)P(A_2)P(A_3)</span> is not sufficient to guarantee independence of the three events. In particular, we see that if</p>
 <div class="xalignat*">
 <p>2 &amp;P(A_1A_2A_3) = P(A_1)P(A_2)P(A_3),&amp;&amp;P(A_1A_2A_3^c) P(A_1)P(A_2)P(A_3^c),</p>
 </div>
-<p>then <span class="math inline">\(P(A_1\cap A_2) =  P(A_1\cap A_2\cap A_3) + P(A_1\cap A_2\cap A_3^c) \neq P(A_1)P(A_2)\)</span>.</p>
+<p>then <span class="math inline">P(A_1\cap A_2) =  P(A_1\cap A_2\cap A_3) + P(A_1\cap A_2\cap A_3^c) \neq P(A_1)P(A_2)</span>.</p>
 </div>
 </div>
 <div class="defn">
-<p><strong>Definition 8</strong>. A family of collections of events <span class="math inline">\((\mathscr{A}_i \subseteq \mathscr{F}: i \in I)\)</span> is called independent, if for any finite set <span class="math inline">\(F \subseteq I\)</span> and <span class="math inline">\(A_i \in \mathscr{A}_i\)</span> for all <span class="math inline">\(i \in F\)</span>, we have <span class="math display">\[\begin{equation*}
+<p><strong>Definition 8</strong>. A family of collections of events <span class="math inline">(\mathscr{A}_i \subseteq \mathscr{F}: i \in I)</span> is called independent, if for any finite set <span class="math inline">F \subseteq I</span> and <span class="math inline">A_i \in \mathscr{A}_i</span> for all <span class="math inline">i \in F</span>, we have <span class="math display">\begin{equation*}
 P(\cap_{i \in F}A_i) = \prod_{i \in F}P(A_i).
-\end{equation*}\]</span></p>
+\end{equation*}</span></p>
 </div>
 </section>
 <section id="conditional-probability" class="level1">
 <h1>Conditional Probability</h1>
-<p>Consider <span class="math inline">\(N\)</span> trials of a random experiment over an outcome space <span class="math inline">\(\Omega\)</span> and an event space <span class="math inline">\(\mathscr{F}\)</span>. Let <span class="math inline">\(\omega_n \in \Omega\)</span> denote the outcome of the experiment of the <span class="math inline">\(n\)</span>th trial. Consider two events <span class="math inline">\(A, B \in \mathscr{F}\)</span> and denote the number of times event <span class="math inline">\(A\)</span> and event <span class="math inline">\(B\)</span> occurs by <span class="math inline">\(N(A)\)</span> and <span class="math inline">\(N(B)\)</span> respectively. We denote the number of times both events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> occurred by <span class="math inline">\(N(A\cap B)\)</span>. Then, we can write these numbers in terms of indicator functions as</p>
+<p>Consider <span class="math inline">N</span> trials of a random experiment over an outcome space <span class="math inline">\Omega</span> and an event space <span class="math inline">\mathscr{F}</span>. Let <span class="math inline">\omega_n \in \Omega</span> denote the outcome of the experiment of the <span class="math inline">n</span>th trial. Consider two events <span class="math inline">A, B \in \mathscr{F}</span> and denote the number of times event <span class="math inline">A</span> and event <span class="math inline">B</span> occurs by <span class="math inline">N(A)</span> and <span class="math inline">N(B)</span> respectively. We denote the number of times both events <span class="math inline">A</span> and <span class="math inline">B</span> occurred by <span class="math inline">N(A\cap B)</span>. Then, we can write these numbers in terms of indicator functions as</p>
 <div class="xalignat*">
 <p>3 &amp;N(A) = _n=1^N_{_n A}, &amp;&amp;N(B) = _n=1^N_{_n B}, &amp;&amp;N(AB) = _n=1^N_{_n A B}.</p>
 </div>
-<p>We denote the relative frequency of events <span class="math inline">\(A, B, A\cap B\)</span> in <span class="math inline">\(N\)</span> trials by <span class="math inline">\(\frac{N(A)}{N}, \frac{N(B)}{N}, \frac{N(A\cap B)}{N}\)</span> respectively. We can find the relative frequency of events <span class="math inline">\(A\)</span>, on the trials where <span class="math inline">\(B\)</span> occurred as <span class="math display">\[\begin{equation*}
+<p>We denote the relative frequency of events <span class="math inline">A, B, A\cap B</span> in <span class="math inline">N</span> trials by <span class="math inline">\frac{N(A)}{N}, \frac{N(B)}{N}, \frac{N(A\cap B)}{N}</span> respectively. We can find the relative frequency of events <span class="math inline">A</span>, on the trials where <span class="math inline">B</span> occurred as <span class="math display">\begin{equation*}
 \frac{\frac{N(A\cap B)}{N}}{\frac{N(B)}{N}} = \frac{N(A \cap B)}{N(B)}.
-\end{equation*}\]</span> Inspired by the relative frequency, we define the conditional probability function conditioned on events.</p>
+\end{equation*}</span> Inspired by the relative frequency, we define the conditional probability function conditioned on events.</p>
 <div class="defn">
-<p><strong>Definition 9</strong>. Fix an event <span class="math inline">\(B \in \mathscr{F}\)</span> such that <span class="math inline">\(P(B) &gt; 0\)</span>, we can define the conditional probability <span class="math inline">\(P(\cdot | B): \mathscr{F}\to [0,1]\)</span> of any event <span class="math inline">\(A \in \mathscr{F}\)</span> conditioned on the event <span class="math inline">\(B\)</span> as <span class="math display">\[\begin{equation*}
+<p><strong>Definition 9</strong>. Fix an event <span class="math inline">B \in \mathscr{F}</span> such that <span class="math inline">P(B) &gt; 0</span>, we can define the conditional probability <span class="math inline">P(\cdot | B): \mathscr{F}\to [0,1]</span> of any event <span class="math inline">A \in \mathscr{F}</span> conditioned on the event <span class="math inline">B</span> as <span class="math display">\begin{equation*}
 P(A|B) = \frac{P(A\cap B)}{P(B)}.
-\end{equation*}\]</span></p>
+\end{equation*}</span></p>
 </div>
 <div class="lem">
-<p><strong>Lemma 10</strong> (Conditional probability). <em>For any event <span class="math inline">\(B \in \mathscr{F}\)</span> such that <span class="math inline">\(P(B) &gt; 0\)</span>, the conditional probability <span class="math inline">\(P(\cdot | B): \mathscr{F}\to [0,1]\)</span> is a probability measure on space <span class="math inline">\((\Omega, \mathscr{F})\)</span>.</em></p>
+<p><strong>Lemma 10</strong> (Conditional probability). <em>For any event <span class="math inline">B \in \mathscr{F}</span> such that <span class="math inline">P(B) &gt; 0</span>, the conditional probability <span class="math inline">P(\cdot | B): \mathscr{F}\to [0,1]</span> is a probability measure on space <span class="math inline">(\Omega, \mathscr{F})</span>.</em></p>
 </div>
 <div class="proof">
 <p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> We will show that the conditional probability satisfies all three axioms of a probability measure.</p>
 <ol type="1">
-<li><p>For all events <span class="math inline">\(A \in \mathscr{F}\)</span>, we have <span class="math inline">\(P(A|B) \geqslant 0\)</span> since <span class="math inline">\(P(A \cap B) \geqslant 0\)</span>.</p></li>
-<li><p>For an infinite sequence of mutually disjoint events <span class="math inline">\((A_i \in \mathscr{F}: i \in \mathbb{N})\)</span> such that <span class="math inline">\(A_i \cap A_j = \emptyset\)</span> for all <span class="math inline">\(i \neq j\)</span>, we have <span class="math inline">\(P(\cup_{i \in \mathbb{N}}A_i|B) = \sum_{i \in \mathbb{N}}P(A_i|B)\)</span>. This follows from disjointness of the sequence <span class="math inline">\((A_i\cap B \in \mathscr{F}: i \in \mathbb{N})\)</span>.</p></li>
-<li><p>Since <span class="math inline">\(\Omega \cap B = B\)</span>, we have <span class="math inline">\(P(\Omega |B) = 1\)</span>.</p></li>
+<li><p>For all events <span class="math inline">A \in \mathscr{F}</span>, we have <span class="math inline">P(A|B) \geqslant 0</span> since <span class="math inline">P(A \cap B) \geqslant 0</span>.</p></li>
+<li><p>For an infinite sequence of mutually disjoint events <span class="math inline">(A_i \in \mathscr{F}: i \in \mathbb{N})</span> such that <span class="math inline">A_i \cap A_j = \emptyset</span> for all <span class="math inline">i \neq j</span>, we have <span class="math inline">P(\cup_{i \in \mathbb{N}}A_i|B) = \sum_{i \in \mathbb{N}}P(A_i|B)</span>. This follows from disjointness of the sequence <span class="math inline">(A_i\cap B \in \mathscr{F}: i \in \mathbb{N})</span>.</p></li>
+<li><p>Since <span class="math inline">\Omega \cap B = B</span>, we have <span class="math inline">P(\Omega |B) = 1</span>.</p></li>
 </ol>
 <p>&nbsp;◻</p>
 </div>
 <div class="rem">
-<p><em>Remark 2</em>. For two independent events <span class="math inline">\(A, B \in \mathscr{F}\)</span> such that <span class="math inline">\(P(A\cap B) &gt; 0\)</span>, we have <span class="math inline">\(P(A|B) = P(A)\)</span> and <span class="math inline">\(P(B|A) = P(B)\)</span>. If either <span class="math inline">\(P(A) = 0\)</span> or <span class="math inline">\(P(B) = 0\)</span>, then <span class="math inline">\(P(A \cap B) = 0\)</span>.</p>
+<p><em>Remark 2</em>. For two independent events <span class="math inline">A, B \in \mathscr{F}</span> such that <span class="math inline">P(A\cap B) &gt; 0</span>, we have <span class="math inline">P(A|B) = P(A)</span> and <span class="math inline">P(B|A) = P(B)</span>. If either <span class="math inline">P(A) = 0</span> or <span class="math inline">P(B) = 0</span>, then <span class="math inline">P(A \cap B) = 0</span>.</p>
 </div>
 <div class="rem">
-<p><em>Remark 3</em>. For any partition <span class="math inline">\(B\)</span> of the sample space <span class="math inline">\(\Omega\)</span>, if <span class="math inline">\(P(B_n) &gt; 0\)</span> for all <span class="math inline">\(n \in \mathbb{N}\)</span>, then from the law of total probability and the definition of conditional probability, we have <span class="math display">\[\begin{equation*}
+<p><em>Remark 3</em>. For any partition <span class="math inline">B</span> of the sample space <span class="math inline">\Omega</span>, if <span class="math inline">P(B_n) &gt; 0</span> for all <span class="math inline">n \in \mathbb{N}</span>, then from the law of total probability and the definition of conditional probability, we have <span class="math display">\begin{equation*}
 P(A) = \sum_{n \in \mathbb{N}}P(A|B_n)P(B_n).
-\end{equation*}\]</span></p>
+\end{equation*}</span></p>
 </div>
 </section>
 <section id="conditional-independence" class="level1">
 <h1>Conditional Independence</h1>
 <div class="defn">
-<p><strong>Definition 11</strong> (Conditional independence of events). For a probability space <span class="math inline">\((\Omega, \mathscr{F}, P)\)</span>, a family of events <span class="math inline">\(A \in \mathscr{F}^I\)</span> is said to be conditionally independent given an event <span class="math inline">\(C \in \mathscr{F}\)</span> such that <span class="math inline">\(P(C) &gt; 0\)</span>, if for any finite set <span class="math inline">\(F \subseteq I\)</span>, we have <span class="math display">\[\begin{equation*}
+<p><strong>Definition 11</strong> (Conditional independence of events). For a probability space <span class="math inline">(\Omega, \mathscr{F}, P)</span>, a family of events <span class="math inline">A \in \mathscr{F}^I</span> is said to be conditionally independent given an event <span class="math inline">C \in \mathscr{F}</span> such that <span class="math inline">P(C) &gt; 0</span>, if for any finite set <span class="math inline">F \subseteq I</span>, we have <span class="math display">\begin{equation*}
 P(\cap_{i \in F}A_i|C) = \prod_{i \in F}P(A_i|C).
-\end{equation*}\]</span></p>
+\end{equation*}</span></p>
 </div>
 <div class="rem">
-<p><em>Remark 4</em>. Let <span class="math inline">\(C \in \mathscr{F}\)</span> be an event such that <span class="math inline">\(P(C) &gt; 0\)</span>. Two events <span class="math inline">\(A, B \in \mathscr{F}\)</span> are said to be conditionally independent given event <span class="math inline">\(C\)</span>, if <span class="math display">\[\begin{equation*}
+<p><em>Remark 4</em>. Let <span class="math inline">C \in \mathscr{F}</span> be an event such that <span class="math inline">P(C) &gt; 0</span>. Two events <span class="math inline">A, B \in \mathscr{F}</span> are said to be conditionally independent given event <span class="math inline">C</span>, if <span class="math display">\begin{equation*}
 P(A \cap B|C) = P(A|C) P(B|C).
-\end{equation*}\]</span> If the event <span class="math inline">\(C = \Omega\)</span>, it implies that <span class="math inline">\(A, B\)</span> are independent events.</p>
+\end{equation*}</span> If the event <span class="math inline">C = \Omega</span>, it implies that <span class="math inline">A, B</span> are independent events.</p>
 </div>
 <div class="rem">
 <p><em>Remark 5</em>. Two events may be independent, but not conditionally independent and vice versa.</p>
 </div>
 <div class="shaded">
 <div class="exmp">
-<p><strong>Example 12</strong>. Consider two independent events <span class="math inline">\(A, B \in \mathscr{F}\)</span> such that <span class="math inline">\(P(A\cap B) &gt; 0\)</span> and <span class="math inline">\(P(A \cup B) &lt; 1\)</span>. Then the events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are not conditionally independent given <span class="math inline">\(A\cup B\)</span>. To see this, we observe that <span class="math display">\[\begin{equation*}
+<p><strong>Example 12</strong>. Consider two independent events <span class="math inline">A, B \in \mathscr{F}</span> such that <span class="math inline">P(A\cap B) &gt; 0</span> and <span class="math inline">P(A \cup B) &lt; 1</span>. Then the events <span class="math inline">A</span> and <span class="math inline">B</span> are not conditionally independent given <span class="math inline">A\cup B</span>. To see this, we observe that <span class="math display">\begin{equation*}
 P(A \cap B | A\cup B) = \frac{P( (A \cap B)\cap (A \cup B))}{P(A\cup B)} = \frac{P(A \cap B)}{P(A\cup B)}
 = \frac{P(A)P(B)}{P(A \cup B)} =  {P(A|A \cup B)}{P(B)}.
-\end{equation*}\]</span> We further observe that <span class="math inline">\(P(B|A\cup B) = \frac{P(B)}{P(A\cup B)} \neq P(B)\)</span> and hence <span class="math inline">\(P(A \cap B | A\cup B) \neq P(A|A\cup B)P(B|A\cup B)\)</span>.</p>
+\end{equation*}</span> We further observe that <span class="math inline">P(B|A\cup B) = \frac{P(B)}{P(A\cup B)} \neq P(B)</span> and hence <span class="math inline">P(A \cap B | A\cup B) \neq P(A|A\cup B)P(B|A\cup B)</span>.</p>
 </div>
 <div class="exmp">
-<p><strong>Example 13</strong>. Consider two non-independent events <span class="math inline">\(A, B \in \mathscr{F}\)</span> such that <span class="math inline">\(P(A) &gt; 0\)</span>. Then the events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are conditionally independent given <span class="math inline">\(A\)</span>. To see this, we observe that <span class="math display">\[\begin{equation*}
+<p><strong>Example 13</strong>. Consider two non-independent events <span class="math inline">A, B \in \mathscr{F}</span> such that <span class="math inline">P(A) &gt; 0</span>. Then the events <span class="math inline">A</span> and <span class="math inline">B</span> are conditionally independent given <span class="math inline">A</span>. To see this, we observe that <span class="math display">\begin{equation*}
 P(A \cap B | A) = \frac{P(A \cap B)}{P(A)} = P(B|A)P(A|A).
-\end{equation*}\]</span></p>
+\end{equation*}</span></p>
 </div>
 </div>
 
@@ -827,6 +869,27 @@ P(A \cap B | A) = \frac{P(A \cap B)}{P(A)} = P(B|A)P(A|A).
 </section>
 
 </main> <!-- /main -->
+<script>
+// Quarto's default window.Quarto.typesetMath (defined in <head>) calls
+// katex.render with an empty macros table. Replace it so content that is
+// typeset lazily (e.g. margin/footnote popovers) also gets our macros.
+if (window.Quarto && window.katex) {
+  window.Quarto.typesetMath = function (el) {
+    var mathElements = el.getElementsByClassName("math");
+    Array.from(mathElements).forEach(function (mathEl) {
+      var texText = mathEl.firstChild;
+      if (mathEl.tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathEl, {
+          displayMode: mathEl.classList.contains("display"),
+          throwOnError: false,
+          macros: window.katexMacros,
+          fleqn: false
+        });
+      }
+    });
+  };
+}
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right

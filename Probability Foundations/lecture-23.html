@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Parimal Parag">
-<meta name="dcterms.date" content="2026-07-01">
+<meta name="dcterms.date" content="2026-07-16">
 <meta name="description" content="A graduate-level foundational course, originally offered as E2.202 Random Processes in the ECE Department at IISc.">
 
 <title>Invariant Distribution – Probability and Random Processes</title>
@@ -49,9 +49,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-4fb813a46f614d50ca558e8979863fae.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-9485d2876aa1002e62740be884464af3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-4fb813a46f614d50ca558e8979863fae.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f3f1ef7f74fe3489948abf8f4525a959.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-bfd295fc7290ab13fbcf6debdb5a53cc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-f3f1ef7f74fe3489948abf8f4525a959.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -81,63 +81,105 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 <script>
-window.MathJax = window.MathJax || {};
-window.MathJax.tex = window.MathJax.tex || {};
-window.MathJax.tex.macros = Object.assign(window.MathJax.tex.macros || {}, {
-  set: ["\\left\\{#1\\right\\}", 1],
-  abs: ["\\left\\lvert#1\\right\\rvert", 1],
-  norm: ["\\left\\lVert#1\\right\\rVert", 1],
-  inner: ["\\left\\langle #1\\right\\rangle", 1],
-  floor: ["\\left\\lfloor#1\\right\\rfloor", 1],
-  ceil: ["\\left\\lceil#1\\right\\rceil", 1],
-  given: ["\\; \\big\\vert \\;", 0],
-  Ind: ["\\mathbb{1}_{#1}", 1],
-  SetIn: ["\\mathbb{1}_{\\left\\{#1\\right\\}}", 1],
-  mathbbm: ["\\mathbb{#1}", 1],
-  iid: ["\\emph{i.i.d.}\\", 0],
-  EQ: ["\\begin{equation*}#1\\end{equation*}", 1],
-  EQN: ["\\begin{equation}#1\\end{equation}", 1],
-  eq: ["\\begin{aligned}#1\\end{aligned}", 1],
-  meq: ["\\begin{aligned}#2\\end{aligned}", 2],
-  tr: "\\operatorname{tr}",
-  Var: "\\operatorname{Var}",
-  Cov: "\\operatorname{Cov}",
-  cov: "\\operatorname{cov}",
-  expect: ["\\mathbb{E}\\left[#1\\right]", 1],
-  prob: ["\\mathbb{P}\\left[#1\\right]", 1],
-  E: "\\mathbb{E}",
-  P: "\\mathbb{P}",
-  F: "\\mathbb{F}",
-  N: "\\mathbb{N}",
-  R: "\\mathbb{R}",
-  Z: "\\mathbb{Z}",
-  Q: "\\mathbb{Q}",
-  C: "\\mathbb{C}",
-  D: "\\mathbb{D}",
-  cF: "\\mathcal{F}",
-  cM: "\\mathcal{M}",
-  sF: "\\mathscr{F}",
-  sX: "\\mathscr{X}",
-  sB: "\\mathscr{B}",
-  sG: "\\mathscr{G}",
-  cP: "\\mathcal{P}",
-  bU: "\\mathbf{1}",
-  bA: "\\mathbf{A}",
-  bx: "\\mathbf{x}",
-  bX: "\\mathbf{X}",
-  bZ: "\\mathbf{Z}",
-  tS: "\\tilde{S}",
-  bigo: "\\mathcal{O}",
-  goto: "\\rightarrow",
-  matlab: ["\\textsc{matlab}", 0],
-  reals: "{\\rm l}\\kern-.15em {\\rm R}",
-  complex: "{\\raisebox{.043ex}{\\rule{0.07em}{1.56ex}} \\hskip -.35em {\\rm C}}",
-  meqalign: ["\\begin{aligned}#1\\end{aligned}", 1]
+window.katexMacros = {
+  "\\set": "\\left\\{#1\\right\\}",
+  "\\abs": "\\left\\lvert#1\\right\\rvert",
+  "\\norm": "\\left\\lVert#1\\right\\rVert",
+  "\\inner": "\\left\\langle #1\\right\\rangle",
+  "\\floor": "\\left\\lfloor#1\\right\\rfloor",
+  "\\ceil": "\\left\\lceil#1\\right\\rceil",
+  "\\given": "\\; \\big\\vert \\;",
+  "\\Ind": "\\mathbb{1}_{#1}",
+  "\\SetIn": "\\mathbb{1}_{\\left\\{#1\\right\\}}",
+  "\\mathbbm": "\\mathbb{#1}",
+  "\\iid": "\\emph{i.i.d.}",
+  "\\EQ": "\\begin{equation*}#1\\end{equation*}",
+  "\\EQN": "\\begin{equation}#1\\end{equation}",
+  "\\eq": "\\begin{aligned}#1\\end{aligned}",
+  "\\meq": "{#1}\\begin{aligned}#2\\end{aligned}",
+  "\\tr": "\\operatorname{tr}",
+  "\\Var": "\\operatorname{Var}",
+  "\\Cov": "\\operatorname{Cov}",
+  "\\cov": "\\operatorname{cov}",
+  "\\expect": "\\mathbb{E}\\left[#1\\right]",
+  "\\prob": "\\mathbb{P}\\left[#1\\right]",
+  "\\E": "\\mathbb{E}",
+  "\\P": "\\mathbb{P}",
+  "\\F": "\\mathbb{F}",
+  "\\N": "\\mathbb{N}",
+  "\\R": "\\mathbb{R}",
+  "\\Z": "\\mathbb{Z}",
+  "\\Q": "\\mathbb{Q}",
+  "\\C": "\\mathbb{C}",
+  "\\D": "\\mathbb{D}",
+  "\\cC": "\\mathcal{C}",
+  "\\cF": "\\mathcal{F}",
+  "\\cM": "\\mathcal{M}",
+  "\\cT": "\\mathcal{T}",
+  "\\sA": "\\mathscr{A}",
+  "\\sB": "\\mathscr{B}",
+  "\\sE": "\\mathscr{E}",
+  "\\sF": "\\mathscr{F}",
+  "\\sG": "\\mathscr{G}",
+  "\\sH": "\\mathscr{H}",
+  "\\sL": "\\mathscr{L}",
+  "\\sX": "\\mathscr{X}",
+  "\\sY": "\\mathscr{Y}",
+  "\\cP": "\\mathcal{P}",
+  "\\indicator": "\\mathbb{1}_{#1}",
+  "\\bigtimes": "\\mathop{\\Large\\times}\\limits",
+  "\\bU": "\\mathbf{1}",
+  "\\bA": "\\mathbf{A}",
+  "\\bx": "\\mathbf{x}",
+  "\\bX": "\\mathbf{X}",
+  "\\bZ": "\\mathbf{Z}",
+  "\\tS": "\\tilde{S}",
+  "\\bigo": "\\mathcal{O}",
+  "\\goto": "\\rightarrow",
+  "\\matlab": "\\text{MATLAB}",
+  "\\reals": "{\\rm l}\\kern-.15em {\\rm R}",
+  "\\complex": "{\\raisebox{.043ex}{\\rule{0.07em}{1.56ex}} \\hskip -.35em {\\rm C}}",
+  "\\meqalign": "\\begin{aligned}#1\\end{aligned}"
+};
+
+document.addEventListener("DOMContentLoaded", function () {
+  if (!window.katex) return;
+  var mathElements = Array.from(document.getElementsByClassName("math"));
+  mathElements.forEach(function (el) {
+    var texText = el.firstChild;
+    if (el.tagName == "SPAN" && texText && texText.data) {
+      window.katex.render(texText.data, el, {
+        displayMode: el.classList.contains("display"),
+        throwOnError: false,
+        macros: window.katexMacros,
+        fleqn: false
+      });
+      // Pandoc's own katex script also typesets ".math" spans on
+      // DOMContentLoaded with no macros; drop the class so its pass
+      // (which runs after this one) finds nothing left to redo.
+      el.classList.remove("math");
+    }
+  });
 });
 </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -468,7 +510,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Probability Foundations/lecture-09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Moments and <span class="math inline">\(L^p\)</span> spaces</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Moments and <span class="math inline">L^p</span> spaces</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -515,7 +557,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Probability Foundations/lecture-15.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title"><span class="math inline">\(L^p\)</span> convergence</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title"><span class="math inline">L^p</span> convergence</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -669,7 +711,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Updated</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 1, 2026</p>
+      <p class="date">July 16, 2026</p>
     </div>
   </div>
   
@@ -684,93 +726,114 @@ window.Quarto = {
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/H_KThf5QThc" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 <section id="invariant-distribution" class="level1">
 <h1>Invariant Distribution</h1>
-<p>Let <span class="math inline">\(X: \Omega \to \sX^{\Z_+}\)</span> be a time-homogeneous Markov chain with transition probability matrix <span class="math inline">\(P: \sX\times\sX\to[0,1]\)</span>.</p>
+<p>Let <span class="math inline">X: \Omega \to \sX^{\Z_+}</span> be a time-homogeneous Markov chain with transition probability matrix <span class="math inline">P: \sX\times\sX\to[0,1]</span>.</p>
 <div class="defn">
-<p><strong>Definition 1</strong>. A probability distribution <span class="math inline">\(\pi \in \cM(\sX)\)</span> is said to be <strong>invariant distribution</strong> for the Markov chain <span class="math inline">\(X\)</span> if it satisfies the <strong>global balance equation</strong> <span class="math inline">\(\pi = \pi P\)</span>.</p>
+<p><strong>Definition 1</strong>. A probability distribution <span class="math inline">\pi \in \cM(\sX)</span> is said to be <strong>invariant distribution</strong> for the Markov chain <span class="math inline">X</span> if it satisfies the <strong>global balance equation</strong> <span class="math inline">\pi = \pi P</span>.</p>
 </div>
 <div class="defn">
-<p><strong>Definition 2</strong>. When the initial distribution of a Markov chain is <span class="math inline">\(\nu \in \cM(\sX)\)</span>, then the conditional probability is denoted by <span class="math inline">\(P_\nu: \sF \to [0,1]\)</span> defined by</p>
+<p><strong>Definition 2</strong>. When the initial distribution of a Markov chain is <span class="math inline">\nu \in \cM(\sX)</span>, then the conditional probability is denoted by <span class="math inline">P_\nu: \sF \to [0,1]</span> defined by</p>
 </div>
 <div class="defn">
-<p><strong>Definition 3</strong>. For a Markov chain <span class="math inline">\(X:\Omega\to\sX^{\Z_+}\)</span>, we denote the distribution of random variable <span class="math inline">\(X_n:\Omega\to\sX\)</span> by <span class="math inline">\(\nu_n \in \cM(\sX)\)</span> for all <span class="math inline">\(n \in \Z_+\)</span>. That is, <span class="math inline">\(\nu_n(x) \triangleq P_{\nu_0}\set{X_n = x}\)</span> for all <span class="math inline">\(x \in \sX\)</span>.</p>
+<p><strong>Definition 3</strong>. For a Markov chain <span class="math inline">X:\Omega\to\sX^{\Z_+}</span>, we denote the distribution of random variable <span class="math inline">X_n:\Omega\to\sX</span> by <span class="math inline">\nu_n \in \cM(\sX)</span> for all <span class="math inline">n \in \Z_+</span>. That is, <span class="math inline">\nu_n(x) \triangleq P_{\nu_0}\set{X_n = x}</span> for all <span class="math inline">x \in \sX</span>.</p>
 </div>
 <div class="rem">
-<p><strong>Remark 1</strong>. We observe that <span class="math inline">\(\nu_n(x) = \sum_{z\in\sX}\nu_0(z)(P^n)_{zx}\)</span> for all <span class="math inline">\(x \in \sX\)</span>.</p>
+<p><strong>Remark 1</strong>. We observe that <span class="math inline">\nu_n(x) = \sum_{z\in\sX}\nu_0(z)(P^n)_{zx}</span> for all <span class="math inline">x \in \sX</span>.</p>
 </div>
 <div class="shaded*">
 <div class="rem">
-<p><strong>Remark 2</strong>. Facts about the invariant distribution <span class="math inline">\(\pi\)</span>.</p>
+<p><strong>Remark 2</strong>. Facts about the invariant distribution <span class="math inline">\pi</span>.</p>
 <ol type="1">
-<li><p>The global balance equation <span class="math inline">\(\pi = \pi P\)</span> is a matrix equation, that is we have a collection of <span class="math inline">\(\abs{\sX}\)</span> equations <span class="math inline">\(\pi_y = \sum_{x \in \sX}\pi_xp_{xy}\)</span> for each <span class="math inline">\(y \in \sX\)</span>.</p></li>
-<li><p>The invariant distribution <span class="math inline">\(\pi\)</span> is left eigenvector of stochastic matrix <span class="math inline">\(P\)</span> with the largest eigenvalue <span class="math inline">\(1\)</span>. The all ones vector is the right eigenvector of this stochastic matrix <span class="math inline">\(P\)</span> for the eigenvalue <span class="math inline">\(1\)</span>.</p></li>
-<li><p>From the Chapman-Kolmogorov equation for initial probability vector <span class="math inline">\(\pi\)</span>, we have <span class="math inline">\(\pi = \pi P^n\)</span> for <span class="math inline">\(n \in \N\)</span>. That is, if <span class="math inline">\(\nu_0 = \pi\)</span>, then <span class="math inline">\(\nu_n = \pi\)</span> for all <span class="math inline">\(n \in \Z_+\)</span>.</p></li>
-<li><p>Resulting process with initial distribution <span class="math inline">\(\pi\)</span> is stationary, and hence have shift-invariant finite dimensional distributions. For example, for any <span class="math inline">\(k, n \in \Z_+\)</span> and <span class="math inline">\(x_0, \dots, x_n \in \sX\)</span>, we have</p></li>
-<li><p>For an irreducible Markov chain, if <span class="math inline">\(\pi_x &gt; 0\)</span> for some <span class="math inline">\(x \in \sX\)</span>, then the entire invariant vector <span class="math inline">\(\pi\)</span> is positive. To this end, we will show that <span class="math inline">\(\pi_y &gt; 0\)</span> for all states <span class="math inline">\(y \in \sX\)</span>. Let <span class="math inline">\(y \in \sX\)</span>, then from the irreducibility of Markov chain, there exists an <span class="math inline">\(m \in \Z_+\)</span> such that <span class="math inline">\(p_{xy}^{(m)} &gt; 0\)</span>. Further, <span class="math inline">\(\pi = \pi P^m\)</span> and hence <span class="math inline">\(\pi_y \ge \pi_x p_{xy}^{(m)} &gt; 0\)</span>.</p></li>
-<li><p>Any scaled version of <span class="math inline">\(\pi\)</span> satisfies the global balance equation. Therefore, for any invariant vector <span class="math inline">\(\alpha \in \sX^{\R_+}\)</span> of a positive recurrent transition matrix <span class="math inline">\(P\)</span>, the sum <span class="math inline">\(\norm{\alpha}_1 = \sum_{x \in \sX}\alpha_x\)</span> must be finite. We can normalize <span class="math inline">\(\alpha\)</span> and get an invariant probability measure <span class="math inline">\(\pi = \frac{\alpha}{\norm{\alpha}_1}\)</span>.</p></li>
+<li><p>The global balance equation <span class="math inline">\pi = \pi P</span> is a matrix equation, that is we have a collection of <span class="math inline">\abs{\sX}</span> equations <span class="math inline">\pi_y = \sum_{x \in \sX}\pi_xp_{xy}</span> for each <span class="math inline">y \in \sX</span>.</p></li>
+<li><p>The invariant distribution <span class="math inline">\pi</span> is left eigenvector of stochastic matrix <span class="math inline">P</span> with the largest eigenvalue <span class="math inline">1</span>. The all ones vector is the right eigenvector of this stochastic matrix <span class="math inline">P</span> for the eigenvalue <span class="math inline">1</span>.</p></li>
+<li><p>From the Chapman-Kolmogorov equation for initial probability vector <span class="math inline">\pi</span>, we have <span class="math inline">\pi = \pi P^n</span> for <span class="math inline">n \in \N</span>. That is, if <span class="math inline">\nu_0 = \pi</span>, then <span class="math inline">\nu_n = \pi</span> for all <span class="math inline">n \in \Z_+</span>.</p></li>
+<li><p>Resulting process with initial distribution <span class="math inline">\pi</span> is stationary, and hence have shift-invariant finite dimensional distributions. For example, for any <span class="math inline">k, n \in \Z_+</span> and <span class="math inline">x_0, \dots, x_n \in \sX</span>, we have</p></li>
+<li><p>For an irreducible Markov chain, if <span class="math inline">\pi_x &gt; 0</span> for some <span class="math inline">x \in \sX</span>, then the entire invariant vector <span class="math inline">\pi</span> is positive. To this end, we will show that <span class="math inline">\pi_y &gt; 0</span> for all states <span class="math inline">y \in \sX</span>. Let <span class="math inline">y \in \sX</span>, then from the irreducibility of Markov chain, there exists an <span class="math inline">m \in \Z_+</span> such that <span class="math inline">p_{xy}^{(m)} &gt; 0</span>. Further, <span class="math inline">\pi = \pi P^m</span> and hence <span class="math inline">\pi_y \ge \pi_x p_{xy}^{(m)} &gt; 0</span>.</p></li>
+<li><p>Any scaled version of <span class="math inline">\pi</span> satisfies the global balance equation. Therefore, for any invariant vector <span class="math inline">\alpha \in \sX^{\R_+}</span> of a positive recurrent transition matrix <span class="math inline">P</span>, the sum <span class="math inline">\norm{\alpha}_1 = \sum_{x \in \sX}\alpha_x</span> must be finite. We can normalize <span class="math inline">\alpha</span> and get an invariant probability measure <span class="math inline">\pi = \frac{\alpha}{\norm{\alpha}_1}</span>.</p></li>
 </ol>
 </div>
 </div>
 <div class="thm">
-<p><strong>Theorem 4</strong>. An irreducible Markov chain with transition probability matrix <span class="math inline">\(P:\sX\times\sX\to[0,1]\)</span> is positive recurrent iff there exists a unique invariant probability measure <span class="math inline">\(\pi \in \cM(\sX)\)</span> that satisfies global balance equation <span class="math inline">\(\pi = \pi P\)</span> and <span class="math inline">\(\pi_x = \frac{1}{\mu_{xx}} &gt; 0\)</span> for all <span class="math inline">\(x \in \sX\)</span>.</p>
+<p><strong>Theorem 4</strong>. An irreducible Markov chain with transition probability matrix <span class="math inline">P:\sX\times\sX\to[0,1]</span> is positive recurrent iff there exists a unique invariant probability measure <span class="math inline">\pi \in \cM(\sX)</span> that satisfies global balance equation <span class="math inline">\pi = \pi P</span> and <span class="math inline">\pi_x = \frac{1}{\mu_{xx}} &gt; 0</span> for all <span class="math inline">x \in \sX</span>.</p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> Consider an irreducible Markov chain <span class="math inline">\(X:\Omega\to\sX^{\Z_+}\)</span> with transition probability matrix <span class="math inline">\(P\)</span>. We will first show that positive recurrence of <span class="math inline">\(X\)</span> implies the existence of a positive invariant distribution <span class="math inline">\(\pi\)</span> and its uniqueness. Then we will show that the existence of a unique positive invariant distribution <span class="math inline">\(\pi\)</span> implies positive recurrence of <span class="math inline">\(X\)</span>.</p>
+<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> Consider an irreducible Markov chain <span class="math inline">X:\Omega\to\sX^{\Z_+}</span> with transition probability matrix <span class="math inline">P</span>. We will first show that positive recurrence of <span class="math inline">X</span> implies the existence of a positive invariant distribution <span class="math inline">\pi</span> and its uniqueness. Then we will show that the existence of a unique positive invariant distribution <span class="math inline">\pi</span> implies positive recurrence of <span class="math inline">X</span>.</p>
 <ul>
-<li><p>For Markov chain <span class="math inline">\(X\)</span>, let the initial state be <span class="math inline">\(X_0 = x\)</span>. Recall that the number of visits to state <span class="math inline">\(y \in \sX\)</span> in the first <span class="math inline">\(n\)</span> steps of the Markov chain <span class="math inline">\(X\)</span> is denoted by <span class="math inline">\(N_y(n) = \sum_{k=1}^n\SetIn{X_k = y}\)</span>. It follows that <span class="math inline">\(\sum_{y \in \sX}N_y(n) = n\)</span> for each <span class="math inline">\(n \in \N\)</span>. Let <span class="math inline">\(H_x \triangleq \tau_X^{\set{x},1}\)</span> be the first recurrence time to state <span class="math inline">\(x\in\sX\)</span>, then we have <span class="math inline">\(N_x(H_x) = 1\)</span> and <span class="math inline">\(\sum_{y \in \sX}N_y(H_x) = H_x\)</span>.</p>
+<li><p>For Markov chain <span class="math inline">X</span>, let the initial state be <span class="math inline">X_0 = x</span>. Recall that the number of visits to state <span class="math inline">y \in \sX</span> in the first <span class="math inline">n</span> steps of the Markov chain <span class="math inline">X</span> is denoted by <span class="math inline">N_y(n) = \sum_{k=1}^n\SetIn{X_k = y}</span>. It follows that <span class="math inline">\sum_{y \in \sX}N_y(n) = n</span> for each <span class="math inline">n \in \N</span>. Let <span class="math inline">H_x \triangleq \tau_X^{\set{x},1}</span> be the first recurrence time to state <span class="math inline">x\in\sX</span>, then we have <span class="math inline">N_x(H_x) = 1</span> and <span class="math inline">\sum_{y \in \sX}N_y(H_x) = H_x</span>.</p>
 <ul>
-<li><p>We define a vector <span class="math inline">\(v \in \R^\sX\)</span> by <span class="math inline">\(v_y \triangleq \E_x[N_y(H_x)]\)</span> for each <span class="math inline">\(y \in \sX\)</span>. We observe that <span class="math inline">\(v_y \ge 0\)</span> for each state <span class="math inline">\(y \in \sX\)</span>. In particular, <span class="math inline">\(v_x = 1\)</span>. Since <span class="math inline">\(X\)</span> is positive recurrent, we get that <span class="math inline">\(\sum_{y \in \sX}v_y = \E_xH_x = \mu_{xx} &lt; \infty\)</span>. We will show that the vector <span class="math inline">\(v\)</span> satisfies the global balance equation <span class="math inline">\(v = vP\)</span>. To see this, we first define <span class="math inline">\(\lambda_{xy}^{(n)}  \triangleq P_x\set{X_n = y, n \le H_x}\)</span> for all <span class="math inline">\(n \in \N\)</span> and states <span class="math inline">\(x,y\in\sX\)</span>. We observe that <span class="math inline">\(\lambda_{xy}^{(1)} = p_{xy}\)</span> for each <span class="math inline">\(y \in \sX\)</span>. Next, we observe from the monotone convergence theorem, that For <span class="math inline">\(n \ge 2\)</span>, partitioning the event <span class="math inline">\(\set{X_n=y, n \le H_x}\)</span> by the events <span class="math inline">\((\set{X_{n-1}=z}: z \in \sX\setminus\set{x})\)</span>, the countable additivity of conditional probability for disjoint events, and the definition of conditional probability, we get Recall that since <span class="math inline">\(H_x\)</span> is adapted to natural filtration <span class="math inline">\(\sF_\bullet\)</span> of Markov chain <span class="math inline">\(X\)</span>, we have <span class="math inline">\(\set{n \le H_x, X_0=x} = \set{X_0=x}\cap\set{H_x &gt; n-1}^c \in \sF_{n-1}\)</span>. Together with the Markov property of <span class="math inline">\(X\)</span> and the fact that <span class="math inline">\(\set{X_{n-1}=z, n \le H_x} = \set{X_{n-1}=z, n-1 \le H_x}\)</span>, we obtain Substituting the expression for <span class="math inline">\(\lambda_{xy}^{(n)}\)</span> in&nbsp;<a href="#eqn:EigenvectorTerms" data-reference-type="eqref" data-reference="eqn:EigenvectorTerms">[eqn:EigenvectorTerms]</a> into the expression for <span class="math inline">\(v_y = \sum_{n \in \N}\lambda_{xy}^{(n)}\)</span> in&nbsp;<a href="#eqn:Eigenvector" data-reference-type="eqref" data-reference="eqn:Eigenvector">[eqn:Eigenvector]</a> and using the fact that <span class="math inline">\(v_x = 1\)</span>, we obtain Since <span class="math inline">\(v\)</span> has a finite sum, it follows that <span class="math inline">\(\pi \triangleq \frac{v}{\sum_{x \in \sX}v_x}\)</span> is an invariant distribution for the Markov chain <span class="math inline">\(X\)</span> with the transition matrix <span class="math inline">\(P\)</span>. In addition, we have <span class="math inline">\(\pi_x = \frac{v_x}{\sum_{y \in \sX}v_y} = \frac{1}{\mu_{xx}} &gt; 0\)</span>.</p></li>
-<li><p>Next, we show that this is a unique invariant measure independent of the initial state <span class="math inline">\(x\)</span>, and hence <span class="math inline">\(\pi_y = \frac{1}{\mu_{yy}} &gt; 0\)</span> for all <span class="math inline">\(y \in \sX\)</span>. For uniqueness, we observe from the Chapman-Kolmogorov equations and invariance of <span class="math inline">\(\pi\)</span> that <span class="math inline">\(\pi = \frac{1}{n}\pi(P + P^2 + \dots + P^n)\)</span>. Hence, <span class="math inline">\(\pi_y = \sum_{x \in \sX}\pi_x \frac{1}{n}\sum_{k=1}^np_{xy}^{(k)}\)</span> for all states <span class="math inline">\(y \in \sX\)</span>. Taking limit <span class="math inline">\(n \to \infty\)</span> on both sides, and exchanging limit and summation on right hand side using bounded convergence theorem for summable series <span class="math inline">\(\pi\)</span>, we get <span class="math inline">\(\pi_y = \frac{1}{\mu_{yy}}\sum_{x \in \sX}\pi_x =  \frac{1}{\mu_{yy}} &gt; 0\)</span> for all states <span class="math inline">\(y \in \sX\)</span>.</p></li>
+<li><p>We define a vector <span class="math inline">v \in \R^\sX</span> by <span class="math inline">v_y \triangleq \E_x[N_y(H_x)]</span> for each <span class="math inline">y \in \sX</span>. We observe that <span class="math inline">v_y \ge 0</span> for each state <span class="math inline">y \in \sX</span>. In particular, <span class="math inline">v_x = 1</span>. Since <span class="math inline">X</span> is positive recurrent, we get that <span class="math inline">\sum_{y \in \sX}v_y = \E_xH_x = \mu_{xx} &lt; \infty</span>. We will show that the vector <span class="math inline">v</span> satisfies the global balance equation <span class="math inline">v = vP</span>. To see this, we first define <span class="math inline">\lambda_{xy}^{(n)}  \triangleq P_x\set{X_n = y, n \le H_x}</span> for all <span class="math inline">n \in \N</span> and states <span class="math inline">x,y\in\sX</span>. We observe that <span class="math inline">\lambda_{xy}^{(1)} = p_{xy}</span> for each <span class="math inline">y \in \sX</span>. Next, we observe from the monotone convergence theorem, that For <span class="math inline">n \ge 2</span>, partitioning the event <span class="math inline">\set{X_n=y, n \le H_x}</span> by the events <span class="math inline">(\set{X_{n-1}=z}: z \in \sX\setminus\set{x})</span>, the countable additivity of conditional probability for disjoint events, and the definition of conditional probability, we get Recall that since <span class="math inline">H_x</span> is adapted to natural filtration <span class="math inline">\sF_\bullet</span> of Markov chain <span class="math inline">X</span>, we have <span class="math inline">\set{n \le H_x, X_0=x} = \set{X_0=x}\cap\set{H_x &gt; n-1}^c \in \sF_{n-1}</span>. Together with the Markov property of <span class="math inline">X</span> and the fact that <span class="math inline">\set{X_{n-1}=z, n \le H_x} = \set{X_{n-1}=z, n-1 \le H_x}</span>, we obtain Substituting the expression for <span class="math inline">\lambda_{xy}^{(n)}</span> in&nbsp;<a href="#eqn:EigenvectorTerms" data-reference-type="eqref" data-reference="eqn:EigenvectorTerms">[eqn:EigenvectorTerms]</a> into the expression for <span class="math inline">v_y = \sum_{n \in \N}\lambda_{xy}^{(n)}</span> in&nbsp;<a href="#eqn:Eigenvector" data-reference-type="eqref" data-reference="eqn:Eigenvector">[eqn:Eigenvector]</a> and using the fact that <span class="math inline">v_x = 1</span>, we obtain Since <span class="math inline">v</span> has a finite sum, it follows that <span class="math inline">\pi \triangleq \frac{v}{\sum_{x \in \sX}v_x}</span> is an invariant distribution for the Markov chain <span class="math inline">X</span> with the transition matrix <span class="math inline">P</span>. In addition, we have <span class="math inline">\pi_x = \frac{v_x}{\sum_{y \in \sX}v_y} = \frac{1}{\mu_{xx}} &gt; 0</span>.</p></li>
+<li><p>Next, we show that this is a unique invariant measure independent of the initial state <span class="math inline">x</span>, and hence <span class="math inline">\pi_y = \frac{1}{\mu_{yy}} &gt; 0</span> for all <span class="math inline">y \in \sX</span>. For uniqueness, we observe from the Chapman-Kolmogorov equations and invariance of <span class="math inline">\pi</span> that <span class="math inline">\pi = \frac{1}{n}\pi(P + P^2 + \dots + P^n)</span>. Hence, <span class="math inline">\pi_y = \sum_{x \in \sX}\pi_x \frac{1}{n}\sum_{k=1}^np_{xy}^{(k)}</span> for all states <span class="math inline">y \in \sX</span>. Taking limit <span class="math inline">n \to \infty</span> on both sides, and exchanging limit and summation on right hand side using bounded convergence theorem for summable series <span class="math inline">\pi</span>, we get <span class="math inline">\pi_y = \frac{1}{\mu_{yy}}\sum_{x \in \sX}\pi_x =  \frac{1}{\mu_{yy}} &gt; 0</span> for all states <span class="math inline">y \in \sX</span>.</p></li>
 </ul></li>
-<li><p>Let <span class="math inline">\(\pi\)</span> be the unique positive invariant distribution of Markov chain <span class="math inline">\(X\)</span>, such that <span class="math inline">\(\pi_y = \frac{1}{\mu_{yy}} &gt; 0\)</span> for all states <span class="math inline">\(y \in \sX\)</span>. It follows that the Markov chain <span class="math inline">\(X\)</span> is positive recurrent.</p></li>
+<li><p>Let <span class="math inline">\pi</span> be the unique positive invariant distribution of Markov chain <span class="math inline">X</span>, such that <span class="math inline">\pi_y = \frac{1}{\mu_{yy}} &gt; 0</span> for all states <span class="math inline">y \in \sX</span>. It follows that the Markov chain <span class="math inline">X</span> is positive recurrent.</p></li>
 </ul>
 <p>&nbsp;◻</p>
 </div>
 <div class="cor">
-<p><strong>Corollary 5</strong>. An irreducible Markov chain on a finite state space <span class="math inline">\(\sX\)</span> has a unique positive stationary distribution <span class="math inline">\(\pi\)</span>.</p>
+<p><strong>Corollary 5</strong>. An irreducible Markov chain on a finite state space <span class="math inline">\sX</span> has a unique positive stationary distribution <span class="math inline">\pi</span>.</p>
 </div>
 <div class="defn">
 <p><strong>Definition 6</strong>. An irreducible, aperiodic, positive recurrent Markov chain is called <strong>ergodic</strong>.</p>
 </div>
 <div class="shaded*">
 <div class="rem">
-<p><strong>Remark 3</strong>. Additional remarks about the stationary distribution <span class="math inline">\(\pi\)</span>.</p>
+<p><strong>Remark 3</strong>. Additional remarks about the stationary distribution <span class="math inline">\pi</span>.</p>
 <ol type="1">
-<li><p>For a Markov chain with multiple positive recurrent communicating classes <span class="math inline">\(\cC_1, \dots, \cC_m\)</span>, one can find the positive equilibrium distribution for each class, and extend it to the entire state space <span class="math inline">\(\sX\)</span> denoting it by <span class="math inline">\(\pi_k\)</span> for class <span class="math inline">\(k \in [m]\)</span>. It is easy to check that any convex combination <span class="math inline">\(\pi = \sum_{k = 1}^m\alpha_k\pi_k\)</span> satisfies the global balance equation <span class="math inline">\(\pi = \pi P\)</span>, where <span class="math inline">\(\alpha_k \ge 0\)</span> for each <span class="math inline">\(k \in [m]\)</span> and <span class="math inline">\(\sum_{k=1}^m\alpha_k = 1\)</span>. Hence, a Markov chain with multiple positive recurrent classes have a convex set of invariant probability measures, with the individual invariant distribution <span class="math inline">\(\pi_k\)</span> for each positive recurrent class <span class="math inline">\(k \in [m]\)</span> being the extreme points.</p></li>
-<li><p>Let <span class="math inline">\(\mu(0) = e_x\)</span>, that is let the initial state of the positive recurrent Markov chain be <span class="math inline">\(X_0 = x\)</span>. Then, we know that That is, <span class="math inline">\(\pi_y\)</span> is limiting average of number of visits to state <span class="math inline">\(y \in \sX\)</span>.</p></li>
-<li><p>If a positive recurrent Markov chain is aperiodic, then limiting probability of being in a state <span class="math inline">\(y\)</span> is its invariant probability, that is <span class="math inline">\(\pi_y = \lim_{n \to \infty}p_{xy}^{(n)}\)</span>.</p></li>
+<li><p>For a Markov chain with multiple positive recurrent communicating classes <span class="math inline">\cC_1, \dots, \cC_m</span>, one can find the positive equilibrium distribution for each class, and extend it to the entire state space <span class="math inline">\sX</span> denoting it by <span class="math inline">\pi_k</span> for class <span class="math inline">k \in [m]</span>. It is easy to check that any convex combination <span class="math inline">\pi = \sum_{k = 1}^m\alpha_k\pi_k</span> satisfies the global balance equation <span class="math inline">\pi = \pi P</span>, where <span class="math inline">\alpha_k \ge 0</span> for each <span class="math inline">k \in [m]</span> and <span class="math inline">\sum_{k=1}^m\alpha_k = 1</span>. Hence, a Markov chain with multiple positive recurrent classes have a convex set of invariant probability measures, with the individual invariant distribution <span class="math inline">\pi_k</span> for each positive recurrent class <span class="math inline">k \in [m]</span> being the extreme points.</p></li>
+<li><p>Let <span class="math inline">\mu(0) = e_x</span>, that is let the initial state of the positive recurrent Markov chain be <span class="math inline">X_0 = x</span>. Then, we know that That is, <span class="math inline">\pi_y</span> is limiting average of number of visits to state <span class="math inline">y \in \sX</span>.</p></li>
+<li><p>If a positive recurrent Markov chain is aperiodic, then limiting probability of being in a state <span class="math inline">y</span> is its invariant probability, that is <span class="math inline">\pi_y = \lim_{n \to \infty}p_{xy}^{(n)}</span>.</p></li>
 </ol>
 </div>
 </div>
 </section>
 <section id="computing-invariant-distribution" class="level1">
 <h1>Computing invariant distribution</h1>
-<p>When the state space <span class="math inline">\(\sX\)</span> is finite, one can find left eigenvector of probability transition matrix <span class="math inline">\(P\)</span> for the largest eigenvalue&nbsp;<span class="math inline">\(1\)</span>. This is the invariant distribution that satisfies the global balance equation <span class="math inline">\(\pi = \pi P\)</span>.</p>
+<p>When the state space <span class="math inline">\sX</span> is finite, one can find left eigenvector of probability transition matrix <span class="math inline">P</span> for the largest eigenvalue&nbsp;<span class="math inline">1</span>. This is the invariant distribution that satisfies the global balance equation <span class="math inline">\pi = \pi P</span>.</p>
 <div class="defn">
-<p>Consider a time homogeneous positive recurrent Markov chain <span class="math inline">\(X:\Omega\to\sX^{\Z_+}\)</span> with probability transition matrix <span class="math inline">\(P\)</span> and invariant distribution <span class="math inline">\(\pi \in \cM(\sX)\)</span>. For any two disjoint sets <span class="math inline">\(A, B \subseteq \sX\)</span>, the probability flux from set of nodes <span class="math inline">\(A\)</span> to set of nodes <span class="math inline">\(B\)</span> is defined as <span class="math inline">\(\Phi(A,B) =\sum_{x \in A}\sum_{y \in B}\pi_xp_{xy}\)</span>.</p>
+<p>Consider a time homogeneous positive recurrent Markov chain <span class="math inline">X:\Omega\to\sX^{\Z_+}</span> with probability transition matrix <span class="math inline">P</span> and invariant distribution <span class="math inline">\pi \in \cM(\sX)</span>. For any two disjoint sets <span class="math inline">A, B \subseteq \sX</span>, the probability flux from set of nodes <span class="math inline">A</span> to set of nodes <span class="math inline">B</span> is defined as <span class="math inline">\Phi(A,B) =\sum_{x \in A}\sum_{y \in B}\pi_xp_{xy}</span>.</p>
 </div>
 <div class="rem">
-<p>The probability flux from a single node <span class="math inline">\(x\)</span> to single node <span class="math inline">\(y\)</span> is denoted by <span class="math inline">\(\Phi(x,y) = \pi_xp_{xy}\)</span>.</p>
+<p>The probability flux from a single node <span class="math inline">x</span> to single node <span class="math inline">y</span> is denoted by <span class="math inline">\Phi(x,y) = \pi_xp_{xy}</span>.</p>
 </div>
 <div class="defn">
-<p>For a time homogeneous Markov chain <span class="math inline">\(X:\Omega\to\sX^{\Z_+}\)</span> with probability transition matrix <span class="math inline">\(P\)</span> represented as the weighted transition graph <span class="math inline">\(G = (\sX, E, w)\)</span>, a <strong>cut</strong> is defined as the partition <span class="math inline">\((\sX_1,\sX_2)\)</span> of nodes.</p>
+<p>For a time homogeneous Markov chain <span class="math inline">X:\Omega\to\sX^{\Z_+}</span> with probability transition matrix <span class="math inline">P</span> represented as the weighted transition graph <span class="math inline">G = (\sX, E, w)</span>, a <strong>cut</strong> is defined as the partition <span class="math inline">(\sX_1,\sX_2)</span> of nodes.</p>
 </div>
 <div class="lem">
 <p>Probability flux balances across cuts.</p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> A cut for the state space <span class="math inline">\(\sX\)</span> is given by a partition <span class="math inline">\((\sX_1,\sX_2)\)</span>. We show that <span class="math inline">\(\Phi(\sX_1,\sX_2) = \Phi(\sX_2,\sX_1)\)</span>. To this see, we observe that by exchanging sums from the monotone convergence theorem, and exchanging <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> as running variables, we can write the probability flux <span class="math inline">\(\Phi(\sX_1,\sX_2)\)</span> as&nbsp;◻</p>
+<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> A cut for the state space <span class="math inline">\sX</span> is given by a partition <span class="math inline">(\sX_1,\sX_2)</span>. We show that <span class="math inline">\Phi(\sX_1,\sX_2) = \Phi(\sX_2,\sX_1)</span>. To this see, we observe that by exchanging sums from the monotone convergence theorem, and exchanging <span class="math inline">x</span> and <span class="math inline">y</span> as running variables, we can write the probability flux <span class="math inline">\Phi(\sX_1,\sX_2)</span> as&nbsp;◻</p>
 </div>
 <div class="cor">
-<p>For any states <span class="math inline">\(y \in \sX\)</span>, we have <span class="math inline">\(\pi_y(1-p_{yy}) = \pi_y \sum_{x \neq y}p_{yx} = \sum_{x \neq y}\pi_xp_{xy}\)</span>.</p>
+<p>For any states <span class="math inline">y \in \sX</span>, we have <span class="math inline">\pi_y(1-p_{yy}) = \pi_y \sum_{x \neq y}p_{yx} = \sum_{x \neq y}\pi_xp_{xy}</span>.</p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> It follows from probability flux balancing across the cut <span class="math inline">\((\set{y}, \set{y}^c)\)</span>.&nbsp;◻</p>
+<p><span class="proof-title"><em>Proof</em>. </span><em>Proof.</em> It follows from probability flux balancing across the cut <span class="math inline">(\set{y}, \set{y}^c)</span>.&nbsp;◻</p>
 </div>
 
 
 </section>
 
 </main> <!-- /main -->
+<script>
+// Quarto's default window.Quarto.typesetMath (defined in <head>) calls
+// katex.render with an empty macros table. Replace it so content that is
+// typeset lazily (e.g. margin/footnote popovers) also gets our macros.
+if (window.Quarto && window.katex) {
+  window.Quarto.typesetMath = function (el) {
+    var mathElements = el.getElementsByClassName("math");
+    Array.from(mathElements).forEach(function (mathEl) {
+      var texText = mathEl.firstChild;
+      if (mathEl.tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathEl, {
+          displayMode: mathEl.classList.contains("display"),
+          throwOnError: false,
+          macros: window.katexMacros,
+          fleqn: false
+        });
+      }
+    });
+  };
+}
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
